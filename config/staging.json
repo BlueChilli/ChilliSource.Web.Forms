@@ -1,0 +1,4 @@
+{
+  "executionEnvironment": "staging",
+  "buildEnvironment": "production"
+}
