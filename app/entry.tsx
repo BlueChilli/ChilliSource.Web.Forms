@@ -14,7 +14,7 @@ import Validation from "../src/Validation/Validation";
 import Validate from "../src/Validation/Validate";
 
 
-class HelloMessage extends React.Component {
+class FormOptions extends React.Component<{}, {}> {
   lastNameValidation(value){
     return value === 'Shane';
   }
@@ -117,6 +117,7 @@ class HelloMessage extends React.Component {
           <DatePicker label="Date Picker" name="DatePicker"/>
           <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
           <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+          <button>Submit</button>
         </Form>
       
       </div>
@@ -126,4 +127,4 @@ class HelloMessage extends React.Component {
 
 const rootEl = document.getElementById("app");
 
-ReactDOM.render(<HelloMessage name="Jane" />, rootEl);
+ReactDOM.render(<FormOptions />, rootEl);
