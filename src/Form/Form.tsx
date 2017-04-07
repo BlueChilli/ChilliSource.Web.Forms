@@ -27,17 +27,19 @@ export interface FormOptionalProps<T> extends BaseReactProps {
     onSubmit?: OnSubmit<T>,    
 }
 
-interface FormStateConnectProps {
-    FormState: formState,
+interface FormStateProps {
+  FormState: formState,
+}
+
+interface FormDispatchProps {
+  dispatch: any
 }
 
 interface FormState {
   canSubmit: boolean
 }
 
-interface FormDispatchProps {
-    dispatch: any
-}
+
 
 export interface FormOwnProps<T> extends FormOptionalProps<T> {
    /** Used to namespace all child input components in the Redux store */
@@ -48,13 +50,12 @@ export interface FormOwnProps<T> extends FormOptionalProps<T> {
     
 }
 
-interface FormProps extends FormOwnProps<undefined>, FormStateConnectProps, FormDispatchProps {}
+interface FormProps extends FormOwnProps<undefined>, FormStateProps, FormDispatchProps {}
 
 const mapOutput = (data, mapOutputFunc) => (mapOutput) ? mapOutputFunc(data) : data;
 
 /** Displays a form component, inserts all user input into redux state and ensures that all inputs are validated
  * before allowing the user to submit the form. */
-
 class Form extends React.Component<FormProps, FormState>{
 
   public static childContextTypes = {
@@ -91,21 +92,14 @@ class Form extends React.Component<FormProps, FormState>{
   componentWillReceiveProps(nextProps:FormProps){
     if (this.props.name !== nextProps.name) {
       this.props.dispatch(clearAllInputs(nextProps.name));
-
       // make the new form unsubmit-able
       this.setState({
         canSubmit: false
       });
     } else {
-      if(nextProps.FormState !== this.props.FormState) {
-        this.setState({
-          canSubmit: true
-        });
-      } else {
-        this.setState({
-          canSubmit: false
-        });
-      }
+      this.setState({
+        canSubmit: nextProps.FormState !== this.props.FormState
+      });
     }
   }
 
@@ -164,14 +158,10 @@ class Form extends React.Component<FormProps, FormState>{
   }
 };
 
-function mapStateToProps(state): FormStateConnectProps{
-  return {
-    FormState: state.get('FormState')
-  };
-}
-
-export default compose<FormStateConnectProps & FormDispatchProps, FormOwnProps<undefined>>(
+export default compose<FormStateProps & FormDispatchProps, FormOwnProps<undefined>>(
   // connect<FormStateConnectProps, FormDispatchProps, FormOwnProps<undefined>>(mapStateToProps),
   withReducer<any, any>("FormState", "dispatch", withReducerState, Map())
 )(Form);
+
+
 export {clearAllInputs}
