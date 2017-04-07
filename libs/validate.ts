@@ -1,6 +1,6 @@
 import {Iterable} from "immutable";
 import regExpList from "./regExp";
-import {ShallowCompareProps} from "../types";
+import {ShallowCompareProps} from "./types";
 
 export const validations = {
   required: (value, test, type) => {

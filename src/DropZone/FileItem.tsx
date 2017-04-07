@@ -1,5 +1,4 @@
 import React, {PropTypes} from "react";
-import {canUseDOM} from "../../Helpers/canUseDOM";
 import {Map} from "immutable";
 
 interface FileItem {
@@ -25,6 +24,5 @@ const FileItem = ({file, deleteFile, index}:FileItem) => {
   )
 };
 
-const filePropType = canUseDOM ? PropTypes.instanceOf(File) : PropTypes.object;
 
 export default FileItem

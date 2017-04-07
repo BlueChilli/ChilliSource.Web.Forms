@@ -1,4 +1,4 @@
-import {ShallowCompare, BaseReactProps} from "../../../types";
+import {ShallowCompare, BaseReactProps} from "../../../libs/types";
 import {Map, List} from "immutable";
 import moment, {Moment} from "moment";
 

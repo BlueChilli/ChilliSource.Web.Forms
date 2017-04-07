@@ -1,6 +1,6 @@
 import React, {PropTypes} from "react";
 import {isUndefined} from "lodash";
-import {ShallowCompare} from "../../../types";
+import {ShallowCompare} from "../../../libs/types";
 import {PossibleDefaultValues} from "../Types/types";
 
 export const isMultipleValueInput = (inputName:string):boolean => {

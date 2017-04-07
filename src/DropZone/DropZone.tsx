@@ -1,5 +1,4 @@
 import React, {PropTypes, Children} from "react";
-import {isDOMComponent} from "react-addons-test-utils";
 import {List, Map} from "immutable";
 import {first} from "lodash";
 import DropZone from "react-dropzone";

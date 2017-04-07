@@ -4,7 +4,7 @@ export const SET_VALIDATION = "SET_VALIDATION";
 export const SET_INPUT_INTERACTION = "SET_INPUT_INTERACTION";
 export const SET_ALL_INPUT_INTERACTIONS = "SET_ALL_INPUT_INTERACTIONS";
 export const CLEAR_ALL_INPUTS = "CLEAR_ALL_INPUTS";
-import {ShallowCompare, FSA} from "../../../types"
+import {ShallowCompare, FSA} from "../../../libs/types"
 
 export interface ClearAllInputsPayload {
   nameSpace: string,
