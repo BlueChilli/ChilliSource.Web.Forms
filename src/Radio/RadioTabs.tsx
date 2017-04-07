@@ -1,6 +1,6 @@
 import React, {PropTypes} from "react";
 import classnames from "classnames";
-import InputWrapper from "../../Components/Form/InputWrapper";
+import InputWrapper from "../Form/InputWrapper";
 import "./RadioTabs.scss";
 import {RadioTabsProps, SwitchProps} from "../Form/Types/types";
 

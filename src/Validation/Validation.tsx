@@ -6,7 +6,7 @@ import "./Validation.scss";
 import {isMultipleValueInput} from "../Form/Helpers/inputHelpers";
 import createSpecificShallowEqual from "../../libs/createSpecificShallowEqual";
 import {ValidationAdditionProps, TextInputProps} from "../Form/Types/types";
-import {ReactComponent, ShallowCompare} from "../types";
+import {ReactComponent, ShallowCompare} from "../../libs/types";
 
 const specificShallowEqual = createSpecificShallowEqual('value', 'changed', 'type');
 const specificShallowEqualDisplayed = createSpecificShallowEqual('displayed');

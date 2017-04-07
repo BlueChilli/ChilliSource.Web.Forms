@@ -21,6 +21,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react": "^15.0.21",
     "autoprefixer": "^6.7.7",
     "awesome-typescript-loader": "^3.1.2",
     "babel-core": "^6.24.0",
@@ -52,8 +53,12 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "immutable": "^3.8.1",
+    "moment": "^2.18.1",
     "react": "^15.4.2",
+    "react-date-range": "^0.9.3",
     "react-dom": "^15.4.2",
+    "react-dropzone": "^3.12.2",
+    "react-onclickoutside": "^5.10.0",
     "recompose": "^0.22.0"
   }
 }

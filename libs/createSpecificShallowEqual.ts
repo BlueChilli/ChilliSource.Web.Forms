@@ -1,6 +1,6 @@
 import {is, Iterable} from "immutable";
 import {isArray, isObject, isNaN, isFunction} from "lodash";
-import {ShallowCompare, ShallowCompareProps} from "../types"
+import {ShallowCompare, ShallowCompareProps} from "./types";
 
 
 export default (...keysToTest: string[]) : Function => {

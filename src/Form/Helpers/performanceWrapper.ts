@@ -6,7 +6,7 @@ import {isUndefined, pick} from "lodash";
 import {isMultipleValueInput, returnDefinedValue} from "./inputHelpers";
 import createSpecificShallowEqual from "../../../libs/createSpecificShallowEqual"
 import {setInput, setInputInteraction, setValidation} from "../Actions/fields";
-import {ShallowCompareProps, ReactComponent, BaseReactProps, ShallowCompare} from "../../types";
+import {ShallowCompareProps, ReactComponent, BaseReactProps, ShallowCompare} from "../../../libs/types";
 import {PerformanceWrapperContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerfomanceWrapperGetInputPath, PerformanceWrapperInputHelpers, NameProp, IdProp, TypeProp} from "../Types/types"
 import {DefaultValueProp, PossibleDefaultValues, InputInfoProps, DefaultSwitchProps, NameSpaceProp, FormStateProp, ValueProp} from "../Types/types"
 

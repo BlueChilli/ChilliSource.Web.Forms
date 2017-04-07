@@ -6,7 +6,7 @@ import {defer} from "lodash";
 import {setAllInputInteractions, clearAllInputs} from "./Actions/fields";
 import {withReducerState} from "./Reducers/fields";
 import {isMultipleValueInput} from "./Helpers/inputHelpers";
-import {ShallowCompare, BaseReactProps} from "../types";
+import {ShallowCompare, BaseReactProps} from "../../libs/types";
 import {eventHandler} from "./Types/types";
 import {convertToFormData, normalizeFields} from "./Helpers/formHelpers";
 import {withReducer, compose} from "recompose";
@@ -36,7 +36,7 @@ interface FormState {
 }
 
 interface FormDispatchProps {
-    dispatch: Dispatch<any>
+    dispatch: any
 }
 
 export interface FormOwnProps<T> extends FormOptionalProps<T> {
@@ -171,7 +171,7 @@ function mapStateToProps(state): FormStateConnectProps{
 }
 
 export default compose<FormStateConnectProps & FormDispatchProps, FormOwnProps<undefined>>(
-  connect<FormStateConnectProps, FormDispatchProps, FormOwnProps<undefined>>(mapStateToProps),
-  // withReducer<any, any>("FormState", "dispatch", withReducerState, Map())
+  // connect<FormStateConnectProps, FormDispatchProps, FormOwnProps<undefined>>(mapStateToProps),
+  withReducer<any, any>("FormState", "dispatch", withReducerState, Map())
 )(Form);
 export {clearAllInputs}

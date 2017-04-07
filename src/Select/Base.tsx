@@ -1,7 +1,7 @@
 import React, {PropTypes, Children} from "react";
 import {withProps} from "recompose";
 import {List} from "immutable";
-import {ShallowCompare} from "../../types";
+import {ShallowCompare} from "../../libs/types";
 import {SelectInputProps} from "../Form/Types/types";
 import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
 
