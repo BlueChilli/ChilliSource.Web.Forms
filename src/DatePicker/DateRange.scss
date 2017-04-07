@@ -1,0 +1,10 @@
+.date-range-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.date-range-container {
+  position: absolute;
+  z-index: 3000;
+  left: 0;
+}

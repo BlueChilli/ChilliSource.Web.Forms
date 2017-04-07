@@ -1,0 +1,18 @@
+{
+  "executionEnvironment": "development",
+  "buildEnvironment": "development",
+  "host": "local.bluechilli.com",
+  "port": 9000,
+  "apiURL": "/api/v1",
+  "baseURL": "https://benchon-dev.azurewebsites.net",
+  "baseName": "/",
+  "apiKey": "F5311DE2-6F54-443E-8FC6-863AE944CE4A",
+  "loginURL": "/account/login",
+  "title": "frecl",
+  "bugherd": "",
+  "heap": "",
+  "mixpanel": "",
+  "raygun": "",
+  "s3Path": "",
+  "ga_tracking_code": "UA-XXXXXXXX-X"
+}

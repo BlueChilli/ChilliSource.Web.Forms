@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "target": "es2015",
+        "module": "es6",
+        "moduleResolution": "node",
+        "allowJs": true,
+        "jsx": "react",
+        "typeRoots": [
+            "./Frecl/Types/**"
+        ]
+    },
+    
+    "exclude": [
+        "node_modules",
+        "custom_modules",
+        "**/*.test*.*",
+        "doc"
+    ],
+    "awesomeTypescriptLoaderOptions": {
+        "useBabel": true
+    }
+}
