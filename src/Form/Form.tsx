@@ -9,7 +9,7 @@ import {isMultipleValueInput} from "./Helpers/inputHelpers";
 import {ShallowCompare, BaseReactProps} from "../../libs/types";
 import {eventHandler} from "./Types/types";
 import {convertToFormData, normalizeFields} from "./Helpers/formHelpers";
-import {withReducer, compose} from "recompose";
+import {withReducer, compose, branch} from "recompose";
 
 
 type formState = Map<string, Map<string, ShallowCompare>>
@@ -159,8 +159,9 @@ class Form extends React.Component<FormProps, FormState>{
 };
 
 export default compose<FormStateProps & FormDispatchProps, FormOwnProps<undefined>>(
-  // connect<FormStateConnectProps, FormDispatchProps, FormOwnProps<undefined>>(mapStateToProps),
-  withReducer<any, any>("FormState", "dispatch", withReducerState, Map())
+  branch(props => {
+    return !(props.FormState && props.dispatch)
+  }, withReducer<any, any>("FormState", "dispatch", withReducerState, Map()))
 )(Form);
 
 

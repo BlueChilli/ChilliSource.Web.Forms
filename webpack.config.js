@@ -11,7 +11,7 @@ process.env.NODE_ENV = JSON.stringify(config.get('buildEnvironment'));
 
 module.exports = {
   devtool: 'eval-source-map',
-  entry: path.join(__dirname, '/app/entry'),
+  entry: path.join(__dirname, '/app/redux'),
   output: {
     path: "/",
     publicPath: "/"
