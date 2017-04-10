@@ -1,12 +1,11 @@
 import {Map} from "immutable";
-// import {createReducer} from "redux-immutablejs";
 import {getInputValue, getInputState, getInputValidation} from "../Helpers/path";
 import {isMultipleValueInput} from "../Helpers/inputHelpers";
 import {FSA} from "../../../libs/types";
 
 import {ClearAllInputsPayload, SetInputPayload, SetAllInputInteractionPayload, SetInputInteractionPayload, SetValidationPayload} from "../Actions/fields"
 
-const basicReducer = {
+export const basicReducer = {
   SET_INPUT: (state, {payload}:FSA<SetInputPayload>) => {
     const valuePath = getInputValue(payload.nameSpace, payload.inputName);
     return state.setIn(valuePath, payload.value);
@@ -44,9 +43,11 @@ const basicReducer = {
   }
 }
 
-export const withReducerState = (state, action) => {
-  return basicReducer[action.type](state, action);
+export const withReducerState = (state = Map(), action) => {
+  const reducerFunc = basicReducer[action.type];
+  if(typeof reducerFunc === 'function'){
+    reducerFunc(state, action);
+  }else{
+    return state;
+  }
 }
-
-// export default createReducer<Map<string, any>, ClearAllInputsPayload | SetInputPayload | SetAllInputInteractionPayload | SetInputInteractionPayload>(Map({}), basicReducer);
-
