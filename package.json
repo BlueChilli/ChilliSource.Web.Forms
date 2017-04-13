@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node server.js"
   },
   "author": "BlueChilli",
@@ -20,11 +20,25 @@
       "transform-react-display-name"
     ]
   },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx"
+    ],
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$"
+  },
   "devDependencies": {
+    "@types/jest": "^19.2.2",
     "@types/react": "^15.0.21",
     "autoprefixer": "^6.7.7",
     "awesome-typescript-loader": "^3.1.2",
     "babel-core": "^6.24.0",
+    "babel-jest": "^19.0.0",
     "babel-loader": "^6.4.1",
     "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-plugin-transform-react-display-name": "^6.23.0",
@@ -38,12 +52,14 @@
     "file-loader": "^0.11.1",
     "html-webpack-plugin": "^2.28.0",
     "img-loader": "^2.0.0",
+    "jest": "^19.0.2",
     "node-sass": "^4.5.2",
     "open": "0.0.5",
     "postcss-loader": "^1.3.3",
     "raw-loader": "^0.5.1",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.1",
+    "ts-jest": "^19.0.8",
     "typescript": "^2.2.2",
     "url-loader": "^0.5.8",
     "webpack": "^2.3.3",
