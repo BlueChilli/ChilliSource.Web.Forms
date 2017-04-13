@@ -12,6 +12,8 @@ import "./Switch.scss";
 class Switch extends React.PureComponent<SwitchProps & PerformanceWrapperProps, {}>{
   render() {
     const {className, label, ...props} = this.props;
+    const {autoFocus, onChange, onBlur, id, defaultChecked, defaultSelected, defaultValue, ...validationProps} = props;
+
     const classes = classnames("switch", className);
     const labelFor = `${toLower(props.name)}_${snakeCase(props.id)}`;
     return (
@@ -21,7 +23,7 @@ class Switch extends React.PureComponent<SwitchProps & PerformanceWrapperProps, 
           <span className="box"/>
           {label}
         </label>
-        <DisplayValidation {...props} />
+        <DisplayValidation {...validationProps} />
       </ErrorWrapper>
     );
   }

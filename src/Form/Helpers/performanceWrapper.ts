@@ -7,7 +7,7 @@ import {isMultipleValueInput, returnDefinedValue} from "./inputHelpers";
 import createSpecificShallowEqual from "../../../libs/createSpecificShallowEqual"
 import {setInput, setInputInteraction, setValidation} from "../Actions/fields";
 import {ShallowCompareProps, ReactComponent, BaseReactProps, ShallowCompare} from "../../../libs/types";
-import {PerformanceWrapperContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerfomanceWrapperGetInputPath, PerformanceWrapperInputHelpers, NameProp, IdProp, TypeProp} from "../Types/types"
+import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerfomanceWrapperGetInputPath, PerformanceWrapperInputHelpers, NameProp, IdProp, TypeProp} from "../Types/types"
 import {DefaultValueProp, PossibleDefaultValues, InputInfoProps, DefaultSwitchProps, NameSpaceProp, FormStateProp, ValueProp} from "../Types/types"
 
 const specificShallowEqual = createSpecificShallowEqual("inputInfo", "inputGroupInfo", "name", "nameSpace", "type", "id", "disabled", "required", 
@@ -19,7 +19,7 @@ interface WithHandlersGuard extends NameProp, IdProp, TypeProp, DefaultSwitchPro
 
 interface GetHTMLAttributesGuard extends ValueProp, BaseReactProps, TypeProp, IdProp{}
 
-export interface PerformanceWrapperProps extends PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerformanceWrapperContext {}
+export interface PerformanceWrapperProps extends PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, FormContext {}
 
 const getUnsetValue = ({type}:{type?:string}):boolean | string  => {
   if (type === 'radio' || type === 'checkbox') {
@@ -46,15 +46,15 @@ export default <TOutter extends WithHandlersGuard> (ReactClass:ReactComponent<TO
     }
   };
 
-  return compose<PerformanceWrapperProps, TOutter>(
-    getContext<PerformanceWrapperContext, TOutter>({
+  return compose<PerformanceWrapperProps & TOutter, TOutter>(
+    getContext<FormContext, TOutter>({
       nameSpace: PropTypes.string,
       FormState: PropTypes.object,
       fieldSetNameSpace: PropTypes.string,
       dispatch: PropTypes.func
     }),
 
-    withHandlers<PerfomanceWrapperGetInputPath, PerformanceWrapperContext & TOutter>({
+    withHandlers<PerfomanceWrapperGetInputPath, FormContext & TOutter>({
       getInputPath: ({nameSpace, name, id, fieldSetNameSpace}) => ():string[] => {
         if (fieldSetNameSpace !== undefined) {
           return `${fieldSetNameSpace}/${name}`.split('/');
@@ -65,7 +65,7 @@ export default <TOutter extends WithHandlersGuard> (ReactClass:ReactComponent<TO
         }
       }
     }),
-    withHandlers<PerformanceWrapperInputHelpers, PerfomanceWrapperGetInputPath & PerformanceWrapperContext & TOutter>({
+    withHandlers<PerformanceWrapperInputHelpers, PerfomanceWrapperGetInputPath & FormContext & TOutter>({
       inputChanged: ({dispatch, nameSpace, name, getInputPath}) => (value, changed = true) => {
         dispatch(setInput(nameSpace, getInputPath(), value));
         dispatch(setInputInteraction(nameSpace, getInputPath(), 'changed', changed));
@@ -93,7 +93,7 @@ export default <TOutter extends WithHandlersGuard> (ReactClass:ReactComponent<TO
         return safeProps;
       }
     }),
-    withProps<PerformanceWrapperWithProps, PerformanceWrapperWithHandlers & PerformanceWrapperContext & TOutter>(props => {
+    withProps<PerformanceWrapperWithProps, PerformanceWrapperWithHandlers & FormContext & TOutter>(props => {
       const inputPath = props.getInputPath();
       const inputInfoPath = inputPath.slice(0, inputPath.length - 1);
       const inputInfo = props.FormState.getIn([props.nameSpace, ...inputPath], Map())
