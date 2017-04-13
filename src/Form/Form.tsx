@@ -4,7 +4,7 @@ import classnames from "classnames";
 // import {connect} from "react-redux";
 import {defer} from "lodash";
 import {setAllInputInteractions, clearAllInputs} from "./Actions/fields";
-import {withReducerState} from "./Reducers/fields";
+import {withReducerState} from "./Reducers";
 import {isMultipleValueInput} from "./Helpers/inputHelpers";
 import {ShallowCompare, BaseReactProps} from "../../libs/types";
 import {eventHandler} from "./Types/types";

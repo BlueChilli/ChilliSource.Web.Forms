@@ -1,4 +1,3 @@
-import React from "react";
 import {returnDefinedValue, isMultipleValueInput} from "../inputHelpers";
 
 describe("returnDefinedValue()", () => {

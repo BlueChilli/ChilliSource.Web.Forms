@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import {Provider} from 'react-redux'
 import {createStore, applyMiddleware} from 'redux'
 import {createReducer, combineReducers} from "redux-immutablejs";
-import {basicReducer} from '../src/Form/Reducers/fields';
+import {basicReducer} from '../src/Form/Reducers';
 import Form from "./FormReduxWrapper";
 
 const reducers = combineReducers({
