@@ -98,13 +98,13 @@ export interface OptionalValidationProps{
 	/** Disable the input*/	
 	disabled?: any,
 	/** Don't validate the input*/			
-	noValidate? :any,
+	noValidate? :any, 
 }
 
 
 export interface TextAreaProps extends BaseInputProps<string>, InputValidationProps, InputWrapperProps {}
-export interface TextInputProps extends BaseInputProps<string>, InputValidationProps, InputWrapperProps, InputGroupProps, InputWrapperProps {} 
-export interface SelectInputProps extends BaseInputProps<string | number>, InputValidationProps, InputWrapperProps, InputGroupProps, InputWrapperProps, DefaultSwitchProps {
+export interface TextInputProps extends BaseInputProps<string>, InputValidationProps, InputWrapperProps, InputGroupProps{} 
+export interface SelectInputProps extends BaseInputProps<string | number>, InputValidationProps, InputWrapperProps, DefaultSwitchProps {
 	/** Pass in an arrow to display at the edge of the select box */ 
 	arrow?: React.ReactNode,
 	children?: Array<React.ReactText>
@@ -126,7 +126,8 @@ export interface ValidationElementProps extends BaseReactProps, NameProp{
 	isFor: string,
 }
 
-export interface DisplayValidationProps extends BaseReactProps, OptionalValidationProps, TypeProp, NameProp{}
+
+export interface DisplayValidationProps extends BaseReactProps, OptionalValidationProps, InputValidationProps, TypeProp, NameProp{}
 
 export interface DropZoneProps extends BaseReactProps, NameProp{
 	/** Can you upload multiple files*/	
@@ -196,7 +197,7 @@ export interface FormStateProp {
 	FormState: Map<string, any>
 }
 
-export interface PerformanceWrapperContext extends NameSpaceProp, FormStateProp{
+export interface FormContext extends NameSpaceProp, FormStateProp{
   fieldSetNameSpace: string,
   dispatch: Function
 }

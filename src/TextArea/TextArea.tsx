@@ -10,13 +10,14 @@ import {TextAreaProps} from "../Form/Types/types";
 class TextArea extends React.PureComponent<TextAreaProps & PerformanceWrapperProps, {}> {
   render() {
     const {className, label, labelPostfix, ...props} = this.props;
+    const {autoFocus, onChange, onBlur, id, ...validationProps} = props;
     const classes = classnames(className, 'textarea', 'input');
     return (
       <InputWrapper className={classes} name={props.name} labelPostfix={labelPostfix} label={label}>
         <InputGroup>
           <TextAreaBase {...props} />
         </InputGroup>
-        <DisplayValidation {...props} />
+        <DisplayValidation {...validationProps} />
       </InputWrapper>
     );
   } 

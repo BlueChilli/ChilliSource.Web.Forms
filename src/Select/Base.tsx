@@ -43,7 +43,7 @@ class SelectBase extends React.Component<SelectInputProps & PerformanceWrapperPr
   }
 };
 
-export default withProps<WithProps, SelectInputProps>(props => {
+export default withProps<WithProps, SelectInputProps & PerformanceWrapperProps>(props => {
   return {
     defaultSelected: getDefaultSelected(props)
   }

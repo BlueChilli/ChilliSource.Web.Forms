@@ -28,11 +28,13 @@ export interface FormOptionalProps<T> extends BaseReactProps {
 }
 
 interface FormStateProps {
-  FormState: formState,
+  /** Can optionally be passed down by the user to intergrate with redux global state */
+  FormState?: formState,
 }
 
 interface FormDispatchProps {
-  dispatch: any
+  /** Can optionally be passed down by the user to intergrate with redux global state */
+  dispatch?: any
 }
 
 interface FormState {
@@ -158,8 +160,8 @@ class Form extends React.Component<FormProps, FormState>{
   }
 };
 
-export default compose<FormStateProps & FormDispatchProps, FormOwnProps<undefined>>(
-  branch(props => {
+export default compose<FormStateProps & FormDispatchProps, FormProps>(
+  branch<FormProps>(props => {
     return !(props.FormState && props.dispatch)
   }, withReducer<any, any>("FormState", "dispatch", withReducerState, Map()))
 )(Form);

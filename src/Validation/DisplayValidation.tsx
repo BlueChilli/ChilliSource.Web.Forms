@@ -19,7 +19,7 @@ const childrenValidations = (children) : string[] => {
   return [];
 };
 
-const isSwitch = (type) :boolean => {
+const isSwitch = (type):boolean => {
   return type === "checkbox" || type === 'radio';
 };
 
