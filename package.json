@@ -27,6 +27,7 @@
       "js",
       "jsx"
     ],
+    "moduleDirectories": ["node_modules"],
     "transform": {
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
@@ -35,6 +36,7 @@
   "devDependencies": {
     "@types/enzyme": "^2.7.8",
     "@types/jest": "^19.2.2",
+    "@types/lodash": "^4.14.62",
     "@types/react": "^15.0.21",
     "@types/react-dom": "^0.14.23",
     "@types/recompose": "^0.22.0",
@@ -72,7 +74,6 @@
     "webpack-hot-middleware": "^2.18.0"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.62",
     "classnames": "^2.2.5",
     "immutable": "^3.8.1",
     "moment": "^2.18.1",
