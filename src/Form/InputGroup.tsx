@@ -8,9 +8,9 @@ const InputGroup = ({prepend, append, children} : InputGroupProps) => {
   const inputGroupClass:string = classnames('input-group', {'input-prepend': !!prepend}, {'input-append': !!append});
   return (
     <div className={inputGroupClass}>
+      {!!append && <span className="input-addon">{append}</span>}
       {children}
       {!!prepend && <span className="input-addon">{prepend}</span>}
-      {!!append && <span className="input-addon">{append}</span>}
     </div>
   );
 };

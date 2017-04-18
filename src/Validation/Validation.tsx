@@ -1,4 +1,4 @@
-import React, {PropTypes} from "react";
+import React from "react";
 import {withProps, mapProps, shouldUpdate, ComponentEnhancer, InferableComponentEnhancer, compose, withState, withHandlers, lifecycle} from "recompose";
 import classnames from "classnames";
 import {testElement, validations} from "../../libs/validate";

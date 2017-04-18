@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
         "allowSyntheticDefaultImports": true,
-        "target": "es2015",
-        "module": "es2015",
+        "target": "es6",
+        "module": "es6",
         "moduleResolution": "node",
         "allowJs": true,
         "jsx": "react",
@@ -10,7 +10,6 @@
             "./Frecl/Types/**"
         ]
     },
-    
     "exclude": [
         "node_modules",
         "custom_modules",
