@@ -29,13 +29,32 @@ const getUnsetValue = ({type}:{type?:string}):boolean | string  => {
   }
 };
 
+export const getHTMLAttributes = <T extends GetHTMLAttributesGuard> (props:T) => {
+  const {children} = props
+  const safeProps = pick<React.HTMLAttributes<any>, T>(props, "id", "autoFocus", "required", "name", "type", "value", "min", "max", "minLength", "maxLength", "pattern");
+  // TODO: move this out of here
+  if (props.type === 'checkbox' || props.type === 'radio') {
+    if (props.type === 'radio') {
+      return Object.assign({}, safeProps, {
+        checked: props.id + "" === props.value + ""
+      });
+    } else {
+      return Object.assign({}, safeProps, {
+        checked: props.value
+      });
+    }
+  }
+  return safeProps;
+}
+
+
+
 export default <TOutter extends WithHandlersGuard> (ReactClass:ReactComponent<TOutter & PerformanceWrapperProps>) => {
 
   const InputSetup = {
     componentWillMount() {
       this.props.inputChanged(this.props.value, false);
     },
-
     componentWillReceiveProps(nextProps:PerformanceWrapperProps & TOutter){
       if (!specificShallowEqualDefault(nextProps, this.props)) {
         nextProps.inputChanged(nextProps.defaultValue, false);
@@ -76,22 +95,7 @@ export default <TOutter extends WithHandlersGuard> (ReactClass:ReactComponent<TO
       setValidation: ({dispatch, nameSpace, getInputPath}) => (type, test) => {
         dispatch(setValidation(nameSpace, getInputPath(), type, test));
       },
-      getHTMLAttributes:<T extends GetHTMLAttributesGuard> () => (props:T) => {
-        const {children} = props
-        const safeProps = pick<React.HTMLAttributes<any>, T>(props, "id", "autoFocus", "required", "name", "type", "value");
-        if (props.type === 'checkbox' || props.type === 'radio') {
-          if (props.type === 'radio') {
-            return Object.assign({}, safeProps, {
-              checked: props.id + "" === props.value + ""
-            });
-          } else {
-            return Object.assign({}, safeProps, {
-              checked: props.value
-            });
-          }
-        }
-        return safeProps;
-      }
+      getHTMLAttributes:<T extends GetHTMLAttributesGuard> () => getHTMLAttributes
     }),
     withProps<PerformanceWrapperWithProps, PerformanceWrapperWithHandlers & FormContext & TOutter>(props => {
       const inputPath = props.getInputPath();
