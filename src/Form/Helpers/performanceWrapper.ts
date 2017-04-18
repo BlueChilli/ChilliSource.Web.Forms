@@ -1,4 +1,4 @@
-import {PropTypes} from "react";
+import * as PropTypes from "prop-types";
 import * as Recompose from "recompose";
 import {getContext, withProps, shouldUpdate, withHandlers, compose, lifecycle} from "recompose";
 import {Map} from "immutable";

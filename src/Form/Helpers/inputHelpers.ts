@@ -1,4 +1,5 @@
-import React, {PropTypes} from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import {isUndefined} from "lodash";
 import {ShallowCompare} from "../../../libs/types";
 import {PossibleDefaultValues} from "../Types/types";

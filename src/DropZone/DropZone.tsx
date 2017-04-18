@@ -1,4 +1,4 @@
-import React, {PropTypes, Children} from "react";
+import React, {Children} from "react";
 import {List, Map} from "immutable";
 import {first} from "lodash";
 import DropZone from "react-dropzone";

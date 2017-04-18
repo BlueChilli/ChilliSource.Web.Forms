@@ -1,4 +1,4 @@
-import React, {PropTypes} from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import {SwitchProps} from "../Form/Types/types";
 import {snakeCase} from "lodash";

@@ -27,9 +27,12 @@
       "js",
       "jsx"
     ],
-    "moduleDirectories": ["node_modules"],
+    "moduleDirectories": [
+      "node_modules"
+    ],
     "transform": {
-      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+      "^.+\\.tsx?$": "typescript-babel-jest",
+      "^.+\\.jsx?$": "babel-jest"
     },
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$"
   },
@@ -65,9 +68,10 @@
     "raw-loader": "^0.5.1",
     "react-test-renderer": "^15.5.4",
     "sass-loader": "^6.0.3",
+    "sinon": "^2.1.0",
     "style-loader": "^0.16.1",
-    "ts-jest": "^19.0.8",
     "typescript": "^2.3.0",
+    "typescript-babel-jest": "^1.0.3",
     "url-loader": "^0.5.8",
     "webpack": "^2.3.3",
     "webpack-dev-middleware": "^1.10.1",

@@ -1,4 +1,4 @@
-import React, {PropTypes} from "react";
+import React from "react";
 import {Map} from "immutable";
 
 interface FileItem {

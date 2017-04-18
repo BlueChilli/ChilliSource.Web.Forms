@@ -1,4 +1,4 @@
-import React, {PropTypes} from "react";
+import React from "react";
 import classnames from "classnames";
 import SwitchBase from "./Base";
 import DisplayValidation from "../Validation/DisplayValidation";

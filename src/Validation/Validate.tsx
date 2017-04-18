@@ -1,4 +1,4 @@
-import React, {PropTypes} from "react";
+import React from "react";
 import performanceWrapper, {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
 import DisplayValidation from "./DisplayValidation";
 import {InputValidationProps} from "../Form/Types/types"

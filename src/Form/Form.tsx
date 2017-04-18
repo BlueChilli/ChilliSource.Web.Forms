@@ -1,4 +1,5 @@
-import React, {PropTypes} from "react";
+import React from "react";
+import * as PropTypes from "prop-types";
 import {is, List, Map} from "immutable";
 import classnames from "classnames";
 // import {connect} from "react-redux";
