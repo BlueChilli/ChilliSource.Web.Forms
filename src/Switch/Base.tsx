@@ -4,9 +4,20 @@ import {SwitchProps} from "../Form/Types/types";
 import {snakeCase} from "lodash";
 import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
 
+
+
 interface SwitchBaseElement extends Element{
   checked: boolean
 }
+
+const isChecked = (props: SwitchProps & PerformanceWrapperProps) => {
+  if (props.type === 'radio') {
+    return props.id + "" === props.value + "";
+  } else {
+    return props.value
+  }
+} 
+
 
 /** {Internal} Method used internally to display a switch component(radio or checkbox)  */
 class SwitchBase extends React.Component<SwitchProps & PerformanceWrapperProps, {}>{
@@ -26,7 +37,7 @@ class SwitchBase extends React.Component<SwitchProps & PerformanceWrapperProps, 
   }
   render() {
     var attributes = this.props.getHTMLAttributes(this.props);
-    return <input onBlur={this.props.setInputBlurred} onChange={this.handleChange} ref={this.props.name}
+    return <input onBlur={this.props.setInputBlurred} onChange={this.handleChange} checked={isChecked(this.props)} ref={this.props.name}
                   value={attributes.id} {...attributes} id={this.props.id}/>;
   }
 };
