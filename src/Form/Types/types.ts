@@ -214,7 +214,7 @@ export interface PerformanceWrapperInputHelpers {
   inputChanged: (value: ShallowCompare, changed?:boolean) => undefined,
 	/** Set the inputs state */ 
   setInputBlurred: () => undefined,
-  getHTMLAttributes:<T> (props: T) => React.HTMLAttributes<any>,
+  getHTMLAttributes:<T extends {}> (props: T) => React.HTMLAttributes<any>,
 	setValidation: (type: string, test: string | boolean) => undefined
 }
 

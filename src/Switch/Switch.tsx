@@ -9,6 +9,7 @@ import {SwitchProps} from "../Form/Types/types";
 import {snakeCase, toLower} from "lodash"
 import "./Switch.scss";
 
+
 class Switch extends React.PureComponent<SwitchProps & PerformanceWrapperProps, {}>{
   render() {
     const {className, label, ...props} = this.props;
@@ -16,6 +17,7 @@ class Switch extends React.PureComponent<SwitchProps & PerformanceWrapperProps, 
 
     const classes = classnames("switch", className);
     const labelFor = `${toLower(props.name)}_${snakeCase(props.id)}`;
+     
     return (
       <ErrorWrapper className={classes} type={props.type}>
         <SwitchBase {...props} id={labelFor}/>
