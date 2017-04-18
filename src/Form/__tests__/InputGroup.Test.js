@@ -62,6 +62,8 @@ describe('<InputGroup />', () => {
         expect(wrapper.is('.input-append')).toBe(false);
 
         expect(wrapper.contains(input)).toBe(true);
+        expect(wrapper.contains(div)).toBe(true);
+        expect(wrapper.contains(p)).toBe(true);
         expect(wrapper.contains(inputPrepend)).toBe(false);
         expect(wrapper.contains(inputAppend)).toBe(false);
     });
@@ -74,6 +76,8 @@ describe('<InputGroup />', () => {
         expect(wrapper.is('.input-append')).toBe(true);
 
         expect(wrapper.contains(input)).toBe(true);
+        expect(wrapper.contains(div)).toBe(true);
+        expect(wrapper.contains(p)).toBe(true);
         expect(wrapper.contains(inputPrepend)).toBe(true);
         expect(wrapper.contains(inputAppend)).toBe(true);
     });
