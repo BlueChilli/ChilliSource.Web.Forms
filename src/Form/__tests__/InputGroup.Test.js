@@ -9,18 +9,44 @@ const p = <p>This is in a paragraph tag</p>;
 const inputPrepend = <span>$</span>;
 const inputAppend = <span>%</span>;
 
+/**
+ * Single children
+ */
 const singleChildAttributesWithoutProsthetics = {
     children: input
 };
 
-const singleChildAttributesWithProsthetics = {
+const singleChildAttributesWithPrepend = {
     children: input,
-    append: inputAppend,
     prepend: inputPrepend
 };
 
+const singleChildAttributesWithAppend = {
+    children: input,
+    append: inputAppend
+};
+
+const singleChildAttributesWithProsthetics = {
+    children: input,
+    prepend: inputPrepend,
+    append: inputAppend
+};
+
+/**
+ * Multiple children
+ */
 const multipleChildrenAttributesWithoutProsthetics = {
     children: [input, div, p]
+};
+
+const multipleChildrenAttributesWithPrepend = {
+    children: [input, div, p],
+    prepend: inputPrepend
+};
+
+const multipleChildrenAttributesWithAppend = {
+    children: [input, div, p],
+    append: inputAppend
 };
 
 const multipleChildrenAttributesWithProsthetics = {
@@ -40,6 +66,30 @@ describe('<InputGroup />', () => {
         expect(wrapper.contains(input)).toBe(true);
         expect(wrapper.contains(inputPrepend)).toBe(false);
         expect(wrapper.contains(inputAppend)).toBe(false);
+    });
+
+    it('should render a single <input /> component with prepend', () => {
+        const wrapper = shallow(<InputGroup {...singleChildAttributesWithPrepend} />);
+
+        expect(wrapper.is('.input-group')).toBe(true);
+        expect(wrapper.is('.input-prepend')).toBe(true);
+        expect(wrapper.is('.input-append')).toBe(false);
+
+        expect(wrapper.contains(input)).toBe(true);
+        expect(wrapper.contains(inputPrepend)).toBe(true);
+        expect(wrapper.contains(inputAppend)).toBe(false);
+    });
+
+    it('should render a single <input /> component with append', () => {
+        const wrapper = shallow(<InputGroup {...singleChildAttributesWithAppend} />);
+
+        expect(wrapper.is('.input-group')).toBe(true);
+        expect(wrapper.is('.input-prepend')).toBe(false);
+        expect(wrapper.is('.input-append')).toBe(true);
+
+        expect(wrapper.contains(input)).toBe(true);
+        expect(wrapper.contains(inputPrepend)).toBe(false);
+        expect(wrapper.contains(inputAppend)).toBe(true);
     });
 
     it('should render a single <input /> component with prepend & append', () => {
@@ -66,6 +116,34 @@ describe('<InputGroup />', () => {
         expect(wrapper.contains(p)).toBe(true);
         expect(wrapper.contains(inputPrepend)).toBe(false);
         expect(wrapper.contains(inputAppend)).toBe(false);
+    });
+
+    it('should render one each of <input />, <div /> & <p /> components with prepend', () => {
+        const wrapper = shallow(<InputGroup {...multipleChildrenAttributesWithPrepend} />);
+        
+        expect(wrapper.is('.input-group')).toBe(true);
+        expect(wrapper.is('.input-prepend')).toBe(true);
+        expect(wrapper.is('.input-append')).toBe(false);
+
+        expect(wrapper.contains(input)).toBe(true);
+        expect(wrapper.contains(div)).toBe(true);
+        expect(wrapper.contains(p)).toBe(true);
+        expect(wrapper.contains(inputPrepend)).toBe(true);
+        expect(wrapper.contains(inputAppend)).toBe(false);
+    });
+
+    it('should render one each of <input />, <div /> & <p /> components with append', () => {
+        const wrapper = shallow(<InputGroup {...multipleChildrenAttributesWithAppend} />);
+        
+        expect(wrapper.is('.input-group')).toBe(true);
+        expect(wrapper.is('.input-prepend')).toBe(false);
+        expect(wrapper.is('.input-append')).toBe(true);
+
+        expect(wrapper.contains(input)).toBe(true);
+        expect(wrapper.contains(div)).toBe(true);
+        expect(wrapper.contains(p)).toBe(true);
+        expect(wrapper.contains(inputPrepend)).toBe(false);
+        expect(wrapper.contains(inputAppend)).toBe(true);
     });
 
     it('should render one each of <input />, <div /> & <p /> components with prepend & append', () => {
