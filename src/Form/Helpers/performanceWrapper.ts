@@ -40,7 +40,7 @@ interface GetInputPathGuard extends NameProp, IdProp{
   fieldSetNameSpace?: string,
 }
 
-export const getInputPath =<T extends GetInputPathGuard> ({name, id, fieldSetNameSpace}:T) => ():string[] => {
+export const getInputPath = <T extends GetInputPathGuard> ({name, id, fieldSetNameSpace}:T) => ():string[] => {
   if (fieldSetNameSpace !== undefined) {
     return [fieldSetNameSpace, name];
   } else if (isMultipleValueInput(name)) {
@@ -48,6 +48,24 @@ export const getInputPath =<T extends GetInputPathGuard> ({name, id, fieldSetNam
   } else {
     return [name];
   }
+}
+
+interface WithNeededPropsGuard extends DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, ValueProp {}
+
+export const withNeededProps = <TOutter extends WithNeededPropsGuard> (props:PerfomanceWrapperGetInputPath & FormContext & TOutter) => {
+  const inputPath = props.getInputPath();
+  const inputInfoPath = inputPath.slice(0, inputPath.length - 1);
+  const inputInfo = props.FormState.getIn([props.nameSpace, ...inputPath], Map({}))
+  const {defaultValue, defaultChecked, defaultSelected} = props;
+  const allInputsDefaultValue = returnDefinedValue(defaultValue, defaultChecked, defaultSelected);
+  const value = returnDefinedValue<ShallowCompare>(props.value, inputInfo.get('value'), allInputsDefaultValue, getUnsetValue(props));
+  return {
+    inputInfo,
+    inputGroupInfo: inputInfoPath.length > 0 ? props.FormState.getIn([props.nameSpace, ...inputInfoPath], Map({})) : Map(),
+    defaultValue: allInputsDefaultValue,
+    inputPath,
+    value
+  };
 }
 
 export default <TOutter extends WithHandlersGuard> (ReactClass:ReactComponent<TOutter & PerformanceWrapperProps>) => {
@@ -92,21 +110,7 @@ export default <TOutter extends WithHandlersGuard> (ReactClass:ReactComponent<TO
       getHTMLAttributes
     }),
     // TODO: unclear what the first generic here does
-    withProps<PerformanceWrapperWithProps, PerformanceWrapperWithHandlers & FormContext & TOutter>(props => {
-      const inputPath = props.getInputPath();
-      const inputInfoPath = inputPath.slice(0, inputPath.length - 1);
-      const inputInfo = props.FormState.getIn([props.nameSpace, ...inputPath], Map({}))
-      const {defaultValue, defaultChecked, defaultSelected} = props;
-      const allInputsDefaultValue = returnDefinedValue(defaultValue, defaultChecked, defaultSelected);
-      const value = returnDefinedValue<ShallowCompare>(inputInfo.get('value'), props.value, allInputsDefaultValue, getUnsetValue(props));
-      return {
-        inputInfo,
-        inputGroupInfo: inputInfoPath.length > 0 ? props.FormState.getIn([props.nameSpace, ...inputInfoPath], Map({})) : Map(),
-        defaultValue: allInputsDefaultValue,
-        inputPath,
-        value
-      };
-    }),
+    withProps<PerformanceWrapperWithProps, PerformanceWrapperWithHandlers & FormContext & TOutter>(withNeededProps),
     // TODO: unclear what the first generic here does
     shouldUpdate<PerformanceWrapperProps & TOutter>((props, nextProps) => {
       return !specificShallowEqual(props, nextProps);
@@ -114,5 +118,3 @@ export default <TOutter extends WithHandlersGuard> (ReactClass:ReactComponent<TO
     lifecycle(InputSetup)
   )(ReactClass);
 }
-
-
