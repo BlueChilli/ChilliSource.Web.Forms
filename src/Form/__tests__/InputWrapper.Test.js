@@ -43,66 +43,27 @@ describe('<InputWrapper />', () => {
         expect(wrapper.instance().props.type).toBe(type);
     });
 
-    // label + input
+    // label
     it('should render a label for the <input /> component', () => {
         const wrapper = shallow(<InputWrapper {...inputWrapperPropsWithLabel} />);
 
-        expect(wrapper.is('.input-class')).toBe(true);
-        expect(wrapper.contains(input)).toBe(true);
-        expect(wrapper.instance().props.type).toBe(type);
-
         expect(wrapper.find('.input-label').type()).toBe('label');
         expect(wrapper.find('.input-label').props().htmlFor).toBe(name);
         expect(wrapper.find('.input-label').text()).toBe(label);
     });
 
-    // label + prefix + input
-    it('should render a single <input /> component with helper text & label before it', () => {
+    // prefix
+    it('should render helper text before the label', () => {
         const wrapper = shallow(<InputWrapper {...inputWrapperPropsWithPrefix} />);
-
-        expect(wrapper.is('.input-class')).toBe(true);
-        expect(wrapper.contains(input)).toBe(true);
-        expect(wrapper.instance().props.type).toBe(type);
-
-        expect(wrapper.find('.input-label').type()).toBe('label');
-        expect(wrapper.find('.input-label').props().htmlFor).toBe(name);
-        expect(wrapper.find('.input-label').text()).toBe(label);
 
         expect(wrapper.find('.input-label-prefix').type()).toBe('div');
         expect(wrapper.find('.input-label-prefix').props().children).toBe(labelPrefix);
     });
 
-    // label + postfix + input
+    // postfix
     it('should render a single <input /> component with label & helper text before it', () => {
         const wrapper = shallow(<InputWrapper {...inputWrapperPropsWithPostfix} />);
 
-        expect(wrapper.is('.input-class')).toBe(true);
-        expect(wrapper.contains(input)).toBe(true);
-        expect(wrapper.instance().props.type).toBe(type);
-
-        expect(wrapper.find('.input-label').type()).toBe('label');
-        expect(wrapper.find('.input-label').props().htmlFor).toBe(name);
-        expect(wrapper.find('.input-label').text()).toBe(label);
-
-        expect(wrapper.find('.input-label-postfix').type()).toBe('div');
-        expect(wrapper.find('.input-label-postfix').props().children).toBe(labelPostfix);
-    });
-
-    // label + prefix + postfix + input
-    it('should render an <input /> component with a label & helper text before it', () => {
-        const wrapper = shallow(<InputWrapper {...inputWrapperPropsWithProsthetics} />);
-
-        expect(wrapper.is('.input-class')).toBe(true);
-        expect(wrapper.contains(input)).toBe(true);
-        expect(wrapper.instance().props.type).toBe(type);
-
-        expect(wrapper.find('.input-label').type()).toBe('label');
-        expect(wrapper.find('.input-label').props().htmlFor).toBe(name);
-        expect(wrapper.find('.input-label').text()).toBe(label);
-
-        expect(wrapper.find('.input-label-prefix').type()).toBe('div');
-        expect(wrapper.find('.input-label-prefix').props().children).toBe(labelPrefix);
-        
         expect(wrapper.find('.input-label-postfix').type()).toBe('div');
         expect(wrapper.find('.input-label-postfix').props().children).toBe(labelPostfix);
     });
