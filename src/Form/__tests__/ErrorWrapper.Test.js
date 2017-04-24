@@ -32,42 +32,38 @@ const multipleChildrenWithTypeHidden = {
 
 describe('<ErrorWrapper />', () => {
 
-    // ask shane for test description
-    it('should render a single child inside the <div /> NOT having class name = .hidden', () => {
+    // wrapper div
+    it('should render a <div /> having specified classnames', () => {
         const wrapper = shallow(<ErrorWrapper {...singleChildWithTypeNotHidden} />);
 
         expect(wrapper.is('.some-class')).toBe(true);
-        expect(wrapper.is('.input-hidden')).toBe(false);
-
-        expect(wrapper.contains(input)).toBe(true);
     });
 
-    it('should render a single child inside the <div /> having class name = .hidden', () => {
+    // wrapper div with hidden class
+    it('should render a <div /> having specified classnames with additional .input-hidden class', () => {
         const wrapper = shallow(<ErrorWrapper {...singleChildWithTypeHidden} />);
 
-        expect(wrapper.is('.some-class')).toBe(true);
         expect(wrapper.is('.input-hidden')).toBe(true);
-
-        expect(wrapper.contains(input)).toBe(true);
     });
 
-    it('should render a <input /> & <div /> inside the <div /> NOT having class name = .hidden', () => {
-        const wrapper = shallow(<ErrorWrapper {...multipleChildrenWithTypeNotHidden} />);
+    // single child
+    it('should render a single child inside the wrapper', () => {
+        const wrapperNotHidden = shallow(<ErrorWrapper {...singleChildWithTypeNotHidden} />);
+        const wrapperHidden = shallow(<ErrorWrapper {...singleChildWithTypeHidden} />);
 
-        expect(wrapper.is('.some-class')).toBe(true);
-        expect(wrapper.is('.input-hidden')).toBe(false);
-
-        expect(wrapper.contains(input)).toBe(true);
-        expect(wrapper.contains(div)).toBe(true);
+        expect(wrapperNotHidden.contains(input)).toBe(true);
+        expect(wrapperHidden.contains(input)).toBe(true);
     });
-    
-    it('should render a <input /> & <div /> inside the <div /> having class name = .hidden', () => {
-        const wrapper = shallow(<ErrorWrapper {...multipleChildrenWithTypeHidden} />);
 
-        expect(wrapper.is('.some-class')).toBe(true);
-        expect(wrapper.is('.input-hidden')).toBe(true);
+    // multiple children
+    it('should render a single child inside the wrapper', () => {
+        const wrapperNotHidden = shallow(<ErrorWrapper {...multipleChildrenWithTypeNotHidden} />);
+        const wrapperHidden = shallow(<ErrorWrapper {...multipleChildrenWithTypeHidden} />);
 
-        expect(wrapper.contains(input)).toBe(true);
-        expect(wrapper.contains(div)).toBe(true);
+        expect(wrapperNotHidden.contains(input)).toBe(true);
+        expect(wrapperNotHidden.contains(div)).toBe(true);
+
+        expect(wrapperHidden.contains(input)).toBe(true);
+        expect(wrapperHidden.contains(div)).toBe(true);
     });
 });
