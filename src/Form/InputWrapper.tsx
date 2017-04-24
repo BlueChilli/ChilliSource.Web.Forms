@@ -4,10 +4,11 @@ import ErrorWrapper from './ErrorWrapper';
 import {InputWrapperProps} from "./Types/types";
 
 
-const InputWrapper = ({className, name, label, labelPostfix, type, children}: InputWrapperProps) => (
+const InputWrapper = ({className, name, label, labelPrefix, labelPostfix, type, children}: InputWrapperProps) => (
   <ErrorWrapper className={className} type={type}>
-    {(label || labelPostfix) && (
+    {(label || labelPostfix || labelPrefix) && (
       <div className="input-label-wrapper">
+        {labelPrefix && <div className="input-label-prefix">{labelPrefix}</div>}
         <label className="input-label" htmlFor={name}>{label}</label>
         {labelPostfix && <div className="input-label-postfix">{labelPostfix}</div>}
       </div>
