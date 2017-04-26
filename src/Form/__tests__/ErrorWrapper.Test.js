@@ -46,7 +46,16 @@ describe('<ErrorWrapper />', () => {
         expect(wrapper.is('.input-hidden')).toBe(true);
     });
 
-    // single child
+    // single child with wrapper shown
+    it('should render a single child inside the wrapper', () => {
+        const wrapperNotHidden = shallow(<ErrorWrapper {...singleChildWithTypeNotHidden} />);
+        const wrapperHidden = shallow(<ErrorWrapper {...singleChildWithTypeHidden} />);
+
+        expect(wrapperNotHidden.contains(input)).toBe(true);
+        expect(wrapperHidden.contains(input)).toBe(true);
+    });
+
+    // single child with wrapper hidden
     it('should render a single child inside the wrapper', () => {
         const wrapperNotHidden = shallow(<ErrorWrapper {...singleChildWithTypeNotHidden} />);
         const wrapperHidden = shallow(<ErrorWrapper {...singleChildWithTypeHidden} />);
@@ -56,7 +65,7 @@ describe('<ErrorWrapper />', () => {
     });
 
     // multiple children
-    it('should render a single child inside the wrapper', () => {
+    it('should render multiple children(2) inside the wrapper', () => {
         const wrapperNotHidden = shallow(<ErrorWrapper {...multipleChildrenWithTypeNotHidden} />);
         const wrapperHidden = shallow(<ErrorWrapper {...multipleChildrenWithTypeHidden} />);
 
