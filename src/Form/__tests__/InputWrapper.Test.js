@@ -53,7 +53,7 @@ describe('<InputWrapper />', () => {
     });
 
     // prefix
-    it('should render helper text before the label', () => {
+    it('should render helper text before the label if it exists', () => {
         const wrapper = shallow(<InputWrapper {...inputWrapperPropsWithPrefix} />);
 
         expect(wrapper.find('.input-label-prefix').type()).toBe('div');
@@ -61,7 +61,7 @@ describe('<InputWrapper />', () => {
     });
 
     // postfix
-    it('should render a single <input /> component with label & helper text before it', () => {
+    it('should render helper text after the label if it exists', () => {
         const wrapper = shallow(<InputWrapper {...inputWrapperPropsWithPostfix} />);
 
         expect(wrapper.find('.input-label-postfix').type()).toBe('div');
