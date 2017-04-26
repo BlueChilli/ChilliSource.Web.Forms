@@ -1,22 +1,23 @@
-import {HTMLAttributes} from "react";
-import {Map} from "immutable";
-import {getHTMLAttributes, getInputPath, getPrioritisedDefaultValue, getPrioritisedValue} from "../performanceWrapper";
-import {isEqual, isArray} from "lodash";
+import {HTMLAttributes} from 'react';
+import {Map} from 'immutable';
+import {getInputPath, getPrioritisedDefaultValue, getPrioritisedValue} from '../performanceWrapper';
+import {getHTMLAttributes} from "../inputHelpers";
+import {isEqual, isArray} from 'lodash';
 
-// required", "name", "type", "value", "min", "max", "minLength", "maxLength"
+// required', 'name', 'type', 'value', 'min', 'max', 'minLength', 'maxLength'
 
 const supportedProps = {
   min: 30,
   max: 25,
   value: true,
-  id: "test",
+  id: 'test',
   autoFocus: true,
   required: true,
-  name: "input",
-  type: "input",
+  name: 'input',
+  type: 'input',
   minLength: 5,
   maxLength: 1000,
-  pattern: "[0-9]"
+  pattern: '[0-9]'
 }
 
 const unsupportedProps = {
@@ -26,32 +27,32 @@ const unsupportedProps = {
 
 const inputPathFieldsetProps = {
   fieldSetNameSpace: 'fieldset',
-  name: "name"
+  name: 'name'
 }
 
 const inputPathInputArrayProps = {
   name: 'name[]',
-  id: "id"
+  id: 'id'
 }
 
 const inputPathPlainProps = {
-  name: "name"
+  name: 'name'
 }
 
 
-describe("perfomanceWraper", () => {
-  describe("getHTMLAttributes", () => {
-    it("returns all supported attributes", () => {
+describe('perfomanceWraper', () => {
+  describe('getHTMLAttributes', () => {
+    it('returns all supported attributes', () => {
       const returnedSupportedProps = getHTMLAttributes()(supportedProps);
       expect(isEqual(supportedProps, returnedSupportedProps)).toBe(true);
     })
-    it("excludes unsupported attributes", () => {
+    it('excludes unsupported attributes', () => {
       const returnedSupportedProps = getHTMLAttributes()(Object.assign({}, supportedProps, unsupportedProps))
       expect(isEqual(supportedProps, returnedSupportedProps)).toBe(true);
     })
   });
 
-  describe("getInputPath", () => {
+  describe('getInputPath', () => {
     it('always returns an array', () => {
       const inputPathFieldset = getInputPath(inputPathFieldsetProps)();
       const inputPathArray = getInputPath(inputPathInputArrayProps)();
@@ -61,15 +62,15 @@ describe("perfomanceWraper", () => {
       expect(isArray(inputPathArray)).toBe(true);
       expect(isArray(inputPathPlain)).toBe(true);
     });
-    it("namespaces fieldsets", () => {
+    it('namespaces fieldsets', () => {
       const inputPath = getInputPath(inputPathFieldsetProps)();
       expect(isEqual(inputPath, ['fieldset', 'name'])).toBe(true);
     });
-    it("namespaces input arrays", () => {
+    it('namespaces input arrays', () => {
       const inputPath = getInputPath(inputPathInputArrayProps)();
       expect(isEqual(inputPath, ['name[]', 'id'])).toBe(true);
     });
-    it("does not namespace plain inputs", () => {
+    it('does not namespace plain inputs', () => {
       const inputPath = getInputPath(inputPathPlainProps)();
       expect(isEqual(inputPath, ['name'])).toBe(true);
     });
