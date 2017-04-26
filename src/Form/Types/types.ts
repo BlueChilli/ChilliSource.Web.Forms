@@ -1,9 +1,9 @@
-import {ShallowCompare, BaseReactProps} from "../../../libs/types";
-import {Dispatch} from "redux";
-import {Map, List} from "immutable";
-import moment, {Moment} from "moment";
+import {ShallowCompare, BaseReactProps} from '../../../libs/types';
+import {Dispatch} from 'redux';
+import {Map, List} from 'immutable';
+import moment, {Moment} from 'moment';
 
-import {SetInputPayload, SetInputInteractionPayload, SetValidationPayload} from "../Actions/fields"
+import {SetInputPayload, SetInputInteractionPayload, SetValidationPayload} from '../Actions/fields'
 
 
 export type DateRangeMoment = {
@@ -63,7 +63,7 @@ export interface LabelProp {
 
 export interface TypeProp {
 	/** What type of input is it [hidden|text|ect] */
-  type?: string
+  type?: 'text' | 'radio' | 'checkbox' | 'number' | 'email' | 'password'
 }
 
 export interface NameProp {
@@ -101,9 +101,9 @@ interface BaseInputProps<TDefault> extends BaseReactProps, InputEventProps, Vali
 
 export interface OptionalValidationProps{
 	/** Disable the input*/	
-	disabled?: any,
+	disabled?: boolean,
 	/** Don't validate the input*/			
-	noValidate? :any, 
+	noValidate? :boolean, 
 }
 
 
@@ -120,9 +120,8 @@ export interface SwitchProps extends BaseInputProps<boolean | string | number>, 
 	id: string
 }
 
-export interface RadioTabsProps extends BaseReactProps, NameProp{
-	radioClasses?: string,
-	label?: string
+export interface RadioTabsProps extends BaseReactProps, NameProp, LabelProp{
+	radioClasses?: string
 }
 
 

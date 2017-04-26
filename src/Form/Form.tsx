@@ -19,7 +19,7 @@ export type OnSubmit<T> = (e:any, formData:formState | FormData, submitGenerated
 export interface FormOptionalProps<T> extends BaseReactProps {
     /** Accepts different mime types and ensures the user specified onSubmit is called with data in the correct format
      * currently supports: application/json and multipart/form-data */
-    encType?: string,
+    encType?: 'application/json' | 'multipart/form-data',
     /** Called before the form is submitted, ths is a chance to modify the contents of the payload
      * primarily used by the form generator */    
     mapOutput?: Function,
