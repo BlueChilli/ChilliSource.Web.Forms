@@ -70,10 +70,10 @@ const displayValidationProps = {
 describe('<Input />', () => {
     const wrapper = shallow(<Input {...allInputProps} />);
     
-    const {children:InputWrapperChildren, ...InputWrapperProps} = wrapper.first().props();
-    const {children:InputGroupChildren, ...InputGroupProps} = InputWrapperChildren[0].props;
-    const {children:InputBaseChildren, ...InputBaseProps} = InputGroupChildren.props;
-    const {children:DisplayValidationChildren, ...DisplayValidationProps} = InputWrapperChildren[1].props;
+    const {children:InputWrapperChildren, ...InputWrapperProps} = wrapper.find('InputWrapper').props();
+    const {children:InputGroupChildren, ...InputGroupProps} = wrapper.find('InputGroup').props();
+    const {children:InputBaseChildren, ...InputBaseProps} = wrapper.find('InputBase').props();
+    const {children:DisplayValidationChildren, ...DisplayValidationProps} = wrapper.find('DisplayValidation').props();
     
     // InputWrapper
     it('should only have the required props for <InputWrapper />', () => {
