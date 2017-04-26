@@ -6,7 +6,8 @@ import {isMultipleValueInput, returnDefinedValue, getHTMLAttributes} from "./inp
 import createSpecificShallowEqual from "../../../libs/createSpecificShallowEqual"
 import {setInput, setInputInteraction, setValidation} from "../Actions/fields";
 import {ShallowCompareProps, ReactComponent, BaseReactProps, ShallowCompare} from "../../../libs/types";
-import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerfomanceWrapperGetInputPath, PerformanceWrapperInputHelpers, PerformanceWrapperUncalledInputHelpers, NameProp, IdProp, TypeProp, 
+import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerfomanceWrapperGetInputPath, PerformanceWrapperInputHelpers,
+   PerformanceWrapperUncalledInputHelpers, PerformanceWrapperUncalledValidationHelpers, NameProp, IdProp, TypeProp, 
   DefaultValueProp, PossibleDefaultValues, InputInfoProps, DefaultSwitchProps, NameSpaceProp, FormStateProp, ValueProp} from "../Types/types"
 
 const specificShallowEqual = createSpecificShallowEqual("inputInfo", "inputGroupInfo", "name", "nameSpace", "type", "id", "disabled", "required", 
@@ -44,11 +45,11 @@ interface WithNeededPropsGuard extends DefaultSwitchProps, DefaultValueProp<Poss
 
 export const getPrioritisedDefaultValue = (defaultValue:PossibleDefaultValues, defaultChecked:boolean | number | string, defaultSelected:boolean | number | string) => (
   returnDefinedValue(defaultValue, defaultChecked, defaultSelected)
-)
+);
 
 export const getPrioritisedValue = (value:ShallowCompare, inputInfoValue:ShallowCompare, prioritisedDefaultValue:PossibleDefaultValues, unsetValue:false | "") => (
   returnDefinedValue(value, inputInfoValue, prioritisedDefaultValue, unsetValue)
-)
+);
 
 const withNeededProps = <TOutter extends WithNeededPropsGuard> (props:PerfomanceWrapperGetInputPath & FormContext & TOutter) => {
   const inputPath = props.getInputPath();
@@ -66,7 +67,13 @@ const withNeededProps = <TOutter extends WithNeededPropsGuard> (props:Perfomance
   };
 }
 
-const createUniversalCompose = <TOutter extends WithHandlersGuard> () => compose<PerformanceWrapperProps & TOutter, TOutter>(
+const setValidationWithHandlersObject = {
+  setValidation: ({dispatch, nameSpace, getInputPath}) => (type:string, test:string | boolean) => {
+    dispatch(setValidation(nameSpace, getInputPath(), type, test));
+  }
+}
+
+const createUniversalCompose = <TOutter extends WithHandlersGuard, TWithHandlers extends {}> (withHandlersArgs:TWithHandlers) => compose<PerformanceWrapperProps & TOutter, TOutter>(
   getContext<FormContext, TOutter>({
     nameSpace: PropTypes.string,
     FormState: PropTypes.object,
@@ -77,19 +84,7 @@ const createUniversalCompose = <TOutter extends WithHandlersGuard> () => compose
   withHandlers<FormContext & TOutter, PerfomanceWrapperGetInputPath>({
     getInputPath
   }),
-  withHandlers<PerformanceWrapperUncalledInputHelpers, PerfomanceWrapperGetInputPath & FormContext & TOutter>({
-      inputChanged: ({dispatch, nameSpace, name, getInputPath}) => (value, changed:boolean = true) => {
-        dispatch(setInput(nameSpace, getInputPath(), value));
-        dispatch(setInputInteraction(nameSpace, getInputPath(), 'changed', changed));
-      },
-      setInputBlurred: ({dispatch, nameSpace, getInputPath}) => () => {
-        dispatch(setInputInteraction(nameSpace, getInputPath(), 'blurred', true));
-      },
-      getHTMLAttributes,
-      setValidation: ({dispatch, nameSpace, getInputPath}) => (type:string, test:string | boolean) => {
-        dispatch(setValidation(nameSpace, getInputPath(), type, test));
-      }
-  }),
+  withHandlers<TWithHandlers, PerfomanceWrapperGetInputPath & FormContext & TOutter>(withHandlersArgs),
   withProps<PerformanceWrapperWithProps, PerformanceWrapperWithHandlers & FormContext & TOutter>(withNeededProps),
   // TODO: unclear what the first generic here does
   shouldUpdate<PerformanceWrapperProps & TOutter>((props, nextProps) => {
@@ -97,7 +92,9 @@ const createUniversalCompose = <TOutter extends WithHandlersGuard> () => compose
   })
 );
 
-export const validationPerformanceWrapper =<TOutter extends WithHandlersGuard> (ReactClass:ReactComponent<TOutter & PerformanceWrapperProps>) => createUniversalCompose<TOutter>()(ReactClass)
+export const validationPerformanceWrapper =<TOutter extends WithHandlersGuard> (ReactClass:ReactComponent<TOutter & PerformanceWrapperProps>) => (
+  createUniversalCompose<TOutter, PerformanceWrapperUncalledValidationHelpers>(setValidationWithHandlersObject)(ReactClass)
+)
 
 export default <TOutter extends WithHandlersGuard> (ReactClass:ReactComponent<TOutter & PerformanceWrapperProps>) => {
 
@@ -115,7 +112,17 @@ export default <TOutter extends WithHandlersGuard> (ReactClass:ReactComponent<TO
     }
   };
 
-  const inputWrapperCompose = createUniversalCompose<TOutter>();
+  const inputWrapperCompose = createUniversalCompose<TOutter, PerformanceWrapperUncalledInputHelpers>({
+      inputChanged: ({dispatch, nameSpace, name, getInputPath}) => (value, changed:boolean = true) => {
+        dispatch(setInput(nameSpace, getInputPath(), value));
+        dispatch(setInputInteraction(nameSpace, getInputPath(), 'changed', changed));
+      },
+      setInputBlurred: ({dispatch, nameSpace, getInputPath}) => () => {
+        dispatch(setInputInteraction(nameSpace, getInputPath(), 'blurred', true));
+      },
+      getHTMLAttributes,
+      ...setValidationWithHandlersObject
+  });
 
   return compose<PerformanceWrapperProps & TOutter, TOutter>(
     inputWrapperCompose,
