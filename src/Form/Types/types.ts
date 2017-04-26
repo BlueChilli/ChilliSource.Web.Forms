@@ -234,14 +234,18 @@ type htmlAttributes = (props: {}) => React.HTMLAttributes<any>;
 type setValidation = (type: string, test: string | boolean) => void;
 
 
-export interface PerformanceWrapperUncalledInputHelpers {
+export interface PerformanceWrapperUncalledValidationHelpers {
+	setValidation: (props:SetValidation) => setValidation
+}
+
+export interface PerformanceWrapperUncalledInputHelpers extends PerformanceWrapperUncalledValidationHelpers {
 	/** Update state with a new value for this input */ 
   inputChanged?: (props:InputChanged) => inputChanged,
 	/** Set the inputs state */ 
   setInputBlurred?: (props:InputBlurred) => () => void,
   getHTMLAttributes?:<T> () => htmlAttributes,
-	setValidation: (props:SetValidation) => setValidation
 }
+
 
 export interface PerformanceWrapperInputHelpers {
 	/** Update state with a new value for this input */ 
