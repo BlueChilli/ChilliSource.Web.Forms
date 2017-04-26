@@ -10,7 +10,7 @@ import classnames from "classnames";
 
 class Select extends React.PureComponent<SelectInputProps & PerformanceWrapperProps, {}> {
   render(){
-    const {className, label, labelPostfix, arrow, ...props} = this.props
+    const {className, label, labelPostfix, labelPrefix, arrow, ...props} = this.props
     const {autoFocus, onChange, onBlur, id, defaultChecked, defaultSelected, ...validationProps} = props;
     const classes = classnames(className, "select")
     return (

@@ -9,7 +9,7 @@ import {TextAreaProps} from "../Form/Types/types";
 
 class TextArea extends React.PureComponent<TextAreaProps & PerformanceWrapperProps, {}> {
   render() {
-    const {className, label, labelPostfix, ...props} = this.props;
+    const {className, label, labelPostfix, labelPrefix, ...props} = this.props;
     const {autoFocus, onChange, onBlur, id, ...validationProps} = props;
     const classes = classnames(className, 'textarea', 'input');
     return (
