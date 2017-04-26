@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Form from "./Form";
+import FormInner from "./FormInner";
+import Form from "../src/Form/Form";
 
 
 class Base extends React.Component<{}, {}> {
@@ -11,7 +12,9 @@ class Base extends React.Component<{}, {}> {
     console.log('here')
     return (
       <div>
-        <Form/>
+        <Form name="test">
+          <FormInner/>
+        </Form>
       </div>
     );
   }
