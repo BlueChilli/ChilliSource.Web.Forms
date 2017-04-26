@@ -1,7 +1,7 @@
 import React from 'react';
 import sinon from 'sinon';
 import {shallow} from 'enzyme';
-import InputBase from "../Base.tsx"
+import InputBase from '../Base.tsx';
 
 const attributes = {
   getHTMLAttributes: () => ({}),
