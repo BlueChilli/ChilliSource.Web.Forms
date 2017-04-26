@@ -1,22 +1,21 @@
-import {HTMLAttributes} from "react";
-import {Map} from "immutable";
-import {getInputPath, getPrioritisedDefaultValue, getPrioritisedValue} from "../performanceWrapper";
-import {isEqual, isArray} from "lodash";
+import {HTMLAttributes} from 'react';
+import {Map} from 'immutable';
+import {getInputPath, getPrioritisedDefaultValue, getPrioritisedValue} from '../performanceWrapper';
+import {isEqual, isArray} from 'lodash';
 
 const inputPathFieldsetProps = {
   fieldSetNameSpace: 'fieldset',
-  name: "name"
+  name: 'name'
 }
 
 const inputPathInputArrayProps = {
   name: 'name[]',
-  id: "id"
+  id: 'id'
 }
 
 const inputPathPlainProps = {
-  name: "name"
+  name: 'name'
 }
-
 
 describe("perfomanceWraper", () => {
   describe("getInputPath", () => {
@@ -28,15 +27,15 @@ describe("perfomanceWraper", () => {
       expect(isArray(inputPathArray)).toBe(true);
       expect(isArray(inputPathPlain)).toBe(true);
     });
-    it("namespaces fieldsets", () => {
+    it('namespaces fieldsets', () => {
       const inputPath = getInputPath(inputPathFieldsetProps)();
       expect(isEqual(inputPath, ['fieldset', 'name'])).toBe(true);
     });
-    it("namespaces input arrays", () => {
+    it('namespaces input arrays', () => {
       const inputPath = getInputPath(inputPathInputArrayProps)();
       expect(isEqual(inputPath, ['name[]', 'id'])).toBe(true);
     });
-    it("does not namespace plain inputs", () => {
+    it('does not namespace plain inputs', () => {
       const inputPath = getInputPath(inputPathPlainProps)();
       expect(isEqual(inputPath, ['name'])).toBe(true);
     });
