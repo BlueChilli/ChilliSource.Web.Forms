@@ -50,19 +50,29 @@ export const getInputPath = <T extends GetInputPathGuard> ({name, id, fieldSetNa
   }
 }
 
+
+
 interface WithNeededPropsGuard extends DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, ValueProp {}
 
-export const withNeededProps = <TOutter extends WithNeededPropsGuard> (props:PerfomanceWrapperGetInputPath & FormContext & TOutter) => {
+export const getPrioritisedDefaultValue = (defaultValue:PossibleDefaultValues, defaultChecked:boolean | number | string, defaultSelected:boolean | number | string) => (
+  returnDefinedValue(defaultValue, defaultChecked, defaultSelected)
+)
+
+export const getPrioritisedValue = (value:ShallowCompare, inputInfoValue:ShallowCompare, prioritisedDefaultValue:PossibleDefaultValues, unsetValue:false | "") => (
+  returnDefinedValue(value, inputInfoValue, prioritisedDefaultValue, unsetValue)
+)
+
+const withNeededProps = <TOutter extends WithNeededPropsGuard> (props:PerfomanceWrapperGetInputPath & FormContext & TOutter) => {
   const inputPath = props.getInputPath();
   const inputInfoPath = inputPath.slice(0, inputPath.length - 1);
   const inputInfo = props.FormState.getIn([props.nameSpace, ...inputPath], Map({}))
   const {defaultValue, defaultChecked, defaultSelected} = props;
-  const allInputsDefaultValue = returnDefinedValue(defaultValue, defaultChecked, defaultSelected);
-  const value = returnDefinedValue<ShallowCompare>(props.value, inputInfo.get('value'), allInputsDefaultValue, getUnsetValue(props));
+  const prioritisedDefaultValue = getPrioritisedDefaultValue(defaultValue, defaultChecked, defaultSelected);
+  const value = getPrioritisedValue(props.value, inputInfo.get('value'), prioritisedDefaultValue, getUnsetValue(props));
   return {
     inputInfo,
     inputGroupInfo: inputInfoPath.length > 0 ? props.FormState.getIn([props.nameSpace, ...inputInfoPath], Map({})) : Map(),
-    defaultValue: allInputsDefaultValue,
+    defaultValue: prioritisedDefaultValue,
     inputPath,
     value
   };
