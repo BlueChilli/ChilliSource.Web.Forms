@@ -1,5 +1,6 @@
 import {HTMLAttributes} from "react";
-import {getHTMLAttributes, getInputPath} from "../performanceWrapper";
+import {Map} from "immutable";
+import {getHTMLAttributes, getInputPath, getPrioritisedDefaultValue, getPrioritisedValue} from "../performanceWrapper";
 import {isEqual, isArray} from "lodash";
 
 // required", "name", "type", "value", "min", "max", "minLength", "maxLength"
@@ -48,7 +49,8 @@ describe("perfomanceWraper", () => {
       const returnedSupportedProps = getHTMLAttributes()(Object.assign({}, supportedProps, unsupportedProps))
       expect(isEqual(supportedProps, returnedSupportedProps)).toBe(true);
     })
-  })
+  });
+
   describe("getInputPath", () => {
     it('always returns an array', () => {
       const inputPathFieldset = getInputPath(inputPathFieldsetProps)();
@@ -71,5 +73,33 @@ describe("perfomanceWraper", () => {
       const inputPath = getInputPath(inputPathPlainProps)();
       expect(isEqual(inputPath, ['name'])).toBe(true);
     });
-  })
+  });
+
+  describe('getPrioritisedDefaultValue', () => {
+    it('should prioritise defaultValue', () => {
+      expect(getPrioritisedDefaultValue('defaultValue', 'defaultChecked', 'defaultSelected')).toBe('defaultValue');
+    });
+    it('should prioritise defaultChecked', () => {
+      expect(getPrioritisedDefaultValue(undefined, 'defaultChecked', 'defaultSelected')).toBe('defaultChecked');
+    });
+    it('should prioritise defaultSelected', () => {
+      expect(getPrioritisedDefaultValue(undefined, undefined, 'defaultSelected')).toBe('defaultSelected');
+    });
+  });
+
+  describe('getPrioritisedValue', () => {
+    it('should prioritise value', () => {
+      expect(getPrioritisedValue('value', 'inputInfoValue', 'prioritisedDefaultValue', false)).toBe('value');
+    });
+    it('should prioritise inputInfoValue', () => {
+      expect(getPrioritisedValue(undefined, 'inputInfoValue', 'prioritisedDefaultValue', false)).toBe('inputInfoValue');
+    });
+    it('should prioritise prioritisedDefaultValue', () => {
+      expect(getPrioritisedValue(undefined, undefined, 'prioritisedDefaultValue', false)).toBe('prioritisedDefaultValue');
+    });
+    it('should prioritise unsetValue', () => {
+      expect(getPrioritisedValue(undefined, undefined, undefined, false)).toBe(false);
+    });
+  });
+
 })
