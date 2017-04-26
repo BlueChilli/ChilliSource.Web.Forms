@@ -1,5 +1,5 @@
 import React from "react";
-import performanceWrapper, {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
+import {PerformanceWrapperProps, validationPerformanceWrapper} from "../Form/Helpers/performanceWrapper";
 import DisplayValidation from "./DisplayValidation";
 import {InputValidationProps} from "../Form/Types/types"
 
@@ -15,5 +15,5 @@ class Validate extends React.PureComponent<ValidateProps & PerformanceWrapperPro
   }
 };
 
-export default performanceWrapper<ValidateProps>(Validate);
+export default validationPerformanceWrapper<ValidateProps>(Validate);
 

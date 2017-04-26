@@ -1,6 +1,9 @@
 import {ShallowCompare, BaseReactProps} from "../../../libs/types";
+import {Dispatch} from "redux";
 import {Map, List} from "immutable";
 import moment, {Moment} from "moment";
+
+import {SetInputPayload, SetInputInteractionPayload, SetValidationPayload} from "../Actions/fields"
 
 
 export type DateRangeMoment = {
@@ -172,7 +175,7 @@ export interface ValidationCloneElementProps extends InputInfoProps {
   test: boolean | string | Function,
   type?: string,
   name: string,
-	setValidation: (type: string, test: string | boolean) => undefined
+	setValidation: setValidation
 }
 
 export type InputUnionProps = TextInputProps | TextAreaProps | SelectInputProps | SwitchProps | RadioTabsProps | DatePickerProps | DateRangeProps
@@ -204,21 +207,51 @@ export interface FormContext extends NameSpaceProp, FormStateProp{
   dispatch: Function
 }
 
+type getInputPath = () => Array<string>
+
 export interface PerfomanceWrapperGetInputPath {
 	/** Get the path to this input in FormState */ 
-	getInputPath: () => Array<string>
+	getInputPath: getInputPath
 }
 
 
+interface InputBlurred extends PerfomanceWrapperGetInputPath,  NameSpaceProp {
+	dispatch: Dispatch<SetInputInteractionPayload>
+}
+
+interface InputChanged extends PerfomanceWrapperGetInputPath, NameProp, NameSpaceProp {
+	dispatch: Dispatch<SetInputPayload>
+}
+
+
+interface SetValidation extends PerfomanceWrapperGetInputPath, NameSpaceProp {
+	dispatch: Dispatch<SetValidationPayload>
+}
+
+type inputChanged = (value: ShallowCompare, changed?:boolean) => void;
+type inputBlurred = () => void;
+type htmlAttributes = (props: {}) => React.HTMLAttributes<any>;
+type setValidation = (type: string, test: string | boolean) => void;
+
+
+export interface PerformanceWrapperUncalledInputHelpers {
+	/** Update state with a new value for this input */ 
+  inputChanged?: (props:InputChanged) => inputChanged,
+	/** Set the inputs state */ 
+  setInputBlurred?: (props:InputBlurred) => () => void,
+  getHTMLAttributes?:<T> () => htmlAttributes,
+	setValidation: (props:SetValidation) => setValidation
+}
 
 export interface PerformanceWrapperInputHelpers {
 	/** Update state with a new value for this input */ 
-  inputChanged: (value: ShallowCompare, changed?:boolean) => undefined,
+  inputChanged: inputChanged,
 	/** Set the inputs state */ 
-  setInputBlurred: () => undefined,
-  getHTMLAttributes:<T extends {}> (props: T) => React.HTMLAttributes<any>,
-	setValidation: (type: string, test: string | boolean) => undefined
+  setInputBlurred: inputBlurred,
+  getHTMLAttributes: htmlAttributes,
+	setValidation: setValidation
 }
+
 
 export interface PerformanceWrapperWithHandlers extends PerfomanceWrapperGetInputPath, PerformanceWrapperInputHelpers {}
 
