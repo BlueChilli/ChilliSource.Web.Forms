@@ -1,12 +1,12 @@
-import * as PropTypes from "prop-types";
-import * as Recompose from "recompose";
+import PropTypes from "prop-types";
+import Recompose from "recompose";
 import {getContext, withProps, shouldUpdate, withHandlers, compose, lifecycle} from "recompose";
 import {Map} from "immutable";
 import {isMultipleValueInput, returnDefinedValue, getHTMLAttributes} from "./inputHelpers";
 import createSpecificShallowEqual from "../../../libs/createSpecificShallowEqual"
 import {setInput, setInputInteraction, setValidation} from "../Actions/fields";
 import {ShallowCompareProps, ReactComponent, BaseReactProps, ShallowCompare} from "../../../libs/types";
-import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerfomanceWrapperGetInputPath, PerformanceWrapperInputHelpers, NameProp, IdProp, TypeProp, 
+import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerfomanceWrapperGetInputPath, PerformanceWrapperInputHelpers, PerformanceWrapperUncalledInputHelpers, NameProp, IdProp, TypeProp, 
   DefaultValueProp, PossibleDefaultValues, InputInfoProps, DefaultSwitchProps, NameSpaceProp, FormStateProp, ValueProp} from "../Types/types"
 
 const specificShallowEqual = createSpecificShallowEqual("inputInfo", "inputGroupInfo", "name", "nameSpace", "type", "id", "disabled", "required", 
@@ -15,7 +15,6 @@ const specificShallowEqual = createSpecificShallowEqual("inputInfo", "inputGroup
 const specificShallowEqualDefault = createSpecificShallowEqual("defaultValue");
 
 interface WithHandlersGuard extends NameProp, IdProp, TypeProp, DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, NameProp, BaseReactProps, ValueProp, IdProp, TypeProp{}
-
 
 export interface PerformanceWrapperProps extends PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, FormContext {}
 
@@ -67,6 +66,39 @@ const withNeededProps = <TOutter extends WithNeededPropsGuard> (props:Perfomance
   };
 }
 
+const createUniversalCompose = <TOutter extends WithHandlersGuard> () => compose<PerformanceWrapperProps & TOutter, TOutter>(
+  getContext<FormContext, TOutter>({
+    nameSpace: PropTypes.string,
+    FormState: PropTypes.object,
+    fieldSetNameSpace: PropTypes.string,
+    dispatch: PropTypes.func
+  }),
+  // TODO: unclear what the first generic here does
+  withHandlers<FormContext & TOutter, PerfomanceWrapperGetInputPath>({
+    getInputPath
+  }),
+  withHandlers<PerformanceWrapperUncalledInputHelpers, PerfomanceWrapperGetInputPath & FormContext & TOutter>({
+      inputChanged: ({dispatch, nameSpace, name, getInputPath}) => (value, changed:boolean = true) => {
+        dispatch(setInput(nameSpace, getInputPath(), value));
+        dispatch(setInputInteraction(nameSpace, getInputPath(), 'changed', changed));
+      },
+      setInputBlurred: ({dispatch, nameSpace, getInputPath}) => () => {
+        dispatch(setInputInteraction(nameSpace, getInputPath(), 'blurred', true));
+      },
+      getHTMLAttributes,
+      setValidation: ({dispatch, nameSpace, getInputPath}) => (type:string, test:string | boolean) => {
+        dispatch(setValidation(nameSpace, getInputPath(), type, test));
+      }
+  }),
+  withProps<PerformanceWrapperWithProps, PerformanceWrapperWithHandlers & FormContext & TOutter>(withNeededProps),
+  // TODO: unclear what the first generic here does
+  shouldUpdate<PerformanceWrapperProps & TOutter>((props, nextProps) => {
+    return !specificShallowEqual(props, nextProps);
+  })
+);
+
+export const validationPerformanceWrapper =<TOutter extends WithHandlersGuard> (ReactClass:ReactComponent<TOutter & PerformanceWrapperProps>) => createUniversalCompose<TOutter>()(ReactClass)
+
 export default <TOutter extends WithHandlersGuard> (ReactClass:ReactComponent<TOutter & PerformanceWrapperProps>) => {
 
   const InputSetup = {
@@ -83,37 +115,10 @@ export default <TOutter extends WithHandlersGuard> (ReactClass:ReactComponent<TO
     }
   };
 
+  const inputWrapperCompose = createUniversalCompose<TOutter>();
+
   return compose<PerformanceWrapperProps & TOutter, TOutter>(
-    getContext<FormContext, TOutter>({
-      nameSpace: PropTypes.string,
-      FormState: PropTypes.object,
-      fieldSetNameSpace: PropTypes.string,
-      dispatch: PropTypes.func
-    }),
-    // TODO: unclear what the first generic here does
-    withHandlers<FormContext & TOutter, PerfomanceWrapperGetInputPath>({
-      getInputPath
-    }),
-    // TODO: unclear what the first generic here does
-    withHandlers<PerformanceWrapperInputHelpers, PerfomanceWrapperGetInputPath & FormContext & TOutter>({
-      inputChanged: ({dispatch, nameSpace, name, getInputPath}) => (value, changed:boolean = true) => {
-        dispatch(setInput(nameSpace, getInputPath(), value));
-        dispatch(setInputInteraction(nameSpace, getInputPath(), 'changed', changed));
-      },
-      setInputBlurred: ({dispatch, nameSpace, getInputPath}) => () => {
-        dispatch(setInputInteraction(nameSpace, getInputPath(), 'blurred', true));
-      },
-      setValidation: ({dispatch, nameSpace, getInputPath}) => (type:string, test:string | boolean) => {
-        dispatch(setValidation(nameSpace, getInputPath(), type, test));
-      },
-      getHTMLAttributes
-    }),
-    // TODO: unclear what the first generic here does
-    withProps<PerformanceWrapperWithProps, PerformanceWrapperWithHandlers & FormContext & TOutter>(withNeededProps),
-    // TODO: unclear what the first generic here does
-    shouldUpdate<PerformanceWrapperProps & TOutter>((props, nextProps) => {
-      return !specificShallowEqual(props, nextProps);
-    }),
+    inputWrapperCompose,
     lifecycle(InputSetup)
   )(ReactClass);
 }
