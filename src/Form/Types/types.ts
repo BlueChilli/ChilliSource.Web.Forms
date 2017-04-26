@@ -84,7 +84,9 @@ export interface DefaultSwitchProps {
 }
 
 export interface InputWrapperProps extends BaseReactProps, LabelProp, NameProp, TypeProp {
-	/** Pass in something to be appened to the end of a label */ 	
+	/** Pass in something to be prepended to the label */ 	
+	labelPrefix?: any,
+	/** Pass in something to be appended to the label */ 	
 	labelPostfix?: any,
 }
 
