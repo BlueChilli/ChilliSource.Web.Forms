@@ -251,9 +251,7 @@ interface SetValidation extends PerfomanceWrapperGetInputPath, NameSpaceProp {
 
 type inputChanged = (value: ShallowCompare, changed?:boolean) => void;
 type inputBlurred = () => void;
-type htmlAttributes = (props: {}) => React.HTMLAttributes<any>;
 type setValidation = (type: string, test: string | boolean) => void;
-
 
 export interface PerformanceWrapperUncalledValidationHelpers {
 	setValidation: (props:SetValidation) => setValidation
@@ -263,17 +261,15 @@ export interface PerformanceWrapperUncalledInputHelpers extends PerformanceWrapp
 	/** Update state with a new value for this input */ 
   inputChanged?: (props:InputChanged) => inputChanged,
 	/** Set the inputs state */ 
-  setInputBlurred?: (props:InputBlurred) => () => void,
-  getHTMLAttributes?:<T> () => htmlAttributes,
+  setInputBlurred?: (props:InputBlurred) => () => void
 }
 
 
 export interface PerformanceWrapperInputHelpers {
 	/** Update state with a new value for this input */ 
-  inputChanged: inputChanged,
+	inputChanged: inputChanged,
 	/** Set the inputs state */ 
-  setInputBlurred: inputBlurred,
-  getHTMLAttributes: htmlAttributes,
+	setInputBlurred: inputBlurred,
 	setValidation: setValidation
 }
 

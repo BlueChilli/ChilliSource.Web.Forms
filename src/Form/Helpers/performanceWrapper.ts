@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import Recompose from "recompose";
 import {getContext, withProps, shouldUpdate, withHandlers, compose, lifecycle} from "recompose";
 import {Map} from "immutable";
-import {isMultipleValueInput, returnDefinedValue, getHTMLAttributes} from "./inputHelpers";
+import {isMultipleValueInput, returnDefinedValue} from "./inputHelpers";
 import createSpecificShallowEqual from "../../../libs/createSpecificShallowEqual"
 import {setInput, setInputInteraction, setValidation} from "../Actions/fields";
 import {ShallowCompareProps, ReactComponent, BaseReactProps, ShallowCompare} from "../../../libs/types";
@@ -120,7 +120,6 @@ export default <TOutter extends WithHandlersGuard> (ReactClass:ReactComponent<TO
       setInputBlurred: ({dispatch, nameSpace, getInputPath}) => () => {
         dispatch(setInputInteraction(nameSpace, getInputPath(), 'blurred', true));
       },
-      getHTMLAttributes,
       ...setValidationWithHandlersObject
   });
 
