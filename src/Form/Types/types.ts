@@ -85,7 +85,7 @@ export interface LabelProp {
 
 export interface TypeProp {
 	/** What type of input is it [hidden|text|ect] */
-  type?: 'text' | 'radio' | 'checkbox' | 'number' | 'email' | 'password'
+  type?: 'text' | 'radio' | 'checkbox' | 'number' | 'email' | 'password' | 'hidden' | 'file'
 }
 
 export interface NameProp {

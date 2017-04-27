@@ -1,19 +1,18 @@
 import React from "react";
 import {Map} from "immutable";
-import Form, {FormProps} from "./Form";
+import Form, {FormProps, FormOptionalProps} from "./Form";
 import {connect, Dispatch} from "react-redux";
 
 interface MapStateToProps {
   FormState: Map<string, any>
 }
+
 interface MapDispatchToProps {
   dispatch: Dispatch<any>
 }
 
 
-const FormReduxWrapper = (props:FormProps) =>(
-  <Form {...props}/>
-);
+const FormReduxWrapper = (props:FormProps<undefined> & MapStateToProps & MapDispatchToProps) => <Form {...props}/>
 
 const mapStateToProps = (state:Map<string, any>):MapStateToProps => {
   return {
@@ -21,4 +20,7 @@ const mapStateToProps = (state:Map<string, any>):MapStateToProps => {
   }
 }
 
-export default connect<MapStateToProps, MapDispatchToProps, FormProps>(mapStateToProps)(FormReduxWrapper);
+
+
+export {FormProps, FormOptionalProps}
+export default connect<MapStateToProps, MapDispatchToProps, FormProps<undefined>>(mapStateToProps)(FormReduxWrapper);
