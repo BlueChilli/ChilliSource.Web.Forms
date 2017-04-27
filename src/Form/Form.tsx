@@ -160,7 +160,7 @@ class Form extends React.Component<FormProps, FormState>{
 export default compose<FormStateProps & FormDispatchProps, FormProps>(
   branch<FormProps>(props => {
     return !(props.FormState && props.dispatch)
-  }, withReducer("FormState", "dispatch", withReducerState, Map()))
+  }, withReducer("FormState", "dispatch", withReducerState, Map<string, {}>()))
 )(Form);
 
 
