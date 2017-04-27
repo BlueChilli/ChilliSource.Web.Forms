@@ -4,7 +4,6 @@ import {shallow} from 'enzyme';
 import InputBase from '../Base';
 
 const attributes = {
-  getHTMLAttributes: () => ({}),
   defaultValue: "Shane",
   inputChanged: () => ({}),
   setInputBlurred: () => ({})
@@ -16,21 +15,22 @@ const event = {
   }
 }
 
-
 describe('<InputBase/>', () => {
   it('should render <input/> component', () => {
     const wrapper = shallow(<InputBase {...attributes}/>);
     expect(wrapper.is('input')).toBe(true);
   });
-  it('should call onChange', () => {
+
+  it('should call onChange when its value changes', () => {
     const onChange = sinon.spy();
-    const wrapper = shallow(<InputBase {...attributes} onChange={onChange}/>);
+    const wrapper = shallow(<InputBase {...attributes} onChange={onChange} />);
     wrapper.simulate('change', event);
     expect(onChange.called).toBe(true);
   });
-  it('should call onBlur', () => {
+  
+  it('should call onBlur when it loses focus', () => {
     const onBlur = sinon.spy();
-    const wrapper = shallow(<InputBase {...attributes} onBlur={onBlur}/>);
+    const wrapper = shallow(<InputBase {...attributes} onBlur={onBlur} />);
     wrapper.simulate('blur', event);
     expect(onBlur.called).toBe(true);
   });
