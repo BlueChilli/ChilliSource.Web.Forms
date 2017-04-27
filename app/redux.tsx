@@ -5,7 +5,8 @@ import {Provider} from 'react-redux'
 import {createStore, applyMiddleware} from 'redux'
 import {createReducer, combineReducers} from "redux-immutablejs";
 import {basicReducer} from '../src/Form/Reducers';
-import Form from "./FormReduxWrapper";
+import Form from "../src/Form/FormReduxWrapper";
+import FormInner from "./FormInner";
 
 const reducers = combineReducers({
   FormState: createReducer(Map(), basicReducer)
@@ -25,7 +26,9 @@ class Redux extends React.Component<{}, {}> {
   render() {
     return (
       <Provider store={store}>
-        <Form />
+        <Form name="Test">
+          <FormInner/>
+        </Form>
       </Provider>
     );
   }
