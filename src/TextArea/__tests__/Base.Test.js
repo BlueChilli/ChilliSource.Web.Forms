@@ -4,7 +4,6 @@ import {shallow} from 'enzyme';
 import TextAreaBase from '../Base';
 
 const textAreaAttributes = {
-    getHTMLAttributes: () => {},
     defaultValue: 'Parth Mehta',
     inputChanged: () => {},
     setInputBlurred: () => {}
