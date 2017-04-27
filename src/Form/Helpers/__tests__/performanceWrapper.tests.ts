@@ -1,29 +1,7 @@
 import {HTMLAttributes} from 'react';
 import {Map} from 'immutable';
 import {getInputPath, getPrioritisedDefaultValue, getPrioritisedValue} from '../performanceWrapper';
-import {getHTMLAttributes} from "../inputHelpers";
 import {isEqual, isArray} from 'lodash';
-
-// required', 'name', 'type', 'value', 'min', 'max', 'minLength', 'maxLength'
-
-const supportedProps = {
-  min: 30,
-  max: 25,
-  value: true,
-  id: 'test',
-  autoFocus: true,
-  required: true,
-  name: 'input',
-  type: 'input',
-  minLength: 5,
-  maxLength: 1000,
-  pattern: '[0-9]'
-}
-
-const unsupportedProps = {
-  misc: 'here',
-  another: true
-}
 
 const inputPathFieldsetProps = {
   fieldSetNameSpace: 'fieldset',
@@ -39,22 +17,7 @@ const inputPathPlainProps = {
   name: 'name'
 }
 
-
 describe('performanceWrapper', () => {
-
-  // get HTMl attributes
-  describe('getHTMLAttributes', () => {
-
-    it('should return all supported attributes', () => {
-      const returnedSupportedProps = getHTMLAttributes()(supportedProps);
-      expect(isEqual(supportedProps, returnedSupportedProps)).toBe(true);
-    })
-
-    it('should exclude unsupported attributes', () => {
-      const returnedSupportedProps = getHTMLAttributes()(Object.assign({}, supportedProps, unsupportedProps))
-      expect(isEqual(supportedProps, returnedSupportedProps)).toBe(true);
-    })
-  });
 
   // input path
   describe('getInputPath', () => {
