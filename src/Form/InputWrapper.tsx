@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import ErrorWrapper from './ErrorWrapper';
 import './InputWrapper.scss';
 import {InputWrapperProps} from "./Types/types";
