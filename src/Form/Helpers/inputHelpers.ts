@@ -22,7 +22,6 @@ export function returnDefinedValue<T>(...args:T[]){
 };
 
 
-
 interface GetHTMLAttributesGuard extends ValueProp, BaseReactProps, TypeProp, IdProp{}
 
 export const getHTMLAttributes = <T extends GetHTMLAttributesGuard> () => (props:T) => {
