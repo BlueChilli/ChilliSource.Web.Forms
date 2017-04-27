@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {isEqual} from 'lodash';
-import {Input} from '../Input.tsx';
+import {Input} from '../Input';
 
 // Defining all the properties
 const allInputProps = {
