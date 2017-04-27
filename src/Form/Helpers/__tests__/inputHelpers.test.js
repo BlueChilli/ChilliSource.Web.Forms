@@ -1,4 +1,25 @@
-import {returnDefinedValue, isMultipleValueInput} from "../inputHelpers";
+import {isEqual} from "lodash";
+import {returnDefinedValue, isMultipleValueInput, getHTMLAttributes} from "../inputHelpers";
+
+const supportedProps = {
+  min: 30,
+  max: 25,
+  value: true,
+  id: "test",
+  autoFocus: true,
+  required: true,
+  name: "input",
+  type: "input",
+  minLength: 5,
+  maxLength: 1000,
+  pattern: "[0-9]"
+}
+
+const unsupportedProps = {
+  misc: 'here',
+  another: true
+}
+
 
 describe("returnDefinedValue()", () => {
   it('should return undefined when no valid argument is passed', () => {
@@ -24,6 +45,17 @@ describe("isMultipleValueInput", () => {
   it('should return false when input has no []', () => {
     expect(isMultipleValueInput('input')).toBe(false);
   });
+});
+
+ describe("getHTMLAttributes", () => {
+  it("returns all supported attributes", () => {
+    const returnedSupportedProps = getHTMLAttributes()(supportedProps);
+    expect(isEqual(supportedProps, returnedSupportedProps)).toBe(true);
+  })
+  it("excludes unsupported attributes", () => {
+    const returnedSupportedProps = getHTMLAttributes()(Object.assign({}, supportedProps, unsupportedProps))
+    expect(isEqual(supportedProps, returnedSupportedProps)).toBe(true);
+  })
 });
 
 
