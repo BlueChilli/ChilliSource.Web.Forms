@@ -2,7 +2,7 @@ import React from "react";
 import {validationsMessages, validationsAvailable} from "../../libs/validate";
 import {ValidationElementProps, InputInfoProps, ValidationAdditionProps, ValidationCloneElementProps, DisplayValidationProps} from "../Form/Types/types"
 import {ReactElement} from "../../libs/types"
-import Validation from "../Validation/Validation";
+//import Validation from "../Validation/Validation";
 import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
 
 type ValidationChild = React.ReactElement<ValidationElementProps>
