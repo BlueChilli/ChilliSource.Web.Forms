@@ -67,13 +67,18 @@ const displayValidationProps = {
     pattern
 };
 
+const removeChildrenProp = props => {
+    const {children, ...propsWithoutChildren} = props;
+    return propsWithoutChildren;
+}
+
 describe('<Input />', () => {
     const wrapper = shallow(<Input {...allInputProps} />);
     
-    const {children:InputWrapperChildren, ...InputWrapperProps} = wrapper.find('InputWrapper').props();
-    const {children:InputGroupChildren, ...InputGroupProps} = wrapper.find('InputGroup').props();
-    const {children:InputBaseChildren, ...InputBaseProps} = wrapper.find('InputBase').props();
-    const {children:DisplayValidationChildren, ...DisplayValidationProps} = wrapper.find('DisplayValidation').props();
+    const InputWrapperProps = removeChildrenProp(wrapper.find('InputWrapper').props());
+    const InputGroupProps = removeChildrenProp(wrapper.find('InputGroup').props());
+    const InputBaseProps = removeChildrenProp(wrapper.find('InputBase').props());
+    const DisplayValidationProps = removeChildrenProp(wrapper.find('DisplayValidation').props());
     
     // InputWrapper
     it('should only have the required props for <InputWrapper />', () => {
