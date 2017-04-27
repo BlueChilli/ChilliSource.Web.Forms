@@ -2,18 +2,30 @@ import React from "react";
 import {TextAreaProps} from "../Form/Types/types";
 import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
 
-class TextareaBase extends React.Component<TextAreaProps & PerformanceWrapperProps, {}>{
+class TextAreaBase extends React.Component<TextAreaProps & PerformanceWrapperProps, {}>{
   displayName: 'TextAreaBase'
-  handleChange = (e) => {
-    this.props.inputChanged(e.target.value);
-    if(this.props.onChange){
-      this.props.onChange(e);
+  handleChange = event => {
+    const {inputChanged, onChange} = this.props;
+  
+    inputChanged(event.target.value);
+    if(typeof onChange === 'function'){
+      onChange(event);
     }
   }
+
+  handleBlur = event => {
+    const {setInputBlurred, onBlur} = this.props;
+
+    setInputBlurred();
+    if(typeof onBlur === 'function') {
+      onBlur(event);
+    }
+  }
+
   render() {
     var attributes = this.props.getHTMLAttributes(this.props);
-    return <textarea onBlur={this.props.setInputBlurred} onChange={this.handleChange} {...attributes} />
+    return <textarea onBlur={this.handleBlur} onChange={this.handleChange} {...attributes} />
   }
 };
 
-export default TextareaBase;
+export default TextAreaBase;

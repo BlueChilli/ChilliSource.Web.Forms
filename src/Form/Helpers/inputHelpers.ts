@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {isUndefined} from "lodash";
-import {ShallowCompare} from "../../../libs/types";
-import {PossibleDefaultValues} from "../Types/types";
+import {isUndefined, pick} from "lodash";
+import {ShallowCompare, BaseReactProps} from "../../../libs/types";
+import {PossibleDefaultValues, ValueProp, TypeProp, IdProp} from "../Types/types";
 
 export const isMultipleValueInput = (inputName:string):boolean => {
   return inputName.search(/\[\]$/) !== -1;
@@ -20,4 +20,13 @@ export function returnDefinedValue<T>(...args:T[]){
   };
   return innerReturnDefinedValue();
 };
+
+
+interface GetHTMLAttributesGuard extends ValueProp, BaseReactProps, TypeProp, IdProp{}
+
+export const getHTMLAttributes = <T extends GetHTMLAttributesGuard> () => (props:T) => {
+  const {children} = props
+  const safeProps = pick<React.HTMLAttributes<any>, T>(props, "id", "autoFocus", "required", "name", "type", "value", "min", "max", "minLength", "maxLength", "pattern");
+  return safeProps;
+}
 

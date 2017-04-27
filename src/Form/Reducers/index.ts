@@ -43,7 +43,7 @@ export const basicReducer = {
   }
 }
 
-export const withReducerState = (state = Map(), action) => {
+export const withReducerState = (state = Map<string, {}>(), action:FSA<SetInputPayload | SetValidationPayload | SetInputInteractionPayload | SetAllInputInteractionPayload>) => {
   const reducerFunc = basicReducer[action.type];
   if(typeof reducerFunc === 'function'){
     reducerFunc(state, action);
