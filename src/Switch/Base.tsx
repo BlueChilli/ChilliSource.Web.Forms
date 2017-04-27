@@ -5,7 +5,6 @@ import {snakeCase} from "lodash";
 import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
 import {getHTMLAttributes} from "../Form/Helpers/inputHelpers";
 
-
 interface SwitchBaseElement extends Element{
   checked: boolean
 }
@@ -22,22 +21,36 @@ const isChecked = (props: SwitchProps & PerformanceWrapperProps) => {
 /** {Internal} Method used internally to display a switch component(radio or checkbox)  */
 class SwitchBase extends React.Component<SwitchProps & PerformanceWrapperProps, {}>{
   displayName: 'SwitchBase'
-  getChecked = () => {
+  
+  getChecked = event => {
     if (this.props.type === 'radio') {
       return this.props.id;
     } else {
-      return ReactDOM.findDOMNode<SwitchBaseElement>(this.refs[this.props.name]).checked;
+      return event.target.checked;
     }
   }
-  handleChange = (e) => {
-    this.props.inputChanged(this.getChecked());
-    if(this.props.onChange){
-      this.props.onChange(e);
+  
+  handleChange = event => {
+    const {inputChanged, onChange} = this.props;
+
+    inputChanged(this.getChecked(event));
+    if(typeof onChange === 'function') {
+      onChange(event);
     }
   }
+
+  handleBlur = event => {
+    const {onBlur, setInputBlurred} = this.props;
+    
+    setInputBlurred();
+    if(typeof onBlur === 'function') {
+      onBlur(event);
+    }
+  }
+
   render() {
     var attributes = getHTMLAttributes(this.props);
-    return <input onBlur={this.props.setInputBlurred} onChange={this.handleChange} checked={isChecked(this.props)} ref={this.props.name}
+    return <input onBlur={this.handleBlur} onChange={this.handleChange} checked={isChecked(this.props)} ref={this.props.name}
                   value={attributes.id} {...attributes} id={this.props.id}/>;
   }
 };
