@@ -49,11 +49,11 @@ describe("isMultipleValueInput", () => {
 
  describe("getHTMLAttributes", () => {
   it("returns all supported attributes", () => {
-    const returnedSupportedProps = getHTMLAttributes()(supportedProps);
+    const returnedSupportedProps = getHTMLAttributes(supportedProps);
     expect(isEqual(supportedProps, returnedSupportedProps)).toBe(true);
   })
   it("excludes unsupported attributes", () => {
-    const returnedSupportedProps = getHTMLAttributes()(Object.assign({}, supportedProps, unsupportedProps))
+    const returnedSupportedProps = getHTMLAttributes(Object.assign({}, supportedProps, unsupportedProps))
     expect(isEqual(supportedProps, returnedSupportedProps)).toBe(true);
   })
 });
