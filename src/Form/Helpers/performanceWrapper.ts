@@ -2,13 +2,12 @@ import * as PropTypes from "prop-types";
 import * as Recompose from "recompose";
 import {getContext, withProps, shouldUpdate, withHandlers, compose, lifecycle} from "recompose";
 import {Map} from "immutable";
-import {isUndefined, pick} from "lodash";
-import {isMultipleValueInput, returnDefinedValue} from "./inputHelpers";
+import {isMultipleValueInput, returnDefinedValue, getHTMLAttributes} from "./inputHelpers";
 import createSpecificShallowEqual from "../../../libs/createSpecificShallowEqual"
 import {setInput, setInputInteraction, setValidation} from "../Actions/fields";
 import {ShallowCompareProps, ReactComponent, BaseReactProps, ShallowCompare} from "../../../libs/types";
-import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerfomanceWrapperGetInputPath, PerformanceWrapperInputHelpers, NameProp, IdProp, TypeProp} from "../Types/types"
-import {DefaultValueProp, PossibleDefaultValues, InputInfoProps, DefaultSwitchProps, NameSpaceProp, FormStateProp, ValueProp} from "../Types/types"
+import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerfomanceWrapperGetInputPath, PerformanceWrapperInputHelpers, NameProp, IdProp, TypeProp, 
+  DefaultValueProp, PossibleDefaultValues, InputInfoProps, DefaultSwitchProps, NameSpaceProp, FormStateProp, ValueProp} from "../Types/types"
 
 const specificShallowEqual = createSpecificShallowEqual("inputInfo", "inputGroupInfo", "name", "nameSpace", "type", "id", "disabled", "required", 
 "className", "defaultValue", "defaultChecked", "defaultSelected", "options", "fieldSetNameSpace", "value");
@@ -17,7 +16,6 @@ const specificShallowEqualDefault = createSpecificShallowEqual("defaultValue");
 
 interface WithHandlersGuard extends NameProp, IdProp, TypeProp, DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, NameProp, BaseReactProps, ValueProp, IdProp, TypeProp{}
 
-interface GetHTMLAttributesGuard extends ValueProp, BaseReactProps, TypeProp, IdProp{}
 
 export interface PerformanceWrapperProps extends PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, FormContext {}
 
@@ -29,17 +27,10 @@ const getUnsetValue = ({type}:TypeProp) => {
   }
 };
 
-export const getHTMLAttributes = <T extends GetHTMLAttributesGuard> () => (props:T) => {
-  const {children} = props
-  const safeProps = pick<React.HTMLAttributes<any>, T>(props, "id", "autoFocus", "required", "name", "type", "value", "min", "max", "minLength", "maxLength", "pattern");
-  return safeProps;
-}
-
 
 interface GetInputPathGuard extends NameProp, IdProp{
   fieldSetNameSpace?: string,
 }
-
 export const getInputPath = <T extends GetInputPathGuard> ({name, id, fieldSetNameSpace}:T) => ():string[] => {
   if (fieldSetNameSpace !== undefined) {
     return [fieldSetNameSpace, name];
@@ -52,17 +43,25 @@ export const getInputPath = <T extends GetInputPathGuard> ({name, id, fieldSetNa
 
 interface WithNeededPropsGuard extends DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, ValueProp {}
 
-export const withNeededProps = <TOutter extends WithNeededPropsGuard> (props:PerfomanceWrapperGetInputPath & FormContext & TOutter) => {
+export const getPrioritisedDefaultValue = (defaultValue:PossibleDefaultValues, defaultChecked:boolean | number | string, defaultSelected:boolean | number | string) => (
+  returnDefinedValue(defaultValue, defaultChecked, defaultSelected)
+)
+
+export const getPrioritisedValue = (value:ShallowCompare, inputInfoValue:ShallowCompare, prioritisedDefaultValue:PossibleDefaultValues, unsetValue:false | "") => (
+  returnDefinedValue(value, inputInfoValue, prioritisedDefaultValue, unsetValue)
+)
+
+const withNeededProps = <TOutter extends WithNeededPropsGuard> (props:PerfomanceWrapperGetInputPath & FormContext & TOutter) => {
   const inputPath = props.getInputPath();
   const inputInfoPath = inputPath.slice(0, inputPath.length - 1);
   const inputInfo = props.FormState.getIn([props.nameSpace, ...inputPath], Map({}))
   const {defaultValue, defaultChecked, defaultSelected} = props;
-  const allInputsDefaultValue = returnDefinedValue(defaultValue, defaultChecked, defaultSelected);
-  const value = returnDefinedValue<ShallowCompare>(props.value, inputInfo.get('value'), allInputsDefaultValue, getUnsetValue(props));
+  const prioritisedDefaultValue = getPrioritisedDefaultValue(defaultValue, defaultChecked, defaultSelected);
+  const value = getPrioritisedValue(props.value, inputInfo.get('value'), prioritisedDefaultValue, getUnsetValue(props));
   return {
     inputInfo,
     inputGroupInfo: inputInfoPath.length > 0 ? props.FormState.getIn([props.nameSpace, ...inputInfoPath], Map({})) : Map(),
-    defaultValue: allInputsDefaultValue,
+    defaultValue: prioritisedDefaultValue,
     inputPath,
     value
   };
