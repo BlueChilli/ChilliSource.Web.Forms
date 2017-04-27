@@ -24,7 +24,7 @@ export function returnDefinedValue<T>(...args:T[]){
 
 interface GetHTMLAttributesGuard extends ValueProp, BaseReactProps, TypeProp, IdProp{}
 
-export const getHTMLAttributes = <T extends GetHTMLAttributesGuard> () => (props:T) => {
+export const getHTMLAttributes = <T extends GetHTMLAttributesGuard> (props:T) => {
   const {children} = props
   const safeProps = pick<React.HTMLAttributes<any>, T>(props, "id", "autoFocus", "required", "name", "type", "value", "min", "max", "minLength", "maxLength", "pattern");
   return safeProps;
