@@ -41,7 +41,7 @@ interface FormState {
   canSubmit: boolean
 }
 
-export interface FormOwnProps<T> extends FormOptionalProps<T> {
+interface FormOwnProps<T> extends FormOptionalProps<T> {
    /** Used to namespace all child input components in the Redux store */
     name: string,
     /** Called before the form is submitted, ths is a chance to modify the contents of the payload
@@ -49,13 +49,13 @@ export interface FormOwnProps<T> extends FormOptionalProps<T> {
     mapOutput?: Function,
 }
 
-export interface FormProps extends FormOwnProps<undefined>, FormStateProps, FormDispatchProps {}
+export interface FormProps<T> extends FormOwnProps<T>, FormStateProps, FormDispatchProps {}
 
 const mapOutput = (data, mapOutputFunc) => (mapOutput) ? mapOutputFunc(data) : data;
 
 /** Displays a form component, inserts all user input into redux state and ensures that all inputs are validated
  * before allowing the user to submit the form. */
-class Form extends React.Component<FormProps, FormState>{
+class Form extends React.Component<FormProps<undefined>, FormState>{
 
   public static childContextTypes = {
     FormState: PropTypes.object,
@@ -73,7 +73,7 @@ class Form extends React.Component<FormProps, FormState>{
     querySelector: any
   }
 
-  constructor(props:FormProps){
+  constructor(props:FormProps<undefined>){
     super(props);
     this.state = {
       canSubmit: false
@@ -88,7 +88,7 @@ class Form extends React.Component<FormProps, FormState>{
     }
   }
 
-  componentWillReceiveProps(nextProps:FormProps){
+  componentWillReceiveProps(nextProps:FormProps<undefined>){
     if (this.props.name !== nextProps.name) {
       this.props.dispatch(clearAllInputs(nextProps.name));
       // make the new form unsubmit-able
@@ -157,8 +157,8 @@ class Form extends React.Component<FormProps, FormState>{
   }
 };
 
-export default compose<FormStateProps & FormDispatchProps, FormProps>(
-  branch<FormProps>(props => {
+export default compose<FormStateProps & FormDispatchProps, FormProps<undefined>>(
+  branch<FormProps<undefined>>(props => {
     return !(props.FormState && props.dispatch)
   }, withReducer("FormState", "dispatch", withReducerState, Map<string, {}>()))
 )(Form);
