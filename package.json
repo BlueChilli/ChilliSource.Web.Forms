@@ -89,7 +89,7 @@
     "react": "^15.5.4",
     "react-date-range": "^0.9.3",
     "react-dom": "^15.5.4",
-    "react-dropzone": "^3.12.3",
+    "react-dropzone": "^3.13.1",
     "react-onclickoutside": "^5.11.1",
     "react-redux": "^5.0.4",
     "recompose": "^0.23.1"
