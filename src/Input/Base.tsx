@@ -1,5 +1,6 @@
 import React from "react";
 import {isFunction} from "lodash";
+import {getHTMLAttributes} from '../Form/Helpers/inputHelpers';
 import {TextInputProps} from "../Form/Types/types";
 import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
 
@@ -20,7 +21,7 @@ class InputBase extends React.Component<TextInputProps & PerformanceWrapperProps
     }
   } 
   render() {
-    const attributes = this.props.getHTMLAttributes(this.props);
+    const attributes = getHTMLAttributes<TextInputProps & PerformanceWrapperProps>(this.props);
     return <input onBlur={this.handleBlured} {...attributes} onChange={this.handleChange}/>
   }
 };
