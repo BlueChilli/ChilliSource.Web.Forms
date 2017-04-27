@@ -8,14 +8,14 @@ import DisplayValidation from "../Validation/DisplayValidation";
 import performanceWrapper, {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
 
 
-class Input extends React.PureComponent<TextInputProps & PerformanceWrapperProps, {}> {
+export class Input extends React.PureComponent<TextInputProps & PerformanceWrapperProps, {}> {
   render (){
     const {className, label, labelPostfix, labelPrefix, prepend, append, ...props} = this.props;
     const {autoFocus, onChange, onBlur, id, ...validationProps} = props;
     const classes:string = classnames(className, 'input');
     if (props.type !== 'hidden') {
       return (
-        <InputWrapper className={classes} type={props.type} name={props.name} labelPostfix={labelPostfix} label={label}>
+        <InputWrapper className={classes} type={props.type} name={props.name} labelPrefix={labelPrefix} labelPostfix={labelPostfix} label={label}>
           <InputGroup prepend={prepend} append={append}>
             <InputBase {...props} />
           </InputGroup>
