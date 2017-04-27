@@ -2,6 +2,7 @@ import React, {Children} from "react";
 import {withProps} from "recompose";
 import {List} from "immutable";
 import {ShallowCompare} from "../../libs/types";
+import {getHTMLAttributes} from "../Form/Helpers/inputHelpers";
 import {SelectInputProps} from "../Form/Types/types";
 import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
 
@@ -34,7 +35,7 @@ class SelectBase extends React.Component<SelectInputProps & PerformanceWrapperPr
     }
   }
   render () {
-    const attributes = this.props.getHTMLAttributes(this.props);
+    const attributes = getHTMLAttributes(this.props);
     return (
       <select {...attributes} onChange={this.handleChange}>
         {this.props.children}

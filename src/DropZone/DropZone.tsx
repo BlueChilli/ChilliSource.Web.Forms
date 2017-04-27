@@ -6,6 +6,7 @@ import classnames from "classnames";
 import {compose} from "recompose";
 import performanceWrapper from "../Form/Helpers/performanceWrapper";
 import FileItem from "./FileItem";
+import {getHTMLAttributes} from "../Form/Helpers/inputHelpers";
 import {DropZoneProps, DropZoneFile} from "../Form/Types/types";
 import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
 
@@ -57,7 +58,7 @@ class DropZoneFrecl extends React.Component<DropZoneProps & PerformanceWrapperPr
     this.props.inputChanged(stateFiles.delete(index));
   }
   render() {
-    const {children, className, showList = true, getHTMLAttributes} = this.props;
+    const {children, className, showList = true} = this.props;
     const attributes = getHTMLAttributes(this.props);
     const files = this.getFiles();
     const classes = classnames("drop-zone-box", className);

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import {SwitchProps} from "../Form/Types/types";
 import {snakeCase} from "lodash";
 import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
-
+import {getHTMLAttributes} from "../Form/Helpers/inputHelpers";
 
 
 interface SwitchBaseElement extends Element{
@@ -36,7 +36,7 @@ class SwitchBase extends React.Component<SwitchProps & PerformanceWrapperProps, 
     }
   }
   render() {
-    var attributes = this.props.getHTMLAttributes(this.props);
+    var attributes = getHTMLAttributes(this.props);
     return <input onBlur={this.props.setInputBlurred} onChange={this.handleChange} checked={isChecked(this.props)} ref={this.props.name}
                   value={attributes.id} {...attributes} id={this.props.id}/>;
   }
