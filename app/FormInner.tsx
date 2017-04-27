@@ -1,16 +1,16 @@
-import React from "react";
-import CheckBox from "../src/CheckBox/CheckBox";
-import Form from "../src/Form/Form";
-import Fieldset from "../src/Form/Fieldset";
-import Input from "../src/Input/Input";
-import Radio from "../src/Radio/Radio";
-import Select from "../src/Select/Select";
-import DropZone from "../src/DropZone/DropZone";
-import DateRange from "../src/DatePicker/DateRange";
-import DatePicker from "../src/DatePicker/DatePicker";
-import TextArea from "../src/TextArea/TextArea";
-import Validation from "../src/Validation/Validation";
-import Validate from "../src/Validation/Validate";
+import React from 'react';
+import CheckBox from '../src/CheckBox/CheckBox';
+import Form from '../src/Form/Form';
+import Fieldset from '../src/Form/Fieldset';
+import Input from '../src/Input/Input';
+import Radio from '../src/Radio/Radio';
+import Select from '../src/Select/Select';
+import DropZone from '../src/DropZone/DropZone';
+import DateRange from '../src/DatePicker/DateRange';
+import DatePicker from '../src/DatePicker/DatePicker';
+import TextArea from '../src/TextArea/TextArea';
+import Validation from '../src/Validation/Validation';
+import Validate from '../src/Validation/Validate';
 
 export default class extends React.Component<{}, {}> {
   lastNameValidation(value){
@@ -18,7 +18,7 @@ export default class extends React.Component<{}, {}> {
   }
   render() {
     return (
-      <div style={{padding: "20px 40px"}}>
+      <div style={{padding: '20px 40px'}}>
         <Input autoFocus label="First Name" required defaultValue="First Name" pattern="[A-Za-z]+$" name="firstName" customValidation={this.lastNameValidation}>
           <Validation isFor="required">This field is required</Validation>
           <Validation isFor="customValidation">This field must be Shane</Validation>
