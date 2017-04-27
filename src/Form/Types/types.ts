@@ -27,10 +27,32 @@ export interface ValidationProps{
 }
 
 export interface InputValidationProps extends ValidationProps{
+	/**
+	 * Lowest number(including itself) possible in
+	 * the input field
+	 */
 	min?: string | number,
+
+	/**
+	 * Highest number(including itself) possible in
+	 * the input field
+	 */
 	max?: string | number,
+
+	/**
+	 * The minimum length of the input text
+	 */
 	minLength?: string | number,
+
+	/**
+	 * The maximum length of the input text
+	 */
 	maxLength?: string | number,
+
+	/**
+	 * A regular expression(regex) for the input text
+	 * so as to allow only inputs that match the pattern
+	 */
 	pattern?: string,
 }
 
