@@ -1,4 +1,5 @@
 import React from "react";
+import {getHTMLAttributes} from '../Form/Helpers/inputHelpers';
 import {TextAreaProps} from "../Form/Types/types";
 import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
 
@@ -23,7 +24,7 @@ class TextAreaBase extends React.Component<TextAreaProps & PerformanceWrapperPro
   }
 
   render() {
-    var attributes = this.props.getHTMLAttributes(this.props);
+    var attributes = getHTMLAttributes<TextAreaProps & PerformanceWrapperProps>(this.props);
     return <textarea onBlur={this.handleBlur} onChange={this.handleChange} {...attributes} />
   }
 };
