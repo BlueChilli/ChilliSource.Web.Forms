@@ -2,7 +2,7 @@ import React from "react";
 import {withProps, mapProps, shouldUpdate, ComponentEnhancer, InferableComponentEnhancer, compose, withState, withHandlers, lifecycle} from "recompose";
 import classnames from "classnames";
 import {testElement, validations} from "../../libs/validate";
-import "./Validation.scss";
+// import "./Validation.scss";
 import {isMultipleValueInput} from "../Form/Helpers/inputHelpers";
 import createSpecificShallowEqual from "../../libs/createSpecificShallowEqual";
 import {ValidationAdditionProps, TextInputProps} from "../Form/Types/types";
