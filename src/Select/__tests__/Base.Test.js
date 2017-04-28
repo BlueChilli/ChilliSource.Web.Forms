@@ -9,7 +9,6 @@ const children = ['Pash', 'Shane', 'Jeremy', 'Mitch', 'Mick']
 
 const allSelectBaseProps = {
     children,
-    arrow: <div className="select-arrow" />,
     className: 'SelectBaseClass',
     name: 'SelectBaseName',
     label: 'SelectBase Label',
@@ -47,5 +46,18 @@ describe('<SelectBase />', () => {
         wrapper.simulate('change', event);
 
         expect(onChange.calledWith(event)).toBe(true);
+    });
+
+    it('should call onBlur if passed in', () => {
+        const onBlur = sinon.spy();
+        const wrapper = shallow(<SelectBase {...allSelectBaseProps} onBlur={onBlur} />);
+        const event = {
+            target: {
+                value: 'Shane'
+            }
+        };
+        wrapper.simulate('blur', event);
+
+        expect(onBlur.calledWith(event)).toBe(true);
     });
 });
