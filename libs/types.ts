@@ -57,7 +57,7 @@ export interface BaseReactProps {
 }
 
 // TODO: Actually force the developer to pass in T that reflects the structure of ShallowCompare
-export type ShallowCompareInner<T> = string | number | boolean | DateRangeMoment | Moment | Iterable<string | number, File | T> | List<File | T>;
+export type ShallowCompareInner<T> = string | number | boolean | DateRangeMoment | Moment | File | Iterable<string | number, File | T> | List<File | T>;
 export type ShallowCompare = ShallowCompareInner<ShallowCompareInner<ShallowCompareInner<ShallowCompareInner<ShallowCompareInner<any>>>>>;
 
 export interface ShallowCompareProps {

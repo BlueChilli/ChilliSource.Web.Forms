@@ -1,9 +1,10 @@
-import React from "react";
+import React, {PropTypes} from "react";
+import {canUseDOM} from "../../Helpers/canUseDOM";
 import {Map} from "immutable";
 
 interface FileItem {
   /** The file to display */
-  file: Map<string, any>,
+  file: any,
   /** Function to fire when the delete button is clicked */
   deleteFile: Function,
   /** Index of the file to delete */
@@ -17,12 +18,13 @@ const FileItem = ({file, deleteFile, index}:FileItem) => {
     deleteFile(index);
   }
   return (
-    <li className="file-item">
-      {file.get('name', '')}
+    <div className="file-item image-wrapper">
+      {<img className="file-item-image" src={file.preview} />}
       <button type="button" onClick={onClick}>x</button>
-    </li>
+    </div>
   )
 };
 
+const filePropType = canUseDOM ? PropTypes.instanceOf(File) : PropTypes.object;
 
 export default FileItem
