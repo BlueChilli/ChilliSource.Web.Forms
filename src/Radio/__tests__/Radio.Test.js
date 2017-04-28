@@ -9,11 +9,11 @@ const allRadioProps = {
     autoFocus: true,
     onChange: event => {},
     onBlur: event => {},
-    id: 'SwitchId',
+    id: 'RadioId',
     defaultChecked: true,
     defaultSelected: true,
-    label: 'Switch Label',
-    name: 'SwitchName',
+    label: 'Radio Label',
+    name: 'RadioName',
 };
 
 const {className, type, ...remainingRadioProps} = allRadioProps;
