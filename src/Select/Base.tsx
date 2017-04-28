@@ -18,10 +18,18 @@ class SelectBase extends React.Component<SelectInputProps & PerformanceWrapperPr
     }
   }
 
+  handleBlur = event => {
+    const {onBlur} = this.props;
+
+    if(typeof onBlur === 'function') {
+      onBlur(event);
+    }
+  }
+
   render () {
     const attributes = getHTMLAttributes(this.props);
     return (
-      <select {...attributes} onChange={this.handleChange}>
+      <select {...attributes} onBlur={this.handleBlur} onChange={this.handleChange}>
         {this.props.children}
       </select>
     );
