@@ -1,15 +1,15 @@
-import React, {PropTypes, Children} from "react";
-import {isDOMComponent} from "react-addons-test-utils";
-import {List, Map} from "immutable";
-import {first} from "lodash";
-import DropZone from "react-dropzone";
-import classnames from "classnames";
-import {compose} from "recompose";
-import performanceWrapper from "../Form/Helpers/performanceWrapper";
-import FileItem from "./FileItem";
-import {DropZoneProps, DropZoneFile} from "../Form/Types/types";
-import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
-import {defaultProps} from "recompose"
+import React, {Children} from 'react';
+import PropTypes from 'prop-types'
+import {List, Map} from 'immutable';
+import {first, isArray} from 'lodash';
+import DropZone from 'react-dropzone';
+import classnames from 'classnames';
+import {compose} from 'recompose';
+import performanceWrapper from '../Form/Helpers/performanceWrapper';
+import FileItem from './FileItem';
+import {DropZoneProps, DropZoneFile} from '../Form/Types/types';
+import {PerformanceWrapperProps} from '../Form/Helpers/performanceWrapper';
+import {defaultProps} from 'recompose'
 
 const isFileArray = (files: DropZoneFile) => {
   return List.isList(files) && files.size > 1;
@@ -17,9 +17,12 @@ const isFileArray = (files: DropZoneFile) => {
 
 const isSingleFile = (files: DropZoneFile) => {
   if (List.isList(files) ) {
-      return files.size === 1
+    return files.size === 1;
   }
-  return List(files)
+  if (isArray(files)) {
+    return files.length === 1;
+  }
+  return true
 };
 
 const PassDownProps = (props, children) => {
@@ -44,9 +47,8 @@ class DropZoneFrecl extends React.Component<DropZoneProps & PerformanceWrapperPr
     return isFileArray(value) ? value : isSingleFile(value) ? value : List<any>();
   }
   onDrop = (files: File[]) => {
-    const immutF = Map<string, any>(first<File>(files)).toJS(); 
+    const immutFiles = List(files);
     if (this.props.multiple !== false) {
-      const immutFiles = List(files);
       const stateFiles = this.getFiles();
       const removedDuplicates = immutFiles.filter(file => {
         return stateFiles.every(stateFile => {
@@ -55,7 +57,7 @@ class DropZoneFrecl extends React.Component<DropZoneProps & PerformanceWrapperPr
       });
       this.props.inputChanged(removedDuplicates.concat(stateFiles));
     } else {
-      this.props.inputChanged(files[0]);
+      this.props.inputChanged(immutFiles);
     }
   }
   deleteFile = (index: number) => {

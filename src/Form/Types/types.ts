@@ -16,7 +16,7 @@ export interface DateRangeMap extends Map<string, Moment> {}
 export type eventHandler = (any) => boolean
 
 
-export type DropZoneFile = List<Map<string, any>>
+export type DropZoneFile = List<File> 
 
 
 export type PossibleDefaultValues = number | string | boolean | Moment | DateRangeMap;
