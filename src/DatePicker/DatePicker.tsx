@@ -11,7 +11,7 @@ import './DateRange.scss';
 /**
  * Calendar Base
  */
-class CalendarBase extends React.Component<DatePickerProps & PerformanceWrapperProps & DateWrapperPassedDownProps, {}> {
+export class CalendarBase extends React.Component<DatePickerProps & PerformanceWrapperProps & DateWrapperPassedDownProps, {}> {
   handleChange = dateRange => {
     const {inputChanged, close} = this.props;
 
