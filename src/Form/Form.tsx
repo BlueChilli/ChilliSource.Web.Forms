@@ -7,7 +7,6 @@ import {setAllInputInteractions, clearAllInputs} from "./Actions/fields";
 import {withReducerState} from "./Reducers";
 import {isMultipleValueInput} from "./Helpers/inputHelpers";
 import {ShallowCompare, BaseReactProps} from "../../libs/types";
-import {eventHandler} from "./Types/types";
 import {convertToFormData, normalizeFields} from "./Helpers/formHelpers";
 import {withReducer, compose, branch} from "recompose";
 
@@ -50,6 +49,9 @@ interface FormOwnProps<T> extends FormOptionalProps<T> {
 }
 
 export interface FormProps<T> extends FormOwnProps<T>, FormStateProps, FormDispatchProps {
+
+}
+interface FormInnerProps<T> extends FormOwnProps<T>, FormStateProps, FormDispatchProps {
   FormState: formState,
   dispatch: any
 }
@@ -58,7 +60,7 @@ const mapOutput = (data:Map<string, any>, mapOutputFunc: ((data?: Map<string, an
 
 /** Displays a form component, inserts all user input into redux state and ensures that all inputs are validated
  * before allowing the user to submit the form. */
-class Form extends React.Component<FormProps<undefined>, FormState>{
+class Form extends React.Component<FormInnerProps<undefined>, FormState>{
 
   public static childContextTypes = {
     FormState: PropTypes.object,
@@ -76,7 +78,7 @@ class Form extends React.Component<FormProps<undefined>, FormState>{
     [name: string]: Element
   }
 
-  constructor(props:FormProps<undefined>){
+  constructor(props:FormInnerProps<undefined>){
     super(props);
     this.state = {
       canSubmit: false

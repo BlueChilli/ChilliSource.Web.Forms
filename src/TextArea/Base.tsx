@@ -1,11 +1,11 @@
-import React from "react";
+import React, {Component, ChangeEvent, FocusEvent} from "react";
 import {getHTMLAttributes} from '../Form/Helpers/inputHelpers';
 import {TextAreaProps} from "../Form/Types/types";
 import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
 
-class TextAreaBase extends React.Component<TextAreaProps & PerformanceWrapperProps, {}>{
+class TextAreaBase extends Component<TextAreaProps & PerformanceWrapperProps, {}>{
   displayName: 'TextAreaBase'
-  handleChange = event => {
+  handleChange = (event:ChangeEvent<{value: string}>) => {
     const {inputChanged, onChange} = this.props;
   
     inputChanged(event.target.value);
@@ -14,7 +14,7 @@ class TextAreaBase extends React.Component<TextAreaProps & PerformanceWrapperPro
     }
   }
 
-  handleBlur = event => {
+  handleBlur = (event:FocusEvent<{}>) => {
     const {setInputBlurred, onBlur} = this.props;
 
     setInputBlurred();

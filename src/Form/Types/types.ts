@@ -9,6 +9,8 @@ import {SetInputPayload, SetInputInteractionPayload, SetValidationPayload} from 
 
 
 export type TypeOfTest = "required" | "pattern" | "type" | "minLength" | "maxLength" | "min" | "max";
+export type Tests = string | number | boolean | Function | undefined;
+export type Types = 'text' | 'radio' | 'checkbox' | 'number' | 'email' | 'password' | 'hidden' | 'file' | undefined;
 
 export type DateRangeMoment = {
   startDate: Moment;
@@ -17,9 +19,6 @@ export type DateRangeMoment = {
 
 export interface DateRangeMap extends Map<string, Moment> {}
 
-export type eventHandler = (event: Event) => boolean
-
-
 export type DropZoneFile = List<Map<string, any>>
 
 
@@ -27,7 +26,7 @@ export type PossibleDefaultValues = number | string | boolean | Moment | DateRan
 
 export interface ValidationProps{
 	required?: boolean,
-	customValidation?: (validationOperation?: Function | Promise<any>) => boolean	
+	customValidation?: Function
 }
 
 export interface InputValidationProps extends ValidationProps{
@@ -82,6 +81,10 @@ export interface ValueProp {
 	value?: ShallowCompare
 }
 
+export interface FieldSetNameSpaceProp {
+  fieldSetNameSpace?: string,
+}
+
 export interface LabelProp {
 	/** Add a label to the input*/			
 	label?: string
@@ -89,7 +92,7 @@ export interface LabelProp {
 
 export interface TypeProp {
 	/** What type of input is it [hidden|text|ect] */
-  type?: 'text' | 'radio' | 'checkbox' | 'number' | 'email' | 'password' | 'hidden' | 'file'
+  type?: 'text' | 'radio' | 'checkbox' | 'number' | 'email' | 'password' | 'hidden' | 'file' 
 }
 
 export interface NameProp {
@@ -181,8 +184,8 @@ interface CommonDateProps extends BaseReactProps, NameProp, DateWrapperProps, Va
 	format?: string,
 	firstDayOfTheWeek?: number,
 	theme?: Object,
-	onChange?: eventHandler,
-	onInit?: eventHandler,
+	onChange?: (date?: DateRangeMoment | Moment) => void | boolean,
+	onInit?: (date?: DateRangeMoment | Moment) => void | boolean,
 	minDate?: string | moment.Moment | Function,
 	maxDate?: string | moment.Moment | Function
 }
@@ -197,7 +200,7 @@ export interface DateRangeProps extends CommonDateProps, DefaultValueProp<DateRa
 
 
 export interface ValidationCloneElementProps extends InputInfoProps, TypeProp{
-  test: boolean | string | Function| number | undefined,
+  test?: Tests,
   name: string,
 	setValidation: setValidation
 }
@@ -230,28 +233,23 @@ export interface FormContext extends NameSpaceProp, FormStateProp{
 
 type getInputPath = () => Array<string>
 
-export interface PerfomanceWrapperGetInputPath {
-	/** Get the path to this input in FormState */ 
-	getInputPath: getInputPath
-}
 
-
-interface InputBlurred extends PerfomanceWrapperGetInputPath,  NameSpaceProp {
+interface InputBlurred extends NameProp, NameSpaceProp, IdProp, FieldSetNameSpaceProp {
 	dispatch: Dispatch<SetInputInteractionPayload>
 }
 
-interface InputChanged extends PerfomanceWrapperGetInputPath, NameProp, NameSpaceProp {
+interface InputChanged extends NameProp, NameSpaceProp, IdProp, FieldSetNameSpaceProp {
 	dispatch: Dispatch<SetInputPayload>
 }
 
 
-export interface SetValidation extends PerfomanceWrapperGetInputPath, NameSpaceProp {
+export interface SetValidation extends NameSpaceProp, NameProp, FieldSetNameSpaceProp {
 	dispatch: Dispatch<SetValidationPayload>
 }
 
 type inputChanged = (value: ShallowCompare, changed?:boolean) => void;
 type inputBlurred = () => void;
-type setValidation = (type: string, test: string | boolean | Function) => void;
+type setValidation = (type: string, test?: Tests) => void;
 
 export interface PerformanceWrapperUncalledValidationHelpers {
 	setValidation: (props:SetValidation) => setValidation
@@ -274,7 +272,7 @@ export interface PerformanceWrapperInputHelpers {
 }
 
 
-export interface PerformanceWrapperWithHandlers extends PerfomanceWrapperGetInputPath, PerformanceWrapperInputHelpers {}
+export interface PerformanceWrapperWithHandlers extends PerformanceWrapperInputHelpers {}
 
 export interface PerformanceWrapperWithProps extends InputInfoProps, ValueProp, DefaultValueProp<PossibleDefaultValues> {
   inputPath: string[]

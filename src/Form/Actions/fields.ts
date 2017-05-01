@@ -33,8 +33,13 @@ export interface SetInputInteractionPayload extends SetAllInputInteractionPayloa
   inputName:string[]
 }
 
+export type SetInputAction = FSA<SetInputPayload, "SET_INPUT">
+export type SetValidationAction = FSA<SetValidationPayload, "SET_VALIDATION">
+export type SetInputInteractionAction = FSA<SetInputInteractionPayload, "SET_INPUT_INTERACTION">
+export type SetAllInputInteractionAction = FSA<SetAllInputInteractionPayload, "SET_ALL_INPUT_INTERACTIONS">
+export type ClearAllInputsAction = FSA<ClearAllInputsPayload, "CLEAR_ALL_INPUTS">
 
-export function setInput(nameSpace: string, inputName:string[], value:ShallowCompare):FSA<SetInputPayload> {
+export function setInput(nameSpace: string, inputName:string[], value:ShallowCompare):SetInputAction {
   return {
     type: SET_INPUT,
     payload: {
@@ -45,7 +50,7 @@ export function setInput(nameSpace: string, inputName:string[], value:ShallowCom
   };
 }
 
-export function setValidation(nameSpace: string, inputName:string[], type:string, test:string|boolean):FSA<SetValidationPayload> {
+export function setValidation(nameSpace: string, inputName:string[], type:string, test:string|boolean):SetValidationAction {
   return {
     type: SET_VALIDATION,
     payload: {
@@ -57,7 +62,7 @@ export function setValidation(nameSpace: string, inputName:string[], type:string
   };
 }
 
-export function setInputInteraction(nameSpace:string, inputName:string[], interaction:string, value:boolean):FSA<SetInputInteractionPayload> {
+export function setInputInteraction(nameSpace:string, inputName:string[], interaction:string, value:boolean):SetInputInteractionAction {
   return {
     type: SET_INPUT_INTERACTION,
     payload: {
@@ -70,7 +75,7 @@ export function setInputInteraction(nameSpace:string, inputName:string[], intera
 }
 
 
-export function setAllInputInteractions(nameSpace:string, interaction:string, value:boolean):FSA<SetAllInputInteractionPayload> {
+export function setAllInputInteractions(nameSpace:string, interaction:string, value:boolean):SetAllInputInteractionAction {
   return {
     type: SET_ALL_INPUT_INTERACTIONS,
     payload: {
@@ -78,11 +83,10 @@ export function setAllInputInteractions(nameSpace:string, interaction:string, va
       interaction,
       value
     }
-    
   };
 }
 
-export function clearAllInputs(nameSpace:string):FSA<ClearAllInputsPayload> {
+export function clearAllInputs(nameSpace:string):ClearAllInputsAction {
   return {
     type: CLEAR_ALL_INPUTS,
     payload: {
@@ -93,7 +97,7 @@ export function clearAllInputs(nameSpace:string):FSA<ClearAllInputsPayload> {
 
 
 export function setDefaultValue(nameSpace:string, inputName:string[], value:ShallowCompare) {
-  return function (dispatch:Dispatch<FSA<SetInputPayload> | FSA<SetValidationPayload> | FSA<SetInputInteractionPayload> | FSA<SetAllInputInteractionPayload> | FSA<ClearAllInputsPayload>>, getState: () => Map<string, any>) {
+  return function (dispatch:Dispatch<SetInputAction | SetValidationAction | SetInputInteractionAction | SetAllInputInteractionAction | ClearAllInputsAction>, getState: () => Map<string, any>) {
     const currentValue = getState().getIn(['FormState', nameSpace, inputName, 'value'], false);
     if (!currentValue) {
       dispatch(setInput(nameSpace, inputName, value));

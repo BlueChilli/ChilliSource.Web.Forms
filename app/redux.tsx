@@ -9,7 +9,7 @@ import Form from "../src/Form/FormReduxWrapper";
 import FormInner from "./FormInner";
 
 const reducers = combineReducers({
-  FormState: createReducer(Map(), basicReducer)
+  FormState: createReducer<Map<string, any>, any>(Map({}), basicReducer)
 });
 
 

@@ -17,7 +17,7 @@ class DateRangeBase extends React.Component<DateRangeProps & PerformanceWrapperP
       startDate: dateRange.startDate.format('YYYY-MM-DD'),
       endDate: dateRange.endDate.format('YYYY-MM-DD')
     }));
-    if(isFunction(this.props.onChange)){
+    if(typeof this.props.onChange === 'function'){
       this.props.onChange(dateRange);
     }
   }
@@ -26,7 +26,7 @@ class DateRangeBase extends React.Component<DateRangeProps & PerformanceWrapperP
   }
 };
 
-const getValue = (dateRange: DateRangeMap, dateFormat:string) => {
+const getValue = (dateRange: DateRangeMap, dateFormat?:string) => {
   if (Map.isMap(dateRange)) {
     return moment(dateRange.get('startDate')).format(dateFormat) + " to " + moment(dateRange.get('endDate')).format(dateFormat);
   }

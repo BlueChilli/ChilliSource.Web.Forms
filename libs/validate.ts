@@ -1,14 +1,12 @@
 import {Iterable} from "immutable";
 import regExpList from "./validationRegExps";
 import {ShallowCompareProps, ShallowCompare} from "./types";
-import {TypeProp} from "../src/Form/Types/types"
+import {Types, TypeProp, TypeOfTest, Tests} from "../src/Form/Types/types"
 
-type Test = boolean | string
 
-export type TypeOfTest = "required" | "pattern" | "type" | "minLength" | "maxLength" | "min" | "max";
 
 interface ValidationTypes {
-  required: (value:ShallowCompare, test:boolean, type:TypeProp) => boolean,
+  required: (value:ShallowCompare, test:boolean, type:Types) => boolean,
   pattern: (value:ShallowCompare, test:string) => boolean,
   type: (value:ShallowCompare, test: string) => boolean,
   minLength: (value:ShallowCompare, test:string) => boolean,
@@ -82,7 +80,7 @@ export const validationsMessages = (type:string, test?:boolean | string | number
   }
 };
 
-export function testValidation(value:ShallowCompare, test:Test, typeOfTest:TypeOfTest, typeOfInput:TypeProp) {
+export function testValidation(value:ShallowCompare, typeOfTest:TypeOfTest, typeOfInput:Types, test:Tests) {
   if (value !== undefined && value !== null) {
     if (validations[typeOfTest] !== undefined) {
       if(typeOfTest === 'required'){
@@ -102,12 +100,11 @@ export function validationsAvailable<T>(inputAttributes:T) {
   return validationsAvail.filter(validation => inputAttributes.hasOwnProperty(validation) && validation !== 'default') as TypeOfTest[];
 }
 
-interface TestElementProps {
+interface TestElementProps extends TypeProp{
   value:any,
   setValid: (value:boolean) => undefined
-  test: string | boolean | Function,
+  test?: Tests,
   isFor: TypeOfTest | "customValidation",
-  type: string
 }
 
 export type TestElement = ({value, test, isFor, type, setValid}: TestElementProps) => void
@@ -116,7 +113,7 @@ export const testElement:TestElement = ({value, test, isFor, type, setValid}) =>
   if (test === false || test === 'false') {
     return setValid(true);
   } else if (isFor !== 'customValidation' && typeof test !== "function") {
-    return setValid(testValidation(value, test, isFor, type));
+    return setValid(testValidation(value, isFor, type, test));
   } else {
     if (typeof test === "function") {
       const customValidation = test(value);
