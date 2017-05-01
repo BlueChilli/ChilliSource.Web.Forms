@@ -15,7 +15,7 @@ const allDatePickerProps = {
     date: moment(),
     format: 'MMM D, YYYY',
     minDate: moment(),
-    maxDate: moment('2017-05-27'),
+    maxDate: moment().add(30, 'd'),
     defaultValue: moment(),
     inputChanged: () => ({}),
     close: () => ({})
@@ -41,16 +41,22 @@ describe('<CalendarBase />', () => {
 
 describe('<DatePicker />', () => {
     it('should have all the passed in props', () => {
-        const wrapper = shallow(<CalendarBase {...allDatePickerProps} />);
+        const wrapper = shallow(<DatePicker {...allDatePickerProps} />);
         const {children, ...DatePickerProps} = wrapper.props();
         
         expect(Map(allDatePickerProps).isSubset(Map(DatePickerProps))).toBe(true);
     });
 
     it('should have default value if passed in', () => {
-        const wrapper = shallow(<CalendarBase {...allDatePickerProps} />);
+        const wrapper = shallow(<DatePicker {...allDatePickerProps} />);
         const {valueString, ...remainingProps} = wrapper.props();
 
         expect(allDatePickerProps.defaultValue.isSame(moment(valueString), 'd')).toBe(true);
+    });
+
+    it('should have <CalendarBase /> as the only child', () => {
+        const wrapper = shallow(<DatePicker {...allDatePickerProps} />);
+        
+        expect(wrapper.find('CalendarBase')).toHaveLength(1);
     });
 });
