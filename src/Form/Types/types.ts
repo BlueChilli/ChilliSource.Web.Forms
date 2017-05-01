@@ -15,6 +15,7 @@ export interface DateRangeMap extends Map<string, Moment> {}
 
 export type eventHandler = (any) => boolean
 
+export type dateRangeEventHander = (dateRange: DateRangeMoment) => boolean;
 
 export type DropZoneFile = List<Map<string, any>>
 
@@ -172,12 +173,14 @@ export interface InternalDateWrapperProps extends DateWrapperProps{
 	children: React.ReactElement<any>
 }
 
+
+
 interface CommonDateProps extends BaseReactProps, NameProp, DateWrapperProps, ValueProp{
 	date?: moment.Moment,
 	format?: string,
 	firstDayOfTheWeek?: number,
 	theme?: Object,
-	onChange?: eventHandler,
+	onChange?: dateRangeEventHander,
 	onInit?: eventHandler,
 	minDate?: string | moment.Moment | Function,
 	maxDate?: string | moment.Moment | Function
