@@ -15,32 +15,44 @@ export interface DateWrapperPassedDownProps {
   close?: () => undefined
 }
 
-class DateWrapper extends React.Component<InternalDateWrapperProps, StateProps>{
+export class DateWrapper extends React.Component<InternalDateWrapperProps, StateProps>{
   refs: {
     [name: string]: HTMLInputElement;
-  };
+  }
+  
   constructor(props){
     super(props);
     this.state = {
       hidden: true
     }
   }
+
   handleFocus = (e) => {
     e.preventDefault();
-    this.setState({hidden: false});
+    this.setState({
+      hidden: false
+    });
   }
+
   handleClickOutside = () => {
-    this.setState({hidden: true});
+    this.setState({
+      hidden: true
+    });
   }
+
   closeInput = () => {
-    this.setState({hidden: true});
+    this.setState({
+      hidden: true
+    });
     this.refs[this.props.name].blur();
   }
+
   render() {
     const dateRangeClasses = classnames({hidden: this.state.hidden}, 'date-range-container');
     return (
       <div className="date-range-wrapper">
         <InputWrapper className="input date-picker" name={this.props.name}
+                      labelPrefix={this.props.labelPrefix}
                       labelPostfix={this.props.labelPostfix}
                       label={this.props.label}>
           <InputGroup prepend={this.props.prepend} append={this.props.append}>
@@ -49,13 +61,16 @@ class DateWrapper extends React.Component<InternalDateWrapperProps, StateProps>{
           </InputGroup>
         </InputWrapper>
         <div className={dateRangeClasses}>
-          {React.cloneElement(this.props.children, {
-            close: this.closeInput
+          {React.Children.map(this.props.children, (child, key) => {
+            return React.cloneElement(child as React.ReactElement<any>, {
+              key,
+              close: this.closeInput
+            });
           })}
         </div>
       </div>
     );
   }
-};
+}
 
 export default onReactOutsideClick(DateWrapper)
