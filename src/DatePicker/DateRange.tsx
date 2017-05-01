@@ -36,10 +36,11 @@ export class DateRangeBase extends React.Component<DateRangeProps & PerformanceW
  */
 export class DateRangePicker extends React.Component<DateRangeProps & PerformanceWrapperProps, {}> {
   getValue = (dateRange: DateRangeMap, dateFormat:string) => {
+    
     if (Map.isMap(dateRange)) {
       return moment(dateRange.get('startDate')).format(dateFormat) + " to " + moment(dateRange.get('endDate')).format(dateFormat);
     }
-    return moment().format(dateFormat) + " to " + moment().format(dateFormat);;
+    return moment().format(dateFormat) + " to " + moment().format(dateFormat);
   }
 
   render() {
