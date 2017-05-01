@@ -59,15 +59,15 @@ export interface InputValidationProps extends ValidationProps{
 	pattern?: string,
 }
 
-export interface BaseEventProps {
-	onBlur?: (event?: FocusEvent<{}>) => void | boolean
+export interface OnBlurEventProps<TBlurEvent> {
+	onBlur?: (event?: TBlurEvent) => void | boolean
 }
 
-export interface InputEventProps extends BaseEventProps {
-	onChange?: (event?: ChangeEvent<{}>) => void | boolean
+export interface OnChangeEventProps<TChangeEvent>{
+	onChange?: (event?: TChangeEvent) => void | boolean
 }
 
-export interface FieldSetProps extends BaseReactProps, BaseEventProps {
+export interface FieldSetProps extends BaseReactProps, OnBlurEventProps<FocusEvent<{}>> {
 	id: string,
 	name: string
 }
@@ -123,7 +123,7 @@ export interface InputWrapperProps extends BaseReactProps, LabelProp, NameProp, 
 }
 
 
-interface BaseInputProps<TDefault> extends BaseReactProps, InputEventProps, ValidationProps, NameProp, TypeProp, IdProp, DefaultValueProp<TDefault>, ValueProp{
+interface BaseInputProps<TDefault> extends BaseReactProps, OnChangeEventProps<ChangeEvent<{}>>, OnBlurEventProps<FocusEvent<{}>>, ValidationProps, NameProp, TypeProp, IdProp, DefaultValueProp<TDefault>, ValueProp{
 	/** Automatically select this field on navigation*/			
 	autoFocus?: boolean,
 }
@@ -179,12 +179,11 @@ export interface InternalDateWrapperProps extends DateWrapperProps{
 	children: React.ReactElement<any>
 }
 
-interface CommonDateProps extends BaseReactProps, NameProp, DateWrapperProps, ValueProp{
+interface CommonDateProps extends BaseReactProps, NameProp, DateWrapperProps, ValueProp, OnChangeEventProps<DateRangeMoment | Moment>{
 	date?: moment.Moment,
 	format?: string,
 	firstDayOfTheWeek?: number,
 	theme?: Object,
-	onChange?: (date?: DateRangeMoment | Moment) => void | boolean,
 	onInit?: (date?: DateRangeMoment | Moment) => void | boolean,
 	minDate?: string | moment.Moment | Function,
 	maxDate?: string | moment.Moment | Function

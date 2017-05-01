@@ -10,7 +10,6 @@ import {DateRangeProps} from "../Form/Types/types";
 import {DateRangeMap, DateRangeMoment} from "../Form/Types/types";
 import "./DateRange.scss";
 
-
 class DateRangeBase extends React.Component<DateRangeProps & PerformanceWrapperProps, {}>{
   handleChange = (dateRange: DateRangeMoment) => {
     this.props.inputChanged(Map<string, string>({

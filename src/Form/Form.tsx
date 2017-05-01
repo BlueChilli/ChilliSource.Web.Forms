@@ -21,7 +21,7 @@ export interface FormOptionalProps<T> extends BaseReactProps {
     encType?: 'application/json' | 'multipart/form-data',
     /** Called before the form is submitted, ths is a chance to modify the contents of the payload
      * primarily used by the form generator */    
-    mapOutput?: Function,
+    mapOutput?: (data?: Map<string, any>) => Map<string, any>,
      /** Called once Form has ensured that all child Input components are valid */
     onSubmit?: OnSubmit<T>,    
 }
@@ -43,9 +43,6 @@ interface FormState {
 interface FormOwnProps<T> extends FormOptionalProps<T> {
    /** Used to namespace all child input components in the Redux store */
     name: string,
-    /** Called before the form is submitted, ths is a chance to modify the contents of the payload
-     * primarily used by the form generator */    
-    mapOutput?: Function,
 }
 
 export interface FormProps<T> extends FormOwnProps<T>, FormStateProps, FormDispatchProps {
@@ -53,7 +50,8 @@ export interface FormProps<T> extends FormOwnProps<T>, FormStateProps, FormDispa
 }
 interface FormInnerProps<T> extends FormOwnProps<T>, FormStateProps, FormDispatchProps {
   FormState: formState,
-  dispatch: any
+  dispatch: any,
+  mapOutput: (data?: Map<string, any>) => Map<string, any>
 }
 
 const mapOutput = (data:Map<string, any>, mapOutputFunc: ((data?: Map<string, any>) => Map<string, any>)) => (mapOutput) ? mapOutputFunc(data) : data;
@@ -128,7 +126,7 @@ class Form extends React.Component<FormInnerProps<undefined>, FormState>{
         if(firstError === null) {
           if(onSubmit) {
             const fields = FormState.get(name);
-            const normalizedFields = mapOutput(normalizeFields(fields), this.props.mapOutput);
+            const normalizedFields = mapOutput(normalizeFields(fields) as Map<string, any>, this.props.mapOutput);
 
             if(encType === "multipart/form-data") {
               onSubmit(event, convertToFormData(normalizedFields));
