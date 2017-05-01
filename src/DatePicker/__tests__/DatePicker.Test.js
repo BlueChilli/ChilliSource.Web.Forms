@@ -8,6 +8,7 @@ import React from 'react';
 import moment from 'moment';
 import sinon from 'sinon';
 import {Map} from 'immutable';
+import {isEqual} from 'lodash';
 import {shallow} from 'enzyme';
 import {CalendarBase, DatePicker} from '../DatePicker';
 
@@ -50,13 +51,20 @@ describe('<DatePicker />', () => {
     it('should have default value if passed in', () => {
         const wrapper = shallow(<DatePicker {...allDatePickerProps} />);
         const {valueString, ...remainingProps} = wrapper.props();
-
-        expect(allDatePickerProps.defaultValue.isSame(moment(valueString), 'd')).toBe(true);
+        const {defaultValue, format} = allDatePickerProps;
+        
+        expect(isEqual(valueString, defaultValue.format(format))).toBe(true);
     });
 
     it('should have <CalendarBase /> as the only child', () => {
         const wrapper = shallow(<DatePicker {...allDatePickerProps} />);
-        
         expect(wrapper.find('CalendarBase')).toHaveLength(1);
+    });
+
+    it('should pass all the props to its children', () => {
+        const wrapper = shallow(<DatePicker {...allDatePickerProps} />);
+        const {children, ...props} = wrapper.find('CalendarBase').props();
+
+        expect(Map(allDatePickerProps).isSubset(Map(props))).toBe(true);
     });
 });
