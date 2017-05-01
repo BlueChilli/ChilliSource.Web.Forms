@@ -1,0 +1,64 @@
+import React from 'react';
+import {shallow} from 'enzyme';
+import {isEqual} from 'lodash';
+import {DateWrapper} from '../DateWrapper';
+
+const allDateWrapperProps = {
+    label: 'DateWrapper Label',
+    labelPostfix: 'Label Postfix',
+    labelPrefix: 'Label Prefix',
+    name: 'DateWrapperName',
+    valueString: 'May 1, 2017 to May 8, 2017',
+    children: [<h1>H1</h1>, <p>p</p>],
+};
+
+const {label, labelPostfix, labelPrefix, name, valueString, children} = allDateWrapperProps;
+
+const inputWrapperProps = {
+    name,
+    label,
+    labelPostfix,
+    labelPrefix,
+    className: 'input date-picker'
+};
+
+const inputGroupProps = {
+    prepend: undefined,
+    append: undefined
+};
+
+const removeChildren = props => {
+    const {children, ...propsWithoutChildren} = props;
+    return propsWithoutChildren;
+}
+
+describe('<DateWrapper />', () => {
+    const wrapper = shallow(<DateWrapper {...allDateWrapperProps} />);
+
+    it('should have all props passed in for <InputWrapper />', () => {
+        const InputWrapperProps = removeChildren(wrapper.find('InputWrapper').props());
+        expect(isEqual(InputWrapperProps, inputWrapperProps)).toBe(true);
+    });
+
+    it('should have the props passed in for <InputGroup />', () => {
+        const InputGroupProps = removeChildren(wrapper.find('InputGroup').props());
+        expect(isEqual(inputGroupProps, InputGroupProps)).toBe(true);
+    });
+
+    it('should have the passed in props for <input />', () => {
+        const InputProps = removeChildren(wrapper.find('input').props());
+        expect(isEqual(InputProps.value, valueString)).toBe(true);
+    });
+
+    it('it should have all the children passed in', () => {
+        const {children} = wrapper.find('.date-range-container').props();
+        expect(children).toHaveLength(2);
+    });
+
+    it('should inject close property on each child', () => {
+        const {children} = wrapper.find('.date-range-container').props();
+        children.forEach(child => {
+            expect(child.props.close).not.toBeUndefined();
+        });
+    });
+});
