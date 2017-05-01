@@ -8,12 +8,12 @@ import {isFunction} from 'lodash'
 import {DateRange} from 'react-date-range';
 import {DateRangeProps} from '../Form/Types/types';
 import {DateRangeMap, DateRangeMoment} from '../Form/Types/types';
-import './DateRange.scss';
+import './DateRange.scss'; 
 
 /**
  * DateRangeBase
  */
-class DateRangeBase extends React.Component<DateRangeProps & PerformanceWrapperProps, {}> {
+export class DateRangeBase extends React.Component<DateRangeProps & PerformanceWrapperProps, {}> {
   handleChange = (dateRange: DateRangeMoment) => {
     const {inputChanged, onChange} = this.props;
 
