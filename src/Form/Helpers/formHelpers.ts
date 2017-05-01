@@ -3,17 +3,17 @@ import {Map, List, Iterable} from "immutable";
 
 export const convertToFormData = (formMap:Map<string, any>) => {
   const formData = new FormData();
-  formMap.forEach((value, key) => {
+  formMap.forEach((value, key:string) => {
     if(Iterable.isIterable(value) && value.size === 1 && value.first() instanceof File) {
       formData.append(key, value.first());
     } else if (Map.isMap(value)) {
-      value.map((innerVal, index) => {
+      value.map((innerVal:string | Blob, index:number) => {
         if(innerVal !== null){
           formData.append(key + `.${index}`, innerVal);
         }
       })
     } else if (List.isList(value)) {
-      value.map((innerVal, index) => {
+      value.map((innerVal:string | Blob, index:number) => {
         if(innerVal !== null){
           formData.append(key + `[${index}]`, innerVal);
         }

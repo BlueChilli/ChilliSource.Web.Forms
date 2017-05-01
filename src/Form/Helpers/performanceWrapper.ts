@@ -8,7 +8,7 @@ import {setInput, setInputInteraction, setValidation} from "../Actions/fields";
 import {ShallowCompareProps, ReactComponent, BaseReactProps, ShallowCompare} from "../../../libs/types";
 import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerfomanceWrapperGetInputPath, PerformanceWrapperInputHelpers,
    PerformanceWrapperUncalledInputHelpers, PerformanceWrapperUncalledValidationHelpers, NameProp, IdProp, TypeProp, 
-  DefaultValueProp, PossibleDefaultValues, InputInfoProps, DefaultSwitchProps, NameSpaceProp, FormStateProp, ValueProp} from "../Types/types"
+  DefaultValueProp, PossibleDefaultValues, InputInfoProps, DefaultSwitchProps, NameSpaceProp, FormStateProp, ValueProp, SetValidation} from "../Types/types"
 
 const specificShallowEqual = createSpecificShallowEqual("inputInfo", "inputGroupInfo", "name", "nameSpace", "type", "id", "disabled", "required", 
 "className", "defaultValue", "defaultChecked", "defaultSelected", "options", "fieldSetNameSpace", "value");
@@ -71,7 +71,7 @@ const withNeededProps = <TOutter extends WithNeededPropsGuard> (props:Perfomance
 }
 
 const setValidationWithHandlersObject = {
-  setValidation: ({dispatch, nameSpace, getInputPath}) => (type:string, test:string | boolean) => {
+  setValidation: ({dispatch, nameSpace, getInputPath}:SetValidation) => (type:string, test:string | boolean) => {
     dispatch(setValidation(nameSpace, getInputPath(), type, test));
   }
 }
@@ -100,7 +100,6 @@ export const validationPerformanceWrapper =<TOutter extends WithHandlersGuard> (
 )
 
 export default <TOutter extends WithHandlersGuard> (ReactClass:ReactComponent<TOutter & PerformanceWrapperProps>) => {
-
   const inputWrapperCompose = createUniversalCompose<TOutter, PerformanceWrapperUncalledInputHelpers>({
       inputChanged: ({dispatch, nameSpace, name, getInputPath}) => (value, changed:boolean = true) => {
         dispatch(setInput(nameSpace, getInputPath(), value));

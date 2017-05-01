@@ -63,7 +63,7 @@ export const validations:ValidationTypes = {
   }
 };
 
-export const validationsMessages = (type:string, test:boolean | string) => {
+export const validationsMessages = (type:string, test?:boolean | string | number) => {
   switch (type) {
     case "required":
       return `This is a required field.`;
@@ -97,9 +97,9 @@ export function testValidation(value:ShallowCompare, test:Test, typeOfTest:TypeO
   return validations['default']();
 }
 
-export function validationsAvailable<T>(inputAttributes:T) :string[] {
-  const validationsAvail:string[] = Object.keys(validations);
-  return validationsAvail.filter(validation => inputAttributes.hasOwnProperty(validation));
+export function validationsAvailable<T>(inputAttributes:T) {
+  const validationsAvail = Object.keys(validations) as (keyof ValidationTypes)[];
+  return validationsAvail.filter(validation => inputAttributes.hasOwnProperty(validation) && validation !== 'default') as TypeOfTest[];
 }
 
 interface TestElementProps {

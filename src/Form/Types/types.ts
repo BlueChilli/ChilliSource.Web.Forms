@@ -196,9 +196,8 @@ export interface DateRangeProps extends CommonDateProps, DefaultValueProp<DateRa
 }
 
 
-export interface ValidationCloneElementProps extends InputInfoProps {
-  test: boolean | string | Function,
-  type: string,
+export interface ValidationCloneElementProps extends InputInfoProps, TypeProp{
+  test: boolean | string | Function| number | undefined,
   name: string,
 	setValidation: setValidation
 }

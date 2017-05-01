@@ -73,7 +73,7 @@ class Form extends React.Component<FormProps<undefined>, FormState>{
   }
 
   refs: {
-    querySelector: any
+    [name: string]: Element
   }
 
   constructor(props:FormProps<undefined>){
