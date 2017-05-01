@@ -35,7 +35,10 @@ export const getInputPath = <T extends GetInputPathGuard> ({name, id, fieldSetNa
   if (fieldSetNameSpace !== undefined) {
     return [fieldSetNameSpace, name];
   } else if (isMultipleValueInput(name)) {
-    return [name, id];
+    if(id){
+      return [name, id];
+    }
+    throw new Error("Multiple value inputs require an ID");
   } else {
     return [name];
   }
@@ -43,7 +46,7 @@ export const getInputPath = <T extends GetInputPathGuard> ({name, id, fieldSetNa
 
 interface WithNeededPropsGuard extends DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, ValueProp {}
 
-export const getPrioritisedDefaultValue = (defaultValue:PossibleDefaultValues, defaultChecked:boolean | number | string, defaultSelected:boolean | number | string) => (
+export const getPrioritisedDefaultValue = (defaultValue?:PossibleDefaultValues, defaultChecked?:boolean | number | string, defaultSelected?:boolean | number | string) => (
   returnDefinedValue(defaultValue, defaultChecked, defaultSelected)
 );
 
@@ -98,20 +101,6 @@ export const validationPerformanceWrapper =<TOutter extends WithHandlersGuard> (
 
 export default <TOutter extends WithHandlersGuard> (ReactClass:ReactComponent<TOutter & PerformanceWrapperProps>) => {
 
-  const InputSetup = {
-    componentWillMount() {
-      this.props.inputChanged(this.props.value, false);
-    },
-    componentWillReceiveProps(nextProps:PerformanceWrapperProps & TOutter){
-      if (!specificShallowEqualDefault(nextProps, this.props)) {
-        nextProps.inputChanged(nextProps.defaultValue, false);
-      }
-      if (!nextProps.FormState.hasIn([nextProps.nameSpace, ...nextProps.inputPath])) {
-        nextProps.inputChanged(nextProps.value, false);
-      }
-    }
-  };
-
   const inputWrapperCompose = createUniversalCompose<TOutter, PerformanceWrapperUncalledInputHelpers>({
       inputChanged: ({dispatch, nameSpace, name, getInputPath}) => (value, changed:boolean = true) => {
         dispatch(setInput(nameSpace, getInputPath(), value));
@@ -125,6 +114,17 @@ export default <TOutter extends WithHandlersGuard> (ReactClass:ReactComponent<TO
 
   return compose<PerformanceWrapperProps & TOutter, TOutter>(
     inputWrapperCompose,
-    lifecycle(InputSetup)
+    lifecycle<PerformanceWrapperProps & TOutter, {}>({
+      componentWillMount() {
+        this.props.inputChanged(this.props.value, false);
+      },
+      componentWillReceiveProps(nextProps:PerformanceWrapperProps & TOutter){
+        if (!specificShallowEqualDefault(nextProps, this.props)) {
+          nextProps.inputChanged(nextProps.defaultValue, false);
+        }
+        if (!nextProps.FormState.hasIn([nextProps.nameSpace, ...nextProps.inputPath])) {
+          nextProps.inputChanged(nextProps.value, false);
+        }
+    }})
   )(ReactClass);
 }

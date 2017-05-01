@@ -1,6 +1,6 @@
 import React from "react";
 import {validationsMessages, validationsAvailable} from "../../libs/validate";
-import {ValidationElementProps, InputInfoProps, ValidationAdditionProps, ValidationCloneElementProps, DisplayValidationProps} from "../Form/Types/types"
+import {ValidationElementProps, InputInfoProps, ValidationAdditionProps, ValidationCloneElementProps, DisplayValidationProps, TypeProp} from "../Form/Types/types"
 import {ReactElement} from "../../libs/types"
 import Validation from "../Validation/Validation";
 import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
@@ -10,7 +10,7 @@ type ValidationChild = React.ReactElement<ValidationElementProps>
 type ValidationAdditionChild = React.ReactElement<ValidationAdditionProps>
 
 
-const childrenValidations = (children) : string[] => {
+const childrenValidations = (children:React.ReactNode) : string[] => {
   if (React.Children.count(children) > 0) {
     return React.Children.map<string>(children, (child:ValidationChild) => {
       return child.props.isFor;
@@ -19,7 +19,7 @@ const childrenValidations = (children) : string[] => {
   return [];
 };
 
-const isSwitch = (type):boolean => {
+const isSwitch = (type?:TypeProp):boolean => {
   return type === "checkbox" || type === 'radio';
 };
 

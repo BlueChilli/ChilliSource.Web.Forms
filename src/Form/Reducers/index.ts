@@ -6,24 +6,24 @@ import {FSA} from "../../../libs/types";
 import {ClearAllInputsPayload, SetInputPayload, SetAllInputInteractionPayload, SetInputInteractionPayload, SetValidationPayload} from "../Actions/fields"
 
 export const basicReducer = {
-  SET_INPUT: (state, {payload}:FSA<SetInputPayload>) => {
+  SET_INPUT: (state:Map<string, any>, {payload}:FSA<SetInputPayload>) => {
     const valuePath = getInputValue(payload.nameSpace, payload.inputName);
     return state.setIn(valuePath, payload.value);
   },
 
-  SET_VALIDATION: (state, {payload}:FSA<SetValidationPayload>) => {
+  SET_VALIDATION: (state:Map<string, any>, {payload}:FSA<SetValidationPayload>) => {
     const validationPath = getInputValidation(payload.nameSpace, payload.inputName);
     return state.updateIn(validationPath, Map(), validationMap => {
       return validationMap.set(payload.type, payload.test)
     });
   },
 
-  SET_INPUT_INTERACTION: (state, {payload}:FSA<SetInputInteractionPayload>) => {
+  SET_INPUT_INTERACTION: (state:Map<string, any>, {payload}:FSA<SetInputInteractionPayload>) => {
     const interactionPath = getInputState(payload.nameSpace, payload.inputName, payload.interaction);
     return state.setIn(interactionPath, payload.value);
   },
 
-  SET_ALL_INPUT_INTERACTIONS: (state, {payload}:FSA<SetAllInputInteractionPayload>) => {
+  SET_ALL_INPUT_INTERACTIONS: (state:Map<string, any>, {payload}:FSA<SetAllInputInteractionPayload>) => {
     const inputs:Map<string, Map<string, any>> = state.get(payload.nameSpace, Map({}));
     if (inputs.size && inputs.size === 0) {
       return state;
@@ -38,7 +38,7 @@ export const basicReducer = {
     });
     return state.set(payload.nameSpace, updatedFields);
   },
-  CLEAR_ALL_INPUTS: (state, {payload}:FSA<ClearAllInputsPayload>) => {
+  CLEAR_ALL_INPUTS: (state:Map<string, any>, {payload}:FSA<ClearAllInputsPayload>) => {
     return state.set(payload.nameSpace, Map({}))
   }
 }

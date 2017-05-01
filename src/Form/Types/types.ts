@@ -1,10 +1,14 @@
+import {ChangeEvent, FocusEvent} from "react";
 import {ShallowCompare, BaseReactProps} from '../../../libs/types';
+import {TypeOfTest} from './types';
 import {Dispatch} from 'redux';
 import {Map, List} from 'immutable';
 import moment, {Moment} from 'moment';
 
 import {SetInputPayload, SetInputInteractionPayload, SetValidationPayload} from '../Actions/fields'
 
+
+export type TypeOfTest = "required" | "pattern" | "type" | "minLength" | "maxLength" | "min" | "max";
 
 export type DateRangeMoment = {
   startDate: Moment;
@@ -13,17 +17,17 @@ export type DateRangeMoment = {
 
 export interface DateRangeMap extends Map<string, Moment> {}
 
-export type eventHandler = (any) => boolean
+export type eventHandler = (event: Event) => boolean
 
 
 export type DropZoneFile = List<Map<string, any>>
 
 
-export type PossibleDefaultValues = number | string | boolean | Moment | DateRangeMap;
+export type PossibleDefaultValues = number | string | boolean | Moment | DateRangeMap | undefined;
 
 export interface ValidationProps{
 	required?: boolean,
-	customValidation?: (any) => boolean	
+	customValidation?: (validationOperation?: Function | Promise<any>) => boolean	
 }
 
 export interface InputValidationProps extends ValidationProps{
@@ -57,11 +61,11 @@ export interface InputValidationProps extends ValidationProps{
 }
 
 export interface BaseEventProps {
-	onBlur?: eventHandler
+	onBlur?: (event?: FocusEvent<{}>) => void | boolean
 }
 
 export interface InputEventProps extends BaseEventProps {
-	onChange?: eventHandler	
+	onChange?: (event?: ChangeEvent<{}>) => void | boolean
 }
 
 export interface FieldSetProps extends BaseReactProps, BaseEventProps {
@@ -104,8 +108,8 @@ export interface DefaultValueProp<TDefault> {
 }
 
 export interface DefaultSwitchProps {
-	defaultChecked?: boolean | string | number,
-	defaultSelected?: boolean | string | number
+	defaultChecked?: boolean | string | number | undefined,
+	defaultSelected?: boolean | string | number | undefined 
 }
 
 export interface InputWrapperProps extends BaseReactProps, LabelProp, NameProp, TypeProp {
@@ -149,7 +153,7 @@ export interface RadioTabsProps extends BaseReactProps, NameProp, LabelProp{
 
 export interface ValidationElementProps extends BaseReactProps, NameProp{
 	/** What validation attribute is the message for */
-	isFor: string,
+	isFor: TypeOfTest,
 }
 
 
@@ -194,7 +198,7 @@ export interface DateRangeProps extends CommonDateProps, DefaultValueProp<DateRa
 
 export interface ValidationCloneElementProps extends InputInfoProps {
   test: boolean | string | Function,
-  type?: string,
+  type: string,
   name: string,
 	setValidation: setValidation
 }
@@ -205,10 +209,7 @@ export type InputUnionProps = TextInputProps | TextAreaProps | SelectInputProps 
 export interface ValidationAdditionProps extends ValidationElementProps, ValidationCloneElementProps{}
 
 /*Performance Wrapper HOCS*/
-interface InputInfo extends Map<string, any>{
-	changed: boolean,
-	blurred?: boolean
-}
+type InputInfo = Map<string, any>
 
 export interface InputInfoProps {
 	inputInfo: InputInfo,
@@ -245,13 +246,13 @@ interface InputChanged extends PerfomanceWrapperGetInputPath, NameProp, NameSpac
 }
 
 
-interface SetValidation extends PerfomanceWrapperGetInputPath, NameSpaceProp {
+export interface SetValidation extends PerfomanceWrapperGetInputPath, NameSpaceProp {
 	dispatch: Dispatch<SetValidationPayload>
 }
 
 type inputChanged = (value: ShallowCompare, changed?:boolean) => void;
 type inputBlurred = () => void;
-type setValidation = (type: string, test: string | boolean) => void;
+type setValidation = (type: string, test: string | boolean | Function) => void;
 
 export interface PerformanceWrapperUncalledValidationHelpers {
 	setValidation: (props:SetValidation) => setValidation

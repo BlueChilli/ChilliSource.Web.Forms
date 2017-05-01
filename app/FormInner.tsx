@@ -13,7 +13,7 @@ import Validation from '../src/Validation/Validation';
 import Validate from '../src/Validation/Validate';
 
 export default class extends React.Component<{}, {}> {
-  lastNameValidation(value){
+  lastNameValidation(value:string){
     return value === 'Shane';
   }
   render() {

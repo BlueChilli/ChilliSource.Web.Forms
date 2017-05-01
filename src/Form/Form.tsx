@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FormEvent} from "react";
 import PropTypes from "prop-types";
 import {is, List, Map} from "immutable";
 import classnames from "classnames";
@@ -49,9 +49,12 @@ interface FormOwnProps<T> extends FormOptionalProps<T> {
     mapOutput?: Function,
 }
 
-export interface FormProps<T> extends FormOwnProps<T>, FormStateProps, FormDispatchProps {}
+export interface FormProps<T> extends FormOwnProps<T>, FormStateProps, FormDispatchProps {
+  FormState: formState,
+  dispatch: any
+}
 
-const mapOutput = (data, mapOutputFunc) => (mapOutput) ? mapOutputFunc(data) : data;
+const mapOutput = (data:Map<string, any>, mapOutputFunc: ((data?: Map<string, any>) => Map<string, any>)) => (mapOutput) ? mapOutputFunc(data) : data;
 
 /** Displays a form component, inserts all user input into redux state and ensures that all inputs are validated
  * before allowing the user to submit the form. */
@@ -66,7 +69,7 @@ class Form extends React.Component<FormProps<undefined>, FormState>{
   //FIXME: any to make TS happy unsure why it needs to be this way
   public static defaultProps:any = {
     encType: 'application/json',
-    mapOutput: data => data
+    mapOutput: (data:Map<string, any>) => data
   }
 
   refs: {
@@ -106,7 +109,7 @@ class Form extends React.Component<FormProps<undefined>, FormState>{
     this.props.dispatch(clearAllInputs(this.props.name));
   }
 
-  handleFormSubmit = event => {
+  handleFormSubmit = (event:FormEvent<{}>) => {
     event.preventDefault();
 
     if(this.state.canSubmit) {

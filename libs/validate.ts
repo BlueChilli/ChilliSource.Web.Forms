@@ -1,13 +1,30 @@
 import {Iterable} from "immutable";
 import regExpList from "./validationRegExps";
-import {ShallowCompareProps} from "./types";
+import {ShallowCompareProps, ShallowCompare} from "./types";
+import {TypeProp} from "../src/Form/Types/types"
 
-export const validations = {
+type Test = boolean | string
+
+export type TypeOfTest = "required" | "pattern" | "type" | "minLength" | "maxLength" | "min" | "max";
+
+interface ValidationTypes {
+  required: (value:ShallowCompare, test:boolean, type:TypeProp) => boolean,
+  pattern: (value:ShallowCompare, test:string) => boolean,
+  type: (value:ShallowCompare, test: string) => boolean,
+  minLength: (value:ShallowCompare, test:string) => boolean,
+  maxLength: (value:ShallowCompare, test:string) => boolean,
+  min: (value:ShallowCompare, test:string) => boolean,
+  max: (value:ShallowCompare, test:string) => boolean,
+  default: () => false,
+}
+
+
+export const validations:ValidationTypes = {
   required: (value, test, type) => {
     if (Iterable.isIterable(value)) {
       if (type === 'checkbox') {
-        return value.some(innerVal => {
-          return innerVal.get('value', false);
+        return value.some((innerVal:Map<string, {}>) => {
+          return innerVal.get('value') || false;
         });
       } else {
         return value.size > 0;
@@ -22,8 +39,12 @@ export const validations = {
     return patternRegExp.test(value);
   },
   type: (value, test) => {
-    let typeRegExp = new RegExp(regExpList[test]);
-    return typeRegExp.test(value);
+    if(test === 'number' || test ==='email'){
+      let typeRegExp = new RegExp(regExpList[test]);
+      return typeRegExp.test(value);
+    } else{
+      return true;
+    }
   },
   minLength: (value, test) => {
     return value.toString().length >= parseInt(test);
@@ -42,7 +63,7 @@ export const validations = {
   }
 };
 
-export const validationsMessages = (type, test) => {
+export const validationsMessages = (type:string, test:boolean | string) => {
   switch (type) {
     case "required":
       return `This is a required field.`;
@@ -61,10 +82,14 @@ export const validationsMessages = (type, test) => {
   }
 };
 
-export function testValidation(value, test, typeOfTest, typeOfInput) {
+export function testValidation(value:ShallowCompare, test:Test, typeOfTest:TypeOfTest, typeOfInput:TypeProp) {
   if (value !== undefined && value !== null) {
     if (validations[typeOfTest] !== undefined) {
-      return validations[typeOfTest](value, test, typeOfInput);
+      if(typeOfTest === 'required'){
+        return validations[typeOfTest](value, test as boolean, typeOfInput);
+      } else {
+        return validations[typeOfTest](value, test as string);
+      }
     } else {
       return validations['default']();
     }
@@ -79,17 +104,18 @@ export function validationsAvailable<T>(inputAttributes:T) :string[] {
 
 interface TestElementProps {
   value:any,
-  setValid: (boolean) => undefined
-  test: string | boolean,
-  isFor: string,
+  setValid: (value:boolean) => undefined
+  test: string | boolean | Function,
+  isFor: TypeOfTest | "customValidation",
   type: string
 }
 
+export type TestElement = ({value, test, isFor, type, setValid}: TestElementProps) => void
 
-export const testElement = ({value, test, isFor, type, setValid}: TestElementProps) => {
+export const testElement:TestElement = ({value, test, isFor, type, setValid}) => {
   if (test === false || test === 'false') {
     return setValid(true);
-  } else if (isFor !== 'customValidation') {
+  } else if (isFor !== 'customValidation' && typeof test !== "function") {
     return setValid(testValidation(value, test, isFor, type));
   } else {
     if (typeof test === "function") {

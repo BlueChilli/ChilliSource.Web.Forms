@@ -28,7 +28,7 @@ export interface BaseAction {
 }
 
 export interface FSA<TPayload> extends BaseAction{
-  payload?: TPayload,
+  payload: TPayload,
   meta?: any
 }
 
