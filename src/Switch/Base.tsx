@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ChangeEvent, FocusEvent} from "react";
 import ReactDOM from "react-dom";
 import {SwitchProps} from "../Form/Types/types";
 import {snakeCase} from "lodash";
@@ -22,7 +22,7 @@ const isChecked = (props: SwitchProps & PerformanceWrapperProps) => {
 class SwitchBase extends React.Component<SwitchProps & PerformanceWrapperProps, {}>{
   displayName: 'SwitchBase'
   
-  getChecked = event => {
+  getChecked = (event:ChangeEvent<{checked?: boolean}>) => {
     if (this.props.type === 'radio') {
       return this.props.id;
     } else {
@@ -30,7 +30,7 @@ class SwitchBase extends React.Component<SwitchProps & PerformanceWrapperProps, 
     }
   }
   
-  handleChange = event => {
+  handleChange = (event:ChangeEvent<{checked?: boolean}>) => {
     const {inputChanged, onChange} = this.props;
 
     inputChanged(this.getChecked(event));
@@ -39,7 +39,7 @@ class SwitchBase extends React.Component<SwitchProps & PerformanceWrapperProps, 
     }
   }
 
-  handleBlur = event => {
+  handleBlur = (event:FocusEvent<{}>) => {
     const {onBlur, setInputBlurred} = this.props;
     
     setInputBlurred();
