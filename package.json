@@ -2,7 +2,7 @@
   "name": "chillisource.web.forms",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.ts",
+  "main": "index.ts",
   "scripts": {
     "test": "jest",
     "start": "node server.js",

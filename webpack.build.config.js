@@ -10,9 +10,9 @@ var path = require('path');
 process.env.NODE_ENV = JSON.stringify(config.get('buildEnvironment'));
 
 module.exports = {
-  entry: path.join(__dirname, '/index'),
+  entry: path.join(__dirname, '/app/index'),
   output: {
-    path: __dirname + "/dist/",
+    path: __dirname,
     libraryTarget: "umd",
     "filename": "index.js"
   },
