@@ -87,6 +87,9 @@
     "webpack-hot-middleware": "^2.18.0"
   },
   "dependencies": {
+    "@types/classnames": "0.0.32",
+    "@types/prop-types": "^15.5.1",
+    "@types/react-onclickoutside": "^5.7.3",
     "classnames": "^2.2.5",
     "immutable": "^3.8.1",
     "moment": "^2.18.1",
