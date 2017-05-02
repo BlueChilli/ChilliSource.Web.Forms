@@ -7,7 +7,7 @@ import {SelectInputProps} from "../Form/Types/types";
 import performanceWrapper from '../Form/Helpers/performanceWrapper';
 import classnames from 'classnames';
 
-export class MultiSelect extends React.PureComponent {
+export class MultiSelect extends React.Component {
   defaultProps = {
     options: List([])
   }
@@ -17,12 +17,13 @@ export class MultiSelect extends React.PureComponent {
     inputChanged(defaultValue || List([]), false)
   }
 
-  handleChange = value => {
+  handleChange = values => {
     const {inputChanged, onChange} = this.props;
+    const newValues = List([]).concat(fromJS(values));
 
-    inputChanged(List([]).concat(fromJS(values)));
+    inputChanged(newValues);
     if(typeof onChange === 'function') {
-      onChange(values);
+      onChange(newValues);
     }
   }
 
@@ -30,7 +31,7 @@ export class MultiSelect extends React.PureComponent {
     const {options, value, className, label, labelPrefix, labelPostfix, ...props} = this.props;
     const safeValue = value !== '' ? List(value) : List();
     const classes = classnames(className, 'input');
-
+    
     return (
       <InputWrapper name={props.name} label={label} labelPrefix={labelPrefix} labelPostfix={labelPostfix} className={classes}>
         <Select value={safeValue.toJS()} options={options.toJS()} multi={true} onChange={this.handleChange}/>

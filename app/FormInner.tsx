@@ -1,10 +1,12 @@
 import React from 'react';
+import {List} from 'immutable';
 import CheckBox from '../src/CheckBox/CheckBox';
 import Form from '../src/Form/Form';
 import Fieldset from '../src/Form/Fieldset';
 import Input from '../src/Input/Input';
 import Radio from '../src/Radio/Radio';
 import Select from '../src/Select/Select';
+import MultiSelect from '../src/Select/MultiSelect';
 import DropZone from '../src/DropZone/DropZone';
 import DateRange from '../src/DatePicker/DateRange';
 import DatePicker from '../src/DatePicker/DatePicker';
@@ -17,6 +19,14 @@ export default class extends React.Component<{}, {}> {
     return value === 'Shane';
   }
   render() {
+    const options = List([
+        {value: 'Pash', label: 'Pash'},
+        {value: 'Wolf', label: 'Wolf'},
+        {value: 'Hunter', label: 'Hunter'},
+        {value: 'Mouse', label: 'Mouse'},
+        {value: 'Millenial', label: 'Millenial'},
+    ]);
+
     return (
       <div style={{padding: '20px 40px'}}>
         <Input autoFocus label="First Name" required defaultValue="First Name" pattern="[A-Za-z]+$" name="firstName" customValidation={this.lastNameValidation}>
@@ -101,6 +111,9 @@ export default class extends React.Component<{}, {}> {
           <option value="3">3</option>
           <option value="4">4</option>
         </Select>
+
+        <MultiSelect name="FDs" options={options} defaultValue={List(['Pash', 'Hunter'])} label="Frontend Devs" />
+        
         <a target="_blank" href="https://github.com/okonet/react-dropzone">Props avaliable here</a>
         <br/>
         <br/>
