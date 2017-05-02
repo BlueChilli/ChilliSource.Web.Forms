@@ -2,10 +2,11 @@
   "name": "chillisource.web.forms",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "dist/index.ts",
   "scripts": {
     "test": "jest",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dist": "webpack --config webpack.build.config.js -p"
   },
   "author": "BlueChilli",
   "license": "ISC",
