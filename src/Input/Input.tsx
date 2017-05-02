@@ -11,7 +11,7 @@ import performanceWrapper, {PerformanceWrapperProps} from "../Form/Helpers/perfo
 export class Input extends React.PureComponent<TextInputProps & PerformanceWrapperProps, {}> {
   render (){
     const {className, label, labelPostfix, labelPrefix, prepend, append, ...props} = this.props;
-    const {autoFocus, onChange, onBlur, id, ...validationProps} = props;
+    const {autoFocus, onChange, onBlur, id, value, ...validationProps} = props;
     const classes:string = classnames(className, 'input');
     if (props.type !== 'hidden') {
       return (

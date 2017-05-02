@@ -19,10 +19,8 @@ export type DateRangeMoment = {
 
 export interface DateRangeMap extends Map<string, Moment> {}
 
-export type DropZoneFile = List<Map<string, any>>
-
-
 export type PossibleDefaultValues = number | string | boolean | Moment | DateRangeMap | undefined;
+export type PossibleValues = number | string | boolean | Moment | DateRangeMap | undefined;
 
 export interface ValidationProps{
 	required?: boolean,
@@ -77,8 +75,8 @@ export interface InputGroupProps extends BaseReactProps {
 	append?: React.ReactNode
 }
 
-export interface ValueProp {
-	value?: ShallowCompare
+export interface ValueProp<TValue> {
+	value?: TValue
 }
 
 export interface FieldSetNameSpaceProp {
@@ -123,7 +121,7 @@ export interface InputWrapperProps extends BaseReactProps, LabelProp, NameProp, 
 }
 
 
-interface BaseInputProps<TDefault> extends BaseReactProps, OnChangeEventProps<ChangeEvent<{}>>, OnBlurEventProps<FocusEvent<{}>>, ValidationProps, NameProp, TypeProp, IdProp, DefaultValueProp<TDefault>, ValueProp{
+interface BaseInputProps<TDefault, TValue> extends BaseReactProps, OnChangeEventProps<ChangeEvent<{}>>, OnBlurEventProps<FocusEvent<{}>>, ValidationProps, NameProp, TypeProp, IdProp, DefaultValueProp<TDefault>, ValueProp<TValue>{
 	/** Automatically select this field on navigation*/			
 	autoFocus?: boolean,
 }
@@ -136,15 +134,15 @@ export interface OptionalValidationProps{
 }
 
 
-export interface TextAreaProps extends BaseInputProps<string>, InputValidationProps, InputWrapperProps {}
-export interface TextInputProps extends BaseInputProps<string>, InputValidationProps, InputWrapperProps, InputGroupProps{} 
-export interface SelectInputProps extends BaseInputProps<string | number>, InputValidationProps, InputWrapperProps, DefaultSwitchProps {
+export interface TextAreaProps extends BaseInputProps<string, string>, InputValidationProps, InputWrapperProps  {}
+export interface TextInputProps extends BaseInputProps<string, string | number>, InputValidationProps, InputWrapperProps, InputGroupProps{} 
+export interface SelectInputProps extends BaseInputProps<string | number, string | number>, InputValidationProps, InputWrapperProps, DefaultSwitchProps{
 	/** Pass in an arrow to display at the edge of the select box */ 
 	arrow?: React.ReactNode,
 	children?: Array<React.ReactText>
 }
 
-export interface SwitchProps extends BaseInputProps<boolean | string | number>, DefaultSwitchProps, LabelProp{
+export interface SwitchProps extends BaseInputProps<boolean | string | number, string | boolean | undefined>, DefaultSwitchProps, LabelProp{
 	/** Put into state as the value of the selected switch */
 	id: string
 }
@@ -162,12 +160,11 @@ export interface ValidationElementProps extends BaseReactProps, NameProp{
 
 export interface DisplayValidationProps extends BaseReactProps, OptionalValidationProps, InputValidationProps, TypeProp, NameProp{}
 
-export interface DropZoneProps extends BaseReactProps, NameProp{
+export interface DropZoneProps extends BaseReactProps, NameProp, ValueProp<List<File>>{
 	/** Can you upload multiple files*/	
 	multiple?: boolean,
 	/** Display a list of uploaded files*/		
 	showList?: boolean,
-	value?: DropZoneFile
 }
 
 export interface DateWrapperProps extends InputWrapperProps, InputGroupProps, BaseReactProps{
@@ -179,7 +176,7 @@ export interface InternalDateWrapperProps extends DateWrapperProps{
 	children: React.ReactElement<any>
 }
 
-interface CommonDateProps extends BaseReactProps, NameProp, DateWrapperProps, ValueProp, OnChangeEventProps<DateRangeMoment | Moment>{
+interface CommonDateProps extends BaseReactProps, NameProp, DateWrapperProps, OnChangeEventProps<DateRangeMoment | Moment>{
 	date?: moment.Moment,
 	format?: string,
 	firstDayOfTheWeek?: number,
@@ -189,9 +186,9 @@ interface CommonDateProps extends BaseReactProps, NameProp, DateWrapperProps, Va
 	maxDate?: string | moment.Moment | Function
 }
 
-export interface DatePickerProps extends CommonDateProps, DefaultValueProp<string>{}
+export interface DatePickerProps extends CommonDateProps, DefaultValueProp<string>, ValueProp<Moment>{}
 
-export interface DateRangeProps extends CommonDateProps, DefaultValueProp<DateRangeMap> {
+export interface DateRangeProps extends CommonDateProps, DefaultValueProp<DateRangeMap> , ValueProp<DateRangeMap>{
 	startDate?: string | moment.Moment | Function,
 	endDate?: string | moment.Moment | Function,
 	value?: DateRangeMap
@@ -273,6 +270,6 @@ export interface PerformanceWrapperInputHelpers {
 
 export interface PerformanceWrapperWithHandlers extends PerformanceWrapperInputHelpers {}
 
-export interface PerformanceWrapperWithProps extends InputInfoProps, ValueProp, DefaultValueProp<PossibleDefaultValues> {
+export interface PerformanceWrapperWithProps extends InputInfoProps, DefaultValueProp<PossibleDefaultValues> {
   inputPath: string[]
 }

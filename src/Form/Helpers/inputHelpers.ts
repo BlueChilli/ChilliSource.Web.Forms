@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {isUndefined, pick} from "lodash";
 import {ShallowCompare, BaseReactProps} from "../../../libs/types";
-import {PossibleDefaultValues, ValueProp, TypeProp, IdProp} from "../Types/types";
+import {PossibleDefaultValues, PossibleValues, ValueProp, TypeProp, IdProp} from "../Types/types";
 
 export const isMultipleValueInput = (inputName:string):boolean => {
   return inputName.search(/\[\]$/) !== -1;
@@ -22,7 +22,7 @@ export function returnDefinedValue<T>(...args:T[]){
 };
 
 
-interface GetHTMLAttributesGuard extends ValueProp, BaseReactProps, TypeProp, IdProp{}
+interface GetHTMLAttributesGuard extends ValueProp<PossibleValues>, BaseReactProps, TypeProp, IdProp{}
 
 export const getHTMLAttributes = <T extends GetHTMLAttributesGuard> (props:T) => {
   const {children} = props

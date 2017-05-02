@@ -13,7 +13,7 @@ import "./Switch.scss";
 export class Switch extends React.PureComponent<SwitchProps & PerformanceWrapperProps, {}>{
   render() {
     const {className, label, ...props} = this.props;
-    const {autoFocus, onChange, onBlur, id, defaultChecked, defaultSelected, defaultValue, ...validationProps} = props;
+    const {autoFocus, onChange, onBlur, id, defaultChecked, defaultSelected, defaultValue, value, ...validationProps} = props;
 
     const classes = classnames("switch", className);
     const labelFor = `${toLower(props.name)}_${snakeCase(props.id)}`;

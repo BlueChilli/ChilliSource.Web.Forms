@@ -13,7 +13,7 @@ const isChecked = (props: SwitchProps & PerformanceWrapperProps) => {
   if (props.type === 'radio') {
     return props.id + "" === props.value + "";
   } else {
-    return props.value
+    return !!props.value
   }
 } 
 

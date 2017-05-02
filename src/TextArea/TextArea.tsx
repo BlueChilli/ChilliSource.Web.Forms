@@ -10,7 +10,7 @@ import {TextAreaProps} from "../Form/Types/types";
 export class TextArea extends React.PureComponent<TextAreaProps & PerformanceWrapperProps, {}> {
   render() {
     const {className, label, labelPrefix, labelPostfix, ...props} = this.props;
-    const {autoFocus, onChange, onBlur, id, ...validationProps} = props;
+    const {autoFocus, onChange, onBlur, id, value, ...validationProps} = props;
     const classes = classnames(className, 'textarea', 'input');
     return (
       <InputWrapper className={classes} name={props.name} labelPrefix={labelPrefix} labelPostfix={labelPostfix} label={label}>
