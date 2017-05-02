@@ -48,7 +48,7 @@ export interface StateNameAction extends BaseAction<string> {
   };
 }
 
-export interface PostAction extends BaseAction<string>, PromiseAction, StateNameAction {};
+export interface PostAction extends PromiseAction, StateNameAction {};
 
 export interface BaseReactProps {
   children?: React.ReactNode;

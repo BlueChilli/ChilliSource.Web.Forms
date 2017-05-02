@@ -41,7 +41,7 @@ interface FormState {
 }
 
 interface FormOwnProps<T> extends FormOptionalProps<T> {
-   /** Used to namespace all child input components in the Redux store */
+   /** Used to namespace all child input components in the redux store or local state */
     name: string,
 }
 

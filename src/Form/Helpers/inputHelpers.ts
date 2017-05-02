@@ -10,7 +10,6 @@ export const isMultipleValueInput = (inputName:string):boolean => {
 
 export function returnDefinedValue<T>(...args:T[]){
   const innerReturnDefinedValue = (index = 0):T|undefined => {
-    // console.log(args[index])
     if (index === args.length) {
       return undefined;
     } else if (!isUndefined(args[index])) {

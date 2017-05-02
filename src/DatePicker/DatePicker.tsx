@@ -10,9 +10,10 @@ import "./DateRange.scss";
 
 class CalendarBase extends React.Component<DatePickerProps & PerformanceWrapperProps & DateWrapperPassedDownProps, {}>{
   handleChange = (dateRange:Moment) => {
-    this.props.inputChanged(dateRange.format('YYYY-MM-DD'));
-    if(typeof this.props.close === 'function'){
-      this.props.close();
+    const {inputChanged, close} = this.props
+    inputChanged(dateRange.format('YYYY-MM-DD'));
+    if(typeof close === 'function'){
+      close();
     }
   }
   render() {

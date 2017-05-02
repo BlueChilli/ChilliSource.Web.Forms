@@ -40,9 +40,8 @@ export const validations:ValidationTypes = {
     if(test === 'number' || test ==='email'){
       let typeRegExp = new RegExp(regExpList[test]);
       return typeRegExp.test(value);
-    } else{
-      return true;
     }
+    return true;
   },
   minLength: (value, test) => {
     return value.toString().length >= parseInt(test);

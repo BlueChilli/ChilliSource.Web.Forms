@@ -14,7 +14,7 @@ import TextArea from '../src/TextArea/TextArea';
 import Validation from '../src/Validation/Validation';
 import Validate from '../src/Validation/Validate';
 
-export default class extends React.Component<{}, {}> {
+export default class FormInner extends React.Component<{}, {}> {
   lastNameValidation(value:string){
     return value === 'Shane';
   }
