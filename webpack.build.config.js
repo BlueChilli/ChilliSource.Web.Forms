@@ -10,7 +10,7 @@ var path = require('path');
 process.env.NODE_ENV = JSON.stringify(config.get('buildEnvironment'));
 
 module.exports = {
-  entry: path.join(__dirname, '/app/redux'),
+  entry: path.join(__dirname, '/index'),
   output: {
     path: __dirname + "/dist/",
     libraryTarget: "umd",
