@@ -12,7 +12,6 @@ class Select extends React.PureComponent<SelectInputProps & PerformanceWrapperPr
   render(){
     const {className, label, labelPostfix, labelPrefix, arrow, ...props} = this.props
     const {autoFocus, onChange, onBlur, id, defaultChecked, defaultSelected, value, children, ...validationProps} = props;
-    const {autoFocus, onChange, onBlur, id, defaultChecked, defaultSelected, value, , ...validationProps} = props;
     const classes = classnames(className, "select")
     return (
       <InputWrapper className={classes} name={props.name} labelPostfix={labelPostfix} label={label}>
