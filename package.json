@@ -1,6 +1,6 @@
 {
   "name": "chillisource.web.forms",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -52,9 +52,6 @@
     "@types/react-onclickoutside": "^5.7.3",
     "@types/react-redux": "^4.4.39",
     "@types/recompose": "shane935/redux-types",
-    "@types/classnames": "0.0.32",
-    "@types/prop-types": "^15.5.1",
-    "@types/react-onclickoutside": "^5.7.3",
     "autoprefixer": "^6.7.7",
     "awesome-typescript-loader": "^3.1.2",
     "babel-core": "^6.24.1",
@@ -99,7 +96,8 @@
     "react-dropzone": "^3.13.1",
     "react-onclickoutside": "^5.11.1",
     "react-redux": "^5.0.4",
-    "recompose": "^0.23.1"
+    "recompose": "^0.23.1",
+    "typescript": "^2.3.2"
   },
   "optionalDependencies": {
     "react-redux": "^5.0.4",
