@@ -30,7 +30,7 @@ const validationsUnused = (validationsUsed:TypeOfTest[], validationsAvailable:Ty
   });
 };
 
-const DisplayValidation = ({children, disabled, inputInfo, inputGroupInfo, noValidate, ...props} : PerformanceWrapperProps & DisplayValidationProps) => {
+const DisplayValidation = ({children, disabled, inputInfo, noValidate, ...props} : PerformanceWrapperProps & DisplayValidationProps) => {
   const validationsAvail = validationsAvailable(props);
   const validationUsed = childrenValidations(children);
   const unusedValidations = validationsUnused(validationUsed, validationsAvail, isSwitch(props.type));
@@ -44,7 +44,6 @@ const DisplayValidation = ({children, disabled, inputInfo, inputGroupInfo, noVal
         return React.cloneElement<ValidationAdditionProps, ValidationCloneElementProps>(child, {
           test: props[typeOfValidation],
           inputInfo,
-          inputGroupInfo,
           type: props.type,
           name: props.name,
           setValidation: props.setValidation
@@ -55,7 +54,6 @@ const DisplayValidation = ({children, disabled, inputInfo, inputGroupInfo, noVal
         isFor: validation,
         test: props[validation],
         inputInfo,
-        inputGroupInfo,
         type: props.type,
         children: validationsMessages(validation, props[validation]),
         name: props.name,
