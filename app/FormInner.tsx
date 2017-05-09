@@ -21,7 +21,7 @@ export default class FormInner extends React.Component<{}, {}> {
   render() {
     return (
       <div style={{padding: '20px 40px'}}>
-        {/*<Input autoFocus label="First Name" required defaultValue="First Name" pattern="[A-Za-z]+$" name="firstName" customValidation={this.lastNameValidation}>
+        <Input autoFocus label="First Name" required defaultValue="First Name" pattern="[A-Za-z]+$" name="firstName" customValidation={this.lastNameValidation}>
           <Validation isFor="required">This field is required</Validation>
           <Validation isFor="customValidation">This field must be Shane</Validation>
         </Input>
@@ -69,7 +69,7 @@ export default class FormInner extends React.Component<{}, {}> {
         <TextArea label="Write something" name="something"/>
         <TextArea label="With validation" required name="withValidation">
           <Validation isFor="required">With validation is required</Validation>
-        </TextArea>*/}
+        </TextArea>
         <div className="switch-container">
           <CheckBox id="tanscs" required label="Terms and Conditions" name="tandcs">
             <Validation isFor="required">Please accept the T&Cs</Validation>
@@ -96,7 +96,7 @@ export default class FormInner extends React.Component<{}, {}> {
           <Radio name="tab-1" id="tab-1">something</Radio>
           <Radio name="tab-2" id="tab-2">something</Radio>
         </RadioTabs>*/}
-        {/*<Select label="Front End Developers" defaultSelected="Mick" name="FrontEndDevelopers">
+        <Select label="Front End Developers" defaultSelected="Mick" name="FrontEndDevelopers">
           <option value="Shane">Shane</option>
           <option value="Mick">Mick</option>
           <option value="Mitch">Mitch</option>
@@ -120,7 +120,7 @@ export default class FormInner extends React.Component<{}, {}> {
         <DatePicker label="Date Picker" name="DatePicker"/>
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-        <button>Submit</button>*/}
+        <button>Submit</button>
       </div>
     );
   }

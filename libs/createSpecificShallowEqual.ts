@@ -3,7 +3,7 @@ import {isArray, isObject, isNaN, isFunction} from "lodash";
 import {ShallowCompare, ShallowCompareProps} from "./types";
 
 
- const createSepecificShallowEqual =<TProps = ShallowCompareProps> (...keysToTest: string[]) => {
+ const createSpecificShallowEqual =<TProps = ShallowCompareProps> (...keysToTest: string[]) => {
   /**
    * Creates a function that checks to see if the passed in properties are equal
    * {string} ...keysToTest - Properties to check if equal
@@ -24,4 +24,4 @@ import {ShallowCompare, ShallowCompareProps} from "./types";
   }
 };
 
-export default createSepecificShallowEqual;
+export default createSpecificShallowEqual;

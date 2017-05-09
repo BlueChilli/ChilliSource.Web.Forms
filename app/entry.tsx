@@ -9,7 +9,6 @@ class Base extends React.Component<{}, {}> {
     return value === 'Shane';
   }
   render() {
-    console.log('here');
     return (
       <div>
         <Form name="test">
