@@ -21,10 +21,6 @@ export const validations:ValidationTypes = {
   required: (value, test, type) => {
     if (Iterable.isIterable(value)) {
       if (type === 'checkbox') {
-        return (value as Iterable<string, Map<string, {}>>).some((innerVal) => {
-          return innerVal.get('value') ? true : false;
-        });
-      } else {
         return value.size > 0;
       }
     } else if (type === "checkbox") {
@@ -109,6 +105,7 @@ interface TestElementProps extends TypeProp{
 export type TestElement = ({value, test, isFor, type, setValid}: TestElementProps) => void
 
 export const testElement:TestElement = ({value, test, isFor, type, setValid}) => {
+  console.log({value, test, isFor, type})
   if (test === false || test === 'false') {
     return setValid(true);
   } else if (isFor !== 'customValidation' && typeof test !== "function") {

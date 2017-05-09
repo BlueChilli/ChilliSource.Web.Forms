@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {isUndefined, pick} from "lodash";
+import {pick} from "lodash";
 import {ShallowCompare, BaseReactProps} from "../../../libs/types";
 import {PossibleDefaultValues, PossibleValues, ValueProp, TypeProp, IdProp} from "../Types/types";
 
@@ -8,16 +8,18 @@ export const isMultipleValueInput = (inputName:string):boolean => {
   return inputName.search(/\[\]$/) !== -1;
 }
 
-export function returnDefinedValue<T>(...args:T[]){
-  const innerReturnDefinedValue = (index = 0):T|undefined => {
+
+/** Returns the first variable to satisfy the check function */
+export function returnCheckedValue<T>(check:(arg:T) => boolean, ...args:T[]){
+  const innerReturnCheckedValue = (index = 0):T|undefined => {
     if (index === args.length) {
       return undefined;
-    } else if (!isUndefined(args[index])) {
+    } else if (check(args[index])) {
       return args[index];
     }
-    return innerReturnDefinedValue(index + 1);
+    return innerReturnCheckedValue(index + 1);
   };
-  return innerReturnDefinedValue();
+  return innerReturnCheckedValue();
 };
 
 

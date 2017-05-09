@@ -5,7 +5,7 @@ export function getInputValue(nameSpace:string, inputName:Array<string>) {
 }
 
 export function getInputValidation(nameSpace:string, inputName:Array<string>) {
-  return List([nameSpace, ...inputName, 'validation']);
+  return List([nameSpace, ...inputName]);
 }
 
 export function getInputState(nameSpace:string, inputName:Array<string>, state:string) {

@@ -43,10 +43,10 @@ export const basicReducer = {
   }
 }
 
-type ReducerFunc = (state: Map<string, any>, action:ClearAllInputsAction | SetInputAction | SetAllInputInteractionAction | SetInputInteractionAction | SetValidationAction) => void
+type ReducerFunc<TState> = (state: TState, action:ClearAllInputsAction | SetInputAction | SetAllInputInteractionAction | SetInputInteractionAction | SetValidationAction) => TState
 
 export const withReducerState = (state = Map<string, {}>(), action:ClearAllInputsAction | SetInputAction | SetAllInputInteractionAction | SetInputInteractionAction | SetValidationAction) => {
-  const reducerFunc:ReducerFunc = basicReducer[action.type];
+  const reducerFunc:ReducerFunc<Map<string, {}>> = basicReducer[action.type];
   if(typeof reducerFunc === 'function'){
     return reducerFunc(state, action);
   }else{
