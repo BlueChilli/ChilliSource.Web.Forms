@@ -48,7 +48,6 @@ type ReducerFunc<TState> = (state: TState, action:ClearAllInputsAction | SetInpu
 export const withReducerState = (state = Map<string, {}>(), action:ClearAllInputsAction | SetInputAction | SetAllInputInteractionAction | SetInputInteractionAction | SetValidationAction) => {
   const reducerFunc:ReducerFunc<Map<string, {}>> = basicReducer[action.type];
   if(typeof reducerFunc === 'function'){
-    console.log(action, reducerFunc(state, action).toJS())
     return reducerFunc(state, action);
   }else{
     return state;
