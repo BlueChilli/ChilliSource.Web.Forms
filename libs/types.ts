@@ -23,32 +23,32 @@ export interface AxiosResponse {
 export type swaggerApi = (data?: apiRequestDataMap, params?: Object, pathArgs?: apiPathArgs) => Promise<AxiosResponse>;
 
 
-export interface BaseAction {
-  type: string;
+export interface BaseAction<TType> {
+  type: TType;
 }
 
-export interface FSA<TPayload> extends BaseAction{
-  payload?: TPayload,
+export interface FSA<TPayload, TType> extends BaseAction<TType>{
+  payload: TPayload,
   meta?: any
 }
 
-export interface ResolvedPromiseAction extends BaseAction {
+export interface ResolvedPromiseAction extends BaseAction<string> {
   payload: Map<string, any>
 }
 
-export interface PromiseAction extends BaseAction {
+export interface PromiseAction extends BaseAction<string> {
   payload: {
       promise: Promise<any>;
   };
 }
 
-export interface StateNameAction extends BaseAction {
+export interface StateNameAction extends BaseAction<string> {
   meta: {
     stateName: string
   };
 }
 
-export interface PostAction extends BaseAction, PromiseAction, StateNameAction {};
+export interface PostAction extends BaseAction<string>, PromiseAction, StateNameAction {};
 
 export interface BaseReactProps {
   children?: React.ReactNode;

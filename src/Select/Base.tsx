@@ -1,4 +1,4 @@
-import React, {Children} from "react";
+import React, {Children, ChangeEvent} from "react";
 import {withProps} from "recompose";
 import {List} from "immutable";
 import {ShallowCompare} from "../../libs/types";
@@ -28,10 +28,10 @@ const getDefaultSelected = ({children, defaultValue}:SelectInputProps) => {
 
 class SelectBase extends React.Component<SelectInputProps & PerformanceWrapperProps, {}> {
   displayName: 'SelectBase'
-  handleChange = (e) => {
-    this.props.inputChanged(e.target.value);
+  handleChange = (event:ChangeEvent<{value:any}>) => {
+    this.props.inputChanged(event.target.value);
     if (this.props.onChange) {
-      this.props.onChange(e);
+      this.props.onChange(event);
     }
   }
   render () {

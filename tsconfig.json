@@ -5,6 +5,7 @@
         "module": "es6",
         "moduleResolution": "node",
         "allowJs": true,
+        "strict": true,
         "jsx": "react",
         "typeRoots": [
             "./Frecl/Types/**"

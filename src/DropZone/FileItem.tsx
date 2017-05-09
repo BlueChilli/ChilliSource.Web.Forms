@@ -1,4 +1,4 @@
-import React from "react";
+import React, {SyntheticEvent} from "react";
 import {Map} from "immutable";
 
 interface FileItem {
@@ -12,8 +12,8 @@ interface FileItem {
 
 /** Internal component used to display and delete a file item in a list */
 const FileItem = ({file, deleteFile, index}:FileItem) => {
-  function onClick(e) {
-    e.preventDefault();
+  function onClick(event:SyntheticEvent<{}>) {
+    event.preventDefault();
     deleteFile(index);
   }
   return (

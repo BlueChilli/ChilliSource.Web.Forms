@@ -1,7 +1,7 @@
 import React from "react";
 import {withProps, mapProps, shouldUpdate, ComponentEnhancer, InferableComponentEnhancer, compose, withState, withHandlers, lifecycle} from "recompose";
 import classnames from "classnames";
-import {testElement, validations} from "../../libs/validate";
+import {testElement, validations, TestElement} from "../../libs/validate";
 import "./Validation.scss";
 import {isMultipleValueInput} from "../Form/Helpers/inputHelpers";
 import createSpecificShallowEqual from "../../libs/createSpecificShallowEqual";
@@ -30,14 +30,27 @@ interface ValidationMapProps extends ValidationAdditionProps{
   value:ShallowCompare
 }
 
+
 interface ValidationWithStateProps extends ValidationMapProps{
   valid: boolean,
-  setValid: (boolean) => undefined
+  setValid: (valid:boolean) => undefined
 }
+
+interface TestHandersUncalledInterface {
+  testElement: () => TestElement
+}
+
+interface TestHandersInterface {
+  testElement: TestElement
+}
+
+
+interface ValidationLifecycleProps extends ValidationMapProps, TestHandersInterface {}
 
 interface ValidationComponentProps {
   isFor: string
 }
+
 
 
 const Validation = ({displayed, className, children}:ValidationInternalProps) => {
@@ -57,17 +70,18 @@ export default compose<ValidationInternalProps, ValidationComponentProps>(
       changed,
       value
     }
-  }), shouldUpdate((currentProps, nextProps) => {
+  }), shouldUpdate((currentProps:ValidationMapProps, nextProps:ValidationMapProps) => {
     return !specificShallowEqual(currentProps, nextProps) || !availableValidationsShallowEqual(currentProps, nextProps);
   }),
   withState('valid', 'setValid', false),
-  withHandlers({
+  withHandlers<TestHandersUncalledInterface, ValidationWithStateProps>({
     testElement: () => testElement
   }),
-  lifecycle({
+  lifecycle<ValidationWithStateProps & TestHandersInterface, {}>({
     componentWillMount(){
-      const {testElement, setValidation, isFor, test} = this.props;
+      const {testElement, setValidation, value, type, isFor, test} = this.props;
       setValidation(isFor, test);
+      // value, test, isFor, type, setValid
       testElement(this.props);
     }, 
     componentWillReceiveProps(nextProps){
