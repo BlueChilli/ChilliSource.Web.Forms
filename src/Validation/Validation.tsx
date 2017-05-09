@@ -64,9 +64,6 @@ const Validation = ({displayed, className, children}:ValidationInternalProps) =>
 export default compose<ValidationInternalProps, ValidationComponentProps>(
   withProps((ownerProps : ValidationAdditionProps) => {
     const {name, inputInfo, type} = ownerProps;
-
-    console.log(inputInfo.toJS());
-
     const changed:boolean = isMultipleValueInput(name) ? inputInfo.some(item => item.get('changed', false)) : inputInfo.get('changed', false);
     const value:ShallowCompare = isMultipleValueInput(name) ? inputInfo.some(item => item.get('value', false)) : inputInfo.get('value', false);
     return {

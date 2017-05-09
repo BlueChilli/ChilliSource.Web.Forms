@@ -8,7 +8,7 @@ import DisplayValidation from "../Validation/DisplayValidation";
 import performanceWrapper, {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
 
 
-export class Input extends React.PureComponent<TextInputProps & PerformanceWrapperProps, {}> {
+export class Input extends React.Component<TextInputProps & PerformanceWrapperProps, {}> {
   render (){
     const {className, label, labelPostfix, labelPrefix, prepend, append, ...props} = this.props;
     const {autoFocus, onChange, onBlur, id, value, ...validationProps} = props;

@@ -10,7 +10,7 @@ import {snakeCase, toLower} from "lodash"
 import "./Switch.scss";
 
 
-export class Switch extends React.PureComponent<SwitchProps & PerformanceWrapperProps, {}>{
+export class Switch extends React.Component<SwitchProps & PerformanceWrapperProps, {}>{
   render() {
     const {className, label, ...props} = this.props;
     const {autoFocus, onChange, onBlur, id, defaultChecked, defaultSelected, defaultValue, value, ...validationProps} = props;

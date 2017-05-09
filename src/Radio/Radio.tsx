@@ -8,7 +8,7 @@ import {SwitchProps} from "../Form/Types/types";
  * Creates a radio button connected to forms 
  * state management. All HTML5 attributes apply.
  */
-class Radio extends React.PureComponent<SwitchProps, {}> {
+class Radio extends React.Component<SwitchProps, {}> {
   render() {
     const {className, ...other} = this.props;
     var classes:string = classnames(className, 'radio');

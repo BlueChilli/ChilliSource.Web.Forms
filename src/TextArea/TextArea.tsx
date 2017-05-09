@@ -7,7 +7,7 @@ import DisplayValidation from "../Validation/DisplayValidation";
 import performanceWrapper, {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
 import {TextAreaProps} from "../Form/Types/types";
 
-export class TextArea extends React.PureComponent<TextAreaProps & PerformanceWrapperProps, {}> {
+export class TextArea extends React.Component<TextAreaProps & PerformanceWrapperProps, {}> {
   render() {
     const {className, label, labelPrefix, labelPostfix, ...props} = this.props;
     const {autoFocus, onChange, onBlur, id, value, ...validationProps} = props;

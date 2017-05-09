@@ -151,7 +151,7 @@ class Form extends React.Component<FormInnerProps<undefined>, FormState>{
 
   render(){
     const {FormState, dispatch, onSubmit, className, name, encType, ...safeProps} = this.props;
-    var classes = classnames('form', className);
+    const classes = classnames('form', className);
     return (
       <form name={name} ref={name} onSubmit={this.handleFormSubmit} className={classes} noValidate encType={encType}>
         {this.props.children}

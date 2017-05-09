@@ -8,7 +8,7 @@ import {SelectInputProps} from "../Form/Types/types";
 import classnames from "classnames";
 
 
-class Select extends React.PureComponent<SelectInputProps & PerformanceWrapperProps, {}> {
+class Select extends React.Component<SelectInputProps & PerformanceWrapperProps, {}> {
   render(){
     const {className, label, labelPostfix, labelPrefix, arrow, ...props} = this.props
     const {autoFocus, onChange, onBlur, id, defaultChecked, defaultSelected, value, children, ...validationProps} = props;

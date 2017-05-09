@@ -45,11 +45,7 @@ export const getInputPath = ({name, id, fieldSetNameSpace}:GetInputPathGuard):st
   return [name];
 }
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> ff333e9e1a3c027ba1d54bc5ad72cfc833fb4c59
 interface WithNeededPropsGuard extends DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, ValueProp<PossibleValues>, NameProp {}
 
 export const getPrioritisedDefaultValue = (defaultValue?:PossibleDefaultValues, defaultChecked?:boolean | number | string, defaultSelected?:boolean | number | string) => (
@@ -66,13 +62,7 @@ const withNeededProps = <TOutter extends WithNeededPropsGuard> (props: FormConte
   const {defaultValue, defaultChecked, defaultSelected} = props;
   const prioritisedDefaultValue = getPrioritisedDefaultValue(defaultValue, defaultChecked, defaultSelected);
   const value = getPrioritisedValue(props.value, inputInfo.get('value'), prioritisedDefaultValue, getUnsetValue(props));
-
-  
-  console.log(props.name);
-  console.log(props);
-  console.log(inputPath);
-  console.log(inputInfo.toJS());
-  console.log(value);
+  console.log('ran', props.name)
   return {
     inputInfo,
     defaultValue: prioritisedDefaultValue,

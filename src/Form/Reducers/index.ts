@@ -48,7 +48,7 @@ type ReducerFunc = (state: Map<string, any>, action:ClearAllInputsAction | SetIn
 export const withReducerState = (state = Map<string, {}>(), action:ClearAllInputsAction | SetInputAction | SetAllInputInteractionAction | SetInputInteractionAction | SetValidationAction) => {
   const reducerFunc:ReducerFunc = basicReducer[action.type];
   if(typeof reducerFunc === 'function'){
-    reducerFunc(state, action);
+    return reducerFunc(state, action);
   }else{
     return state;
   }
