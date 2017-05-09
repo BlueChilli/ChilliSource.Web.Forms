@@ -13,7 +13,7 @@ import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers
 const specificShallowEqual = createSpecificShallowEqual("inputInfo", "inputGroupInfo", "name", "nameSpace", "type", "id", "disabled", "required", 
 "className", "defaultValue", "defaultChecked", "defaultSelected", "options", "fieldSetNameSpace", "value");
 
-const specificShallowEqualDefault = createSpecificShallowEqual("defaultValue");
+const specificShallowEqualDefault = createSpecificShallowEqual<DefaultValueProp<PossibleDefaultValues>>("defaultValue");
 
 interface WithHandlersGuard extends NameProp, IdProp, TypeProp, DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, NameProp, BaseReactProps, ValueProp<PossibleValues>, IdProp, TypeProp{}
 
@@ -27,10 +27,8 @@ const getUnsetValue = ({type}:TypeProp) => {
   }
 };
 
-
 interface GetInputPathGuard extends NameProp, IdProp, FieldSetNameSpaceProp{}
 interface GetValidationPathGuard extends NameProp, FieldSetNameSpaceProp{}
-
 
 export const getInputPath = ({name, id, fieldSetNameSpace}:GetInputPathGuard):string[] => {
   if (fieldSetNameSpace !== undefined) {
@@ -43,9 +41,6 @@ export const getInputPath = ({name, id, fieldSetNameSpace}:GetInputPathGuard):st
   return [name];
 }
 
-
-
-interface WithNeededPropsGuard extends DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, ValueProp<PossibleValues>, NameProp {}
 interface WithNeededPropsGuard extends DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, ValueProp<PossibleValues>, NameProp {}
 
 export const getPrioritisedDefaultValue = (defaultValue?:PossibleDefaultValues, defaultChecked?:boolean | number | string, defaultSelected?:boolean | number | string) => (

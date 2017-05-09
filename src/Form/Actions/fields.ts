@@ -5,7 +5,7 @@ export const SET_INPUT_INTERACTION = "SET_INPUT_INTERACTION";
 export const SET_ALL_INPUT_INTERACTIONS = "SET_ALL_INPUT_INTERACTIONS";
 export const CLEAR_ALL_INPUTS = "CLEAR_ALL_INPUTS";
 import {ShallowCompare, FSA} from "../../../libs/types"
-import {Dispatch} from "react-redux"
+import {Dispatch} from "redux"
 import {Map} from "immutable";
 
 export interface ClearAllInputsPayload {
@@ -97,13 +97,10 @@ export function clearAllInputs(nameSpace:string):ClearAllInputsAction {
 
 
 export function setDefaultValue(nameSpace:string, inputName:string[], value:ShallowCompare) {
-  return function (dispatch:Dispatch<SetInputAction | SetValidationAction | SetInputInteractionAction | SetAllInputInteractionAction | ClearAllInputsAction>, getState: () => Map<string, any>) {
+  return function (dispatch:(action:SetInputAction) => void, getState: () => Map<string, any>) {
     const currentValue = getState().getIn(['FormState', nameSpace, inputName, 'value'], false);
     if (!currentValue) {
       dispatch(setInput(nameSpace, inputName, value));
     }
   }
 }
-
-
-

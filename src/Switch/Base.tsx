@@ -17,7 +17,6 @@ const isChecked = (props: SwitchProps & PerformanceWrapperProps) => {
   }
 } 
 
-
 /** {Internal} Method used internally to display a switch component(radio or checkbox)  */
 class SwitchBase extends React.Component<SwitchProps & PerformanceWrapperProps, {}>{
   displayName: 'SwitchBase'

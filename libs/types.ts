@@ -1,9 +1,8 @@
 import {Iterable, List, Map} from "immutable";
 import React from "react";
+import {Moment} from "moment";
 
 
-type DateRangeMoment = any;
-type Moment = any;
 
 export type apiPathArgs = Map<string, string | number>
 export type apiParamArgs = apiPathArgs;
@@ -23,11 +22,11 @@ export interface AxiosResponse {
 export type swaggerApi = (data?: apiRequestDataMap, params?: Object, pathArgs?: apiPathArgs) => Promise<AxiosResponse>;
 
 
-export interface BaseAction<TType> {
+export interface BaseAction<TType extends string> {
   type: TType;
 }
 
-export interface FSA<TPayload, TType> extends BaseAction<TType>{
+export interface FSA<TPayload extends {}, TType extends string> extends BaseAction<TType>{
   payload: TPayload,
   meta?: any
 }
@@ -57,8 +56,8 @@ export interface BaseReactProps {
 }
 
 // TODO: Actually force the developer to pass in T that reflects the structure of ShallowCompare
-export type ShallowCompareInner<T> = string | number | boolean | DateRangeMoment | Moment | Iterable<string | number, File | T> | List<File | T>;
-export type ShallowCompare = ShallowCompareInner<ShallowCompareInner<ShallowCompareInner<ShallowCompareInner<ShallowCompareInner<any>>>>>;
+export type ShallowCompareInner<T> = string | number | boolean | Moment | Map<string | number, any> | List<any>;
+export type ShallowCompare = any;
 
 export interface ShallowCompareProps {
   [propName: string]: ShallowCompare;

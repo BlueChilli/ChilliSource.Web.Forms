@@ -21,8 +21,8 @@ export const validations:ValidationTypes = {
   required: (value, test, type) => {
     if (Iterable.isIterable(value)) {
       if (type === 'checkbox') {
-        return value.some((innerVal:Map<string, {}>) => {
-          return innerVal.get('value') || false;
+        return (value as Iterable<string, Map<string, {}>>).some((innerVal) => {
+          return innerVal.get('value') ? true : false;
         });
       } else {
         return value.size > 0;
