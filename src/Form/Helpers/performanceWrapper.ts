@@ -10,7 +10,7 @@ import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers
    PerformanceWrapperUncalledInputHelpers, PerformanceWrapperUncalledValidationHelpers, NameProp, IdProp, TypeProp, PossibleValues,
   DefaultValueProp, PossibleDefaultValues, InputInfoProps, DefaultSwitchProps, NameSpaceProp, FormStateProp, ValueProp, SetValidation} from "../Types/types"
 
-const specificShallowEqual = createSpecificShallowEqual("inputInfo", "inputGroupInfo", "name", "nameSpace", "type", "id", "disabled", "required", 
+const specificShallowEqual = createSpecificShallowEqual("inputInfo", "name", "nameSpace", "type", "id", "disabled", "required", 
 "className", "defaultValue", "defaultChecked", "defaultSelected", "options", "fieldSetNameSpace", "value");
 
 const specificShallowEqualDefault = createSpecificShallowEqual<DefaultValueProp<PossibleDefaultValues>>("defaultValue");
@@ -31,16 +31,25 @@ interface GetInputPathGuard extends NameProp, IdProp, FieldSetNameSpaceProp{}
 interface GetValidationPathGuard extends NameProp, FieldSetNameSpaceProp{}
 
 export const getInputPath = ({name, id, fieldSetNameSpace}:GetInputPathGuard):string[] => {
-  if (fieldSetNameSpace !== undefined) {
+  if(isMultipleValueInput(name) && fieldSetNameSpace !== undefined) {
+    if(id) {
+      return [fieldSetNameSpace, name, 'fields', id];
+    }
+  } else if (fieldSetNameSpace !== undefined) {
     return [fieldSetNameSpace, name];
   } else if (isMultipleValueInput(name)) {
     if(id){
-      return [name, id];
+      return [name, 'fields', id];
     }
   }
   return [name];
 }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> ff333e9e1a3c027ba1d54bc5ad72cfc833fb4c59
 interface WithNeededPropsGuard extends DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, ValueProp<PossibleValues>, NameProp {}
 
 export const getPrioritisedDefaultValue = (defaultValue?:PossibleDefaultValues, defaultChecked?:boolean | number | string, defaultSelected?:boolean | number | string) => (
@@ -53,14 +62,19 @@ export const getPrioritisedValue = (value:ShallowCompare, inputInfoValue:Shallow
 
 const withNeededProps = <TOutter extends WithNeededPropsGuard> (props: FormContext & TOutter) => {
   const inputPath = getInputPath(props);
-  const inputInfoPath = inputPath.slice(0, inputPath.length - 1);
   const inputInfo = props.FormState.getIn([props.nameSpace, ...inputPath], Map({}))
   const {defaultValue, defaultChecked, defaultSelected} = props;
   const prioritisedDefaultValue = getPrioritisedDefaultValue(defaultValue, defaultChecked, defaultSelected);
   const value = getPrioritisedValue(props.value, inputInfo.get('value'), prioritisedDefaultValue, getUnsetValue(props));
+
+  
+  console.log(props.name);
+  console.log(props);
+  console.log(inputPath);
+  console.log(inputInfo.toJS());
+  console.log(value);
   return {
     inputInfo,
-    inputGroupInfo: inputInfoPath.length > 0 ? props.FormState.getIn([props.nameSpace, ...inputInfoPath], Map({})) : Map(),
     defaultValue: prioritisedDefaultValue,
     inputPath,
     value
@@ -80,10 +94,8 @@ const createUniversalCompose = <TOutter extends WithHandlersGuard, TWithHandlers
     fieldSetNameSpace: PropTypes.string,
     dispatch: PropTypes.func
   }),
-  // TODO: unclear what the first generic here does
-  withHandlers<TWithHandlers, FormContext & TOutter>(withHandlersArgs),
   withProps<PerformanceWrapperWithProps, PerformanceWrapperWithHandlers & FormContext & TOutter>(withNeededProps),
-  // TODO: unclear what the first generic here does
+  withHandlers<TWithHandlers, FormContext & TOutter>(withHandlersArgs),
   shouldUpdate<PerformanceWrapperProps & TOutter>((props, nextProps) => {
     return !specificShallowEqual(props, nextProps);
   })

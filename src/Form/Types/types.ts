@@ -210,8 +210,7 @@ export interface ValidationAdditionProps extends ValidationElementProps, Validat
 type InputInfo = Map<string, any>
 
 export interface InputInfoProps {
-	inputInfo: InputInfo,
-	inputGroupInfo: List<InputInfo>
+	inputInfo: InputInfo
 }
 
 export interface NameSpaceProp {
