@@ -29,14 +29,6 @@ export const basicReducer = {
       return state;
     }
     const updatedFields = inputs.map((input:Map<string, any>, key:string) => {
-      console.log(key, input.toJS(), function(){
-        if (isMultipleValueInput(key)) {
-          return input.map((innerInput:Map<string, any>) => {
-            return innerInput.setIn(["input" , payload.interaction], payload.value);
-          });
-        }
-        return input.set(payload.interaction, payload.value);
-      }().toJS())
       if (isMultipleValueInput(key)) {
         return input.map((innerInput:Map<string, any>) => {
           return innerInput.setIn(["input", payload.interaction], payload.value);
@@ -44,8 +36,6 @@ export const basicReducer = {
       }
       return input.set(payload.interaction, payload.value);
     });
-    console.log(updatedFields.toJS())
-    
     return state.set(payload.nameSpace, updatedFields);
   },
   CLEAR_ALL_INPUTS: (state:Map<string, any>, {payload}:ClearAllInputsAction) => {
