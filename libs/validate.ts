@@ -21,10 +21,6 @@ export const validations:ValidationTypes = {
   required: (value, test, type) => {
     if (Iterable.isIterable(value)) {
       if (type === 'checkbox') {
-        return value.some((innerVal:Map<string, {}>) => {
-          return innerVal.get('value') || false;
-        });
-      } else {
         return value.size > 0;
       }
     } else if (type === "checkbox") {
@@ -40,9 +36,8 @@ export const validations:ValidationTypes = {
     if(test === 'number' || test ==='email'){
       let typeRegExp = new RegExp(regExpList[test]);
       return typeRegExp.test(value);
-    } else{
-      return true;
     }
+    return true;
   },
   minLength: (value, test) => {
     return value.toString().length >= parseInt(test);

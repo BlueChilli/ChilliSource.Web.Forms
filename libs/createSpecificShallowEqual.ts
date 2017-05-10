@@ -3,13 +3,13 @@ import {isArray, isObject, isNaN, isFunction} from "lodash";
 import {ShallowCompare, ShallowCompareProps} from "./types";
 
 
-export default (...keysToTest: string[]) : Function => {
+ const createSpecificShallowEqual =<TProps = ShallowCompareProps> (...keysToTest: string[]) => {
   /**
    * Creates a function that checks to see if the passed in properties are equal
    * {string} ...keysToTest - Properties to check if equal
    */
-  return (props: ShallowCompareProps, nextProps: ShallowCompareProps) : boolean => {
-    return keysToTest.every((value:string) => {
+  return (props: TProps, nextProps: TProps) => {
+    return keysToTest.every((value:keyof TProps) => {
       const currentVal:ShallowCompare = props[value];
       const nextVal:ShallowCompare = nextProps[value];
       if (Iterable.isIterable(currentVal) || Iterable.isIterable(nextVal)) {
@@ -23,3 +23,5 @@ export default (...keysToTest: string[]) : Function => {
     })
   }
 };
+
+export default createSpecificShallowEqual;

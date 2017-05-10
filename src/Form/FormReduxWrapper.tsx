@@ -12,7 +12,7 @@ interface MapDispatchToProps {
 }
 
 
-const FormReduxWrapper = (props:FormProps<undefined> & MapStateToProps & MapDispatchToProps) => <Form {...props}/>
+export default (props:FormProps<undefined> & MapStateToProps & MapDispatchToProps) => <Form {...props}/>
 
 const mapStateToProps = (state:Map<string, any>):MapStateToProps => {
   return {
@@ -23,4 +23,4 @@ const mapStateToProps = (state:Map<string, any>):MapStateToProps => {
 
 
 export {FormProps, FormOptionalProps}
-export default connect<MapStateToProps, MapDispatchToProps, FormProps<undefined>>(mapStateToProps)(FormReduxWrapper);
+// export default connect<MapStateToProps, MapDispatchToProps, FormProps<undefined>>(mapStateToProps)(FormReduxWrapper);

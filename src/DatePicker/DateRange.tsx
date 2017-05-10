@@ -25,8 +25,8 @@ class DateRangeBase extends React.Component<DateRangeProps & PerformanceWrapperP
   }
 };
 
-const getValue = (dateRange: DateRangeMap, dateFormat?:string) => {
-  if (Map.isMap(dateRange)) {
+const getValue = (dateRange?: DateRangeMap, dateFormat?:string) => {
+  if (Map.isMap(dateRange) && dateRange) {
     return moment(dateRange.get('startDate')).format(dateFormat) + " to " + moment(dateRange.get('endDate')).format(dateFormat);
   }
   return moment().format(dateFormat) + " to " + moment().format(dateFormat);;

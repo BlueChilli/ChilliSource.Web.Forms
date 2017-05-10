@@ -8,7 +8,7 @@ import {basicReducer} from '../src/Form/Reducers';
 import Form from "../src/Form/FormReduxWrapper";
 import FormInner from "./FormInner";
 
-const reducers = combineReducers({
+/*const reducers = combineReducers({
   FormState: createReducer<Map<string, any>, any>(Map({}), basicReducer)
 });
 
@@ -36,4 +36,4 @@ class Redux extends React.Component<{}, {}> {
 
 const rootEl = document.getElementById("app");
 
-ReactDOM.render(<Redux />, rootEl);
+ReactDOM.render(<Redux />, rootEl);*/

@@ -31,7 +31,7 @@ export const basicReducer = {
     const updatedFields = inputs.map((input:Map<string, any>, key:string) => {
       if (isMultipleValueInput(key)) {
         return input.map((innerInput:Map<string, any>) => {
-          return innerInput.set(payload.interaction, payload.value);
+          return innerInput.setIn(["input", payload.interaction], payload.value);
         });
       }
       return input.set(payload.interaction, payload.value);
@@ -43,12 +43,12 @@ export const basicReducer = {
   }
 }
 
-type ReducerFunc = (state: Map<string, any>, action:ClearAllInputsAction | SetInputAction | SetAllInputInteractionAction | SetInputInteractionAction | SetValidationAction) => void
+type ReducerFunc<TState> = (state: TState, action:ClearAllInputsAction | SetInputAction | SetAllInputInteractionAction | SetInputInteractionAction | SetValidationAction) => TState
 
 export const withReducerState = (state = Map<string, {}>(), action:ClearAllInputsAction | SetInputAction | SetAllInputInteractionAction | SetInputInteractionAction | SetValidationAction) => {
-  const reducerFunc:ReducerFunc = basicReducer[action.type];
+  const reducerFunc:ReducerFunc<Map<string, {}>> = basicReducer[action.type];
   if(typeof reducerFunc === 'function'){
-    reducerFunc(state, action);
+    return reducerFunc(state, action);
   }else{
     return state;
   }

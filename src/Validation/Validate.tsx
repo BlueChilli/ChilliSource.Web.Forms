@@ -9,7 +9,7 @@ interface ValidateProps extends InputValidationProps {
 }
 
 /** A component to allow validation anywhere inside of a form component for input elements in that same component */
-class Validate extends React.PureComponent<ValidateProps & PerformanceWrapperProps, {}> {
+class Validate extends React.Component<ValidateProps & PerformanceWrapperProps, {}> {
   render() {
     return <DisplayValidation {...this.props}/>;
   }

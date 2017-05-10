@@ -4,7 +4,7 @@ import InputWrapper from "../Form/InputWrapper";
 import "./RadioTabs.scss";
 import {RadioTabsProps} from "../Form/Types/types";
 
-class RadioTabs extends React.PureComponent<RadioTabsProps, {}> {
+class RadioTabs extends React.Component<RadioTabsProps, {}> {
   render() {
     const {className, radioClasses, name, label, children} = this.props;
     var classes:string = classnames(className, 'input', 'radio-tabs');
