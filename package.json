@@ -2,11 +2,12 @@
   "name": "chillisource.web.forms",
   "version": "1.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "dist/chillisource-web-forms.js",
+  "module": "src/index.js",
   "scripts": {
     "test": "jest",
     "start": "node server.js",
-    "dist": "webpack --config webpack.build.config.js -p"
+    "build": "webpack --config webpack.build.config.js -p"
   },
   "author": "BlueChilli",
   "license": "ISC",
@@ -79,12 +80,12 @@
     "sass-loader": "^6.0.3",
     "sinon": "^2.1.0",
     "style-loader": "^0.16.1",
-    "typescript": "^2.3.0",
     "typescript-babel-jest": "^1.0.3",
     "url-loader": "^0.5.8",
     "webpack": "^2.3.3",
     "webpack-dev-middleware": "^1.10.1",
-    "webpack-hot-middleware": "^2.18.0"
+    "webpack-hot-middleware": "^2.18.0",
+    "typescript": "^2.3.2"
   },
   "dependencies": {
     "classnames": "^2.2.5",
@@ -95,13 +96,6 @@
     "react-dom": "^15.5.4",
     "react-dropzone": "^3.13.1",
     "react-onclickoutside": "^5.11.1",
-    "react-redux": "^5.0.4",
-    "recompose": "^0.23.1",
-    "typescript": "^2.3.2"
-  },
-  "optionalDependencies": {
-    "react-redux": "^5.0.4",
-    "redux": "^3.6.0",
-    "redux-immutablejs": "0.0.8"
+    "recompose": "^0.23.1"
   }
 }
