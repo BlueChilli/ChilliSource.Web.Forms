@@ -1,9 +1,9 @@
 import React from "react";
 import {PerformanceWrapperProps, validationPerformanceWrapper} from "../Form/Helpers/performanceWrapper";
 import DisplayValidation from "./DisplayValidation";
-import {InputValidationProps} from "../Form/Types/types"
+import {BaseFreclValidationProps} from "../Form/Types/types"
 
-interface ValidateProps extends InputValidationProps {
+interface ValidateProps extends BaseFreclValidationProps {
   /** The name of the input to validate */
   name: string
 }

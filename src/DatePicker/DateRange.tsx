@@ -32,7 +32,7 @@ const getValue = (dateRange?: DateRangeMap, dateFormat?:string) => {
   return moment().format(dateFormat) + " to " + moment().format(dateFormat);;
 };
 
-const DateRangePicker = (props:DateRangeProps & PerformanceWrapperProps) => (
+const DateRangePicker = ({children, ...props}:DateRangeProps & PerformanceWrapperProps) => (
   <DateWrapper {...props} valueString={getValue(props.value, props.format)}>
     <DateRangeBase {...props}/>
   </DateWrapper>

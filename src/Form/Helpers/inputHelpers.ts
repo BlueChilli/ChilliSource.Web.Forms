@@ -2,7 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import {pick} from "lodash";
 import {ShallowCompare, BaseReactProps} from "../../../libs/types";
-import {PossibleDefaultValues, PossibleValues, ValueProp, TypeProp, IdProp} from "../Types/types";
+import {PossibleDefaultValues, PossibleValues, ValueProp, TypeProp, IdProp, InputValidationProps, NameProp} from "../Types/types";
+
+interface PickedAttrs {
+  [name: string]: any
+}
+
 
 export const isMultipleValueInput = (inputName:string):boolean => {
   return inputName.search(/\[\]$/) !== -1;
@@ -26,8 +31,7 @@ export function returnCheckedValue<T>(check:(arg:T) => boolean, ...args:T[]){
 interface GetHTMLAttributesGuard extends ValueProp<PossibleValues>, BaseReactProps, TypeProp, IdProp{}
 
 export const getHTMLAttributes = <T extends GetHTMLAttributesGuard> (props:T) => {
-  const {children} = props
-  const safeProps = pick<React.HTMLAttributes<any>, T>(props, "id", "autoFocus", "required", "name", "type", "value", "min", "max", "minLength", "maxLength", "pattern");
+  const safeProps = pick<PickedAttrs, T>(props, "id", "autoFocus", "required", "name", "type", "value", "min", "max", "minLength", "maxLength", "pattern");
   return safeProps;
 }
 

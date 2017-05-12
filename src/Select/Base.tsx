@@ -6,10 +6,7 @@ import {getHTMLAttributes} from "../Form/Helpers/inputHelpers";
 import {SelectInputProps} from "../Form/Types/types";
 import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
 
-interface OptionTypes{
-  value: string | boolean | number,
-  children: List<React.ReactText>
-}
+
 
 interface WithProps extends SelectInputProps {
   defaultSelected?: string | boolean | number
@@ -22,7 +19,7 @@ const getDefaultSelected = ({children, defaultValue}:SelectInputProps) => {
   } else if (defaultValue) {
     return defaultValue;
   } else {
-    return (Children.toArray(children)[0] as React.ReactElement<OptionTypes>).props.value;
+    return (Children.toArray(children)[0] as React.ReactHTMLElement<HTMLOptionElement>).props.value;
   }
 };
 
@@ -36,9 +33,10 @@ class SelectBase extends React.Component<SelectInputProps & PerformanceWrapperPr
   }
   render () {
     const attributes = getHTMLAttributes(this.props);
+    const {children} = this.props
     return (
       <select {...attributes} onChange={this.handleChange}>
-        {this.props.children}
+        {children}
       </select>
     );
   }
