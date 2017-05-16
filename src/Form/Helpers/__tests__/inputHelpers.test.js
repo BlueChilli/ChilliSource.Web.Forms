@@ -1,5 +1,5 @@
 import {isEqual} from "lodash";
-import {returnDefinedValue, isMultipleValueInput, getHTMLAttributes} from "../inputHelpers";
+import {isMultipleValueInput, getHTMLAttributes} from "../inputHelpers";
 
 const supportedProps = {
   min: 30,
@@ -19,21 +19,6 @@ const unsupportedProps = {
   misc: 'here',
   another: true
 }
-
-
-describe("returnDefinedValue()", () => {
-  it('should return undefined when no valid argument is passed', () => {
-    expect(returnDefinedValue(undefined, undefined, undefined, undefined)).toBe(undefined)
-  });
-  it('should return first valid argument', () => {
-    const firstValue = true;
-    expect(returnDefinedValue(undefined, firstValue, '', undefined)).toBe(firstValue);
-  });
-  it('should return first valid argument when it is last', () => {
-    const firstValue = true;
-    expect(returnDefinedValue(undefined, undefined, undefined, firstValue)).toBe(firstValue);
-  });
-});
 
 describe("isMultipleValueInput", () => {
   it('should return true when input has [] appended', () => {
