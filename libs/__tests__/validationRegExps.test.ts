@@ -5,10 +5,10 @@ describe("validationRegExps object", () => {
   // Email Tests
   describe("Email Regex", () => {
     // Data
-    const basicEmail = 'shane@bluechilli.com';
-    const capsEmail = 'SHANE@bluechilli.com';
-    const ausEmail = 'shane@bluechilli.com.au';
-    const numEmail = 'shane9@bluechilli.com.au';
+    const basicEmail = 'react@bluechilli.com';
+    const capsEmail = 'REACT@bluechilli.com';
+    const ausEmail = 'react@bluechilli.com.au';
+    const numEmail = 'react9@bluechilli.com.au';
     const longDomain = 'email@WEATHERCHANNEL.museum';
     const noDomain = "email@example";
 

@@ -4,7 +4,7 @@ import {Map} from "immutable";
 const keysToTest = ["name", "required", "inputInfo"];
 
 const currentProps = {
-  name: "Shane",
+  name: "Smith",
   required: true,
   inputInfo: Map({
     value: '1',
@@ -13,7 +13,7 @@ const currentProps = {
 };
 
 const nextPropsFailBool = {
-  name: "Shane",
+  name: "Smith",
   required: false,
   inputInfo: Map({
     value: '1',

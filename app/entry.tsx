@@ -6,7 +6,7 @@ import Form from "../src/Form/Form";
 
 class Base extends React.Component<{}, {}> {
   lastNameValidation(value:string){
-    return value === 'Shane';
+    return value === 'Smith';
   }
   render() {
     return (

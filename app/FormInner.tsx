@@ -16,14 +16,14 @@ import Validate from '../src/Validation/Validate';
 
 export default class FormInner extends React.Component<{}, {}> {
   lastNameValidation(value:string){
-    return value === 'Shane';
+    return value === 'Smith';
   }
   render() {
     return (
       <div style={{padding: '20px 40px'}}>
         <Input autoFocus label="First Name" required defaultValue="First Name" pattern="[A-Za-z]+$" name="firstName" customValidation={this.lastNameValidation}>
           <Validation isFor="required">This field is required</Validation>
-          <Validation isFor="customValidation">This field must be Shane</Validation>
+          <Validation isFor="customValidation">This field must be Smith</Validation>
         </Input>
         <Fieldset name="users" id="test">
           <Input label="Last Name" name="LastName" required minLength="2">
@@ -96,10 +96,10 @@ export default class FormInner extends React.Component<{}, {}> {
           <Radio name="tab-1" id="tab-1">something</Radio>
           <Radio name="tab-2" id="tab-2">something</Radio>
         </RadioTabs>*/}
-        <Select label="Front End Developers" defaultSelected="Mick" name="FrontEndDevelopers">
-          <option value="Shane">Shane</option>
-          <option value="Mick">Mick</option>
-          <option value="Mitch">Mitch</option>
+        <Select label="Three Stouges" defaultSelected="Larry" name="FrontEndDevelopers">
+          <option value="Moe">Moe</option>
+          <option value="Larry">Larry</option>
+          <option value="Curly">Curly</option>
         </Select>
 
         <Select label="Numbers" name="Numbers">

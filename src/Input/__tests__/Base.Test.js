@@ -4,7 +4,7 @@ import {shallow} from 'enzyme';
 import InputBase from '../Base';
 
 const attributes = {
-  defaultValue: "Shane",
+  defaultValue: "Smith",
   inputChanged: () => ({}),
   setInputBlurred: () => ({})
 }
