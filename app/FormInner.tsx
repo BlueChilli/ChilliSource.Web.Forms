@@ -96,7 +96,7 @@ export default class FormInner extends React.Component<{}, {}> {
           <Radio name="tab-1" id="tab-1">something</Radio>
           <Radio name="tab-2" id="tab-2">something</Radio>
         </RadioTabs>*/}
-        <Select label="Three Stouges" defaultSelected="Larry" name="FrontEndDevelopers">
+        <Select label="Three Stouges" defaultSelected="Larry" name="ThreeStouges">
           <option value="Moe">Moe</option>
           <option value="Larry">Larry</option>
           <option value="Curly">Curly</option>
