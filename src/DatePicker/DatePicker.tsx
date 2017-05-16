@@ -1,5 +1,5 @@
 import React from "react";
-import moment from "moment";
+import moment, {Moment} from "moment";
 import DateWrapper, {DateWrapperPassedDownProps} from "./DateWrapper";
 import {compose} from "recompose";
 import performanceWrapper, {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
@@ -8,12 +8,13 @@ import {Calendar} from "react-date-range";
 import "./DateRange.scss";
 
 
-
-
 class CalendarBase extends React.Component<DatePickerProps & PerformanceWrapperProps & DateWrapperPassedDownProps, {}>{
-  handleChange = (dateRange) => {
-    this.props.inputChanged(dateRange.format('YYYY-MM-DD'));
-    this.props.close();
+  handleChange = (dateRange:Moment) => {
+    const {inputChanged, close} = this.props
+    inputChanged(dateRange.format('YYYY-MM-DD'));
+    if(typeof close === 'function'){
+      close();
+    }
   }
   render() {
     return <Calendar {...this.props} onChange={this.handleChange}/>

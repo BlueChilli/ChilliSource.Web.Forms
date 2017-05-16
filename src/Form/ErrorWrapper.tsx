@@ -1,9 +1,9 @@
 import React from "react";
 import classnames from "classnames";
+import {TypeProp} from "./Types/types"
 
-interface Props {
+interface Props extends TypeProp{
   className?: string,
-  type: string,
   children?: any
 }
 

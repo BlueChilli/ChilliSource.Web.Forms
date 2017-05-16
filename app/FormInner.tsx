@@ -5,6 +5,8 @@ import Form from '../src/Form/Form';
 import Fieldset from '../src/Form/Fieldset';
 import Input from '../src/Input/Input';
 import Radio from '../src/Radio/Radio';
+import RadioTab from '../src/Radio/RadioTab';
+import RadioTabs from '../src/Radio/RadioTabs';
 import Select from '../src/Select/Select';
 import MultiSelect from '../src/Select/MultiSelect';
 import DropZone from '../src/DropZone/DropZone';
@@ -14,8 +16,8 @@ import TextArea from '../src/TextArea/TextArea';
 import Validation from '../src/Validation/Validation';
 import Validate from '../src/Validation/Validate';
 
-export default class extends React.Component<{}, {}> {
-  lastNameValidation(value){
+export default class FormInner extends React.Component<{}, {}> {
+  lastNameValidation(value:string){
     return value === 'Shane';
   }
   render() {
@@ -100,6 +102,10 @@ export default class extends React.Component<{}, {}> {
             <Validation isFor="required">Please choose a size</Validation>
           </Validate>
         </div>
+        {/*<RadioTabs name="radio-tabs">
+          <Radio name="tab-1" id="tab-1">something</Radio>
+          <Radio name="tab-2" id="tab-2">something</Radio>
+        </RadioTabs>*/}
         <Select label="Front End Developers" defaultSelected="Mick" name="FrontEndDevelopers">
           <option value="Shane">Shane</option>
           <option value="Mick">Mick</option>

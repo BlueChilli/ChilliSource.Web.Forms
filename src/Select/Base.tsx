@@ -1,4 +1,4 @@
-import React, {Children} from "react";
+import React, {Children, ChangeEvent} from "react";
 import {withProps} from "recompose";
 import {List} from "immutable";
 import {ShallowCompare} from "../../libs/types";

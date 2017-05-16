@@ -10,14 +10,13 @@ import {DateRangeProps} from "../Form/Types/types";
 import {DateRangeMap, DateRangeMoment} from "../Form/Types/types";
 import "./DateRange.scss";
 
-
 class DateRangeBase extends React.Component<DateRangeProps & PerformanceWrapperProps, {}>{
   handleChange = (dateRange: DateRangeMoment) => {
     this.props.inputChanged(Map<string, string>({
       startDate: dateRange.startDate.format('YYYY-MM-DD'),
       endDate: dateRange.endDate.format('YYYY-MM-DD')
     }));
-    if(isFunction(this.props.onChange)){
+    if(typeof this.props.onChange === 'function'){
       this.props.onChange(dateRange);
     }
   }
@@ -26,8 +25,8 @@ class DateRangeBase extends React.Component<DateRangeProps & PerformanceWrapperP
   }
 };
 
-const getValue = (dateRange: DateRangeMap, dateFormat:string) => {
-  if (Map.isMap(dateRange)) {
+const getValue = (dateRange?: DateRangeMap, dateFormat?:string) => {
+  if (Map.isMap(dateRange) && dateRange) {
     return moment(dateRange.get('startDate')).format(dateFormat) + " to " + moment(dateRange.get('endDate')).format(dateFormat);
   }
   return moment().format(dateFormat) + " to " + moment().format(dateFormat);;

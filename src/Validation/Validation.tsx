@@ -1,9 +1,10 @@
 import React from "react";
+import {Map} from "immutable"
 import {withProps, mapProps, shouldUpdate, ComponentEnhancer, InferableComponentEnhancer, compose, withState, withHandlers, lifecycle} from "recompose";
 import classnames from "classnames";
-import {testElement, validations} from "../../libs/validate";
+import {testElement, validations, TestElement} from "../../libs/validate";
 import "./Validation.scss";
-import {isMultipleValueInput} from "../Form/Helpers/inputHelpers";
+import {isMultipleValueInput, returnCheckedValue} from "../Form/Helpers/inputHelpers";
 import createSpecificShallowEqual from "../../libs/createSpecificShallowEqual";
 import {ValidationAdditionProps, TextInputProps} from "../Form/Types/types";
 import {ReactComponent, ShallowCompare} from "../../libs/types";
@@ -30,14 +31,27 @@ interface ValidationMapProps extends ValidationAdditionProps{
   value:ShallowCompare
 }
 
+
 interface ValidationWithStateProps extends ValidationMapProps{
   valid: boolean,
-  setValid: (boolean) => undefined
+  setValid: (valid:boolean) => undefined
 }
+
+interface TestHandersUncalledInterface {
+  testElement: () => TestElement
+}
+
+interface TestHandersInterface {
+  testElement: TestElement
+}
+
+
+interface ValidationLifecycleProps extends ValidationMapProps, TestHandersInterface {}
 
 interface ValidationComponentProps {
   isFor: string
 }
+
 
 
 const Validation = ({displayed, className, children}:ValidationInternalProps) => {
@@ -47,27 +61,36 @@ const Validation = ({displayed, className, children}:ValidationInternalProps) =>
   return <div className={classes}>{children}</div>;
 };
 
+const getValue = (name:string, inputInfo:Map<string, any>) : ShallowCompare => {
+  if(isMultipleValueInput(name) && Map.isMap(inputInfo)){
+    return returnCheckedValue((arg) => typeof arg !== "undefined" && arg !== false, ...inputInfo.map(item => item.get('value', false)).toArray())
+  } else {
+    return inputInfo.get('value') || false;
+  }
+} 
+
 
 export default compose<ValidationInternalProps, ValidationComponentProps>(
   withProps((ownerProps : ValidationAdditionProps) => {
-    const {name, inputInfo, inputGroupInfo, type} = ownerProps;
-    const changed:boolean = isMultipleValueInput(name) ? inputGroupInfo.some(item => item.get('changed', false)) : inputInfo.get('changed', false);
-    const value:ShallowCompare = isMultipleValueInput(name) ? inputGroupInfo : inputInfo.get('value');
+    const {name, inputInfo, type} = ownerProps;
+    const changed:boolean = isMultipleValueInput(name) ? inputInfo.some(item => item.get('changed', false)) : inputInfo.get('changed', false);
+    const value:ShallowCompare = getValue(name, inputInfo);
     return {
       changed,
       value
     }
-  }), shouldUpdate((currentProps, nextProps) => {
+  }), shouldUpdate((currentProps:ValidationMapProps, nextProps:ValidationMapProps) => {
     return !specificShallowEqual(currentProps, nextProps) || !availableValidationsShallowEqual(currentProps, nextProps);
   }),
   withState('valid', 'setValid', false),
-  withHandlers({
+  withHandlers<TestHandersUncalledInterface, ValidationWithStateProps>({
     testElement: () => testElement
   }),
-  lifecycle({
+  lifecycle<ValidationWithStateProps & TestHandersInterface, {}>({
     componentWillMount(){
-      const {testElement, setValidation, isFor, test} = this.props;
+      const {testElement, setValidation, value, type, isFor, test} = this.props;
       setValidation(isFor, test);
+      // value, test, isFor, type, setValid
       testElement(this.props);
     }, 
     componentWillReceiveProps(nextProps){

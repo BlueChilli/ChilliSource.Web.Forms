@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FormEvent} from "react";
 import PropTypes from "prop-types";
 import {is, List, Map} from "immutable";
 import classnames from "classnames";
@@ -7,7 +7,6 @@ import {setAllInputInteractions, clearAllInputs} from "./Actions/fields";
 import {withReducerState} from "./Reducers";
 import {isMultipleValueInput} from "./Helpers/inputHelpers";
 import {ShallowCompare, BaseReactProps} from "../../libs/types";
-import {eventHandler} from "./Types/types";
 import {convertToFormData, normalizeFields} from "./Helpers/formHelpers";
 import {withReducer, compose, branch} from "recompose";
 
@@ -22,7 +21,7 @@ export interface FormOptionalProps<T> extends BaseReactProps {
     encType?: 'application/json' | 'multipart/form-data',
     /** Called before the form is submitted, ths is a chance to modify the contents of the payload
      * primarily used by the form generator */    
-    mapOutput?: Function,
+    mapOutput?: (data?: Map<string, any>) => Map<string, any>,
      /** Called once Form has ensured that all child Input components are valid */
     onSubmit?: OnSubmit<T>,    
 }
@@ -42,20 +41,24 @@ interface FormState {
 }
 
 interface FormOwnProps<T> extends FormOptionalProps<T> {
-   /** Used to namespace all child input components in the Redux store */
+   /** Used to namespace all child input components in the redux store or local state */
     name: string,
-    /** Called before the form is submitted, ths is a chance to modify the contents of the payload
-     * primarily used by the form generator */    
-    mapOutput?: Function,
 }
 
-export interface FormProps<T> extends FormOwnProps<T>, FormStateProps, FormDispatchProps {}
+export interface FormProps<T> extends FormOwnProps<T>, FormStateProps, FormDispatchProps {
 
-const mapOutput = (data, mapOutputFunc) => (mapOutput) ? mapOutputFunc(data) : data;
+}
+interface FormInnerProps<T> extends FormOwnProps<T>, FormStateProps, FormDispatchProps {
+  FormState: formState,
+  dispatch: any,
+  mapOutput: (data?: Map<string, any>) => Map<string, any>
+}
+
+const mapOutput = (data:Map<string, any>, mapOutputFunc: ((data?: Map<string, any>) => Map<string, any>)) => (mapOutput) ? mapOutputFunc(data) : data;
 
 /** Displays a form component, inserts all user input into redux state and ensures that all inputs are validated
  * before allowing the user to submit the form. */
-class Form extends React.Component<FormProps<undefined>, FormState>{
+class Form extends React.Component<FormInnerProps<undefined>, FormState>{
 
   public static childContextTypes = {
     FormState: PropTypes.object,
@@ -66,14 +69,14 @@ class Form extends React.Component<FormProps<undefined>, FormState>{
   //FIXME: any to make TS happy unsure why it needs to be this way
   public static defaultProps:any = {
     encType: 'application/json',
-    mapOutput: data => data
+    mapOutput: (data:Map<string, any>) => data
   }
 
   refs: {
-    querySelector: any
+    [name: string]: Element
   }
 
-  constructor(props:FormProps<undefined>){
+  constructor(props:FormInnerProps<undefined>){
     super(props);
     this.state = {
       canSubmit: false
@@ -106,7 +109,7 @@ class Form extends React.Component<FormProps<undefined>, FormState>{
     this.props.dispatch(clearAllInputs(this.props.name));
   }
 
-  handleFormSubmit = event => {
+  handleFormSubmit = (event:FormEvent<{}>) => {
     event.preventDefault();
 
     if(this.state.canSubmit) {
@@ -123,7 +126,7 @@ class Form extends React.Component<FormProps<undefined>, FormState>{
         if(firstError === null) {
           if(onSubmit) {
             const fields = FormState.get(name);
-            const normalizedFields = mapOutput(normalizeFields(fields), this.props.mapOutput);
+            const normalizedFields = mapOutput(normalizeFields(fields) as Map<string, any>, this.props.mapOutput);
 
             if(encType === "multipart/form-data") {
               onSubmit(event, convertToFormData(normalizedFields));
@@ -148,7 +151,7 @@ class Form extends React.Component<FormProps<undefined>, FormState>{
 
   render(){
     const {FormState, dispatch, onSubmit, className, name, encType, ...safeProps} = this.props;
-    var classes = classnames('form', className);
+    const classes = classnames('form', className);
     return (
       <form name={name} ref={name} onSubmit={this.handleFormSubmit} className={classes} noValidate encType={encType}>
         {this.props.children}

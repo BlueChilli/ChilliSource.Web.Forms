@@ -1,9 +1,8 @@
 import {Iterable, List, Map} from "immutable";
 import React from "react";
+import {Moment} from "moment";
 
 
-type DateRangeMoment = any;
-type Moment = any;
 
 export type apiPathArgs = Map<string, string | number>
 export type apiParamArgs = apiPathArgs;
@@ -23,32 +22,32 @@ export interface AxiosResponse {
 export type swaggerApi = (data?: apiRequestDataMap, params?: Object, pathArgs?: apiPathArgs) => Promise<AxiosResponse>;
 
 
-export interface BaseAction {
-  type: string;
+export interface BaseAction<TType extends string> {
+  type: TType;
 }
 
-export interface FSA<TPayload> extends BaseAction{
-  payload?: TPayload,
+export interface FSA<TPayload extends {}, TType extends string> extends BaseAction<TType>{
+  payload: TPayload,
   meta?: any
 }
 
-export interface ResolvedPromiseAction extends BaseAction {
+export interface ResolvedPromiseAction extends BaseAction<string> {
   payload: Map<string, any>
 }
 
-export interface PromiseAction extends BaseAction {
+export interface PromiseAction extends BaseAction<string> {
   payload: {
       promise: Promise<any>;
   };
 }
 
-export interface StateNameAction extends BaseAction {
+export interface StateNameAction extends BaseAction<string> {
   meta: {
     stateName: string
   };
 }
 
-export interface PostAction extends BaseAction, PromiseAction, StateNameAction {};
+export interface PostAction extends PromiseAction, StateNameAction {};
 
 export interface BaseReactProps {
   children?: React.ReactNode;
@@ -57,8 +56,8 @@ export interface BaseReactProps {
 }
 
 // TODO: Actually force the developer to pass in T that reflects the structure of ShallowCompare
-export type ShallowCompareInner<T> = string | number | boolean | DateRangeMoment | Moment | Iterable<string | number, File | T> | List<File | T>;
-export type ShallowCompare = ShallowCompareInner<ShallowCompareInner<ShallowCompareInner<ShallowCompareInner<ShallowCompareInner<any>>>>>;
+export type ShallowCompareInner<T> = string | number | boolean | Moment | Map<string | number, any> | List<any>;
+export type ShallowCompare = any;
 
 export interface ShallowCompareProps {
   [propName: string]: ShallowCompare;

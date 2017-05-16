@@ -4,10 +4,18 @@ import Switch from "../Switch/Switch";
 import {SwitchProps} from "../Form/Types/types";
 
 
-/** Creates a radio button connected to FrECL forms state management all HTML5 attributes apply */
-export default ({className, ...other} : SwitchProps) => {
+/** 
+ * Creates a radio button connected to forms 
+ * state management. All HTML5 attributes apply.
+ */
+class Radio extends React.Component<SwitchProps, {}> {
+  render() {
+    const {className, ...other} = this.props;
     var classes:string = classnames(className, 'radio');
     return (
       <Switch type="radio" className={classes} {...other} />
     );
+  }
 }
+
+export default Radio;

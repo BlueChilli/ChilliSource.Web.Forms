@@ -10,11 +10,11 @@ import {getHTMLAttributes} from "../Form/Helpers/inputHelpers";
 import {DropZoneProps, DropZoneFile} from "../Form/Types/types";
 import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
 
-const isFileArray = (files: DropZoneFile) => {
+const isFileArray = (files) => {
   return List.isList(files) && files.size > 1;
 };
 
-const isSingleFile = (files: DropZoneFile) => {
+const isSingleFile = (files) => {
   return List.isList(files) && files.size === 1;
 };
 
@@ -28,8 +28,8 @@ const PassDownProps = (props, children) => {
   }
 };
 
-class DropZoneFrecl extends React.Component<DropZoneProps & PerformanceWrapperProps, {}>{
-  public static defaultProps:any = {
+class DropZoneFrecl extends React.Component{
+  static defaultProps = {
     children: (<div>Drop Here</div>)
   }
   componentDidMount(){
@@ -39,7 +39,7 @@ class DropZoneFrecl extends React.Component<DropZoneProps & PerformanceWrapperPr
     const {value} = this.props;
     return isFileArray(value) ? value : isSingleFile(value) ? value : null;
   }
-  onDrop = (files: File[]) => {
+  onDrop = (files) => {
     if (this.props.multiple !== false) {
       const immutFiles = List(files);
       const stateFiles = this.getFiles();
@@ -50,10 +50,10 @@ class DropZoneFrecl extends React.Component<DropZoneProps & PerformanceWrapperPr
       });
       this.props.inputChanged(removedDuplicates.concat(stateFiles));
     } else {
-      this.props.inputChanged(List(Map<string, any>(first<File>(files))));
+      this.props.inputChanged(List(Map(first(files))));
     }
   }
-  deleteFile = (index: number) => {
+  deleteFile = (index) => {
     const stateFiles = this.getFiles();
     this.props.inputChanged(stateFiles.delete(index));
   }
@@ -79,4 +79,4 @@ class DropZoneFrecl extends React.Component<DropZoneProps & PerformanceWrapperPr
   }
 }
 
-export default performanceWrapper<DropZoneProps>(DropZoneFrecl);
+export default performanceWrapper(DropZoneFrecl);

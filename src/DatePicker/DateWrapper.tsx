@@ -1,6 +1,6 @@
-import React from "react";
+import React, {Component, FocusEvent} from "react";
 import classnames from "classnames";
-import onReactOutsideClick from "react-onclickoutside";
+import onReactOutsideClick, {OnClickOutProps, InjectedOnClickOutProps} from "react-onclickoutside";
 import InputWrapper from "../Form/InputWrapper";
 import InputGroup from "../Form/InputGroup";
 import {InternalDateWrapperProps} from "../Form/Types/types";
@@ -15,18 +15,18 @@ export interface DateWrapperPassedDownProps {
   close?: () => undefined
 }
 
-class DateWrapper extends React.Component<InternalDateWrapperProps, StateProps>{
+class DateWrapper extends Component<InternalDateWrapperProps, StateProps>{
   refs: {
     [name: string]: HTMLInputElement;
   };
-  constructor(props){
+  constructor(props:InternalDateWrapperProps){
     super(props);
     this.state = {
       hidden: true
     }
   }
-  handleFocus = (e) => {
-    e.preventDefault();
+  handleFocus = (event:FocusEvent<{}>) => {
+    event.preventDefault();
     this.setState({hidden: false});
   }
   handleClickOutside = () => {
@@ -58,4 +58,4 @@ class DateWrapper extends React.Component<InternalDateWrapperProps, StateProps>{
   }
 };
 
-export default onReactOutsideClick(DateWrapper)
+export default onReactOutsideClick<any>(DateWrapper)

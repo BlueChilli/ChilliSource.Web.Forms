@@ -1,6 +1,6 @@
 import React from "react";
 import {validationsMessages, validationsAvailable} from "../../libs/validate";
-import {ValidationElementProps, InputInfoProps, ValidationAdditionProps, ValidationCloneElementProps, DisplayValidationProps} from "../Form/Types/types"
+import {ValidationElementProps, InputInfoProps, ValidationAdditionProps, ValidationCloneElementProps, DisplayValidationProps, TypeProp, TypeOfTest} from "../Form/Types/types"
 import {ReactElement} from "../../libs/types"
 import Validation from "../Validation/Validation";
 import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
@@ -10,29 +10,29 @@ type ValidationChild = React.ReactElement<ValidationElementProps>
 type ValidationAdditionChild = React.ReactElement<ValidationAdditionProps>
 
 
-const childrenValidations = (children) : string[] => {
+const childrenValidations = (children:React.ReactNode) => {
   if (React.Children.count(children) > 0) {
-    return React.Children.map<string>(children, (child:ValidationChild) => {
+    return React.Children.map<TypeOfTest>(children, (child:ValidationChild) => {
       return child.props.isFor;
     })
   }
   return [];
 };
 
-const isSwitch = (type):boolean => {
+const isSwitch = (type?:TypeProp):boolean => {
   return type === "checkbox" || type === 'radio';
 };
 
-const validationsUnused = (validationsUsed:string[], validationsAvailable:string[], isSwitch:boolean):string[] => {
+const validationsUnused = (validationsUsed:TypeOfTest[], validationsAvailable:TypeOfTest[], isSwitch:boolean):TypeOfTest[] => {
   return validationsAvailable.filter(validation => {
     if (validation === 'type' && isSwitch) return false;
     return validationsUsed.indexOf(validation) === -1;
   });
 };
 
-const DisplayValidation = ({children, disabled, inputInfo, inputGroupInfo, noValidate, ...props} : PerformanceWrapperProps & DisplayValidationProps) => {
-  const validationsAvail:string[] = validationsAvailable(props);
-  const validationUsed:string[] = childrenValidations(children);
+const DisplayValidation = ({children, disabled, inputInfo, noValidate, ...props} : PerformanceWrapperProps & DisplayValidationProps) => {
+  const validationsAvail = validationsAvailable(props);
+  const validationUsed = childrenValidations(children);
   const unusedValidations = validationsUnused(validationUsed, validationsAvail, isSwitch(props.type));
   if (disabled || noValidate) {
     return <span/>;
@@ -44,7 +44,6 @@ const DisplayValidation = ({children, disabled, inputInfo, inputGroupInfo, noVal
         return React.cloneElement<ValidationAdditionProps, ValidationCloneElementProps>(child, {
           test: props[typeOfValidation],
           inputInfo,
-          inputGroupInfo,
           type: props.type,
           name: props.name,
           setValidation: props.setValidation
@@ -55,7 +54,6 @@ const DisplayValidation = ({children, disabled, inputInfo, inputGroupInfo, noVal
         isFor: validation,
         test: props[validation],
         inputInfo,
-        inputGroupInfo,
         type: props.type,
         children: validationsMessages(validation, props[validation]),
         name: props.name,

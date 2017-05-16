@@ -1,21 +1,22 @@
 import PropTypes from "prop-types";
 import Recompose from "recompose";
+import {isUndefined} from "lodash";
 import {getContext, withProps, shouldUpdate, withHandlers, compose, lifecycle} from "recompose";
 import {Map} from "immutable";
-import {isMultipleValueInput, returnDefinedValue} from "./inputHelpers";
+import {isMultipleValueInput, returnCheckedValue} from "./inputHelpers";
 import createSpecificShallowEqual from "../../../libs/createSpecificShallowEqual"
 import {setInput, setInputInteraction, setValidation} from "../Actions/fields";
 import {ShallowCompareProps, ReactComponent, BaseReactProps, ShallowCompare} from "../../../libs/types";
-import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerfomanceWrapperGetInputPath, PerformanceWrapperInputHelpers,
-   PerformanceWrapperUncalledInputHelpers, PerformanceWrapperUncalledValidationHelpers, NameProp, IdProp, TypeProp, 
-  DefaultValueProp, PossibleDefaultValues, InputInfoProps, DefaultSwitchProps, NameSpaceProp, FormStateProp, ValueProp} from "../Types/types"
+import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerformanceWrapperInputHelpers, FieldSetNameSpaceProp,
+   PerformanceWrapperUncalledInputHelpers, PerformanceWrapperUncalledValidationHelpers, NameProp, IdProp, TypeProp, PossibleValues,
+  DefaultValueProp, PossibleDefaultValues, InputInfoProps, DefaultSwitchProps, NameSpaceProp, FormStateProp, ValueProp, SetValidation} from "../Types/types"
 
-const specificShallowEqual = createSpecificShallowEqual("inputInfo", "inputGroupInfo", "name", "nameSpace", "type", "id", "disabled", "required", 
+const specificShallowEqual = createSpecificShallowEqual("inputInfo", "name", "nameSpace", "type", "id", "disabled", "required", 
 "className", "defaultValue", "defaultChecked", "defaultSelected", "options", "fieldSetNameSpace", "value");
 
-const specificShallowEqualDefault = createSpecificShallowEqual("defaultValue");
+const specificShallowEqualDefault = createSpecificShallowEqual<DefaultValueProp<PossibleDefaultValues>>("defaultValue");
 
-interface WithHandlersGuard extends NameProp, IdProp, TypeProp, DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, NameProp, BaseReactProps, ValueProp, IdProp, TypeProp{}
+interface WithHandlersGuard extends NameProp, IdProp, TypeProp, DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, NameProp, BaseReactProps, ValueProp<PossibleValues>, IdProp, TypeProp{}
 
 export interface PerformanceWrapperProps extends PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, FormContext {}
 
@@ -27,40 +28,47 @@ const getUnsetValue = ({type}:TypeProp) => {
   }
 };
 
+interface GetInputPathGuard extends NameProp, IdProp, FieldSetNameSpaceProp{}
+interface GetValidationPathGuard extends NameProp, FieldSetNameSpaceProp{}
 
-interface GetInputPathGuard extends NameProp, IdProp{
-  fieldSetNameSpace?: string,
-}
-export const getInputPath = <T extends GetInputPathGuard> ({name, id, fieldSetNameSpace}:T) => ():string[] => {
-  if (fieldSetNameSpace !== undefined) {
+export const getInputPath = (type:string, {name, id, fieldSetNameSpace}:GetInputPathGuard):string[] => {
+  if(isMultipleValueInput(name) && fieldSetNameSpace !== undefined) {
+    if(id) {
+      return [fieldSetNameSpace, name, type, id];
+    } else {
+      return [fieldSetNameSpace, name, type];
+    }
+  } else if (fieldSetNameSpace !== undefined) {
     return [fieldSetNameSpace, name];
   } else if (isMultipleValueInput(name)) {
-    return [name, id];
-  } else {
-    return [name];
+    if(id){
+      return [name, type, id];
+    } else {
+      return [name, type];
+    }
   }
+  return [name];
 }
 
-interface WithNeededPropsGuard extends DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, ValueProp {}
 
-export const getPrioritisedDefaultValue = (defaultValue:PossibleDefaultValues, defaultChecked:boolean | number | string, defaultSelected:boolean | number | string) => (
-  returnDefinedValue(defaultValue, defaultChecked, defaultSelected)
+interface WithNeededPropsGuard extends DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, ValueProp<PossibleValues>, NameProp {}
+
+export const getPrioritisedDefaultValue = (defaultValue?:PossibleDefaultValues, defaultChecked?:boolean | number | string, defaultSelected?:boolean | number | string) => (
+  returnCheckedValue((arg) => !isUndefined(arg), defaultValue, defaultChecked, defaultSelected)
 );
 
 export const getPrioritisedValue = (value:ShallowCompare, inputInfoValue:ShallowCompare, prioritisedDefaultValue:PossibleDefaultValues, unsetValue:false | "") => (
-  returnDefinedValue(value, inputInfoValue, prioritisedDefaultValue, unsetValue)
+  returnCheckedValue((arg) => !isUndefined(arg), value, inputInfoValue, prioritisedDefaultValue, unsetValue)
 );
 
-const withNeededProps = <TOutter extends WithNeededPropsGuard> (props:PerfomanceWrapperGetInputPath & FormContext & TOutter) => {
-  const inputPath = props.getInputPath();
-  const inputInfoPath = inputPath.slice(0, inputPath.length - 1);
+const withNeededProps = <TOutter extends WithNeededPropsGuard> (props: FormContext & TOutter) => {
+  const inputPath = getInputPath("input", props);
   const inputInfo = props.FormState.getIn([props.nameSpace, ...inputPath], Map({}))
   const {defaultValue, defaultChecked, defaultSelected} = props;
   const prioritisedDefaultValue = getPrioritisedDefaultValue(defaultValue, defaultChecked, defaultSelected);
   const value = getPrioritisedValue(props.value, inputInfo.get('value'), prioritisedDefaultValue, getUnsetValue(props));
   return {
     inputInfo,
-    inputGroupInfo: inputInfoPath.length > 0 ? props.FormState.getIn([props.nameSpace, ...inputInfoPath], Map({})) : Map(),
     defaultValue: prioritisedDefaultValue,
     inputPath,
     value
@@ -68,25 +76,20 @@ const withNeededProps = <TOutter extends WithNeededPropsGuard> (props:Perfomance
 }
 
 const setValidationWithHandlersObject = {
-  setValidation: ({dispatch, nameSpace, getInputPath}) => (type:string, test:string | boolean) => {
-    dispatch(setValidation(nameSpace, getInputPath(), type, test));
+  setValidation: ({dispatch, nameSpace, ...props}:SetValidation) => (type:string, test:string | boolean) => {
+    dispatch(setValidation(nameSpace, getInputPath("validation", props), type, test));
   }
 }
 
-const createUniversalCompose = <TOutter extends WithHandlersGuard, TWithHandlers extends {}> (withHandlersArgs:TWithHandlers) => compose<PerformanceWrapperProps & TOutter, TOutter>(
+const createUniversalCompose = <TOutter extends WithHandlersGuard, TWithHandlers extends {}> (withHandlersArgs:TWithHandlers, type:string = "input") => compose<PerformanceWrapperProps & TOutter, TOutter>(
   getContext<FormContext, TOutter>({
     nameSpace: PropTypes.string,
     FormState: PropTypes.object,
     fieldSetNameSpace: PropTypes.string,
     dispatch: PropTypes.func
   }),
-  // TODO: unclear what the first generic here does
-  withHandlers<FormContext & TOutter, PerfomanceWrapperGetInputPath>({
-    getInputPath
-  }),
-  withHandlers<TWithHandlers, PerfomanceWrapperGetInputPath & FormContext & TOutter>(withHandlersArgs),
   withProps<PerformanceWrapperWithProps, PerformanceWrapperWithHandlers & FormContext & TOutter>(withNeededProps),
-  // TODO: unclear what the first generic here does
+  withHandlers<TWithHandlers, FormContext & TOutter>(withHandlersArgs),
   shouldUpdate<PerformanceWrapperProps & TOutter>((props, nextProps) => {
     return !specificShallowEqual(props, nextProps);
   })
@@ -97,34 +100,31 @@ export const validationPerformanceWrapper =<TOutter extends WithHandlersGuard> (
 )
 
 export default <TOutter extends WithHandlersGuard> (ReactClass:ReactComponent<TOutter & PerformanceWrapperProps>) => {
-
-  const InputSetup = {
-    componentWillMount() {
-      this.props.inputChanged(this.props.value, false);
-    },
-    componentWillReceiveProps(nextProps:PerformanceWrapperProps & TOutter){
-      if (!specificShallowEqualDefault(nextProps, this.props)) {
-        nextProps.inputChanged(nextProps.defaultValue, false);
-      }
-      if (!nextProps.FormState.hasIn([nextProps.nameSpace, ...nextProps.inputPath])) {
-        nextProps.inputChanged(nextProps.value, false);
-      }
-    }
-  };
-
   const inputWrapperCompose = createUniversalCompose<TOutter, PerformanceWrapperUncalledInputHelpers>({
-      inputChanged: ({dispatch, nameSpace, name, getInputPath}) => (value, changed:boolean = true) => {
-        dispatch(setInput(nameSpace, getInputPath(), value));
-        dispatch(setInputInteraction(nameSpace, getInputPath(), 'changed', changed));
+      inputChanged: ({dispatch, nameSpace, name, id, fieldSetNameSpace}) => (value, changed:boolean = true) => {
+        const inputPath = getInputPath("input", {name, id, fieldSetNameSpace})
+        dispatch(setInput(nameSpace, inputPath, value));
+        dispatch(setInputInteraction(nameSpace, inputPath, 'changed', changed));
       },
-      setInputBlurred: ({dispatch, nameSpace, getInputPath}) => () => {
-        dispatch(setInputInteraction(nameSpace, getInputPath(), 'blurred', true));
+      setInputBlurred: ({dispatch, nameSpace, ...props}) => () => {
+        dispatch(setInputInteraction(nameSpace, getInputPath("input", props), 'blurred', true));
       },
       ...setValidationWithHandlersObject
   });
 
   return compose<PerformanceWrapperProps & TOutter, TOutter>(
     inputWrapperCompose,
-    lifecycle(InputSetup)
+    lifecycle<PerformanceWrapperProps & TOutter, {}>({
+      componentWillMount() {
+        this.props.inputChanged(this.props.value, false);
+      },
+      componentWillReceiveProps(nextProps:PerformanceWrapperProps & TOutter){
+        if (!specificShallowEqualDefault(nextProps, this.props)) {
+          nextProps.inputChanged(nextProps.defaultValue, false);
+        }
+        if (!nextProps.FormState.hasIn([nextProps.nameSpace, ...nextProps.inputPath])) {
+          nextProps.inputChanged(nextProps.value, false);
+        }
+    }})
   )(ReactClass);
 }
