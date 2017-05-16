@@ -2,9 +2,9 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import InputGroup from '../InputGroup.tsx';
 
-const input = <input value='This is in an input tag' />;
-const div = <div>This is in a div tag</div>;
-const p = <p>This is in a paragraph tag</p>;
+const input = <input value='This is in an input tag' key="0.00" />;
+const div = <div key="0.01">This is in a div tag</div>;
+const p = <p key="0.02">This is in a paragraph tag</p>;
 
 const inputPrepend = <span>$</span>;
 const inputAppend = <span>%</span>;

@@ -2,8 +2,8 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import ErrorWrapper from '../ErrorWrapper.tsx';
 
-const input = <input value='This is in an input tag' />;
-const div = <div>This is in a div tag</div>;
+const input = <input value='This is in an input tag' key="0.00" />;
+const div = <div key="0.01">This is in a div tag</div>;
 const className = 'some-class';
 
 const singleChildWithTypeNotHidden = {
