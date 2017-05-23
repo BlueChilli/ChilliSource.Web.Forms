@@ -27,9 +27,6 @@ export interface ValidationProps{
 }
 
 
-
-
-
 export interface InputValidationProps extends ValidationProps{
 	/**
 	 * Lowest number(including itself) possible in

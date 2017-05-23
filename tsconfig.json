@@ -7,6 +7,7 @@
         "allowJs": true,
         "strict": true,
         "jsx": "react",
+        "sourceMap": true,
         "typeRoots": [
             "./Frecl/Types/**"
         ]
