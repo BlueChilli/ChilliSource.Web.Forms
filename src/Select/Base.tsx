@@ -10,6 +10,16 @@ interface WithProps extends SelectInputProps {
   defaultSelected?: string | boolean | number
 }
 
+const getDefaultSelected = ({children, defaultValue}:SelectInputProps) => {
+  if (Children.count(children) < 1) {
+    return '';
+  } else if (defaultValue) {
+    return defaultValue;
+  } else {
+    return (Children.toArray(children)[0] as any).props.value;
+  }
+};
+
 class SelectBase extends React.Component<SelectInputProps & PerformanceWrapperProps, {}> {
   displayName: 'SelectBase'
   handleChange = (event:ChangeEvent<{value:any}>) => {
