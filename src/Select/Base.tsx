@@ -1,4 +1,4 @@
-import React, {Children, ChangeEvent} from "react";
+import React, {Children, ChangeEvent, FocusEvent} from "react";
 import {withProps} from "recompose";
 import {List} from "immutable";
 import {ShallowCompare} from "../../libs/types";
@@ -15,12 +15,12 @@ class SelectBase extends React.Component<SelectInputProps & PerformanceWrapperPr
   handleChange = (event:ChangeEvent<{value:any}>) => {
     const {inputChanged, onChange} = this.props;
     inputChanged(event.target.value);
-    if (this.props.onChange) {
+    if (typeof onChange === 'function') {
       onChange(event);
     }
   }
 
-  handleBlur = event => {
+  handleBlur = (event:FocusEvent<{}>) => {
     const {onBlur} = this.props;
 
     if(typeof onBlur === 'function') {
