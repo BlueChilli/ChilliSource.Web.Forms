@@ -14,19 +14,14 @@ module.exports = {
   output: {
     path: path.join(__dirname, "/dist/"),
     libraryTarget: "umd",
-    library: "ChillisourceWebForms",
-    "filename": "chillisource-web-forms.js"
+    filename: "chillisource-web-forms.js"
   },
   
   module: {
     rules: [{
-      test: /\.tsx?$/,
+      test: /\.(t|j)sx?$/,
       exclude:  /(node_modules|custom_modules)/,
       use: "awesome-typescript-loader"
-    },{
-      test: /\.jsx?$/,
-      exclude: /(node_modules|custom_modules)/,
-      use: "babel-loader"
     }, {
       test: /\.(s?css)/,
       use: ["style-loader" , "css-loader", "postcss-loader", "sass-loader"]
