@@ -31,7 +31,7 @@ export function returnCheckedValue<T>(check:(arg:T) => boolean, ...args:T[]){
 interface GetHTMLAttributesGuard extends ValueProp<PossibleValues>, BaseReactProps, TypeProp, IdProp{}
 
 export const getHTMLAttributes = <T extends GetHTMLAttributesGuard> (props:T) => {
-  const safeProps = pick<PickedAttrs, T>(props, "id", "autoFocus", "required", "name", "type", "value", "min", "max", "minLength", "maxLength", "pattern");
+  const safeProps = pick<PickedAttrs, T>(props, "id", "autoFocus", "required", "name", "type", "value", "min", "max", "minLength", "maxLength", "pattern", "accept", "multiple");
   return safeProps;
 }
 

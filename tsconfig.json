@@ -9,6 +9,7 @@
         "jsx": "react",
         "sourceMap": true,
         "alwaysStrict": true,
+        "pretty": true,
         "lib": [
             "es6",
             "dom"
