@@ -3,7 +3,7 @@
   "version": "1.0.2",
   "description": "",
   "main": "dist/chillisource-web-forms.js",
-  "types": "./typings/type.d.ts",
+  "types": "./typings/typescript.d.ts",
   "module": "src/index.js",
   "scripts": {
     "test": "jest",
@@ -44,16 +44,6 @@
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$"
   },
   "devDependencies": {
-    "@types/classnames": "0.0.32",
-    "@types/enzyme": "^2.7.8",
-    "@types/jest": "^19.2.2",
-    "@types/lodash": "^4.14.62",
-    "@types/prop-types": "^15.5.1",
-    "@types/react": "^15.0.23",
-    "@types/react-dom": "^0.14.23",
-    "@types/react-onclickoutside": "^5.7.3",
-    "@types/react-redux": "^4.4.39",
-    "@types/recompose": "shane935/redux-types",
     "autoprefixer": "^6.7.7",
     "awesome-typescript-loader": "^3.1.2",
     "babel-jest": "^19.0.0",
@@ -83,6 +73,16 @@
     "webpack-hot-middleware": "^2.18.0"
   },
   "dependencies": {
+    "@types/classnames": "0.0.32",
+    "@types/enzyme": "^2.7.8",
+    "@types/jest": "^19.2.2",
+    "@types/lodash": "^4.14.62",
+    "@types/prop-types": "^15.5.1",
+    "@types/react": "^15.0.23",
+    "@types/react-dom": "^0.14.23",
+    "@types/react-onclickoutside": "^5.7.3",
+    "@types/react-redux": "^4.4.39",
+    "@types/recompose": "shane935/redux-types",
     "classnames": "^2.2.5",
     "immutable": "^3.8.1",
     "moment": "^2.18.1",
