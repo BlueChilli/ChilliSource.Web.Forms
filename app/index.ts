@@ -11,7 +11,7 @@ export {default as Select} from "../src/Select/Select";
 export {default as TextArea} from "../src/TextArea/TextArea";
 export {default as Validation} from "../src/Validation/Validation";
 export {default as Validate} from "../src/Validation/Validate";
-export {default as Form, FormProps, FormOptionalProps} from "../src/Form/Form";
+export {default as Form, FormOwnProps, FormOptionalProps} from "../src/Form/Form";
 export {basicReducer as ReduxReducer} from "../src/Form/Reducers/index";
 export {default as Fieldset} from "../src/Form/Fieldset";
 export {default as types} from "../src/Form/Types/types";

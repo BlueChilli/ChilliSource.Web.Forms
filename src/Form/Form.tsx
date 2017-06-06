@@ -40,7 +40,7 @@ interface FormState {
   canSubmit: boolean
 }
 
-interface FormOwnProps<T> extends FormOptionalProps<T> {
+export interface FormOwnProps<T> extends FormOptionalProps<T> {
    /** Used to namespace all child input components in the redux store or local state */
     name: string,
 }
