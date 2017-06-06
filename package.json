@@ -44,6 +44,14 @@
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$"
   },
   "devDependencies": {
+    "@types/classnames": "0.0.32",
+    "@types/enzyme": "^2.7.8",
+    "@types/jest": "^19.2.2",
+    "@types/lodash": "^4.14.62",
+    "@types/prop-types": "^15.5.1",
+    "@types/react-dom": "^15.5.0",
+    "@types/react-onclickoutside": "^5.7.3",
+    "@types/react-redux": "^4.4.39",
     "autoprefixer": "^6.7.7",
     "awesome-typescript-loader": "^3.1.2",
     "babel-jest": "^19.0.0",
@@ -73,15 +81,6 @@
     "webpack-hot-middleware": "^2.18.0"
   },
   "dependencies": {
-    "@types/classnames": "0.0.32",
-    "@types/enzyme": "^2.7.8",
-    "@types/jest": "^19.2.2",
-    "@types/lodash": "^4.14.62",
-    "@types/prop-types": "^15.5.1",
-    "@types/react": "^15.0.27",
-    "@types/react-dom": "^15.5.0",
-    "@types/react-onclickoutside": "^5.7.3",
-    "@types/react-redux": "^4.4.39",
     "@types/recompose": "0.23.0",
     "classnames": "^2.2.5",
     "immutable": "^3.8.1",
@@ -92,6 +91,10 @@
     "react-dropzone": "^3.13.1",
     "react-onclickoutside": "^5.11.1",
     "react-select": "^1.0.0-rc.3",
-    "recompose": "^0.23.1"
+    "recompose": "^0.23.4"
+  },
+  "peerDependencies": {
+    "@types/react": "^15.0.27",
+    "@types/recompose": "0.23.0"
   }
 }
