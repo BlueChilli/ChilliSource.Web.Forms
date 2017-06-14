@@ -14,9 +14,11 @@ export class Select extends React.PureComponent<SelectInputProps & PerformanceWr
     const classes = classnames(className, "select")
     return (
       <InputWrapper className={classes} name={props.name} labelPrefix={labelPrefix} labelPostfix={labelPostfix} label={label}>
-        <div className="styled-select">
-          <SelectBase {...props}/>
-          <div className="arrow">{arrow}</div>
+        <div className="input-group">
+          <div className="styled-select">
+            <SelectBase {...props}/>
+            <div className="arrow">{arrow}</div>
+          </div>
         </div>
         <DisplayValidation {...validationProps}/>
       </InputWrapper>
