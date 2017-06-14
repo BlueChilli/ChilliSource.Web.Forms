@@ -24,8 +24,8 @@ export type PossibleValues = number | string | boolean | Moment | DateRangeMap |
 
 export interface ValidationProps{
 	required?: boolean,
-	customValidation?: Function
 }
+
 
 export interface InputValidationProps extends ValidationProps{
 	/**
@@ -55,6 +55,10 @@ export interface InputValidationProps extends ValidationProps{
 	 * so as to allow only inputs that match the pattern
 	 */
 	pattern?: string,
+}
+
+export interface BaseFreclValidationProps extends InputValidationProps{
+	customValidation?: Function
 }
 
 export interface OnBlurEventProps<TBlurEvent> {
@@ -133,13 +137,16 @@ export interface OptionalValidationProps{
 	noValidate? :boolean, 
 }
 
+interface OptionTypes{
+  value: string | boolean | number,
+  children: List<React.ReactText>
+}
 
-export interface TextAreaProps extends BaseInputProps<string, string>, InputValidationProps, InputWrapperProps  {}
-export interface TextInputProps extends BaseInputProps<string, string | number>, InputValidationProps, InputWrapperProps, InputGroupProps{} 
-export interface SelectInputProps extends BaseInputProps<string | number, string | number>, InputValidationProps, InputWrapperProps, DefaultSwitchProps{
+export interface TextAreaProps extends BaseInputProps<string, string>, BaseFreclValidationProps, InputWrapperProps  {}
+export interface TextInputProps extends BaseInputProps<string, string | number>, BaseFreclValidationProps, InputWrapperProps, InputGroupProps{} 
+export interface SelectInputProps extends BaseInputProps<string | number, string | number>, BaseFreclValidationProps, InputWrapperProps, DefaultSwitchProps{
 	/** Pass in an arrow to display at the edge of the select box */ 
-	arrow?: React.ReactNode,
-	children?: Array<React.ReactText>
+	arrow?: React.ReactNode
 }
 
 export interface SwitchProps extends BaseInputProps<boolean | string | number, string | boolean | undefined>, DefaultSwitchProps, LabelProp{
@@ -158,7 +165,7 @@ export interface ValidationElementProps extends BaseReactProps, NameProp{
 }
 
 
-export interface DisplayValidationProps extends BaseReactProps, OptionalValidationProps, InputValidationProps, TypeProp, NameProp{}
+export interface DisplayValidationProps extends BaseReactProps, OptionalValidationProps, BaseFreclValidationProps, TypeProp, NameProp{}
 
 export interface DropZoneProps extends BaseReactProps, NameProp, ValueProp<List<File>>{
 	/** Can you upload multiple files*/	

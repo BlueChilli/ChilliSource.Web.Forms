@@ -1,4 +1,4 @@
-import React, {Children, ChangeEvent} from "react";
+import React, {Children, ChangeEvent, FocusEvent} from "react";
 import {withProps} from "recompose";
 import {List} from "immutable";
 import {ShallowCompare} from "../../libs/types";
@@ -6,19 +6,31 @@ import {getHTMLAttributes} from "../Form/Helpers/inputHelpers";
 import {SelectInputProps} from "../Form/Types/types";
 import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
 
+interface WithProps extends SelectInputProps {
+  defaultSelected?: string | boolean | number
+}
+
+const getDefaultSelected = ({children, defaultValue}:SelectInputProps) => {
+  if (Children.count(children) < 1) {
+    return '';
+  } else if (defaultValue) {
+    return defaultValue;
+  } else {
+    return (Children.toArray(children)[0] as any).props.value;
+  }
+};
+
 class SelectBase extends React.Component<SelectInputProps & PerformanceWrapperProps, {}> {
   displayName: 'SelectBase'
-  
-  handleChange = event => {
+  handleChange = (event:ChangeEvent<{value:any}>) => {
     const {inputChanged, onChange} = this.props;
-
     inputChanged(event.target.value);
-    if(typeof onChange === 'function') {
+    if (typeof onChange === 'function') {
       onChange(event);
     }
   }
 
-  handleBlur = event => {
+  handleBlur = (event:FocusEvent<{}>) => {
     const {onBlur} = this.props;
 
     if(typeof onBlur === 'function') {
@@ -28,12 +40,17 @@ class SelectBase extends React.Component<SelectInputProps & PerformanceWrapperPr
 
   render () {
     const attributes = getHTMLAttributes(this.props);
+    const {children} = this.props
     return (
       <select {...attributes} onBlur={this.handleBlur} onChange={this.handleChange}>
-        {this.props.children}
+        {children}
       </select>
     );
   }
 }
 
-export default SelectBase;
+export default withProps<WithProps, SelectInputProps & PerformanceWrapperProps>(props => {
+  return {
+    defaultSelected: getDefaultSelected(props)
+  }
+})(SelectBase);

@@ -1,12 +1,19 @@
 {
     "compilerOptions": {
         "allowSyntheticDefaultImports": true,
-        "target": "es6",
+        "target": "es5",
         "module": "es6",
         "moduleResolution": "node",
         "allowJs": true,
         "strict": true,
         "jsx": "react",
+        "sourceMap": true,
+        "alwaysStrict": true,
+        "pretty": true,
+        "lib": [
+            "es6",
+            "dom"
+        ],
         "typeRoots": [
             "./Frecl/Types/**"
         ]
@@ -16,8 +23,5 @@
         "custom_modules",
         "**/*.test*.*",
         "doc"
-    ],
-    "awesomeTypescriptLoaderOptions": {
-        "useBabel": true
-    }
+    ]
 }

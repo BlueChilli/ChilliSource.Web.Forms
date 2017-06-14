@@ -33,8 +33,9 @@ class DatePicker extends React.Component<DatePickerProps & PerformanceWrapperPro
     return "";
   }
   render() {
+    const {children, ...props} = this.props
     return (
-      <DateWrapper {...this.props} valueString={this.getValue()}>
+      <DateWrapper {...props} valueString={this.getValue()}>
         <CalendarBase {...this.props}/>
       </DateWrapper>
     );
