@@ -1,6 +1,6 @@
 {
   "name": "chillisource.web.forms",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "dist/chillisource-web-forms.js",
   "types": "./typings/typescript.d.ts",

@@ -13,7 +13,7 @@ class Radio extends React.Component<SwitchProps, {}> {
     const {className, ...other} = this.props;
     var classes:string = classnames(className, 'radio');
     return (
-      <Switch type="radio" className={classes} {...other} />
+      <Switch className={classes} {...other} type="radio"/>
     );
   }
 }
