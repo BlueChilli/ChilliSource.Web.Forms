@@ -12,7 +12,7 @@ import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers
   DefaultValueProp, PossibleDefaultValues, InputInfoProps, DefaultSwitchProps, NameSpaceProp, FormStateProp, ValueProp, SetValidation} from "../Types/types"
 
 const specificShallowEqual = createSpecificShallowEqual("inputInfo", "name", "nameSpace", "type", "id", "disabled", "required", 
-"className", "defaultValue", "defaultChecked", "defaultSelected", "options", "fieldSetNameSpace", "value");
+"className", "defaultValue", "defaultChecked", "defaultSelected", "options", "fieldSetNameSpace", "value", "label");
 
 const specificShallowEqualDefault = createSpecificShallowEqual<DefaultValueProp<PossibleDefaultValues>>("defaultValue");
 
