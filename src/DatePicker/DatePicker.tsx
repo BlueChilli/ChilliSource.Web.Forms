@@ -15,6 +15,9 @@ class CalendarBase extends React.Component<DatePickerProps & PerformanceWrapperP
     if(typeof close === 'function'){
       close();
     }
+    if(typeof this.props.onChange === 'function'){
+      this.props.onChange(dateRange);
+    }
   }
   render() {
     return <Calendar {...this.props} onChange={this.handleChange}/>
