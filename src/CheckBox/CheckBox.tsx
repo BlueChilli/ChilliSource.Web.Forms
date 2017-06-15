@@ -14,7 +14,7 @@ class CheckBox extends React.Component<SwitchProps, {}> {
     var classes:string = classnames(className, 'checkbox');
 
     return (
-      <Switch className={classes} {...other}  type="checkbox"/>
+      <Switch className={classes} {...other} type="checkbox"/>
     );
   }
 }

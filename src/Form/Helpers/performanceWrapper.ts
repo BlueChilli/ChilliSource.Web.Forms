@@ -15,6 +15,7 @@ const specificShallowEqual = createSpecificShallowEqual("inputInfo", "name", "na
 "className", "defaultValue", "defaultChecked", "defaultSelected", "options", "fieldSetNameSpace", "value", "label");
 
 const specificShallowEqualDefault = createSpecificShallowEqual<DefaultValueProp<PossibleDefaultValues>>("defaultValue");
+const specificShallowEqualValue = createSpecificShallowEqual("value");
 
 interface WithHandlersGuard extends NameProp, IdProp, TypeProp, DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, NameProp, BaseReactProps, ValueProp<PossibleValues>, IdProp, TypeProp{}
 
@@ -119,10 +120,13 @@ export default <TOutter extends WithHandlersGuard> (ReactClass:ReactComponent<TO
         this.props.inputChanged(this.props.value, false);
       },
       componentWillReceiveProps(nextProps:PerformanceWrapperProps & TOutter){
-        if (!specificShallowEqualDefault(nextProps, this.props)) {
+        if(!specificShallowEqualDefault(nextProps, this.props)) {
           nextProps.inputChanged(nextProps.defaultValue, false);
         }
-        if (!nextProps.FormState.hasIn([nextProps.nameSpace, ...nextProps.inputPath])) {
+        if(!specificShallowEqualValue(nextProps, this.props)) {
+          nextProps.inputChanged(nextProps.value, false);
+        }
+        if(!nextProps.FormState.hasIn([nextProps.nameSpace, ...nextProps.inputPath])) {
           nextProps.inputChanged(nextProps.value, false);
         }
     }})
