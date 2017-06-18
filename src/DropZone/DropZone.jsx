@@ -1,15 +1,30 @@
-import React, {Children} from "react";
-import {List, Map} from "immutable";
-import {first} from "lodash";
-import DropZone from "react-dropzone";
-import classnames from "classnames";
-import {compose} from "recompose";
-import performanceWrapper from "../Form/Helpers/performanceWrapper";
-import FileItem from "./FileItem";
-import {getHTMLAttributes} from "../Form/Helpers/inputHelpers";
-import {DropZoneProps, DropZoneFile} from "../Form/Types/types";
-import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
+/**
+ * Libraries
+ */
+import React, {Children} from 'react';
+import {List, Map} from 'immutable';
+import {first} from 'lodash';
+import DropZone from 'react-dropzone';
+import classnames from 'classnames';
+import {compose} from 'recompose';
 
+/**
+ * Components
+ */
+import performanceWrapper from '../Form/Helpers/performanceWrapper';
+import FileItem from './FileItem';
+import {getHTMLAttributes} from '../Form/Helpers/inputHelpers';
+import {DropZoneProps, DropZoneFile} from '../Form/Types/types';
+import {PerformanceWrapperProps} from '../Form/Helpers/performanceWrapper';
+
+/**
+ * Styles
+ */
+import './DropZone.scss';
+
+/**
+ * Helpers
+ */
 const isFileArray = (files) => {
   return List.isList(files) && files.size > 1;
 };
@@ -30,7 +45,7 @@ const PassDownProps = (props, children) => {
 
 class DropZoneFrecl extends React.Component{
   static defaultProps = {
-    children: (<div>Drop Here</div>)
+    children: <noscript />
   }
   componentDidMount(){
     this.props.inputChanged(this.getFiles(), false);
@@ -39,32 +54,41 @@ class DropZoneFrecl extends React.Component{
     const {value} = this.props;
     return isFileArray(value) ? value : isSingleFile(value) ? value : null;
   }
+  
   onDrop = (files) => {
-    if (this.props.multiple !== false) {
-      const immutFiles = List(files);
+    console.log(files);
+    const {multiple, inputChanged} = this.props;
+    const droppedFiles = List(files).map(file => Map(file));
+
+    if(!multiple) {
       const stateFiles = this.getFiles();
-      const removedDuplicates = immutFiles.filter(file => {
-        return stateFiles.every(stateFile => {
-          return stateFile.get('name') !== file.name
+      
+      if(stateFiles) {
+        const cleanList = droppedFiles.filter(file => {
+          return stateFiles.every(stateFile => stateFile.get('name') !== file.get('name'));
         });
-      });
-      this.props.inputChanged(removedDuplicates.concat(stateFiles));
+        inputChanged(cleanList.concat(stateFiles));
+      }
+      inputChanged(droppedFiles);
     } else {
-      this.props.inputChanged(List(Map(first(files))));
+      inputChanged(List(Map(first(files))));
     }
   }
+  
   deleteFile = (index) => {
     const stateFiles = this.getFiles();
     this.props.inputChanged(stateFiles.delete(index));
   }
   render() {
-    const {children, className, showList = true} = this.props;
+    const {children, className, placeholder, showList = true} = this.props;
     const attributes = getHTMLAttributes(this.props);
     const files = this.getFiles();
+    files && console.log(files.toJS());
     const classes = classnames("drop-zone-box", className);
     return (
       <div className="drop-zone">
           <DropZone className={classes} onDrop={this.onDrop} {...attributes}>
+            {placeholder && <p className="placeholder">{placeholder}</p>}
             {PassDownProps({files}, children)}
           </DropZone>
         {showList && <ul className="drop-zone-files-list">

@@ -1,0 +1,14 @@
+.drop-zone-box {
+	width: 50%;
+	height: 100px;
+	border: 2px dashed #D8D8D8;
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	p {
+		text-transform: uppercase;
+		color: #D8D8D8;
+	}
+}
