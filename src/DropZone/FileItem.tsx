@@ -68,13 +68,12 @@ class FileItem extends React.Component<FileItem, FileItemStateProps> {
 
   render() {
     const { fileURL } = this.state;
-    const { file } = this.props;
-    const url = file.get('preview', '').substring(5);
+
     return (
-      <li className="file-item">
-        <img src={fileURL} style={{ width: '144px' }} />
+      <div className="file">
+        <img src={fileURL} />
         <button type="button" onClick={this.removeFile}>x</button>
-      </li>
+      </div>
     );
   }
 }

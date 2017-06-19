@@ -1,6 +1,6 @@
 .drop-zone-box {
-	width: 50%;
-	height: 100px;
+	width: 100%;
+	min-height: 144px;
 	border: 2px dashed #D8D8D8;
 	border-radius: 8px;
 	display: flex;
@@ -10,5 +10,19 @@
 	p {
 		text-transform: uppercase;
 		color: #D8D8D8;
+	}
+}
+
+.drop-zone-files-list {
+	.file {
+		width: auto;
+		height: 144px;
+		display: flex;
+		align-content: center;
+
+		img {
+			max-width: 100%;
+			max-height: 100%;
+		}
 	}
 }
