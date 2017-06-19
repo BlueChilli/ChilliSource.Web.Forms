@@ -56,7 +56,6 @@ class DropZoneFrecl extends React.Component{
   }
   
   onDrop = (files) => {
-    console.log(files);
     const {multiple, inputChanged} = this.props;
     const droppedFiles = List(files).map(file => Map(file));
 
@@ -83,7 +82,6 @@ class DropZoneFrecl extends React.Component{
     const {children, className, placeholder, showList = true} = this.props;
     const attributes = getHTMLAttributes(this.props);
     const files = this.getFiles();
-    files && console.log(files.toJS());
     const classes = classnames("drop-zone-box", className);
     return (
       <div className="drop-zone">
@@ -104,3 +102,4 @@ class DropZoneFrecl extends React.Component{
 }
 
 export default performanceWrapper(DropZoneFrecl);
+export {DropZoneFrecl};
