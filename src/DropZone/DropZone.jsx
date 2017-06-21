@@ -3,7 +3,6 @@
  */
 import React, {Children} from 'react';
 import {List, Map} from 'immutable';
-import {first} from 'lodash';
 import DropZone from 'react-dropzone';
 import classnames from 'classnames';
 import {compose} from 'recompose';
@@ -43,6 +42,9 @@ const PassDownProps = (props, children) => {
   }
 };
 
+/**
+ * Class DropZone
+ */
 class DropZoneFrecl extends React.Component{
   static defaultProps = {
     children: <noscript />
@@ -57,7 +59,7 @@ class DropZoneFrecl extends React.Component{
   
   onDrop = (files) => {
     const {multiple, inputChanged} = this.props;
-    const droppedFiles = List(files).map(file => Map(file));
+    const droppedFiles = List(files);
 
     if(!multiple) {
       const stateFiles = this.getFiles();
@@ -70,7 +72,7 @@ class DropZoneFrecl extends React.Component{
       }
       inputChanged(droppedFiles);
     } else {
-      inputChanged(List(Map(first(files))));
+      inputChanged(List(files.first()));
     }
   }
   

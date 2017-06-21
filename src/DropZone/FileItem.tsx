@@ -3,7 +3,7 @@ import { Map } from "immutable";
 
 interface FileItem {
   /** The file to display */
-  file: Map<string, any>,
+  file: any,
   /** Function to fire when the delete button is clicked */
   deleteFile: Function,
   /** Index of the file to delete */
@@ -47,7 +47,7 @@ class FileItem extends React.Component<FileItem, FileItemStateProps> {
       }, false);
 
 
-      xhr.open('GET', file.get('preview'), true);
+      xhr.open('GET', file.preview, true);
       xhr.responseType = 'blob';
       xhr.onload = (event) => {
         const target = event.currentTarget as XMLHttpRequest;
