@@ -16,6 +16,8 @@ import TextArea from '../src/TextArea/TextArea';
 import Validation from '../src/Validation/Validation';
 import Validate from '../src/Validation/Validate';
 
+import './FormInner.scss';
+
 export default class FormInner extends React.Component<{}, {}> {
   lastNameValidation(value: string) {
     return value === 'Shane';
@@ -123,7 +125,18 @@ export default class FormInner extends React.Component<{}, {}> {
         <a target="_blank" href="https://github.com/okonet/react-dropzone">Props avaliable here</a>
         <br />
         <br />
-        <DropZone className="drop-zone" name="dropZone" placeholder="Drop stuff here" />
+        <div className="dropzone-container">
+          {/* Single upload */}
+          <div className="dropzone-item">
+            <DropZone name="dropzone-single" placeholder="Drop a single file here" />
+          </div>
+
+          {/* Multiple upload */}
+          <div className="dropzone-item">
+            <DropZone name="dropzone-multiple" placeholder="Drop multiple files here" multiple />
+          </div>
+        </div>
+        <br /><br />
         <DateRange label="Date Range" name="DateRange" />
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
