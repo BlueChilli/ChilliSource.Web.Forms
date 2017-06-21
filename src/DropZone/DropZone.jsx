@@ -49,19 +49,27 @@ class DropZoneFrecl extends React.Component{
   static defaultProps = {
     children: <noscript />
   }
+
+  constructor() {
+    this.state = {
+      showPlaceholder: true
+    };
+  }
+
   componentDidMount(){
     this.props.inputChanged(this.getFiles(), false);
   }
+
   getFiles = () => {
     const {value} = this.props;
     return isFileArray(value) ? value : isSingleFile(value) ? value : null;
   }
   
   onDrop = (files) => {
-    const {multiple, inputChanged} = this.props;
+    const {multiple = false, inputChanged} = this.props;
     const droppedFiles = List(files);
     
-    if(!multiple) {
+    if(multiple) {
       const stateFiles = this.getFiles();
       
       if(stateFiles) {
@@ -72,31 +80,61 @@ class DropZoneFrecl extends React.Component{
       }
       inputChanged(droppedFiles);
     } else {
-      inputChanged(List(files[0]));
+      inputChanged(List(files));
+      this.setState({
+        showPlaceholder: false
+      })
     }
   }
   
-  deleteFile = (index) => {
-    const stateFiles = this.getFiles();
-    this.props.inputChanged(stateFiles.delete(index));
+  showFiles = () => {
+    const {multiple = false, showList = true} = this.props;
+    const files = this.getFiles();
+
+    if(files) {
+      if(showList) {
+        if(multiple) {
+          // list of filenames with icons for data type
+          return files.map((file, index) => {
+            return <FileItem index={index} key={index} file={file} deleteFile={this.deleteFile} />;
+          }).toArray()
+        }
+        return <FileItem file={files.first()} index={0} deleteFile={this.deleteFile} showPreview />;
+      }
+    }
+    return <noscript />;
   }
+
+  deleteFile = (index) => {
+    const {multiple = false, inputChanged} = this.props;
+    const stateFiles = this.getFiles();
+    
+    inputChanged(stateFiles.delete(index));
+    if(!multiple) {
+      this.setState({
+        showPlaceholder: true
+      });
+    }
+  }
+  
   render() {
-    const {children, className, placeholder, showList = true} = this.props;
+    const {children, className, placeholder = "Drop here", multiple = false, showList = true} = this.props;
+    const {showPlaceholder} = this.state;
     const attributes = getHTMLAttributes(this.props);
+
     const files = this.getFiles();
     const classes = classnames("drop-zone-box", className);
+
     return (
       <div className="drop-zone">
-          <DropZone className={classes} onDrop={this.onDrop} {...attributes}>
-            {placeholder && <p className="placeholder">{placeholder}</p>}
-            {PassDownProps({files}, children)}
+        {showPlaceholder && (
+          <DropZone className={classes} onDrop={this.onDrop} multiple={multiple} {...attributes}>
+            <p className="placeholder">{placeholder}</p>
+            {children && PassDownProps({files}, children)}
           </DropZone>
-        {showList && <ul className="drop-zone-files-list">
-          {isFileArray(files) && files.map((file, index) => (
-            <FileItem index={index} key={index} file={file} deleteFile={this.deleteFile}/>
-          ))}
-          {isSingleFile(files) && <FileItem file={files.first()} index={0} deleteFile={this.deleteFile}/>}
-        </ul>}
+        )}
+
+        {this.showFiles()}
       </div>
 
     )

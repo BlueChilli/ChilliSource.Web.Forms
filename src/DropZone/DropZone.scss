@@ -1,3 +1,8 @@
+.drop-zone {
+	width: 100%;
+	
+}
+
 .drop-zone-box {
 	width: 100%;
 	min-height: 144px;
@@ -13,16 +18,32 @@
 	}
 }
 
-.drop-zone-files-list {
-	.file {
-		width: auto;
-		height: 144px;
-		display: flex;
-		align-content: center;
+.file {
+	width: auto;
+	height: 144px;
+	position: relative;
+	display: flex;
 
-		img {
-			max-width: 100%;
-			max-height: 100%;
-		}
+	.preview {
+		max-width: 100%;
+		max-height: 100%;
+	}
+}
+
+.remove-button {
+	position: absolute;
+	left: -8px;
+	top: -8px;
+	width: 16px;
+	height: 16px;
+	border-radius: 8px;
+	background-color: white;
+	box-shadow: 0 0 2px 0 darkgrey;
+
+	p {
+		margin-top: -1px;
+		margin-bottom: 0;
+		color: red;
+		text-align: center;
 	}
 }
