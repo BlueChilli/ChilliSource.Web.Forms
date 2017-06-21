@@ -1,9 +1,13 @@
 import React, { SyntheticEvent } from "react";
 import { Map } from "immutable";
 
+interface FileItemFile extends File {
+  preview: string
+}
+
 interface FileItem {
   /** The file to display */
-  file: any,
+  file: FileItemFile,
   /** Function to fire when the delete button is clicked */
   deleteFile: Function,
   /** Index of the file to delete */
