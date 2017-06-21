@@ -60,19 +60,19 @@ class DropZoneFrecl extends React.Component{
   onDrop = (files) => {
     const {multiple, inputChanged} = this.props;
     const droppedFiles = List(files);
-
+    
     if(!multiple) {
       const stateFiles = this.getFiles();
       
       if(stateFiles) {
         const cleanList = droppedFiles.filter(file => {
-          return stateFiles.every(stateFile => stateFile.get('name') !== file.get('name'));
+          return stateFiles.every(stateFile => stateFile.name !== file.name);
         });
         inputChanged(cleanList.concat(stateFiles));
       }
       inputChanged(droppedFiles);
     } else {
-      inputChanged(List(files.first()));
+      inputChanged(List(files[0]));
     }
   }
   
