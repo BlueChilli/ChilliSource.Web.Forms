@@ -5,7 +5,6 @@
         "module": "es6",
         "moduleResolution": "node",
         "allowJs": true,
-        "strict": true,
         "jsx": "react",
         "sourceMap": true,
         "alwaysStrict": true,
@@ -15,7 +14,8 @@
             "dom"
         ],
         "typeRoots": [
-            "./Frecl/Types/**"
+            "./Frecl/Types/**",
+            "./typings/declare.d.ts"
         ]
     },
     "exclude": [
