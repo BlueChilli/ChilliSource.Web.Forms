@@ -126,17 +126,22 @@ class DropZoneFrecl extends React.Component{
     const classes = classnames("drop-zone-box", className);
 
     return (
-      <div className="drop-zone">
-        {showPlaceholder && (
-          <DropZone className={classes} onDrop={this.onDrop} multiple={multiple} {...attributes}>
-            <p className="placeholder">{placeholder}</p>
-            {children && PassDownProps({files}, children)}
-          </DropZone>
+      <div>
+        <div className="drop-zone">
+          {showPlaceholder && (
+            <DropZone className={classes} onDrop={this.onDrop} multiple={multiple} {...attributes}>
+              <p className="placeholder">{placeholder}</p>
+              {children && PassDownProps({files}, children)}
+            </DropZone>
+          )}
+        </div>
+
+        {files && (
+          <div className="file-list" style={multiple ? {marginTop: '32px'} : {}}>
+            {this.showFiles()}
+          </div>
         )}
-
-        {this.showFiles()}
       </div>
-
     )
   }
 }
