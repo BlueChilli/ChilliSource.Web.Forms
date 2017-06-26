@@ -30,7 +30,7 @@ module.exports = {
       use: ["url-loader", "img-loader"]
     }, {
       test: /\.(txt|svg)$/,
-      use: "raw-loader"
+      use: "file-loader"
     }]
   },
 
