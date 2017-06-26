@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="23px" height="33px" viewBox="0 0 23 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon Word Label</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="File-Types-Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Assets" transform="translate(-87.000000, -153.000000)">
+            <g id="Icon-Word-Label" transform="translate(75.000000, 146.000000)">
+                <text id="DOCX" font-family="Roboto-Medium, Roboto" font-size="8" font-weight="400" fill="#7E7E7E">
+                    <tspan x="14" y="39">DOCX</tspan>
+                </text>
+                <g id="Word-tile" transform="translate(12.000000, 7.000000)">
+                    <path d="M20.6813661,10.5226774 L20.6813661,9.68381054 L13.9303914,9.68381054 L13.9303914,10.5226774 L13.9303914,11.3615443 L20.6813661,11.3615443 L20.6813661,10.5226774 Z M13.3875148,0.802421995 L13.3875148,21.8935955 L0.755102041,19.6580606 L0.755102041,2.94838497 L13.3875148,0.802421995 Z M13.9303914,3.25949589 L22.6413265,3.25949589 L22.6413265,19.4836125 L13.9303914,19.4836125 L13.9303914,3.25949589 Z M13.9303914,5.68381054 L13.9303914,7.18381054 L20.6813661,7.18381054 L20.6813661,5.68381054 L13.9303914,5.68381054 Z M13.9303914,7.68381054 L13.9303914,9.18381054 L20.6813661,9.18381054 L20.6813661,7.68381054 L13.9303914,7.68381054 Z M13.9303914,11.8615443 L13.9303914,13.3615443 L20.6813661,13.3615443 L20.6813661,11.8615443 L13.9303914,11.8615443 Z M13.9303914,13.8615443 L13.9303914,15.3615443 L20.6813661,15.3615443 L20.6813661,13.8615443 L13.9303914,13.8615443 Z M13.9303914,15.8615443 L13.9303914,17.3615443 L20.6813661,17.3615443 L20.6813661,15.8615443 L13.9303914,15.8615443 Z" id="word-icon" fill="#306EAD"></path>
+                    <text id="W" font-family=".SFNSText, .SF NS Text" font-size="9.85005741" font-weight="normal" fill="#FFFFFF">
+                        <tspan x="2.27951569" y="13.1305894">W</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
