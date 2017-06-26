@@ -1,29 +1,21 @@
-/**
- * Libraries
- */
+/** Libraries */
 import React, {Children} from 'react';
 import {List, Map} from 'immutable';
 import DropZone from 'react-dropzone';
 import classnames from 'classnames';
 import {compose} from 'recompose';
 
-/**
- * Components
- */
+/** * Components */
 import performanceWrapper from '../Form/Helpers/performanceWrapper';
 import FileItem from './FileItem';
 import {getHTMLAttributes} from '../Form/Helpers/inputHelpers';
 import {DropZoneProps, DropZoneFile} from '../Form/Types/types';
 import {PerformanceWrapperProps} from '../Form/Helpers/performanceWrapper';
 
-/**
- * Styles
- */
+/** Styles */
 import './DropZone.scss';
 
-/**
- * Helpers
- */
+/** Helpers */
 const isFileArray = (files) => {
   return List.isList(files) && files.size > 1;
 };
@@ -42,9 +34,7 @@ const PassDownProps = (props, children) => {
   }
 };
 
-/**
- * Class DropZone
- */
+/** Class DropZone */
 class DropZoneFrecl extends React.Component{
   static defaultProps = {
     children: <noscript />
