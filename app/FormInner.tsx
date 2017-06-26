@@ -1,5 +1,5 @@
 import React from 'react';
-import {List} from 'immutable';
+import { List } from 'immutable';
 import CheckBox from '../src/CheckBox/CheckBox';
 import Form from '../src/Form/Form';
 import Fieldset from '../src/Form/Fieldset';
@@ -16,21 +16,23 @@ import TextArea from '../src/TextArea/TextArea';
 import Validation from '../src/Validation/Validation';
 import Validate from '../src/Validation/Validate';
 
+import './FormInner.scss';
+
 export default class FormInner extends React.Component<{}, {}> {
-  lastNameValidation(value:string){
+  lastNameValidation(value: string) {
     return value === 'Shane';
   }
   render() {
     const options = List([
-        {value: 'Pash', label: 'Pash'},
-        {value: 'Wolf', label: 'Wolf'},
-        {value: 'Hunter', label: 'Hunter'},
-        {value: 'Mouse', label: 'Mouse'},
-        {value: 'Millenial', label: 'Millenial'},
+      { value: 'Pash', label: 'Pash' },
+      { value: 'Wolf', label: 'Wolf' },
+      { value: 'Hunter', label: 'Hunter' },
+      { value: 'Mouse', label: 'Mouse' },
+      { value: 'Millenial', label: 'Millenial' },
     ]);
 
     return (
-      <div style={{padding: '20px 40px'}}>
+      <div style={{ padding: '20px 40px' }}>
         <Input autoFocus label="First Name" required defaultValue="First Name" pattern="[A-Za-z]+$" name="firstName" customValidation={this.lastNameValidation}>
           <Validation isFor="required">This field is required</Validation>
           <Validation isFor="customValidation">This field must be Shane</Validation>
@@ -52,7 +54,7 @@ export default class FormInner extends React.Component<{}, {}> {
           </Input>
         </Fieldset>
         <Input label="Currency" prepend="$" type="text" required min="10" max="100000"
-                pattern="[0-9]" name="Currency">
+          pattern="[0-9]" name="Currency">
           <Validation isFor="required">Currency is required</Validation>
           <Validation isFor="pattern">Currency must be a number</Validation>
           <Validation isFor="min">Currency must be greater then 9</Validation>
@@ -72,11 +74,11 @@ export default class FormInner extends React.Component<{}, {}> {
           <Validation isFor="type">Must be a valid email</Validation>
         </Input>
         <Input label="Password" labelPostfix="Your password must be at least 6 characters long." minLength="5"
-                type="password" required name="password">
+          type="password" required name="password">
           <Validation isFor="required">Password is required</Validation>
           <Validation isFor="minLength">Password must be 5 characters long</Validation>
-        </Input>     
-        <TextArea label="Write something" name="something"/>
+        </Input>
+        <TextArea label="Write something" name="something" />
         <TextArea label="With validation" required name="withValidation">
           <Validation isFor="required">With validation is required</Validation>
         </TextArea>
@@ -86,18 +88,18 @@ export default class FormInner extends React.Component<{}, {}> {
           </CheckBox>
         </div>
         <div className="switch-container">
-          <CheckBox defaultChecked id="red" label="Red" name="color[]"/>
-          <CheckBox id="blue" label="Blue" name="color[]"/>
-          <CheckBox defaultChecked id="green" label="Green" name="color[]"/>
+          <CheckBox defaultChecked id="red" label="Red" name="color[]" />
+          <CheckBox id="blue" label="Blue" name="color[]" />
+          <CheckBox defaultChecked id="green" label="Green" name="color[]" />
           <Validate name="color[]" required>
             <Validation isFor="required">Please choose a color</Validation>
           </Validate>
         </div>
         <div className="switch-container">
-          <Radio name="size" label="Extra Small" id="x-small"/>
-          <Radio name="size" label="Small" id="small"/>
-          <Radio name="size" label="Medium" id="medium"/>
-          <Radio name="size" label="Large" id="large"/>
+          <Radio name="size" label="Extra Small" id="x-small" />
+          <Radio name="size" label="Small" id="small" />
+          <Radio name="size" label="Medium" id="medium" />
+          <Radio name="size" label="Large" id="large" />
           <Validate name="size" required>
             <Validation isFor="required">Please choose a size</Validation>
           </Validate>
@@ -119,20 +121,29 @@ export default class FormInner extends React.Component<{}, {}> {
         </Select>
 
         <MultiSelect name="FDs" options={options} defaultValue={List(['Pash', 'Hunter'])} label="Frontend Devs" />
-        
-        <a target="_blank" href="https://github.com/okonet/react-dropzone">Props avaliable here</a>
-        <br/>
-        <br/>
-        <DropZone className="drop-zone" name="dropZone">
-          <span>Drop stuff here</span>
-        </DropZone>
-        <DateRange label="Date Range" name="DateRange"/>
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
-        <DatePicker label="Date Picker" name="DatePicker"/>
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <a target="_blank" href="https://github.com/okonet/react-dropzone">Props avaliable here</a>
+        <br />
+        <br />
+        <div className="dropzone-container">
+          {/* Single upload */}
+          <div className="dropzone-item">
+            <DropZone name="dropzone-single" placeholder="Drop a single file here" />
+          </div>
+
+          {/* Multiple upload */}
+          <div className="dropzone-item">
+            <DropZone name="dropzone-multiple" placeholder="Drop multiple files here" multiple />
+          </div>
+        </div>
+        <br /><br />
+        <DateRange label="Date Range" name="DateRange" />
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+        <DatePicker label="Date Picker" name="DatePicker" />
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         <button>Submit</button>
       </div>
     );
