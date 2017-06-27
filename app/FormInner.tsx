@@ -33,7 +33,7 @@ export default class FormInner extends React.Component<{}, {}> {
 
     return (
       <div style={{ padding: '20px 40px' }}>
-        <Input autoFocus label="First Name" required defaultValue="First Name" pattern="[A-Za-z]+$" name="firstName" customValidation={this.lastNameValidation}>
+        <Input autoFocus label="First Name" required defaultValue="First Name" pattern="[A-Za-z]+$" name="firstName"  customValidation={this.lastNameValidation}>
           <Validation isFor="required">This field is required</Validation>
           <Validation isFor="customValidation">This field must be Shane</Validation>
         </Input>
@@ -54,7 +54,7 @@ export default class FormInner extends React.Component<{}, {}> {
           </Input>
         </Fieldset>
         <Input label="Currency" prepend="$" type="text" required min="10" max="100000"
-          pattern="[0-9]" name="Currency">
+          pattern="[0-9]" name="Currency" placeholder="Test">
           <Validation isFor="required">Currency is required</Validation>
           <Validation isFor="pattern">Currency must be a number</Validation>
           <Validation isFor="min">Currency must be greater then 9</Validation>

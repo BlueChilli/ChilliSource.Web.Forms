@@ -102,6 +102,11 @@ export interface NameProp {
 	name: string
 }
 
+export interface PlaceholderProp {
+	/** A placeholder to display for the input field*/
+	placeholder?: string
+}
+
 export interface IdProp {
 	/** Used to provide extra identification information when name isnt enough */
 	id?: string
@@ -142,8 +147,8 @@ interface OptionTypes{
   children: List<React.ReactText>
 }
 
-export interface TextAreaProps extends BaseInputProps<string, string>, BaseFreclValidationProps, InputWrapperProps  {}
-export interface TextInputProps extends BaseInputProps<string, string | number>, BaseFreclValidationProps, InputWrapperProps, InputGroupProps{} 
+export interface TextAreaProps extends BaseInputProps<string, string>, BaseFreclValidationProps, InputWrapperProps, PlaceholderProp {}
+export interface TextInputProps extends BaseInputProps<string, string | number>, BaseFreclValidationProps, InputWrapperProps, InputGroupProps, PlaceholderProp{} 
 export interface SelectInputProps extends BaseInputProps<string | number, string | number>, BaseFreclValidationProps, InputWrapperProps, DefaultSwitchProps{
 	/** Pass in an arrow to display at the edge of the select box */ 
 	arrow?: React.ReactNode
@@ -174,9 +179,7 @@ export interface DropZoneProps extends BaseReactProps, NameProp, ValueProp<List<
 	showList?: boolean,
 }
 
-export interface DateWrapperProps extends InputWrapperProps, InputGroupProps, BaseReactProps{
-	placeholder?: string
-}
+export interface DateWrapperProps extends InputWrapperProps, InputGroupProps, BaseReactProps, PlaceholderProp{}
 
 export interface InternalDateWrapperProps extends DateWrapperProps{
 	valueString: string,
