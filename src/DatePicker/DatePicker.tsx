@@ -1,7 +1,7 @@
 import React from "react";
 import moment, {Moment} from "moment";
 import DateWrapper, {DateWrapperPassedDownProps} from "./DateWrapper";
-import {compose} from "recompose";
+import {compose, defaultProps} from "recompose";
 import performanceWrapper, {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
 import {DatePickerProps} from "../Form/Types/types";
 import {Calendar} from "react-date-range";
@@ -25,10 +25,6 @@ class CalendarBase extends React.Component<DatePickerProps & PerformanceWrapperP
 };
 
 class DatePicker extends React.Component<DatePickerProps & PerformanceWrapperProps, {}>{
-  public static defaultProps:any = {
-      dateFormat: 'DD/MM/YYYY',
-      defaultValue: moment().format('YYYY-MM-DD')
-  }
   getValue = () => {
     if (this.props.value || this.props.defaultValue) {
       return moment(this.props.value || this.props.defaultValue).format(this.props.format);
@@ -45,7 +41,13 @@ class DatePicker extends React.Component<DatePickerProps & PerformanceWrapperPro
   }
 };
 
-export default performanceWrapper<DatePickerProps>(DatePicker);
+export default compose<DatePickerProps & PerformanceWrapperProps, DatePickerProps>(
+  defaultProps({
+    defaultValue: moment().format('YYYY-MM-DD'),
+    dateFormat: 'DD/MM/YYYY'
+  }),
+  performanceWrapper
+)(DatePicker);
 
 
 
