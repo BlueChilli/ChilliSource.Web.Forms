@@ -2,7 +2,7 @@
 This project is part of the ChilliSource framework developed by [BlueChilli](https://github.com/BlueChilli).
 
 # Summary
-ChilliSource.Web.Forms is a collection of form components, helpers and abstractions that enable faster and cleaner development of React-based apps. This library can be used with or without redux 😀.
+ChilliSource.Web.Forms is a collection of form components, helpers and abstractions that enable faster and cleaner development of React-based apps. This library can be used with or without [redux](https://github.com/reactjs/redux/) 😀.
 
 # Main Features
 
