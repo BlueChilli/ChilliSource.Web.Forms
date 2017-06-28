@@ -1,8 +1,24 @@
 {
-  "name": "chillisource.web.forms",
-  "version": "1.0.8",
-  "description": "",
+  "name": "cs.forms",
+  "version": "1.0.0",
+  "description": "A collection of forms components, helpers and abstractions built in React. These can be used with or without Redux.",
   "main": "dist/chillisource-web-forms.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BlueChilli/ChilliSource.Web.Forms.git"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "form",
+    "forms"
+  ],
+  "author": "Blue Chilli Technology Pty Ltd",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BlueChilli/ChilliSource.Web.Forms/issues"
+  },
+  "homepage": "https://github.com/BlueChilli/ChilliSource.Web.Forms#readme",
   "types": "./typings/typescript.d.ts",
   "module": "src/index.js",
   "scripts": {
@@ -10,8 +26,6 @@
     "start": "node server.js",
     "build": "webpack --config webpack.build.config.js -p"
   },
-  "author": "BlueChilli",
-  "license": "ISC",
   "babel": {
     "presets": [
       "react",
