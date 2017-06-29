@@ -1,6 +1,6 @@
 {
   "name": "cs.forms",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "A collection of forms components, helpers and abstractions built in React. These can be used with or without Redux.",
   "main": "dist/chillisource-web-forms.js",
   "repository": {
@@ -67,6 +67,7 @@
     "@types/react-dropzone": "0.0.32",
     "@types/react-onclickoutside": "^5.7.3",
     "@types/react-redux": "^4.4.39",
+    "@types/react-select": "^1.0.48",
     "autoprefixer": "^6.7.7",
     "awesome-typescript-loader": "^3.1.2",
     "babel-jest": "^19.0.0",
