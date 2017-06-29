@@ -8,6 +8,7 @@ export {default as Radio} from "../src/Radio/Radio";
 export {default as RadioTabs} from "../src/Radio/RadioTabs";
 export {default as RadioTab} from "../src/Radio/RadioTab";
 export {default as Select} from "../src/Select/Select";
+export {default as MultiSelect} from "../src/Select/MultiSelect";
 export {default as TextArea} from "../src/TextArea/TextArea";
 export {default as Validation} from "../src/Validation/Validation";
 export {default as Validate} from "../src/Validation/Validate";
