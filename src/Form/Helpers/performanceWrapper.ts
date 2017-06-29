@@ -124,7 +124,7 @@ export default <TOutter extends WithHandlersGuard> (ReactClass:ReactComponent<TO
           nextProps.inputChanged(nextProps.defaultValue, false);
         }
         if(!specificShallowEqualValue(nextProps, this.props)) {
-          nextProps.inputChanged(nextProps.value, false);
+          nextProps.inputChanged(nextProps.value, true);
         }
         if(!nextProps.FormState.hasIn([nextProps.nameSpace, ...nextProps.inputPath])) {
           nextProps.inputChanged(nextProps.value, false);
