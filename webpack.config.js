@@ -29,7 +29,7 @@ module.exports = {
       use: ["url-loader", "img-loader"]
     }, {
       test: /\.(txt|svg)$/,
-      use: "file-loader"
+      use: "url-loader"
     }]
   },
   plugins: [
