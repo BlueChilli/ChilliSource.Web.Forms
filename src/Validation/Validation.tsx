@@ -10,7 +10,7 @@ import {ValidationAdditionProps, TextInputProps} from "../Form/Types/types";
 import {ReactComponent, ShallowCompare} from "../../libs/types";
 
 const specificShallowEqual = createSpecificShallowEqual('value', 'changed', 'type');
-const specificShallowEqualDisplayed = createSpecificShallowEqual('displayed');
+const specificShallowEqualDisplayed = createSpecificShallowEqual('displayed', 'className');
 const specificShallowEqualTestElement = createSpecificShallowEqual("value", "typeOfValidation", "type");
 const availableValidationsShallowEqual = createSpecificShallowEqual("isFor", "test", ...Object.keys(validations));
 
@@ -103,7 +103,7 @@ export default compose<ValidationInternalProps, ValidationComponentProps>(
     }
   }),
   mapProps((ownerProps:ValidationWithStateProps) => {
-    const {valid, value, className, changed, children} = ownerProps;
+    const {valid, value, className, changed, children, test} = ownerProps;
     return {
       displayed: !valid && changed,
       className,

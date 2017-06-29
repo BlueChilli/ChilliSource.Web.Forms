@@ -54,12 +54,7 @@ export default class FormInner extends React.Component<{}, {}> {
           </Input>
         </Fieldset>
         <Input label="Currency" prepend="$" type="text" required min="10" max="100000"
-          pattern="[0-9]" name="Currency" placeholder="Test">
-          <Validation isFor="required">Currency is required</Validation>
-          <Validation isFor="pattern">Currency must be a number</Validation>
-          <Validation isFor="min">Currency must be greater then 9</Validation>
-          <Validation isFor="max">Currency must be less then 100001</Validation>
-        </Input>
+          pattern="[0-9]" name="Currency" placeholder="Test"/>
         <Input label="Percentage" append="%" type="number" required name="Percentage">
           <Validation isFor="pattern">Percentage must be a number</Validation>
         </Input>
