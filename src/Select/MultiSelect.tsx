@@ -4,10 +4,11 @@ import {List, fromJS} from 'immutable';
 import 'react-select/dist/react-select.css';
 import InputWrapper from '../Form/InputWrapper';
 import {SelectInputProps} from "../Form/Types/types";
-import performanceWrapper from '../Form/Helpers/performanceWrapper';
+import performanceWrapper, {PerformanceWrapperProps} from '../Form/Helpers/performanceWrapper';
+import {MultiSelectProps, InputWrapperProps} from '../Form/Types/types';
 import classnames from 'classnames';
 
-export class MultiSelect extends React.Component {
+export class MultiSelect extends React.Component<MultiSelectProps & PerformanceWrapperProps, {}> {
   defaultProps = {
     options: List([])
   }
@@ -19,7 +20,7 @@ export class MultiSelect extends React.Component {
 
   handleChange = values => {
     const {inputChanged, onChange} = this.props;
-    const newValues = List([]).concat(fromJS(values));
+    const newValues = List([]).concat(fromJS(values)).toList();
 
     inputChanged(newValues);
     if(typeof onChange === 'function') {

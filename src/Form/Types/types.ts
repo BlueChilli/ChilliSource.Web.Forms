@@ -130,7 +130,7 @@ export interface InputWrapperProps extends BaseReactProps, LabelProp, NameProp, 
 }
 
 
-interface BaseInputProps<TDefault, TValue> extends BaseReactProps, OnChangeEventProps<ChangeEvent<{}>>, OnBlurEventProps<FocusEvent<{}>>, ValidationProps, NameProp, TypeProp, IdProp, DefaultValueProp<TDefault>, ValueProp<TValue>{
+interface BaseInputProps<TDefault, TValue, TChangeEvent = ChangeEvent<{}>> extends BaseReactProps, OnChangeEventProps<TChangeEvent>, OnBlurEventProps<FocusEvent<{}>>, ValidationProps, NameProp, TypeProp, IdProp, DefaultValueProp<TDefault>, ValueProp<TValue>{
 	/** Automatically select this field on navigation*/			
 	autoFocus?: boolean,
 }
@@ -152,6 +152,10 @@ export interface TextInputProps extends BaseInputProps<string, string | number>,
 export interface SelectInputProps extends BaseInputProps<string | number, string | number>, BaseFreclValidationProps, InputWrapperProps, DefaultSwitchProps{
 	/** Pass in an arrow to display at the edge of the select box */ 
 	arrow?: React.ReactNode
+}
+
+export interface MultiSelectProps extends InputWrapperProps, BaseInputProps<any, any, List<any>> {
+	options: List<any>
 }
 
 export interface SwitchProps extends BaseInputProps<boolean | string | number, string | boolean | undefined>, DefaultSwitchProps, LabelProp{
