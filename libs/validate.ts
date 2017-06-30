@@ -26,7 +26,7 @@ export const validations:ValidationTypes = {
     } else if (type === "checkbox") {
       return value === true;
     }
-    return value.toString().length > 0
+    return value.toString().length > 0 && value !== false;
   },
   pattern: (value, test) => {
     let patternRegExp = new RegExp(test);
