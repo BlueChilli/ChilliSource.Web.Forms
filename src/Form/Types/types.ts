@@ -117,6 +117,11 @@ export interface DefaultValueProp<TDefault> {
 	defaultValue?: TDefault,
 }
 
+export interface AdditionalCompareProps{
+	/** Additional props to check in should component update */	
+	additionalCompareProps?: string[],
+}
+
 export interface DefaultSwitchProps {
 	defaultChecked?: boolean | string | number | undefined,
 	defaultSelected?: boolean | string | number | undefined 
@@ -147,18 +152,18 @@ interface OptionTypes{
   children: List<React.ReactText>
 }
 
-export interface TextAreaProps extends BaseInputProps<string, string>, BaseFreclValidationProps, InputWrapperProps, PlaceholderProp {}
-export interface TextInputProps extends BaseInputProps<string, string | number>, BaseFreclValidationProps, InputWrapperProps, InputGroupProps, PlaceholderProp{} 
-export interface SelectInputProps extends BaseInputProps<string | number, string | number>, BaseFreclValidationProps, InputWrapperProps, DefaultSwitchProps{
+export interface TextAreaProps extends BaseInputProps<string, string>, BaseFreclValidationProps, InputWrapperProps, PlaceholderProp, AdditionalCompareProps {}
+export interface TextInputProps extends BaseInputProps<string, string | number>, BaseFreclValidationProps, InputWrapperProps, InputGroupProps, PlaceholderProp, AdditionalCompareProps{} 
+export interface SelectInputProps extends BaseInputProps<string | number, string | number>, BaseFreclValidationProps, InputWrapperProps, DefaultSwitchProps, AdditionalCompareProps{
 	/** Pass in an arrow to display at the edge of the select box */ 
 	arrow?: React.ReactNode
 }
 
-export interface MultiSelectProps extends InputWrapperProps, BaseInputProps<any, any, List<any>> {
+export interface MultiSelectProps extends InputWrapperProps, BaseInputProps<any, any, List<any>>, AdditionalCompareProps {
 	options: List<any>
 }
 
-export interface SwitchProps extends BaseInputProps<boolean | string | number, string | boolean | undefined>, DefaultSwitchProps, LabelProp{
+export interface SwitchProps extends BaseInputProps<boolean | string | number, string | boolean | undefined>, DefaultSwitchProps, LabelProp, AdditionalCompareProps{
 	/** Put into state as the value of the selected switch */
 	id: string
 }
@@ -168,7 +173,7 @@ export interface RadioTabsProps extends BaseReactProps, NameProp, LabelProp{
 }
 
 
-export interface ValidationElementProps extends BaseReactProps, NameProp{
+export interface ValidationElementProps extends BaseReactProps, NameProp, AdditionalCompareProps{
 	/** What validation attribute is the message for */
 	isFor: TypeOfTest,
 }
@@ -176,7 +181,7 @@ export interface ValidationElementProps extends BaseReactProps, NameProp{
 
 export interface DisplayValidationProps extends BaseReactProps, OptionalValidationProps, BaseFreclValidationProps, TypeProp, NameProp{}
 
-export interface DropZoneProps extends BaseReactProps, NameProp, ValueProp<List<File>>{
+export interface DropZoneProps extends BaseReactProps, NameProp, ValueProp<List<File>>, AdditionalCompareProps{
 	/** Can you upload multiple files*/	
 	multiple?: boolean,
 	/** Display a list of uploaded files*/		
@@ -190,7 +195,7 @@ export interface InternalDateWrapperProps extends DateWrapperProps{
 	children: React.ReactElement<any>
 }
 
-interface CommonDateProps extends BaseReactProps, NameProp, DateWrapperProps, OnChangeEventProps<DateRangeMoment | Moment>{
+interface CommonDateProps extends BaseReactProps, NameProp, DateWrapperProps, OnChangeEventProps<DateRangeMoment | Moment>, AdditionalCompareProps{
 	date?: moment.Moment,
 	format?: string,
 	firstDayOfTheWeek?: number,
@@ -277,7 +282,8 @@ export interface PerformanceWrapperInputHelpers {
 	inputChanged: inputChanged,
 	/** Set the inputs state */ 
 	setInputBlurred: inputBlurred,
-	setValidation: setValidation
+	setValidation: setValidation,
+	compareAdditionalProps:<TProps> (props: TProps, nextProps: TProps) => boolean
 }
 
 

@@ -1,4 +1,3 @@
-import {isValidElement} from "react";
 import {is, Iterable} from "immutable";
 import {isArray, isObject, isNaN, isFunction} from "lodash";
 import {ShallowCompare, ShallowCompareProps} from "./types";
@@ -17,7 +16,6 @@ import {ShallowCompare, ShallowCompareProps} from "./types";
         return is(currentVal, nextVal);
       } else {
         if ((isArray(nextVal) || isObject(nextVal) || isNaN(nextVal)) && !isFunction(nextVal)) {
-          console.log('Here', nextVal, isValidElement(nextVal));
           throw new Error(`Specific shallow equal does not support plain old JS objects, Arrays and NaN: prop ${keyToTest} is a ${typeof nextVal}`);
         }
         return currentVal === nextVal;

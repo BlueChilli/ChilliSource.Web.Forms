@@ -85,7 +85,7 @@ export default class FormInner extends React.Component<{}, {}> {
         <div className="switch-container">
           <CheckBox defaultChecked id="red" label="Red" name="color[]" />
           <CheckBox id="blue" label="Blue" name="color[]" />
-          <CheckBox defaultChecked id="green" label="Green" name="color[]" />
+          <CheckBox defaultChecked id="green" label="Green" name="color[]" additionalCompareProps={['name']}/>
           <Validate name="color[]" required>
             <Validation isFor="required">Please choose a color</Validation>
           </Validate>
