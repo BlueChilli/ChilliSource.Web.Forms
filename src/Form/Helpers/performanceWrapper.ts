@@ -106,7 +106,7 @@ const createUniversalCompose = <TOutter extends WithHandlersGuard, TWithHandlers
   withProps<PerformanceWrapperWithProps, PerformanceWrapperWithHandlers & FormContext & TOutter>(withNeededProps),
   withHandlers<TWithHandlers, FormContext & TOutter>(withHandlersArgs),
   shouldUpdate<PerformanceWrapperProps & TOutter>((props, nextProps) => {
-    return !specificShallowEqual(props, nextProps) && !nextProps.compareAdditionalProps<PerformanceWrapperProps & TOutter>(props, nextProps);
+    return !specificShallowEqual(props, nextProps) || !nextProps.compareAdditionalProps<PerformanceWrapperProps & TOutter>(props, nextProps);
   })
 );
 
