@@ -22,12 +22,11 @@ export const isMultipleValueInput = (inputName: string): boolean => {
   return inputName.search(/\[\]$/) !== -1;
 }
 
-
 /**
  * Checks all the supplied values and returns
  * the appropriately validated value
- * @param check Function 
- * @param args Array An array of cvalues
+ * @param check Test for the values supplied
+ * @param args Values that need to be checked with the test provided
  */
 export function returnCheckedValue<T>(check:(arg:T) => boolean, ...args:T[]){
   const innerReturnCheckedValue = (index = 0):T|undefined => {
