@@ -1,13 +1,19 @@
-import React from "react";
-import InputWrapper from "../Form/InputWrapper";
-import performanceWrapper, {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
-import DisplayValidation from "../Validation/DisplayValidation";
-import SelectBase from "./Base";
-import "./Select.scss";
-import {SelectInputProps} from "../Form/Types/types";
-import classnames from "classnames";
+/** Libraries */
+import React from 'react';
+import classnames from 'classnames';
 
-export class Select extends React.PureComponent<SelectInputProps & PerformanceWrapperProps, {}> {
+/** Components */
+import InputWrapper from '../Form/InputWrapper';
+import performanceWrapper, {PerformanceWrapperProps} from '../Form/Helpers/performanceWrapper';
+import DisplayValidation from '../Validation/DisplayValidation';
+import SelectBase from './Base';
+import {SelectInputProps} from '../Form/Types/types';
+
+/** Styles */
+import './Select.scss';
+
+/** Class Select */
+class Select extends React.PureComponent<SelectInputProps & PerformanceWrapperProps, {}> {
   render() {
     const {className, label, labelPostfix, labelPrefix, arrow, ...props} = this.props
     const {autoFocus, onChange, onBlur, id, defaultChecked, defaultSelected, value, children, ...validationProps} = props;
@@ -27,3 +33,4 @@ export class Select extends React.PureComponent<SelectInputProps & PerformanceWr
 };
 
 export default performanceWrapper<SelectInputProps>(Select);
+export {Select};

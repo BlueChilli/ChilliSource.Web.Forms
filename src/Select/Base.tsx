@@ -27,6 +27,7 @@ const getDefaultSelected = ({children, defaultValue}: SelectInputProps) => {
 
 /** Class SelectBase */
 class SelectBase extends React.Component<SelectInputProps & PerformanceWrapperProps, {}> {
+  /*displayName: 'SelectBase'*/
   
   handleChange = (event: ChangeEvent<{value:any}>) => {
     const {inputChanged, onChange} = this.props;
