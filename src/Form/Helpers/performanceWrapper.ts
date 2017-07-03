@@ -1,25 +1,33 @@
-import PropTypes from "prop-types";
-import Recompose from "recompose";
-import {isUndefined} from "lodash";
-import {getContext, withProps, shouldUpdate, withHandlers, compose, lifecycle} from "recompose";
-import {Map} from "immutable";
-import {isMultipleValueInput, returnCheckedValue} from "./inputHelpers";
-import createSpecificShallowEqual from "../../../libs/createSpecificShallowEqual"
-import {setInput, setInputInteraction, setValidation} from "../Actions/fields";
-import {ShallowCompareProps, ReactComponent, BaseReactProps, ShallowCompare} from "../../../libs/types";
+/** Libraries */
+import PropTypes from 'prop-types';
+import Recompose from 'recompose';
+import {isUndefined} from 'lodash';
+import {getContext, withProps, shouldUpdate, withHandlers, compose, lifecycle} from 'recompose';
+import {Map} from 'immutable';
+
+/** Components */
+import {isMultipleValueInput, returnCheckedValue} from './inputHelpers';
+import createSpecificShallowEqual from '../../../libs/createSpecificShallowEqual'
+import {setInput, setInputInteraction, setValidation} from '../Actions/fields';
+import {ShallowCompareProps, ReactComponent, BaseReactProps, ShallowCompare} from '../../../libs/types';
 import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerformanceWrapperInputHelpers, FieldSetNameSpaceProp,
    PerformanceWrapperUncalledInputHelpers, PerformanceWrapperUncalledValidationHelpers, NameProp, IdProp, TypeProp, PossibleValues,
-  DefaultValueProp, PossibleDefaultValues, InputInfoProps, DefaultSwitchProps, NameSpaceProp, FormStateProp, ValueProp, SetValidation} from "../Types/types"
+  DefaultValueProp, PossibleDefaultValues, InputInfoProps, DefaultSwitchProps, NameSpaceProp, FormStateProp, ValueProp, SetValidation} from '../Types/types';
 
+/** Interfaces */
+interface WithHandlersGuard extends NameProp, IdProp, TypeProp, DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, NameProp, BaseReactProps, ValueProp<PossibleValues>, IdProp, TypeProp{}
+export interface PerformanceWrapperProps extends PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, FormContext {}
+interface GetInputPathGuard extends NameProp, IdProp, FieldSetNameSpaceProp {}
+interface GetValidationPathGuard extends NameProp, FieldSetNameSpaceProp {}
+interface WithNeededPropsGuard extends DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, ValueProp<PossibleValues>, NameProp {}
+
+/** Helpers */
 const specificShallowEqual = createSpecificShallowEqual("inputInfo", "name", "nameSpace", "type", "id", "disabled", "required", 
 "className", "defaultValue", "defaultChecked", "defaultSelected", "options", "fieldSetNameSpace", "value", "label");
 
 const specificShallowEqualDefault = createSpecificShallowEqual<DefaultValueProp<PossibleDefaultValues>>("defaultValue");
+
 const specificShallowEqualValue = createSpecificShallowEqual("value");
-
-interface WithHandlersGuard extends NameProp, IdProp, TypeProp, DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, NameProp, BaseReactProps, ValueProp<PossibleValues>, IdProp, TypeProp{}
-
-export interface PerformanceWrapperProps extends PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, FormContext {}
 
 const getUnsetValue = ({type}:TypeProp) => {
   if (type === 'radio' || type === 'checkbox') {
@@ -28,9 +36,6 @@ const getUnsetValue = ({type}:TypeProp) => {
     return '';
   }
 };
-
-interface GetInputPathGuard extends NameProp, IdProp, FieldSetNameSpaceProp{}
-interface GetValidationPathGuard extends NameProp, FieldSetNameSpaceProp{}
 
 export const getInputPath = (type:string, {name, id, fieldSetNameSpace}:GetInputPathGuard):string[] => {
   if(isMultipleValueInput(name) && fieldSetNameSpace !== undefined) {
@@ -50,9 +55,6 @@ export const getInputPath = (type:string, {name, id, fieldSetNameSpace}:GetInput
   }
   return [name];
 }
-
-
-interface WithNeededPropsGuard extends DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, ValueProp<PossibleValues>, NameProp {}
 
 export const getPrioritisedDefaultValue = (defaultValue?:PossibleDefaultValues, defaultChecked?:boolean | number | string, defaultSelected?:boolean | number | string) => (
   returnCheckedValue((arg) => !isUndefined(arg), defaultValue, defaultChecked, defaultSelected)
