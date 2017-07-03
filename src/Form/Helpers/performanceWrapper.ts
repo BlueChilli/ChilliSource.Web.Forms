@@ -37,7 +37,12 @@ const getUnsetValue = ({type}:TypeProp) => {
   }
 };
 
-export const getInputPath = (type:string, {name, id, fieldSetNameSpace}:GetInputPathGuard):string[] => {
+/**
+ * 
+ * @param type The type of grouping - 'input' or 'validation'
+ * @param Object The values for each of the items i.e. {name, id, fieldSetNameSpace}
+ */
+export const getInputPath = (type: 'input' | 'validation', {name, id, fieldSetNameSpace}:GetInputPathGuard):string[] => {
   if(isMultipleValueInput(name) && fieldSetNameSpace !== undefined) {
     if(id) {
       return [fieldSetNameSpace, name, type, id];
