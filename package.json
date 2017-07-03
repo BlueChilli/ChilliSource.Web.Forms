@@ -26,17 +26,6 @@
     "start": "node server.js",
     "build": "webpack --config webpack.build.config.js -p"
   },
-  "babel": {
-    "presets": [
-      "react",
-      "es2015",
-      "stage-2"
-    ],
-    "plugins": [
-      "transform-object-assign",
-      "transform-react-display-name"
-    ]
-  },
   "jest": {
     "moduleFileExtensions": [
       "ts",
@@ -52,8 +41,7 @@
       "\\.s?css$": "<rootDir>/__mocks__/fileMock.js"
     },
     "transform": {
-      "^.+\\.tsx?$": "typescript-babel-jest",
-      "^.+\\.jsx?$": "babel-jest"
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$"
   },
@@ -70,7 +58,6 @@
     "@types/react-select": "^1.0.48",
     "autoprefixer": "^6.7.7",
     "awesome-typescript-loader": "^3.1.2",
-    "babel-jest": "^19.0.0",
     "clean-webpack-plugin": "^0.1.16",
     "config": "^1.25.1",
     "css-loader": "^0.28.0",
@@ -90,7 +77,6 @@
     "sinon": "^2.1.0",
     "style-loader": "^0.16.1",
     "typescript": "2.3.4",
-    "typescript-babel-jest": "^1.0.3",
     "url-loader": "^0.5.8",
     "webpack": "^2.3.3",
     "webpack-dev-middleware": "^1.10.1",

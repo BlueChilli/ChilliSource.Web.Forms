@@ -1,3 +1,4 @@
+import React from "react";
 import createIsSpecificShallowEqual from "../createSpecificShallowEqual";
 import {Map} from "immutable";
 
@@ -47,6 +48,24 @@ const currentPropsObj = {
   name: {},
 }
 
+const currentPropsDom = {
+  children: <span></span>,
+  required: true,
+  inputInfo: Map({
+    value: '1',
+    blurred: true
+  })
+};
+
+const nextPropsDom = {
+  children: <span>label</span>,
+  required: true,
+  inputInfo: Map({
+    value: '1',
+    blurred: true
+  })
+};
+
 
 describe('createIsSpecificShallowEqual()', () => {
   const isSpecificShallowEqual = createIsSpecificShallowEqual(...keysToTest);
@@ -63,6 +82,9 @@ describe('createIsSpecificShallowEqual()', () => {
     it('compares different objects: string is different', () => {
       expect(isSpecificShallowEqual(currentProps, nextPropsFailString)).toBe(false);
     });
+    // it('compares different DOM nodes: child is different', () => {
+    //   expect(isSpecificShallowEqual(currentPropsDom, nextPropsDom)).toBe(false);
+    // });
     it('compares throwing objects: NaN doesn\'t throw', () => {
       expect(() => isSpecificShallowEqual(currentPropsNan, currentPropsNan)).toThrowError();
     });
