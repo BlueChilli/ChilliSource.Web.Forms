@@ -15,7 +15,7 @@ import {ShallowCompare, ShallowCompareProps} from "./types";
       if (Iterable.isIterable(currentVal) || Iterable.isIterable(nextVal)) {
         return is(currentVal, nextVal);
       } else {
-        if ((isArray(nextVal) || isObject(nextVal) || isNaN(nextVal)) && !isFunction(nextVal)) {
+        if ((isArray(nextVal) || isObject(nextVal) || isNaN(nextVal)) && !(isFunction(nextVal) || nextVal instanceof File)) {
           throw new Error(`Specific shallow equal does not support plain old JS objects, Arrays and NaN: prop ${keyToTest} is a ${typeof nextVal}`);
         }
         return currentVal === nextVal;
