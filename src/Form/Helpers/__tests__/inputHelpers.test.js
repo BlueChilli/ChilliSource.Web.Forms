@@ -1,5 +1,5 @@
-import {isEqual} from "lodash";
-import {returnDefinedValue, isMultipleValueInput, getHTMLAttributes} from "../inputHelpers";
+import {isEqual, isUndefined} from "lodash";
+import {returnCheckedValue, isMultipleValueInput, getHTMLAttributes} from "../inputHelpers";
 
 const supportedProps = {
   min: 30,
@@ -21,17 +21,17 @@ const unsupportedProps = {
 }
 
 
-describe("returnDefinedValue()", () => {
+describe("returnCheckedValue()", () => {
   it('should return undefined when no valid argument is passed', () => {
-    expect(returnDefinedValue(undefined, undefined, undefined, undefined)).toBe(undefined)
+    expect(returnCheckedValue((arg) => !isUndefined(arg), undefined, undefined, undefined, undefined)).toBe(undefined)
   });
   it('should return first valid argument', () => {
     const firstValue = true;
-    expect(returnDefinedValue(undefined, firstValue, '', undefined)).toBe(firstValue);
+    expect(returnCheckedValue((arg) => !isUndefined(arg), undefined, firstValue, '', undefined)).toBe(firstValue);
   });
   it('should return first valid argument when it is last', () => {
     const firstValue = true;
-    expect(returnDefinedValue(undefined, undefined, undefined, firstValue)).toBe(firstValue);
+    expect(returnCheckedValue((arg) => !isUndefined(arg), undefined, undefined, undefined, firstValue)).toBe(firstValue);
   });
 });
 

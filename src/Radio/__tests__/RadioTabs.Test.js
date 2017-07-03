@@ -5,15 +5,15 @@ import RadioTabs from '../RadioTabs';
 import RadioTab from '../RadioTab';
 
 const radioTabChildren = [
-    <RadioTab name="RadioTab[]" id="RadioTab1">Tab1</RadioTab>,
-    <RadioTab name="RadioTab[]" id="RadioTab2">Tab2</RadioTab>,
-    <RadioTab name="RadioTab[]" id="RadioTab3">Tab3</RadioTab>
+    <RadioTab key="radiotab1" name="RadioTab[]" id="RadioTab1">Tab1</RadioTab>,
+    <RadioTab key="radiotab2" name="RadioTab[]" id="RadioTab2">Tab2</RadioTab>,
+    <RadioTab key="radiotab3" name="RadioTab[]" id="RadioTab3">Tab3</RadioTab>
 ];
 
 const htmlChildren = [
-    <p>p tag</p>,
-    <div>div tag</div>,
-    <h1>h1 tag</h1>
+    <p key="p">p tag</p>,
+    <div key="div">div tag</div>,
+    <h1 key="h1">h1 tag</h1>
 ];
 
 const allRadioTabsProps = {

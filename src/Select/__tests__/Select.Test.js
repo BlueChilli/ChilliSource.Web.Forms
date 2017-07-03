@@ -2,12 +2,13 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {isEqual} from 'lodash';
 import {Select} from '../Select';
+import SelectBase from '../Base';
 
-const children = ['Pash', 'Shane', 'Jeremy', 'Mitch', 'Mick']
+const options = ['Pash', 'Shane', 'Jeremy', 'Mitch', 'Mick']
                 .map((person, key) => <option key={key} value={person}>{person}</option>);
 
 const allSelectProps = {
-    children,
+    children: options,
     className: 'SelectClass',
     name: 'SelectBaseName',
     label: 'SelectBase Label',
@@ -35,7 +36,6 @@ const selectBaseProps = {
 
 const displayValidationProps = {
     name,
-    value,
     required
 };
 
@@ -48,9 +48,8 @@ describe('<Select />', () => {
     const wrapper = shallow(<Select {...allSelectProps} />);
     const InputWrapperProps = removeChildren(wrapper.props());
     const StyledSelect = wrapper.find('.styled-select');
-    const SelectBaseProps = removeChildren(wrapper.find('SelectBase').props());
+    const SelectBaseProps = removeChildren(wrapper.find(SelectBase).props());
     const DisplayValidationProps = removeChildren(wrapper.find('DisplayValidation').props());
-    console.log(DisplayValidationProps);
 
     it('should have all the required props for <InputWrapper />', () => {
         expect(isEqual(InputWrapperProps, inputWrapperProps)).toBe(true);
