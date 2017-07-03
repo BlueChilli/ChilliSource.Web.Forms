@@ -23,27 +23,27 @@ describe('performanceWrapper', () => {
   describe('getInputPath', () => {
 
     it('should always return inputPath as an array', () => {
-      const inputPathFieldset = getInputPath(inputPathFieldsetProps)();
-      const inputPathArray = getInputPath(inputPathInputArrayProps)();
-      const inputPathPlain = getInputPath(inputPathPlainProps)();
-      
+      const inputPathFieldset = getInputPath('input', inputPathFieldsetProps);
+      const inputPathArray = getInputPath('input', inputPathInputArrayProps);
+      const inputPathPlain = getInputPath('input', inputPathPlainProps);
+
       expect(isArray(inputPathFieldset)).toBe(true);
       expect(isArray(inputPathArray)).toBe(true);
-      expect(isArray(inputPathPlain)).toBe(true);
+      expect(isArray(inputPathPlain)).toBe(true); //['name[]','input', 'id']
     });
 
     it('should include fieldset name in the inputPath', () => {
-      const inputPath = getInputPath(inputPathFieldsetProps)();
+      const inputPath = getInputPath('input', inputPathFieldsetProps);
       expect(isEqual(inputPath, ['fieldset', 'name'])).toBe(true);
     });
 
     it('should includes array-formatted name(i.e. _name_[]) in the inputPath', () => {
-      const inputPath = getInputPath(inputPathInputArrayProps)();
-      expect(isEqual(inputPath, ['name[]', 'id'])).toBe(true);
+      const inputPath = getInputPath('input', inputPathInputArrayProps);
+      expect(isEqual(inputPath, ['name[]', 'input', 'id'])).toBe(true);
     });
 
     it('should not namespace plain inputs', () => {
-      const inputPath = getInputPath(inputPathPlainProps)();
+      const inputPath = getInputPath('input', inputPathPlainProps);
       expect(isEqual(inputPath, ['name'])).toBe(true);
     });
   });
