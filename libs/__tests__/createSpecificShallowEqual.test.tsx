@@ -85,6 +85,9 @@ describe('createIsSpecificShallowEqual()', () => {
     it('compares different DOM nodes: child is different', () => {
       expect(isSpecificShallowEqual(currentPropsDom, nextPropsDom)).toBe(false);
     });
+    it('compares identical child objects', () => {
+      expect(isSpecificShallowEqual(currentPropsDom, currentPropsDom)).toBe(true);
+    });
     it('compares throwing objects: NaN doesn\'t throw', () => {
       expect(() => isSpecificShallowEqual(currentPropsNan, currentPropsNan)).toThrowError();
     });
