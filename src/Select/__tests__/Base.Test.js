@@ -2,7 +2,7 @@ import React from 'react';
 import {List} from 'immutable';
 import {shallow} from 'enzyme';
 import sinon from 'sinon';
-import SelectBase from '../Base';
+import {SelectBase} from '../Base';
 
 const children = ['Pash', 'Shane', 'Jeremy', 'Mitch', 'Mick']
                 .map((person, key) => <option key={key} value={person}>{person}</option>);

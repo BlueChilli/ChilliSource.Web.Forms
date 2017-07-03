@@ -1,16 +1,21 @@
-import React, {Children, ChangeEvent, FocusEvent} from "react";
-import {withProps} from "recompose";
-import {List} from "immutable";
-import {ShallowCompare} from "../../libs/types";
-import {getHTMLAttributes} from "../Form/Helpers/inputHelpers";
-import {SelectInputProps} from "../Form/Types/types";
-import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
+/** Libraries */
+import React, {Children, ChangeEvent, FocusEvent} from 'react';
+import {withProps} from 'recompose';
+import {List} from 'immutable';
 
+/** Components */
+import {ShallowCompare} from '../../libs/types';
+import {getHTMLAttributes} from '../Form/Helpers/inputHelpers';
+import {SelectInputProps} from '../Form/Types/types';
+import {PerformanceWrapperProps} from '../Form/Helpers/performanceWrapper';
+
+/** Interfaces */
 interface WithProps extends SelectInputProps {
   defaultSelected?: string | boolean | number
 }
 
-const getDefaultSelected = ({children, defaultValue}:SelectInputProps) => {
+/** Helpers */
+const getDefaultSelected = ({children, defaultValue}: SelectInputProps) => {
   if (Children.count(children) < 1) {
     return '';
   } else if (defaultValue) {
@@ -20,9 +25,10 @@ const getDefaultSelected = ({children, defaultValue}:SelectInputProps) => {
   }
 };
 
+/** Class SelectBase */
 class SelectBase extends React.Component<SelectInputProps & PerformanceWrapperProps, {}> {
-  displayName: 'SelectBase'
-  handleChange = (event:ChangeEvent<{value:any}>) => {
+  
+  handleChange = (event: ChangeEvent<{value:any}>) => {
     const {inputChanged, onChange} = this.props;
     inputChanged(event.target.value);
     if (typeof onChange === 'function') {
@@ -30,7 +36,7 @@ class SelectBase extends React.Component<SelectInputProps & PerformanceWrapperPr
     }
   }
 
-  handleBlur = (event:FocusEvent<{}>) => {
+  handleBlur = (event: FocusEvent<{}>) => {
     const {onBlur} = this.props;
 
     if(typeof onBlur === 'function') {
@@ -54,3 +60,5 @@ export default withProps<WithProps, SelectInputProps & PerformanceWrapperProps>(
     defaultSelected: getDefaultSelected(props)
   }
 })(SelectBase);
+
+export {SelectBase};
