@@ -12,7 +12,7 @@ import {setInput, setInputInteraction, setValidation} from '../Actions/fields';
 import {ShallowCompareProps, ReactComponent, BaseReactProps, ShallowCompare} from '../../../libs/types';
 import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerformanceWrapperInputHelpers, FieldSetNameSpaceProp,
    PerformanceWrapperUncalledInputHelpers, PerformanceWrapperUncalledValidationHelpers, NameProp, IdProp, TypeProp, PossibleValues,
-  DefaultValueProp, PossibleDefaultValues, InputInfoProps, DefaultSwitchProps, NameSpaceProp, FormStateProp, ValueProp, SetValidation} from '../Types/types';
+  DefaultValueProp, PossibleDefaultValues, InputInfoProps, DefaultSwitchProps, NameSpaceProp, FormStateProp, ValueProp, SetValidation, AdditionalCompareProps} from "../Types/types"
 
 /** Interfaces */
 interface WithHandlersGuard extends NameProp, IdProp, TypeProp, DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, NameProp, BaseReactProps, ValueProp<PossibleValues>, IdProp, TypeProp{}
@@ -86,7 +86,14 @@ const withNeededProps = <TOutter extends WithNeededPropsGuard> (props: FormConte
 const setValidationWithHandlersObject = {
   setValidation: ({dispatch, nameSpace, ...props}:SetValidation) => (type:string, test:string | boolean) => {
     dispatch(setValidation(nameSpace, getInputPath("validation", props), type, test));
-  }
+  },
+  compareAdditionalProps: ({additionalCompareProps}:AdditionalCompareProps) => {
+    if(additionalCompareProps){
+      return createSpecificShallowEqual(...additionalCompareProps);
+    } else {
+      return () => false;
+    }
+  },
 }
 
 const createUniversalCompose = <TOutter extends WithHandlersGuard, TWithHandlers extends {}> (withHandlersArgs:TWithHandlers, type:string = "input") => compose<PerformanceWrapperProps & TOutter, TOutter>(
@@ -99,7 +106,7 @@ const createUniversalCompose = <TOutter extends WithHandlersGuard, TWithHandlers
   withProps<PerformanceWrapperWithProps, PerformanceWrapperWithHandlers & FormContext & TOutter>(withNeededProps),
   withHandlers<TWithHandlers, FormContext & TOutter>(withHandlersArgs),
   shouldUpdate<PerformanceWrapperProps & TOutter>((props, nextProps) => {
-    return !specificShallowEqual(props, nextProps);
+    return !specificShallowEqual(props, nextProps) && !nextProps.compareAdditionalProps<PerformanceWrapperProps & TOutter>(props, nextProps);
   })
 );
 

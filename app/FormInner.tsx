@@ -73,7 +73,7 @@ export default class FormInner extends React.Component<{}, {}> {
           <Validation isFor="required">Password is required</Validation>
           <Validation isFor="minLength">Password must be 5 characters long</Validation>
         </Input>
-        <TextArea label="Write something" name="something" />
+        <TextArea label="Write something" name="something"  additionalCompareProps={['name']} />
         <TextArea label="With validation" required name="withValidation">
           <Validation isFor="required">With validation is required</Validation>
         </TextArea>
@@ -85,7 +85,7 @@ export default class FormInner extends React.Component<{}, {}> {
         <div className="switch-container">
           <CheckBox defaultChecked id="red" label="Red" name="color[]" />
           <CheckBox id="blue" label="Blue" name="color[]" />
-          <CheckBox defaultChecked id="green" label="Green" name="color[]" />
+          <CheckBox defaultChecked id="green" label="Green" name="color[]"/>
           <Validate name="color[]" required>
             <Validation isFor="required">Please choose a color</Validation>
           </Validate>

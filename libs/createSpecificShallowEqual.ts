@@ -9,14 +9,14 @@ import {ShallowCompare, ShallowCompareProps} from "./types";
    * {string} ...keysToTest - Properties to check if equal
    */
   return (props: TProps, nextProps: TProps) => {
-    return keysToTest.every((value:keyof TProps) => {
-      const currentVal:ShallowCompare = props[value];
-      const nextVal:ShallowCompare = nextProps[value];
+    return keysToTest.every((keyToTest:keyof TProps) => {
+      const currentVal:ShallowCompare = props[keyToTest];
+      const nextVal:ShallowCompare = nextProps[keyToTest];
       if (Iterable.isIterable(currentVal) || Iterable.isIterable(nextVal)) {
         return is(currentVal, nextVal);
       } else {
         if ((isArray(nextVal) || isObject(nextVal) || isNaN(nextVal)) && !isFunction(nextVal)) {
-          throw new Error(`Specific shallow equal does not support plain old JS objects, Arrays and NaN: prop ${nextVal} is a ${typeof nextVal}`);
+          throw new Error(`Specific shallow equal does not support plain old JS objects, Arrays and NaN: prop ${keyToTest} is a ${typeof nextVal}`);
         }
         return currentVal === nextVal;
       }
