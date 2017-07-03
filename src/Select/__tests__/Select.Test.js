@@ -50,7 +50,6 @@ describe('<Select />', () => {
     const StyledSelect = wrapper.find('.styled-select');
     const SelectBaseProps = removeChildren(wrapper.find(SelectBase).props());
     const DisplayValidationProps = removeChildren(wrapper.find('DisplayValidation').props());
-    console.log(DisplayValidationProps, displayValidationProps);
 
     it('should have all the required props for <InputWrapper />', () => {
         expect(isEqual(InputWrapperProps, inputWrapperProps)).toBe(true);
