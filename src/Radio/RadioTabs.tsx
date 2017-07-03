@@ -2,7 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import InputWrapper from "../Form/InputWrapper";
 import "./RadioTabs.scss";
-import {RadioTabsProps} from "../Form/Types/types";
+import {RadioTabsProps, SwitchProps} from "../Form/Types/types";
 
 class RadioTabs extends React.Component<RadioTabsProps, {}> {
   render() {
@@ -12,7 +12,9 @@ class RadioTabs extends React.Component<RadioTabsProps, {}> {
     return (
       <InputWrapper className={classes} name={name} label={label}>
         <div className={radioClasses}>
-          {children}
+          {React.Children.map(children, child => React.cloneElement(child as React.ReactElement<{name: string}>, {
+            name
+          }))}
         </div>
       </InputWrapper>
     );

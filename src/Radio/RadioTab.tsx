@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import {SwitchProps} from "../Form/Types/types";
-import Switch from "../Switch/Switch";
+import Radio from "../Radio/Radio";
 
 class RadioTab extends React.Component<SwitchProps, {}> {
   render() {
@@ -9,7 +9,7 @@ class RadioTab extends React.Component<SwitchProps, {}> {
     var classes = classnames(className, 'radio-tab');
     
     return (
-      <Switch type="radio" className={classes} {...props}/>
+      <Radio className={classes} {...props}/>
     );
   }
 }
