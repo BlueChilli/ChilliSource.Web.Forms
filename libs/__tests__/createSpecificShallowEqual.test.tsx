@@ -2,7 +2,7 @@ import React from "react";
 import createIsSpecificShallowEqual from "../createSpecificShallowEqual";
 import {Map} from "immutable";
 
-const keysToTest = ["name", "required", "inputInfo"];
+const keysToTest = ["name", "required", "inputInfo", "children"];
 
 const currentProps = {
   name: "Shane",
@@ -82,9 +82,9 @@ describe('createIsSpecificShallowEqual()', () => {
     it('compares different objects: string is different', () => {
       expect(isSpecificShallowEqual(currentProps, nextPropsFailString)).toBe(false);
     });
-    // it('compares different DOM nodes: child is different', () => {
-    //   expect(isSpecificShallowEqual(currentPropsDom, nextPropsDom)).toBe(false);
-    // });
+    it('compares different DOM nodes: child is different', () => {
+      expect(isSpecificShallowEqual(currentPropsDom, nextPropsDom)).toBe(false);
+    });
     it('compares throwing objects: NaN doesn\'t throw', () => {
       expect(() => isSpecificShallowEqual(currentPropsNan, currentPropsNan)).toThrowError();
     });
