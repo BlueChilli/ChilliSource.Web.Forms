@@ -15,8 +15,8 @@ Standard components like `input`, `button` and the rest are already available to
 - `Input`
 - `Number`
 - `Radio`
-- `Select` (base component for CheckBox & Radio)
-- `Switch`
+- `Select`
+- `Switch` (base component for CheckBox & Radio)
 - `TextArea`
 
 ## State Retention
@@ -34,7 +34,7 @@ All the components can have their own validation(even custom validation is allow
 # Installation
 The library is available via NPM here
 ```
-npm install --save cs-web-forms
+npm install --save cs.forms
 ```
 
 # Releases
