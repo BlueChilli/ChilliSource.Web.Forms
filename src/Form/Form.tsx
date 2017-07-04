@@ -36,7 +36,7 @@ interface FormDispatchProps {
 }
 
 interface FormState {
-  canSubmit: boolean
+  canSubmitString: string
 }
 
 export interface FormOwnProps<T> extends FormOptionalProps<T> {
@@ -55,6 +55,8 @@ interface FormInnerProps<T> extends FormOwnProps<T>, FormStateProps, FormDispatc
 
 const mapOutput = (data:Map<string, any>, mapOutputFunc: ((data?: Map<string, any>) => Map<string, any>)) => (mapOutput) ? mapOutputFunc(data) : data;
 
+const randomString = (length) => Math.random().toString(36).substring(length);
+
 /** Displays a form component, inserts all user input into redux state and ensures that all inputs are validated
  * before allowing the user to submit the form. */
 class Form extends React.Component<FormInnerProps<undefined>, FormState>{
@@ -64,6 +66,8 @@ class Form extends React.Component<FormInnerProps<undefined>, FormState>{
     nameSpace: PropTypes.string,
     dispatch: PropTypes.func
   }
+
+  private lastSumbittedString:string = null
 
   //FIXME: any to make TS happy unsure why it needs to be this way
   public static defaultProps:any = {
@@ -78,7 +82,7 @@ class Form extends React.Component<FormInnerProps<undefined>, FormState>{
   constructor(props:FormInnerProps<undefined>){
     super(props);
     this.state = {
-      canSubmit: false
+      canSubmitString: randomString(10)
     }
   }
 
@@ -95,11 +99,11 @@ class Form extends React.Component<FormInnerProps<undefined>, FormState>{
       this.props.dispatch(clearAllInputs(nextProps.name));
       // make the new form unsubmit-able
       this.setState({
-        canSubmit: false
+        canSubmitString: randomString(10)
       });
     } else {
       this.setState({
-        canSubmit: nextProps.FormState !== this.props.FormState
+        canSubmitString: randomString(10)
       });
     }
   }
@@ -111,7 +115,7 @@ class Form extends React.Component<FormInnerProps<undefined>, FormState>{
   handleFormSubmit = (event:FormEvent<{}>) => {
     event.preventDefault();
 
-    if(this.state.canSubmit) {
+    if(this.state.canSubmitString !== this.lastSumbittedString) {
       const {dispatch, onSubmit, FormState, name, encType} = this.props;
 
       // INSERT COMMENT HERE
@@ -134,9 +138,7 @@ class Form extends React.Component<FormInnerProps<undefined>, FormState>{
             }
 
             // update state so users cannot submit again
-            this.setState({
-              canSubmit: false
-            });
+            this.lastSumbittedString = this.state.canSubmitString
           }
         } else {
           const scrollTo = firstError.getBoundingClientRect().top - 50;

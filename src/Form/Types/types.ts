@@ -238,7 +238,7 @@ export type InputUnionProps = TextInputProps | TextAreaProps | SelectInputProps 
 export interface ValidationAdditionProps extends ValidationElementProps, ValidationCloneElementProps{}
 
 
-export interface ValidationElementProps {
+export interface ValidationInnerElementProps {
   displayed: boolean,
   className: string,
   children: any
