@@ -22,7 +22,7 @@ declare module "cs.forms" {
   export class Validation extends Component<ValidationComponentProps, {}>{}
   export class Form extends Component<FormProps<undefined>, {}>{}
   export class Fieldset extends Component<FieldSetProps, {}>{}
-  export type ReduxReducer = BasicReducer;
+  export const ReduxReducer:BasicReducer;
   export type InputUnionProps = InputUnionPackageProps
   export type FormOwnProps<T> = FormOwnPackageProps<T>;
   export type FormOptionalProps<T> = FormOptionalPackageProps<T>
