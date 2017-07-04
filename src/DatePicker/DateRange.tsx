@@ -13,8 +13,8 @@ import "./DateRange.scss";
 class DateRangeBase extends React.Component<DateRangeProps & PerformanceWrapperProps, {}>{
   handleChange = (dateRange: DateRangeMoment) => {
     this.props.inputChanged(Map<string, string>({
-      startDate: dateRange.startDate.format('YYYY-MM-DD'),
-      endDate: dateRange.endDate.format('YYYY-MM-DD')
+      startDate: dateRange.startDate.format('DD/MM/YYYY'),
+      endDate: dateRange.endDate.format('DD/MM/YYYY')
     }));
     if(typeof this.props.onChange === 'function'){
       this.props.onChange(dateRange);
