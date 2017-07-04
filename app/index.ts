@@ -17,4 +17,6 @@ export {basicReducer as ReduxReducer} from "../src/Form/Reducers/index";
 export {default as performanceWrapper} from "../src/Form/Helpers/performanceWrapper";
 export {default as Fieldset} from "../src/Form/Fieldset";
 export {default as types} from "../src/Form/Types/types";
-import {convertToFormData} from "../src/Form/Helpers/formHelpers";
+export {convertToFormData} from "../src/Form/Helpers/formHelpers";
+export {validationsAvailable} from "../libs/validate";
+
