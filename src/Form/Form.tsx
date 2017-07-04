@@ -36,7 +36,7 @@ interface FormDispatchProps {
 }
 
 interface FormState {
-  canSubmit: string
+  canSubmitString: string
 }
 
 export interface FormOwnProps<T> extends FormOptionalProps<T> {
@@ -82,7 +82,7 @@ class Form extends React.Component<FormInnerProps<undefined>, FormState>{
   constructor(props:FormInnerProps<undefined>){
     super(props);
     this.state = {
-      canSubmit: randomString(10)
+      canSubmitString: randomString(10)
     }
   }
 
@@ -99,11 +99,11 @@ class Form extends React.Component<FormInnerProps<undefined>, FormState>{
       this.props.dispatch(clearAllInputs(nextProps.name));
       // make the new form unsubmit-able
       this.setState({
-        canSubmit: randomString(10)
+        canSubmitString: randomString(10)
       });
     } else {
       this.setState({
-        canSubmit: randomString(10)
+        canSubmitString: randomString(10)
       });
     }
   }
@@ -115,7 +115,7 @@ class Form extends React.Component<FormInnerProps<undefined>, FormState>{
   handleFormSubmit = (event:FormEvent<{}>) => {
     event.preventDefault();
 
-    if(this.state.canSubmit !== this.lastSumbittedString) {
+    if(this.state.canSubmitString !== this.lastSumbittedString) {
       const {dispatch, onSubmit, FormState, name, encType} = this.props;
 
       // INSERT COMMENT HERE
@@ -138,7 +138,7 @@ class Form extends React.Component<FormInnerProps<undefined>, FormState>{
             }
 
             // update state so users cannot submit again
-            this.lastSumbittedString = this.state.canSubmit
+            this.lastSumbittedString = this.state.canSubmitString
           }
         } else {
           const scrollTo = firstError.getBoundingClientRect().top - 50;
