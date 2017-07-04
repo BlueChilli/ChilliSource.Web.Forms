@@ -1,12 +1,12 @@
 import {Iterable} from "immutable";
 import regExpList from "./validationRegExps";
 import {ShallowCompareProps, ShallowCompare} from "./types";
-import {Types, TypeProp, TypeOfTest, Tests} from "../src/Form/Types/types"
+import {Type, TypeProp, TypeOfTest, Tests} from "../src/Form/Types/types"
 
 
 
 interface ValidationTypes {
-  required: (value:ShallowCompare, test:boolean, type:Types) => boolean,
+  required: (value:ShallowCompare, test:boolean, type:Type) => boolean,
   pattern: (value:ShallowCompare, test:string) => boolean,
   type: (value:ShallowCompare, test: string) => boolean,
   minLength: (value:ShallowCompare, test:string) => boolean,
@@ -75,7 +75,7 @@ export const validationsMessages = (type:string, test?:boolean | string | number
   }
 };
 
-export function testValidation(value:ShallowCompare, typeOfTest:TypeOfTest, typeOfInput:Types, test:Tests) {
+export function testValidation(value:ShallowCompare, typeOfTest:TypeOfTest, typeOfInput:Type, test:Tests) {
   if (value !== undefined && value !== null) {
     if (validations[typeOfTest] !== undefined) {
       if(typeOfTest === 'required'){

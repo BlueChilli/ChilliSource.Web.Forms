@@ -7,7 +7,7 @@ import {setAllInputInteractions, clearAllInputs} from "./Actions/fields";
 import {withReducerState} from "./Reducers";
 import {ShallowCompare, BaseReactProps} from "../../libs/types";
 import {convertToFormData, normalizeFields} from "./Helpers/formHelpers";
-import {withReducer, compose, branch} from "recompose";
+import {withReducer, compose, branch, ComponentEnhancer} from "recompose";
 
 
 type formState = Map<string, Map<string, ShallowCompare>>
@@ -159,11 +159,10 @@ class Form extends React.Component<FormInnerProps<undefined>, FormState>{
   }
 };
 
-export default compose<FormStateProps & FormDispatchProps, FormProps<undefined>>(
-  branch<FormProps<undefined>>(props => {
+export default branch<FormProps<undefined>>(props => {
     return !(props.FormState && props.dispatch)
-  }, withReducer("FormState", "dispatch", withReducerState, Map<string, {}>()))
-)(Form);
+  }, withReducer("FormState", "dispatch", withReducerState, Map<string, {}>()) as any) //"any" is a short term fix till recompose types are updated
+(Form);
 
 
 export {clearAllInputs}

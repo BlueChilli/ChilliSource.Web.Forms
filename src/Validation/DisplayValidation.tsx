@@ -1,6 +1,6 @@
 import React from "react";
 import {validationsMessages, validationsAvailable} from "../../libs/validate";
-import {ValidationElementProps, InputInfoProps, ValidationAdditionProps, ValidationCloneElementProps, DisplayValidationProps, TypeProp, TypeOfTest} from "../Form/Types/types"
+import {ValidationElementProps, InputInfoProps, ValidationAdditionProps, ValidationCloneElementProps, DisplayValidationProps, TypeProp, Type, TypeOfTest} from "../Form/Types/types"
 import {ReactElement} from "../../libs/types"
 import Validation from "../Validation/Validation";
 import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
@@ -19,7 +19,7 @@ const childrenValidations = (children:React.ReactNode) => {
   return [];
 };
 
-const isSwitch = (type?:TypeProp):boolean => {
+const isSwitch = (type?:Type):boolean => {
   return type === "checkbox" || type === 'radio';
 };
 
@@ -30,10 +30,10 @@ const validationsUnused = (validationsUsed:TypeOfTest[], validationsAvailable:Ty
   });
 };
 
-const DisplayValidation = ({children, disabled, inputInfo, noValidate, ...props} : PerformanceWrapperProps & DisplayValidationProps) => {
+const DisplayValidation = ({children, disabled, inputInfo, noValidate, type, ...props} : PerformanceWrapperProps & DisplayValidationProps) => {
   const validationsAvail = validationsAvailable(props);
   const validationUsed = childrenValidations(children);
-  const unusedValidations = validationsUnused(validationUsed, validationsAvail, isSwitch(props.type));
+  const unusedValidations = validationsUnused(validationUsed, validationsAvail, isSwitch(type));
   if (disabled || noValidate) {
     return <span/>;
   }
@@ -44,7 +44,7 @@ const DisplayValidation = ({children, disabled, inputInfo, noValidate, ...props}
         return React.cloneElement<ValidationAdditionProps, ValidationCloneElementProps>(child, {
           test: props[typeOfValidation],
           inputInfo,
-          type: props.type,
+          type: type,
           name: props.name,
           setValidation: props.setValidation
         });
@@ -54,7 +54,7 @@ const DisplayValidation = ({children, disabled, inputInfo, noValidate, ...props}
         isFor: validation,
         test: props[validation],
         inputInfo,
-        type: props.type,
+        type: type,
         children: validationsMessages(validation, props[validation]),
         name: props.name,
         setValidation: props.setValidation

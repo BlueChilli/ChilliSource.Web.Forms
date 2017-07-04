@@ -7,7 +7,7 @@ import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
 
 class InputBase extends React.Component<TextInputProps & PerformanceWrapperProps, {}>{
   displayName: 'InputBase'
-  handleChange = (event:ChangeEvent<{files?: FileList[], value?: any}>) => {
+  handleChange = (event:ChangeEvent<{files?: FileList, value?: any}>) => {
     const value:string = this.props.type === 'file' ? event.target.files : event.target.value;
     this.props.inputChanged(value);
     if (isFunction(this.props.onChange)) {

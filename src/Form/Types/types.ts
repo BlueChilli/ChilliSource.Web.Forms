@@ -8,9 +8,9 @@ import moment, {Moment} from 'moment';
 import {SetInputPayload, SetInputInteractionPayload, SetValidationPayload} from '../Actions/fields'
 
 
+export type Type = 'text' | 'radio' | 'checkbox' | 'number' | 'email' | 'password' | 'hidden' | 'file'
 export type TypeOfTest = "required" | "pattern" | "type" | "minLength" | "maxLength" | "min" | "max";
 export type Tests = string | number | boolean | Function | undefined;
-export type Types = 'text' | 'radio' | 'checkbox' | 'number' | 'email' | 'password' | 'hidden' | 'file' | undefined;
 
 export type DateRangeMoment = {
   startDate: Moment;
@@ -92,9 +92,10 @@ export interface LabelProp {
 	label?: string
 }
 
+
 export interface TypeProp {
 	/** What type of input is it [hidden|text|ect] */
-  type?: 'text' | 'radio' | 'checkbox' | 'number' | 'email' | 'password' | 'hidden' | 'file' 
+  type?: Type
 }
 
 export interface NameProp {
@@ -264,9 +265,11 @@ export interface SetValidation extends NameSpaceProp, NameProp, FieldSetNameSpac
 type inputChanged = (value: ShallowCompare, changed?:boolean) => void;
 type inputBlurred = () => void;
 type setValidation = (type: string, test?: Tests) => void;
+type compareAdditionalProps = <TProps> (props: TProps, nextProps: TProps) => boolean;
 
 export interface PerformanceWrapperUncalledValidationHelpers {
-	setValidation: (props:SetValidation) => setValidation
+	setValidation: (props:SetValidation) => setValidation,
+	compareAdditionalProps: (props:AdditionalCompareProps) => compareAdditionalProps
 }
 
 export interface PerformanceWrapperUncalledInputHelpers extends PerformanceWrapperUncalledValidationHelpers {
@@ -283,7 +286,7 @@ export interface PerformanceWrapperInputHelpers {
 	/** Set the inputs state */ 
 	setInputBlurred: inputBlurred,
 	setValidation: setValidation,
-	compareAdditionalProps:<TProps> (props: TProps, nextProps: TProps) => boolean
+	compareAdditionalProps: compareAdditionalProps
 }
 
 
