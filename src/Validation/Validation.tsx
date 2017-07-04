@@ -6,7 +6,7 @@ import {testElement, validations, TestElement} from "../../libs/validate";
 import "./Validation.scss";
 import {isMultipleValueInput, returnCheckedValue} from "../Form/Helpers/inputHelpers";
 import createSpecificShallowEqual from "../../libs/createSpecificShallowEqual";
-import {ValidationAdditionProps, TextInputProps, ValidationElementProps} from "../Form/Types/types";
+import {ValidationAdditionProps, TextInputProps, ValidationInnerElementProps} from "../Form/Types/types";
 import {ShallowCompare} from "../../libs/types";
 
 const specificShallowEqual = createSpecificShallowEqual('value', 'changed', 'type');
@@ -48,7 +48,7 @@ interface ValidationComponentProps {
 
 
 
-const Validation = ({displayed, className, children}:ValidationElementProps) => {
+const Validation = ({displayed, className, children}:ValidationInnerElementProps) => {
   const classes = classnames('validation', className, {
     'invalid': displayed
   });
@@ -64,7 +64,7 @@ const getValue = (name:string, inputInfo:Map<string, any>) : ShallowCompare => {
 } 
 
 
-export default compose<ValidationElementProps, ValidationComponentProps>(
+export default compose<ValidationInnerElementProps, ValidationComponentProps>(
   withProps((ownerProps : ValidationAdditionProps) => {
     const {name, inputInfo, type} = ownerProps;
     const changed:boolean = isMultipleValueInput(name) ? inputInfo.some(item => item.get('changed', false)) : inputInfo.get('changed', false);
@@ -103,7 +103,7 @@ export default compose<ValidationElementProps, ValidationComponentProps>(
       className,
       children
     }
-  }), shouldUpdate((currentProps:ValidationElementProps, nextProps:ValidationElementProps) => {
+  }), shouldUpdate((currentProps:ValidationInnerElementProps, nextProps:ValidationInnerElementProps) => {
     return !specificShallowEqualDisplayed(currentProps, nextProps);
   })
 )(Validation);
