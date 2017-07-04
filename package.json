@@ -1,6 +1,6 @@
 {
   "name": "cs.forms",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "description": "A collection of forms components, helpers and abstractions built in React. These can be used with or without Redux.",
   "main": "dist/chillisource-web-forms.js",
   "repository": {
