@@ -14,5 +14,7 @@ export {default as Validation} from "../src/Validation/Validation";
 export {default as Validate} from "../src/Validation/Validate";
 export {default as Form, FormOwnProps, FormOptionalProps} from "../src/Form/Form";
 export {basicReducer as ReduxReducer} from "../src/Form/Reducers/index";
+export {default as performanceWrapper} from "../src/Form/Helpers/performanceWrapper";
 export {default as Fieldset} from "../src/Form/Fieldset";
 export {default as types} from "../src/Form/Types/types";
+import {convertToFormData} from "../src/Form/Helpers/formHelpers";
