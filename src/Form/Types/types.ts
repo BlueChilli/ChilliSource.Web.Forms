@@ -173,6 +173,11 @@ export interface RadioTabsProps extends BaseReactProps, NameProp, LabelProp{
 	radioClasses?: string
 }
 
+export interface RadioTabProps extends BaseReactProps{
+	/** Put into state as the value of the selected switch */
+	id: string
+}
+
 
 export interface ValidationElementProps extends BaseReactProps, NameProp, AdditionalCompareProps{
 	/** What validation attribute is the message for */

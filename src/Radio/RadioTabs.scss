@@ -5,32 +5,20 @@
 .radio-tab {
   float: left;
   margin-bottom: 0;
-  .box {
+  position: relative;
+  
+  input, .box {
     display: none !important;
   }
   label {
     display: block;
-
-    svg {
-      fill: #ffffff;
-    }
-  }
-}
-
-.accountPage {
-  max-width: 500px !important;
-  margin: auto;
-  form {
-    text-align: left;
-
-    .input,
-    .textarea {
-      margin-bottom: 20px;
-      .input-label-wrapper {
-        width: 100%;
-        text-align: left;
-        margin-bottom: 10px;
-      }
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    &:hover{
+      cursor: pointer;
     }
   }
 }

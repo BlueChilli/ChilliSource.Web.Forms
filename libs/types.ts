@@ -53,6 +53,7 @@ export interface BaseReactProps {
   children?: React.ReactNode;
   key?: React.Key;
   className?: string;
+  style?: {}
 }
 
 // TODO: Actually force the developer to pass in T that reflects the structure of ShallowCompare
