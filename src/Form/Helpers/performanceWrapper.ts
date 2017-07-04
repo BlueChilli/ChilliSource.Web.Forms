@@ -16,7 +16,7 @@ import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers
   DefaultValueProp, PossibleDefaultValues, InputInfoProps, DefaultSwitchProps, NameSpaceProp, FormStateProp, ValueProp, SetValidation, AdditionalCompareProps} from "../Types/types"
 
 /** Interfaces */
-interface WithHandlersGuard extends NameProp, IdProp, TypeProp, DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, NameProp, BaseReactProps, ValueProp<PossibleValues>, IdProp, TypeProp{}
+export interface WithHandlersGuard extends NameProp, IdProp, TypeProp, DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, NameProp, BaseReactProps, ValueProp<PossibleValues>, IdProp, TypeProp{}
 export interface PerformanceWrapperProps extends PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, FormContext {}
 interface GetInputPathGuard extends NameProp, IdProp, FieldSetNameSpaceProp {}
 interface GetValidationPathGuard extends NameProp, FieldSetNameSpaceProp {}
