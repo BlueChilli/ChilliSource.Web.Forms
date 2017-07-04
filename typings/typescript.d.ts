@@ -5,7 +5,7 @@ import {BasicReducer} from "../src/Form/Reducers/index";
 import {PerformanceWrapperProps, WithHandlersGuard} from "../src/Form/Helpers/performanceWrapper";
 import {FormProps, FormOwnProps, FormOptionalProps} from "../src/Form/Form"
 
-declare module "cs.forms"{
+declare module "cs.forms" {
   type CheckBox = Component<SwitchProps, {}>
   type DatePicker = Component<DatePickerProps, {}>
   type DateRange = Component<DateRangeProps, {}>
