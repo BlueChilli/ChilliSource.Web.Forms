@@ -12,14 +12,14 @@ import "./Switch.scss";
 
 export class Switch extends React.Component<SwitchProps & PerformanceWrapperProps, {}>{
   render() {
-    const {className, label, ...props} = this.props;
+    const {className, label, style, ...props} = this.props;
     const {autoFocus, onChange, onBlur, id, defaultChecked, defaultSelected, defaultValue, value, ...validationProps} = props;
 
     const classes = classnames("switch", className);
     const labelFor = `${toLower(props.name)}_${snakeCase(props.id)}`;
      
     return (
-      <ErrorWrapper className={classes} type={props.type}>
+      <ErrorWrapper className={classes} type={props.type} style={style}>
         <SwitchBase {...props} id={labelFor}/>
         <label htmlFor={labelFor}>
           <span className="box"/>

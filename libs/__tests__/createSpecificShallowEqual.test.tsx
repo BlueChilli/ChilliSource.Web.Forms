@@ -2,7 +2,7 @@ import React from "react";
 import createIsSpecificShallowEqual from "../createSpecificShallowEqual";
 import {Map, List} from "immutable";
 
-const keysToTest = ["name", "required", "inputInfo", "children"];
+const keysToTest = ["name", "required", "inputInfo"];
 
 const currentProps = {
   name: "Shane",
@@ -48,8 +48,20 @@ const currentPropsObj = {
   name: {},
 }
 
+const currentPropsArr = {
+  name: [],
+}
+
+const currentPropsFunction = {
+  name: () => true,
+}
+
+const nextPropsFunction = {
+  name: () => false,
+}
+
 const currentPropsDom = {
-  children: List([<span></span>]),
+  name: List([<span></span>]),
   required: true,
   inputInfo: Map({
     value: '1',
@@ -58,7 +70,25 @@ const currentPropsDom = {
 };
 
 const nextPropsDom = {
-  children: List([<span>label</span>]),
+  name: List([<span>label</span>]),
+  required: true,
+  inputInfo: Map({
+    value: '1',
+    blurred: true
+  })
+};
+
+const currentPropsFile = {
+  name: new File([], 'Simple File'),
+  required: true,
+  inputInfo: Map({
+    value: '1',
+    blurred: true
+  })
+};
+
+const nextPropsFile = {
+  name: new File(['1'], 'Simple File'),
   required: true,
   inputInfo: Map({
     value: '1',
@@ -88,11 +118,26 @@ describe('createIsSpecificShallowEqual()', () => {
     it('compares identical child objects', () => {
       expect(isSpecificShallowEqual(currentPropsDom, currentPropsDom)).toBe(true);
     });
+    it('compares different DOM nodes: function is different', () => {
+      expect(isSpecificShallowEqual(currentPropsFunction, nextPropsFunction)).toBe(false);
+    });
+    it('compares identical child functions', () => {
+      expect(isSpecificShallowEqual(currentPropsFunction, currentPropsFunction)).toBe(true);
+    });
+    it('compares different Files: file is different', () => {
+      expect(isSpecificShallowEqual(currentPropsFile, nextPropsFile)).toBe(false);
+    });
+    it('compares identical Files', () => {
+      expect(isSpecificShallowEqual(currentPropsFile, currentPropsFile)).toBe(true);
+    });
     it('compares throwing objects: NaN doesn\'t throw', () => {
       expect(() => isSpecificShallowEqual(currentPropsNan, currentPropsNan)).toThrowError();
     });
     it('compares throwing objects: object doesn\'t throw', () => {
       expect(() => isSpecificShallowEqual(currentPropsObj, currentPropsObj)).toThrowError();
+    });
+    it('compares throwing arr: object array\'t throw', () => {
+      expect(() => isSpecificShallowEqual(currentPropsArr, currentPropsArr)).toThrowError();
     });
   });
 });

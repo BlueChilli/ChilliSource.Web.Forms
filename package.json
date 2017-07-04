@@ -1,6 +1,6 @@
 {
   "name": "cs.forms",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "A collection of forms components, helpers and abstractions built in React. These can be used with or without Redux.",
   "main": "dist/chillisource-web-forms.js",
   "repository": {
@@ -78,14 +78,14 @@
     "sinon": "^2.1.0",
     "style-loader": "^0.16.1",
     "ts-jest": "^20.0.6",
-    "typescript": "2.3.4",
+    "typescript": "^2.4.1",
     "url-loader": "^0.5.8",
     "webpack": "^2.3.3",
     "webpack-dev-middleware": "^1.10.1",
     "webpack-hot-middleware": "^2.18.0"
   },
   "dependencies": {
-    "@types/recompose": "0.23.0",
+    "@types/recompose": "0.23.1",
     "classnames": "^2.2.5",
     "immutable": "^3.8.1",
     "moment": "^2.18.1",
@@ -99,6 +99,6 @@
   },
   "peerDependencies": {
     "@types/react": "^15.0.27",
-    "@types/recompose": "0.23.0"
+    "@types/recompose": "0.23.1"
   }
 }

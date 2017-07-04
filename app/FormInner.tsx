@@ -90,6 +90,7 @@ export default class FormInner extends React.Component<{}, {}> {
             <Validation isFor="required">Please choose a color</Validation>
           </Validate>
         </div>
+
         <div className="switch-container">
           <Radio name="size" label="Extra Small" id="x-small" />
           <Radio name="size" label="Small" id="small" />
@@ -99,10 +100,21 @@ export default class FormInner extends React.Component<{}, {}> {
             <Validation isFor="required">Please choose a size</Validation>
           </Validate>
         </div>
-        {/*<RadioTabs name="radio-tabs">
-          <Radio name="tab-1" id="tab-1">something</Radio>
-          <Radio name="tab-2" id="tab-2">something</Radio>
-        </RadioTabs>*/}
+        <br/>
+        
+
+        <div>
+          <RadioTabs name="radio-tabs">
+            <RadioTab id="tab-1">Tab 1</RadioTab>
+            <RadioTab id="tab-2">Tab 2</RadioTab>
+          </RadioTabs>
+        </div>
+
+        <br/>
+        <br/>
+
+        
+
         <Select label="Front End Developers" defaultSelected="Mick" name="FrontEndDevelopers">
           <option value="Shane">Shane</option>
           <option value="Mick">Mick</option>

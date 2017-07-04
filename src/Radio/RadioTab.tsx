@@ -1,17 +1,25 @@
 import React from "react";
 import classnames from "classnames";
-import {SwitchProps} from "../Form/Types/types";
-import Switch from "../Switch/Switch";
+import {RadioTabProps} from "../Form/Types/types";
+import Radio from "../Radio/Radio";
+import {RadioTabsPassedDownProps} from "./RadioTabs"
+import {compose} from "recompose"
 
-class RadioTab extends React.Component<SwitchProps, {}> {
+
+class RadioTab extends React.Component<RadioTabsPassedDownProps & RadioTabProps, {}> {
   render() {
-    const {className, ...props} = this.props;
-    var classes = classnames(className, 'radio-tab');
+    const {className, children, setId, chosenId, ...props} = this.props;
+    var classes = classnames(className, 'radio-tab', {active: chosenId === props.id});
     
     return (
-      <Switch type="radio" className={classes} {...props}/>
+      <div className={classes} onClick={() => setId(props.id)}>
+        <Radio {...props}/>
+        {children}
+      </div>
     );
   }
 }
 
-export default RadioTab;
+
+// This is a hack to ensure that proper types are passed down. Need a better way to type React.cloneElement
+export default compose<RadioTabsPassedDownProps & RadioTabProps, RadioTabProps>((radioTab) => radioTab)(RadioTab);
