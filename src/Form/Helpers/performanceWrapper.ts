@@ -1,4 +1,5 @@
 /** Libraries */
+import {ComponentType} from "react";
 import PropTypes from 'prop-types';
 import Recompose from 'recompose';
 import {isUndefined} from 'lodash';
@@ -9,13 +10,13 @@ import {Map} from 'immutable';
 import {isMultipleValueInput, returnCheckedValue} from './inputHelpers';
 import createSpecificShallowEqual from '../../../libs/createSpecificShallowEqual'
 import {setInput, setInputInteraction, setValidation} from '../Actions/fields';
-import {ShallowCompareProps, ReactComponent, BaseReactProps, ShallowCompare} from '../../../libs/types';
+import {ShallowCompareProps, BaseReactProps, ShallowCompare} from '../../../libs/types';
 import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerformanceWrapperInputHelpers, FieldSetNameSpaceProp,
    PerformanceWrapperUncalledInputHelpers, PerformanceWrapperUncalledValidationHelpers, NameProp, IdProp, TypeProp, PossibleValues,
   DefaultValueProp, PossibleDefaultValues, InputInfoProps, DefaultSwitchProps, NameSpaceProp, FormStateProp, ValueProp, SetValidation, AdditionalCompareProps} from "../Types/types"
 
 /** Interfaces */
-interface WithHandlersGuard extends NameProp, IdProp, TypeProp, DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, NameProp, BaseReactProps, ValueProp<PossibleValues>, IdProp, TypeProp{}
+export interface WithHandlersGuard extends NameProp, IdProp, TypeProp, DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, NameProp, BaseReactProps, ValueProp<PossibleValues>, IdProp, TypeProp{}
 export interface PerformanceWrapperProps extends PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, FormContext {}
 interface GetInputPathGuard extends NameProp, IdProp, FieldSetNameSpaceProp {}
 interface GetValidationPathGuard extends NameProp, FieldSetNameSpaceProp {}
@@ -110,11 +111,11 @@ const createUniversalCompose = <TOutter extends WithHandlersGuard, TWithHandlers
   })
 );
 
-export const validationPerformanceWrapper =<TOutter extends WithHandlersGuard> (ReactClass:ReactComponent<TOutter & PerformanceWrapperProps>) => (
+export const validationPerformanceWrapper =<TOutter extends WithHandlersGuard> (ReactClass:ComponentType<TOutter & PerformanceWrapperProps>) => (
   createUniversalCompose<TOutter, PerformanceWrapperUncalledValidationHelpers>(setValidationWithHandlersObject)(ReactClass)
 )
 
-export default <TOutter extends WithHandlersGuard> (ReactClass:ReactComponent<TOutter & PerformanceWrapperProps>) => {
+export default <TOutter extends WithHandlersGuard> (ReactClass:ComponentType<TOutter & PerformanceWrapperProps>) => {
   const inputWrapperCompose = createUniversalCompose<TOutter, PerformanceWrapperUncalledInputHelpers>({
       inputChanged: ({dispatch, nameSpace, name, id, fieldSetNameSpace}) => (value, changed:boolean = true) => {
         const inputPath = getInputPath("input", {name, id, fieldSetNameSpace})

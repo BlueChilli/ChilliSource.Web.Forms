@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ComponentType} from "react";
 import {Map} from "immutable"
 import {withProps, mapProps, shouldUpdate, ComponentEnhancer, InferableComponentEnhancer, compose, withState, withHandlers, lifecycle} from "recompose";
 import classnames from "classnames";
@@ -6,20 +6,14 @@ import {testElement, validations, TestElement} from "../../libs/validate";
 import "./Validation.scss";
 import {isMultipleValueInput, returnCheckedValue} from "../Form/Helpers/inputHelpers";
 import createSpecificShallowEqual from "../../libs/createSpecificShallowEqual";
-import {ValidationAdditionProps, TextInputProps} from "../Form/Types/types";
-import {ReactComponent, ShallowCompare} from "../../libs/types";
+import {ValidationAdditionProps, TextInputProps, ValidationElementProps} from "../Form/Types/types";
+import {ShallowCompare} from "../../libs/types";
 
 const specificShallowEqual = createSpecificShallowEqual('value', 'changed', 'type');
 const specificShallowEqualDisplayed = createSpecificShallowEqual('displayed', 'className');
 const specificShallowEqualTestElement = createSpecificShallowEqual("value", "typeOfValidation", "type");
 const availableValidationsShallowEqual = createSpecificShallowEqual("isFor", "test", ...Object.keys(validations));
 
-
-interface ValidationInternalProps {
-  displayed: boolean,
-  className: string,
-  children: any
-}
 
 interface ValidationInternalAdditionProps extends ValidationAdditionProps{
   value:any,
@@ -54,7 +48,7 @@ interface ValidationComponentProps {
 
 
 
-const Validation = ({displayed, className, children}:ValidationInternalProps) => {
+const Validation = ({displayed, className, children}:ValidationElementProps) => {
   const classes = classnames('validation', className, {
     'invalid': displayed
   });
@@ -70,7 +64,7 @@ const getValue = (name:string, inputInfo:Map<string, any>) : ShallowCompare => {
 } 
 
 
-export default compose<ValidationInternalProps, ValidationComponentProps>(
+export default compose<ValidationElementProps, ValidationComponentProps>(
   withProps((ownerProps : ValidationAdditionProps) => {
     const {name, inputInfo, type} = ownerProps;
     const changed:boolean = isMultipleValueInput(name) ? inputInfo.some(item => item.get('changed', false)) : inputInfo.get('changed', false);
@@ -109,7 +103,7 @@ export default compose<ValidationInternalProps, ValidationComponentProps>(
       className,
       children
     }
-  }), shouldUpdate((currentProps:ValidationInternalProps, nextProps:ValidationInternalProps) => {
+  }), shouldUpdate((currentProps:ValidationElementProps, nextProps:ValidationElementProps) => {
     return !specificShallowEqualDisplayed(currentProps, nextProps);
   })
 )(Validation);

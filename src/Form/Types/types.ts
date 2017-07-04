@@ -61,6 +61,12 @@ export interface BaseFreclValidationProps extends InputValidationProps{
 	customValidation?: Function
 }
 
+export interface ValidateProps extends BaseFreclValidationProps {
+  /** The name of the input to validate */
+  name: string
+}
+
+
 export interface OnBlurEventProps<TBlurEvent> {
 	onBlur?: (event?: TBlurEvent) => void | boolean
 }
@@ -230,6 +236,14 @@ export type InputUnionProps = TextInputProps | TextAreaProps | SelectInputProps 
 
 
 export interface ValidationAdditionProps extends ValidationElementProps, ValidationCloneElementProps{}
+
+
+export interface ValidationElementProps {
+  displayed: boolean,
+  className: string,
+  children: any
+}
+
 
 /*Performance Wrapper HOCS*/
 type InputInfo = Map<string, any>

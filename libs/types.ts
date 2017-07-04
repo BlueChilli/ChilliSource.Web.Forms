@@ -64,6 +64,5 @@ export interface ShallowCompareProps {
   [propName: string]: ShallowCompare;
 }
 
-export type ReactComponent<T> = React.ComponentClass<T> | React.StatelessComponent<T> | React.ClassicComponentClass<T>;
 
 export type ReactElement<T> = React.ComponentElement<T, any> | React.SFCElement<T> | React.ClassicElement<T>;
