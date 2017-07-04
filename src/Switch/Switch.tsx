@@ -16,12 +16,11 @@ export class Switch extends React.Component<SwitchProps & PerformanceWrapperProp
     const {autoFocus, onChange, onBlur, id, defaultChecked, defaultSelected, defaultValue, value, ...validationProps} = props;
 
     const classes = classnames("switch", className);
-    const labelFor = `${toLower(props.name)}_${snakeCase(props.id)}`;
      
     return (
       <ErrorWrapper className={classes} type={props.type} style={style}>
-        <SwitchBase {...props} id={labelFor}/>
-        <label htmlFor={labelFor}>
+        <SwitchBase {...props} id={id}/>
+        <label htmlFor={id}>
           <span className="box"/>
           {label}
         </label>
