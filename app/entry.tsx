@@ -11,7 +11,7 @@ class Base extends React.Component<{}, {}> {
   render() {
     return (
       <div>
-        <Form name="test">
+        <Form name="test" onSubmit={console.log}>
           <FormInner/>
         </Form>
       </div>
