@@ -42,7 +42,7 @@ interface TestHandersInterface {
 
 interface ValidationLifecycleProps extends ValidationMapProps, TestHandersInterface {}
 
-interface ValidationComponentProps {
+export interface ValidationComponentProps {
   isFor: string
 }
 
