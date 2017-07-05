@@ -3,7 +3,8 @@ import {Map, List, Iterable} from "immutable";
 
 export const convertToFormData = (formMap:Map<string, any>) => {
   const formData = new FormData();
-  formMap.forEach((value, key:string) => {
+  if(Iterable.isIterable(formMap)){
+    formMap.forEach((value, key:string) => {
     if(Iterable.isIterable(value) && value.size === 1 && value.first() instanceof File) {
       formData.append(key, value.first());
     } else if (Map.isMap(value)) {
@@ -25,6 +26,8 @@ export const convertToFormData = (formMap:Map<string, any>) => {
     }
   });
   return formData;
+  }
+  throw new Error("convertToFormData requires a Immutable Iterable object")
 };
 
 export const normalizeFields = (fields:Map<string, any>) => {

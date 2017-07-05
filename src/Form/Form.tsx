@@ -1,8 +1,8 @@
 import React, {FormEvent} from "react";
 import PropTypes from "prop-types";
-import {is, List, Map} from "immutable";
+import {is, List, Map, Iterable} from "immutable";
 import classnames from "classnames";
-import {defer} from "lodash";
+import {defer, isFunction} from "lodash";
 import {setAllInputInteractions, clearAllInputs} from "./Actions/fields";
 import {withReducerState} from "./Reducers";
 import {ShallowCompare, BaseReactProps} from "../../libs/types";
@@ -53,7 +53,17 @@ interface FormInnerProps<T> extends FormOwnProps<T>, FormStateProps, FormDispatc
   mapOutput: (data?: Map<string, any>) => Map<string, any>
 }
 
-const mapOutput = (data:Map<string, any>, mapOutputFunc: ((data?: Map<string, any>) => Map<string, any>)) => (mapOutput) ? mapOutputFunc(data) : data;
+const mapOutput = (data:Map<string, any>, mapOutputFunc: ((data?: Map<string, any>) => Map<string, any>)) => {
+  if (isFunction(mapOutputFunc)){
+    const mappedData = mapOutputFunc(data)
+    if(!Iterable.isIterable(mappedData)){
+      throw new Error("mapOutput must return an Immutable Iterable");
+    }
+    return mappedData;
+  } else {
+    return data;
+  }
+}
 
 const randomString = (length) => Math.random().toString(36).substring(length);
 
