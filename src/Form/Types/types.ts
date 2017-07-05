@@ -209,7 +209,7 @@ export interface InternalDateWrapperProps extends DateWrapperProps{
 
 interface CommonDateProps extends BaseReactProps, NameProp, DateWrapperProps, OnChangeEventProps<DateRangeMoment | Moment>, AdditionalCompareProps{
 	date?: moment.Moment,
-	format?: string,
+	dateFormat?: string,
 	firstDayOfTheWeek?: number,
 	theme?: Object,
 	onInit?: (date?: DateRangeMoment | Moment) => void | boolean,
