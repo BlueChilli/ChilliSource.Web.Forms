@@ -19,8 +19,8 @@ export class Switch extends React.Component<SwitchProps & PerformanceWrapperProp
      
     return (
       <ErrorWrapper className={classes} type={props.type} style={style}>
-        <SwitchBase {...props} id={id}/>
-        <label htmlFor={id}>
+        <SwitchBase {...props} id={id || this.props.name}/>
+        <label htmlFor={id || this.props.name}>
           <span className="box"/>
           {label}
         </label>
