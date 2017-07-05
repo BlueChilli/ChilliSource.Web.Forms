@@ -181,7 +181,8 @@ export interface RadioTabsProps extends BaseReactProps, NameProp, LabelProp{
 
 export interface RadioTabProps extends BaseReactProps{
 	/** Put into state as the value of the selected switch */
-	id: string
+	id: string,
+	defaultSelected?: boolean
 }
 
 

@@ -94,7 +94,7 @@ export default class FormInner extends React.Component<{}, {}> {
         <div className="switch-container">
           <Radio name="size" label="Extra Small" id="x-small" />
           <Radio name="size" label="Small" id="small" />
-          <Radio name="size" label="Medium" id="medium" />
+          <Radio defaultChecked name="size" label="Medium" id="medium" />
           <Radio name="size" label="Large" id="large" />
           <Validate name="size" required>
             <Validation isFor="required">Please choose a size</Validation>
@@ -106,7 +106,7 @@ export default class FormInner extends React.Component<{}, {}> {
         <div>
           <RadioTabs name="radio-tabs">
             <RadioTab id="tab-1">Tab 1</RadioTab>
-            <RadioTab id="tab-2">Tab 2</RadioTab>
+            <RadioTab defaultSelected id="tab-2">Tab 2</RadioTab>
           </RadioTabs>
         </div>
 
@@ -133,14 +133,12 @@ export default class FormInner extends React.Component<{}, {}> {
         <br />
         <br />
         <div className="dropzone-container">
-          {/* Single upload */}
           <div className="dropzone-item">
             <DropZone name="dropzone-single" placeholder="Drop a single file here">
               {(file) => <Input name="file-demo" value={file.name}/>}
             </DropZone>
           </div>
 
-          {/* Multiple upload */}
           <div className="dropzone-item">
             <DropZone name="dropzone-multiple" placeholder="Drop multiple files here" multiple fileListComponent={files => files.map(file => <p>{file.name}</p>)}/>
           </div>

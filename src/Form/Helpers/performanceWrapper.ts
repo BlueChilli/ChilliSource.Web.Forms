@@ -20,7 +20,7 @@ export interface WithHandlersGuard extends NameProp, IdProp, TypeProp, DefaultSw
 export interface PerformanceWrapperProps extends PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, FormContext {}
 interface GetInputPathGuard extends NameProp, IdProp, FieldSetNameSpaceProp {}
 interface GetValidationPathGuard extends NameProp, FieldSetNameSpaceProp {}
-interface WithNeededPropsGuard extends DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, ValueProp<PossibleValues>, NameProp {}
+interface WithNeededPropsGuard extends DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, ValueProp<PossibleValues>, NameProp, IdProp, TypeProp {}
 
 /** Helpers */
 const specificShallowEqual = createSpecificShallowEqual("inputInfo", "name", "nameSpace", "type", "id", "disabled", "required", 
@@ -32,7 +32,7 @@ const specificShallowEqualValue = createSpecificShallowEqual("value");
 
 const getUnsetValue = ({type}:TypeProp) => {
   if (type === 'radio' || type === 'checkbox') {
-    return false;
+    return undefined;
   } else {
     return '';
   }
@@ -63,18 +63,30 @@ export const getInputPath = (type: 'input' | 'validation', {name, id, fieldSetNa
 }
 
 export const getPrioritisedDefaultValue = (defaultValue?:PossibleDefaultValues, defaultChecked?:boolean | number | string, defaultSelected?:boolean | number | string) => (
-  returnCheckedValue((arg) => !isUndefined(arg), defaultValue, defaultChecked, defaultSelected)
+  returnCheckedValue((arg) => !isUndefined(arg) && arg !== false, defaultValue, defaultChecked, defaultSelected)
 );
 
-export const getPrioritisedValue = (value:ShallowCompare, inputInfoValue:ShallowCompare, prioritisedDefaultValue:PossibleDefaultValues, unsetValue:false | "") => (
+export const getPrioritisedValue = (value:ShallowCompare, inputInfoValue:ShallowCompare, prioritisedDefaultValue:PossibleDefaultValues, unsetValue:string) => (
   returnCheckedValue((arg) => !isUndefined(arg), value, inputInfoValue, prioritisedDefaultValue, unsetValue)
 );
+
+const setIdToDefault = (type:string, id:string, defaultSwitch:string | number | boolean) => {
+  if((type === 'radio' || type === 'checkbox') && typeof defaultSwitch === 'boolean'){
+    return id;
+  }
+  return defaultSwitch;
+}
 
 const withNeededProps = <TOutter extends WithNeededPropsGuard> (props: FormContext & TOutter) => {
   const inputPath = getInputPath("input", props);
   const inputInfo = props.FormState.getIn([props.nameSpace, ...inputPath], Map({}))
   const {defaultValue, defaultChecked, defaultSelected} = props;
-  const prioritisedDefaultValue = getPrioritisedDefaultValue(defaultValue, defaultChecked, defaultSelected);
+  
+  const prioritisedDefaultValue = getPrioritisedDefaultValue(
+    defaultValue,
+    setIdToDefault(props.type, props.id, defaultChecked),
+    setIdToDefault(props.type, props.id, defaultSelected)
+  );
   const value = getPrioritisedValue(props.value, inputInfo.get('value'), prioritisedDefaultValue, getUnsetValue(props));
   return {
     inputInfo,

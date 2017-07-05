@@ -7,6 +7,16 @@ import {compose} from "recompose"
 
 
 class RadioTab extends React.Component<RadioTabsPassedDownProps & RadioTabProps, {}> {
+  componentWillMount(){
+    if(this.props.defaultSelected){
+      this.props.setId(this.props.id);
+    }
+  }
+  componentWillReceiveProps(nextProps){
+    if(this.props.defaultSelected !== nextProps.defaultSelected){
+      this.props.setId(nextProps.id);
+    }
+  }
   render() {
     const {className, children, setId, chosenId, ...props} = this.props;
     var classes = classnames(className, 'radio-tab', {active: chosenId === props.id});
