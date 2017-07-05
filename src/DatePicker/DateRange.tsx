@@ -33,7 +33,7 @@ const getValue = (dateRange?: DateRangeMap, dateFormat?:string) => {
 };
 
 const DateRangePicker = ({children, ...props}:DateRangeProps & PerformanceWrapperProps) => (
-  <DateWrapper {...props} valueString={getValue(props.value, props.format)}>
+  <DateWrapper {...props} valueString={getValue(props.value, props.dateFormat)}>
     <DateRangeBase {...props}/>
   </DateWrapper>
 );

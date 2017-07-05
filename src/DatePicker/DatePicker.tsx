@@ -27,7 +27,7 @@ class CalendarBase extends React.Component<DatePickerProps & PerformanceWrapperP
 class DatePicker extends React.Component<DatePickerProps & PerformanceWrapperProps, {}>{
   getValue = () => {
     if (this.props.value || this.props.defaultValue) {
-      return moment(this.props.value || this.props.defaultValue).format(this.props.format);
+      return moment(this.props.value || this.props.defaultValue).format(this.props.dateFormat);
     }
     return "";
   }
