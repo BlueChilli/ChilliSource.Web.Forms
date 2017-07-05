@@ -135,12 +135,14 @@ export default class FormInner extends React.Component<{}, {}> {
         <div className="dropzone-container">
           {/* Single upload */}
           <div className="dropzone-item">
-            <DropZone name="dropzone-single" placeholder="Drop a single file here" />
+            <DropZone name="dropzone-single" placeholder="Drop a single file here">
+              {(file) => <Input name="file-demo" value={file.name}/>}
+            </DropZone>
           </div>
 
           {/* Multiple upload */}
           <div className="dropzone-item">
-            <DropZone name="dropzone-multiple" placeholder="Drop multiple files here" multiple />
+            <DropZone name="dropzone-multiple" placeholder="Drop multiple files here" multiple fileListComponent={files => files.map(file => <p>{file.name}</p>)}/>
           </div>
         </div>
         <br /><br />
