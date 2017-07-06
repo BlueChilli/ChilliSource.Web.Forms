@@ -19,5 +19,5 @@ export {default as Fieldset} from "../src/Form/Fieldset";
 export {default as types} from "../src/Form/Types/types";
 export {convertToFormData} from "../src/Form/Helpers/formHelpers";
 export {validationsAvailable} from "../libs/validate";
-import {clearAllInputs} from "../src/Form/Actions/fields";
+export {clearAllInputs} from "../src/Form/Actions/fields";
 
