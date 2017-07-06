@@ -4,6 +4,8 @@ import {Map, List} from "immutable";
 
 const keysToTest = ["name", "required", "inputInfo"];
 
+const ReactElement = ({name}:{name?: string}) => <span className={name}></span>
+
 const currentProps = {
   name: "Shane",
   required: true,
@@ -61,21 +63,19 @@ const nextPropsFunction = {
 }
 
 const currentPropsDom = {
-  name: List([<span></span>]),
-  required: true,
-  inputInfo: Map({
-    value: '1',
-    blurred: true
-  })
+  name: (<span></span>),
 };
 
 const nextPropsDom = {
-  name: List([<span>label</span>]),
-  required: true,
-  inputInfo: Map({
-    value: '1',
-    blurred: true
-  })
+  name: (<span>label</span>),
+};
+
+const currentPropsReactDom = {
+  name: (<ReactElement/>)
+};
+
+const nextPropsReactDom = {
+  name: (<ReactElement name="test"></ReactElement>)
 };
 
 const currentPropsFile = {
@@ -115,10 +115,16 @@ describe('createIsSpecificShallowEqual()', () => {
     it('compares different DOM nodes: child is different', () => {
       expect(isSpecificShallowEqual(currentPropsDom, nextPropsDom)).toBe(false);
     });
-    it('compares identical child objects', () => {
+    it('compares identical DOM nodes', () => {
       expect(isSpecificShallowEqual(currentPropsDom, currentPropsDom)).toBe(true);
     });
-    it('compares different DOM nodes: function is different', () => {
+    it('compares different ReactDOM nodes: child is different', () => {
+      expect(isSpecificShallowEqual(currentPropsReactDom, nextPropsReactDom)).toBe(false);
+    });
+    it('compares identical ReactDOM nodes', () => {
+      expect(isSpecificShallowEqual(currentPropsReactDom, currentPropsReactDom)).toBe(true);
+    });
+    it('compares different functions', () => {
       expect(isSpecificShallowEqual(currentPropsFunction, nextPropsFunction)).toBe(false);
     });
     it('compares identical child functions', () => {
