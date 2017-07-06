@@ -4,6 +4,8 @@ import {BasicReducer} from "../src/Form/Reducers/index";
 import {PerformanceWrapperProps, WithHandlersGuard} from "../src/Form/Helpers/performanceWrapper";
 import {FormProps, FormOwnProps as FormOwnPackageProps, FormOptionalProps as FormOptionalPackageProps} from "../src/Form/Form"
 import {ValidationComponentProps} from "../src/Validation/Validation"
+import {ClearAllInputsAction} from "../src/Form/Actions/fields";
+
 
 declare module "cs.forms" {
   export class CheckBox extends Component<SwitchProps, {}>{}
@@ -32,4 +34,5 @@ declare module "cs.forms" {
 
   export function performanceWrapper<TOutter extends WithHandlersGuard> (Component:ComponentType<TOutter & PerformanceWrapperProps>): ComponentType<TOutter>
   export function validationsAvailable<T> (inputAttributes:T): TypeOfTest[];
+  export function clearAllInputs(namespace: string): ClearAllInputsAction
 }
