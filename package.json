@@ -5,7 +5,7 @@
   "main": "dist/chillisource-web-forms.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BlueChilli/ChilliSource.Web.Forms.git"
+    "url": "https://github.com/BlueChilli/ChilliSource.Web.Forms.git"
   },
   "keywords": [
     "react",
