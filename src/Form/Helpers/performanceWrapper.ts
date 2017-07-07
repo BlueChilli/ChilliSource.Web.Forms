@@ -71,7 +71,7 @@ export const getPrioritisedValue = (value:ShallowCompare, inputInfoValue:Shallow
 );
 
 const setIdToDefault = (type:string, id:string, defaultSwitch:string | number | boolean) => {
-  if((type === 'radio' || type === 'checkbox') && typeof defaultSwitch === 'boolean'){
+  if((type === 'radio' || type === 'checkbox') && typeof defaultSwitch === 'boolean' && defaultSwitch !== false){
     return id;
   }
   return defaultSwitch;
