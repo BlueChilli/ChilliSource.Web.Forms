@@ -7,7 +7,6 @@ import {DatePickerProps} from "../Form/Types/types";
 import {Calendar} from "react-date-range";
 import "./DateRange.scss";
 
-
 class CalendarBase extends React.Component<DatePickerProps & PerformanceWrapperProps & DateWrapperPassedDownProps, {}>{
   handleChange = (dateRange:Moment) => {
     const {inputChanged, close} = this.props
@@ -26,11 +25,10 @@ class CalendarBase extends React.Component<DatePickerProps & PerformanceWrapperP
 
 class DatePicker extends React.Component<DatePickerProps & PerformanceWrapperProps, {}>{
   getValue = () => {
-    if (this.props.value || this.props.defaultValue) {
-      return moment(this.props.value || this.props.defaultValue).format(this.props.dateFormat);
-    }
-    return "";
+    const {value, defaultValue, dateFormat} = this.props;
+    return moment(value || defaultValue, 'DD/MM/YYYY').format(dateFormat);
   }
+
   render() {
     const {children, ...props} = this.props
     return (
@@ -39,7 +37,7 @@ class DatePicker extends React.Component<DatePickerProps & PerformanceWrapperPro
       </DateWrapper>
     );
   }
-};
+}
 
 export default compose<DatePickerProps & PerformanceWrapperProps, DatePickerProps>(
   defaultProps({
@@ -48,6 +46,3 @@ export default compose<DatePickerProps & PerformanceWrapperProps, DatePickerProp
   }),
   performanceWrapper
 )(DatePicker);
-
-
-
