@@ -26,7 +26,7 @@
     "forcePublishSourceRepo": false
   },
   "github": {
-    "release": false,
+    "release": true,
     "releaseName": "%s",
     "preRelease": true,
     "tokenRef": "GITHUB_TOKEN"
