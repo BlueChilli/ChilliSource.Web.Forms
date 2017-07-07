@@ -25,7 +25,7 @@ declare module "cs.forms" {
   export class Form extends Component<FormProps<undefined>, {}>{}
   export class Fieldset extends Component<FieldSetProps, {}>{}
   export class InputGroup extends Component<InputGroupProps, {}>{}
-  export class InpupWrapper extends Component<InputWrapperProps, {}>{}
+  export class InputWrapper extends Component<InputWrapperProps, {}>{}
   export class ErrorWrapper extends Component<ErrorWrapperProps, {}>{}
   export class DisplayValidation extends Component<DisplayValidationProps, {}>{}
   
