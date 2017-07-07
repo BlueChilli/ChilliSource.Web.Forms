@@ -16,8 +16,11 @@ export {default as Form, FormOwnProps, FormOptionalProps} from "../src/Form/Form
 export {basicReducer as ReduxReducer} from "../src/Form/Reducers/index";
 export {default as performanceWrapper} from "../src/Form/Helpers/performanceWrapper";
 export {default as Fieldset} from "../src/Form/Fieldset";
+export {default as InputGroup} from "../src/Form/InputGroup";
+export {default as InputWrapper} from "../src/Form/InputWrapper";
+export {default as ErrorWrapper} from "../src/Form/ErrorWrapper";
+export {default as DisplayValidation} from "../src/Validation/DisplayValidation";
 export {default as types} from "../src/Form/Types/types";
 export {convertToFormData} from "../src/Form/Helpers/formHelpers";
 export {validationsAvailable} from "../libs/validate";
 export {clearAllInputs} from "../src/Form/Actions/fields";
-

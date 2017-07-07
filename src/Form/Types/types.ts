@@ -80,6 +80,8 @@ export interface FieldSetProps extends BaseReactProps, OnBlurEventProps<FocusEve
 	name: string
 }
 
+export interface ErrorWrapperProps extends BaseReactProps, TypeProp{}
+
 export interface InputGroupProps extends BaseReactProps {
 	prepend?: React.ReactNode,
 	append?: React.ReactNode

@@ -1,5 +1,5 @@
 import {Component, ComponentType} from "react"
-import {SwitchProps, DatePickerProps, DateRangeProps, DropZoneProps, TextInputProps, RadioTabProps, RadioTabsProps, SelectInputProps, MultiSelectProps, TextAreaProps, ValidateProps, FieldSetProps, InputUnionProps as InputUnionPackageProps, DateRangeMoment as DateRangePackageMoment, TypeOfTest} from "../src/Form/Types/types";
+import {SwitchProps, DatePickerProps, DateRangeProps, DropZoneProps, InputGroupProps, ErrorWrapperProps, InputWrapperProps, DisplayValidationProps, TextInputProps, RadioTabProps, RadioTabsProps, SelectInputProps, MultiSelectProps, TextAreaProps, ValidateProps, FieldSetProps, InputUnionProps as InputUnionPackageProps, DateRangeMoment as DateRangePackageMoment, TypeOfTest} from "../src/Form/Types/types";
 import {BasicReducer} from "../src/Form/Reducers/index";
 import {PerformanceWrapperProps, WithHandlersGuard} from "../src/Form/Helpers/performanceWrapper";
 import {FormProps, FormOwnProps as FormOwnPackageProps, FormOptionalProps as FormOptionalPackageProps} from "../src/Form/Form"
@@ -24,6 +24,10 @@ declare module "cs.forms" {
   export class Validation extends Component<ValidationComponentProps, {}>{}
   export class Form extends Component<FormProps<undefined>, {}>{}
   export class Fieldset extends Component<FieldSetProps, {}>{}
+  export class InputGroup extends Component<InputGroupProps, {}>{}
+  export class InpupWrapper extends Component<InputWrapperProps, {}>{}
+  export class ErrorWrapper extends Component<ErrorWrapperProps, {}>{}
+  export class DisplayValidation extends Component<DisplayValidationProps, {}>{}
   
   export const ReduxReducer:BasicReducer;
 
