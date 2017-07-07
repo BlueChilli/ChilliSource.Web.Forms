@@ -1,13 +1,9 @@
 import React from "react";
 import classnames from "classnames";
-import {TypeProp} from "./Types/types"
-import {BaseReactProps} from "../../libs/types"
-
-interface Props extends TypeProp, BaseReactProps{
-}
+import {ErrorWrapperProps} from "./Types/types"
 
 
-export default ({className, style, type, children} : Props) => {
+export default ({className, style, type, children} : ErrorWrapperProps) => {
     var classes = classnames(className, {
       'input-hidden': type === 'hidden'
     });
