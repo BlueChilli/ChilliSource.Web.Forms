@@ -2,7 +2,7 @@
   "non-interactive": true,
   "dry-run": true,
   "verbose": true,
-  "force": true,
+  "force": false,
   "pkgFiles": ["package.json"],
   "increment": "patch",
   "buildCommand": "npm run build",
