@@ -12,7 +12,7 @@
     "commitMessage": "Release %s",
     "tagName": "%s",
     "tagAnnotation": "%s",
-    "pushRepo": "https://github.com/BlueChilli/ChilliSource.Web.Forms.git#master",
+    "pushRepo": null,
     "beforeStartCommand": false,
     "beforeStageCommand": false,
     "afterReleaseCommand": false,
