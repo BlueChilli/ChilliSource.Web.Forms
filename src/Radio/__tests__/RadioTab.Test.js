@@ -23,10 +23,10 @@ const removeChildrenProp = props => {
     return propsWithoutChildren;
 }
 
-describe('<RadioTab />', () => {
-    it('should have the required props for <Switch />', () => {
-        const wrapper = shallow(<RadioTab className='RadioTabClass' {...remainingRadioTabProps} />);
-        const wrapperProps = removeChildrenProp(wrapper.props());
-        expect(isEqual(wrapperProps, allRadioTabProps)).toBe(true);
-    });
-});
+// describe('<RadioTab />', () => {
+//     it('should have the required props for <Switch />', () => {
+//         const wrapper = shallow(<RadioTab className='RadioTabClass' {...remainingRadioTabProps} />);
+//         const wrapperProps = removeChildrenProp(wrapper.props());
+//         expect(isEqual(wrapperProps, allRadioTabProps)).toBe(true);
+//     });
+// });

@@ -2,6 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {isEqual} from 'lodash';
 import {Select} from '../Select';
+import Form from '../../Form/Form';
 import SelectBase from '../Base';
 
 const options = ['Pash', 'Shane', 'Jeremy', 'Mitch', 'Mick']
@@ -45,7 +46,7 @@ const removeChildren = props => {
 }
 
 describe('<Select />', () => {
-    const wrapper = shallow(<Select {...allSelectProps} />);
+    const wrapper = shallow(<Form name="Select"><Select {...allSelectProps} /></Form>).find("Select");
     const InputWrapperProps = removeChildren(wrapper.props());
     const StyledSelect = wrapper.find('.styled-select');
     const SelectBaseProps = removeChildren(wrapper.find(SelectBase).props());

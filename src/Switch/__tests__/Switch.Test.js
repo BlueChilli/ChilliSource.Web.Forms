@@ -2,6 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {isEqual} from 'lodash';
 import {Switch} from '../Switch';
+import Form from "../../Form/Form"
 
 const allSwitchProps = {
     autoFocus: true,
@@ -46,7 +47,7 @@ const removeChildrenProp = props => {
 }
 
 describe('<Switch />', () => {
-    const wrapper = shallow(<Switch {...allSwitchProps} />);
+    const wrapper = shallow(<Form name="Switch"><Switch {...allSwitchProps} /></Form>).find(Switch);
 
     const ErrorWrapperProps = removeChildrenProp(wrapper.props());
     const SwitchBaseProps = removeChildrenProp(wrapper.find('SwitchBase').props());

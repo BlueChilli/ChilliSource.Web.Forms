@@ -36,13 +36,11 @@ class RadioTabs extends React.Component<RadioTabsProps, {chosenId: string}> {
 
     return (
       <InputWrapper className={classes} name={name} label={label}>
-        <div className={radioClasses}>
           {React.Children.map(children, child => React.cloneElement(child as React.ReactElement<RadioTabsPassedDownProps>, {
             name,
             chosenId,
             setId: this.setId
           }))}
-        </div>
       </InputWrapper>
     );
   }
