@@ -1,4 +1,5 @@
 import React from 'react';
+import sinon from "sinon";
 import PropTypes from "prop-types";
 import {shallow, mount} from 'enzyme';
 import {isEqual} from 'lodash';
@@ -121,7 +122,10 @@ describe("mount(Input)", () => {
 
     const defaultValue = "Input";
     const updatedDefaultValue = "Changed Input";
-    const wrapper = mount(<Input {...allInputProps} defaultValue={defaultValue} />, mountOptions)
+    const onChangeCallback = sinon.spy();
+    const onBlurCallback = sinon.spy();
+
+    const wrapper = mount(<Input {...allInputProps} onBlur={onBlurCallback} onChange={onChangeCallback} defaultValue={defaultValue} />, mountOptions)
 
     const label = wrapper.find('label');
     const input = wrapper.find("input")
@@ -150,6 +154,22 @@ describe("mount(Input)", () => {
         expect(input.prop('value') === defaultValue).toBe(true);
     });
 
+    it('should call onChange when value changes', () => {
+        const event = {target: {value: 'Inpu'}}
+        const changedEvent = {target: {value: 'Input'}}
+        input.simulate('change', event)
+        expect(onChangeCallback.calledOnce).toBe(true);
+        input.simulate('change', changedEvent)
+        expect(onChangeCallback.calledTwice).toBe(true);
+    });
+
+    it('should call onBlur when blurred', () => {
+        input.simulate('blur')
+        expect(onBlurCallback.calledOnce).toBe(true);
+        input.simulate('blur')
+        expect(onBlurCallback.calledTwice).toBe(true);
+    });
+
     const value = "Strong";
     const valueWrapper = mount(<Input value="Strong" {...allInputProps} defaultValue={defaultValue} />, mountOptions);
     
@@ -157,14 +177,3 @@ describe("mount(Input)", () => {
         expect(valueWrapper.find('input').prop('value') === value).toBe(true);
     });
 });
-
-// This should be in performance wrapper
-// it('should update the defaultValue', () => {
-//     expect(wrapper.find('input').prop('value') === defaultValue).toBe(true);
-//     wrapper.setProps({defaultValue: updatedDefaultValue});
-//     expect(wrapper.find('input').prop('value') === updatedDefaultValue).toBe(true);
-// });
-
-// it("should update value when changed", () => {
-//     expect(valueWrapper.setProps({value: updatedValue}).find('input').prop('value') === updatedValue).toBe(true);
-// });
