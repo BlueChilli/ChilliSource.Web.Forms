@@ -92,7 +92,6 @@ describe('performanceWrapper', () => {
 
   describe('updateLifecycle', () => {
 
-
     const initalValue = "inital";
     const updatedValue = "updated";
     const updatedDefaultValue = "updatedDefault";
@@ -103,43 +102,43 @@ describe('performanceWrapper', () => {
 
     const WrappedComponent = updateLifcycle()(TestComponent);
     
-    it('should call inputChanged when mounted', () => {
+    it('should call inputChanged with correct value and field state when mounted', () => {
       let callback = sinon.spy();
       const wrapper = mount(<WrappedComponent inputChanged={callback} value={initalValue} nameSpace={nameSpace} inputPath={inputPath} FormState={FormState}/>);
       
-      expect(callback.calledWith(initalValue)).toBe(true);
+      expect(callback.calledWithExactly(initalValue, false)).toBe(true);
     });
 
-     it('should call inputChanged when defaultValue changed', () => {
+     it('should call inputChanged with correct value and field state when defaultValue changed', () => {
       let callback = sinon.spy();
       const wrapper = mount(<WrappedComponent inputChanged={callback} value={initalValue} nameSpace={nameSpace} inputPath={inputPath} FormState={FormState}/>);
       
       wrapper.setProps({defaultValue: updatedDefaultValue})
-      expect(callback.calledWith(updatedDefaultValue)).toBe(true);
+      expect(callback.calledWithExactly(updatedDefaultValue, false)).toBe(true);
     });
     
-    it('should call inputChanged when value changed', () => {
+    it('should call inputChanged with correct value and field state when value changed', () => {
       let callback = sinon.spy();
       const wrapper = mount(<WrappedComponent inputChanged={callback} value={initalValue} nameSpace={nameSpace} inputPath={inputPath} FormState={FormState}/>);
       
       wrapper.setProps({value: updatedValue})
-      expect(callback.calledWith(updatedValue)).toBe(true);
+      expect(callback.calledWithExactly(updatedValue, true)).toBe(true);
     });
     
-    it('should call inputChanged with value after defaultValue when both change', () => {
+    it('should call inputChanged with correct value and field state when both defaultValue and value change', () => {
       let callback = sinon.spy();
       const wrapper = mount(<WrappedComponent inputChanged={callback} value={initalValue} nameSpace={nameSpace} inputPath={inputPath} FormState={FormState}/>);
       
       wrapper.setProps({defaultValue:updatedDefaultValue, value: updatedValue});
-      expect(callback.secondCall.calledWith(updatedDefaultValue)).toBe(true);
-      expect(callback.lastCall.calledWith(updatedValue)).toBe(true);
+      expect(callback.secondCall.calledWithExactly(updatedDefaultValue, false)).toBe(true);
+      expect(callback.lastCall.calledWithExactly(updatedValue, true)).toBe(true);
     });
 
-    it('should call inputChanged when the value doesnt exist in FormState', () => {
+    it('should call inputChanged with correct value and field state when the value doesnt exist in FormState', () => {
       let callback = sinon.spy();
       const wrapper = mount(<WrappedComponent value={initalValue} inputChanged={callback} nameSpace={nameSpace} inputPath={inputPath} FormState={FormState}/>);
       wrapper.setProps({FormState: Map()})
-      expect(callback.calledWith(initalValue)).toBe(true);
+      expect(callback.calledWithExactly(initalValue, false)).toBe(true);
     });
     
   });
