@@ -109,12 +109,12 @@ describe("mount(Input)", () => {
 
     const mountOptions = {
         context:{
-            namespace: "Input",
+            nameSpace: "Input",
             FormState: Map(),
             dispatch: () => {}
         },
         childContextTypes: {
-            namespace: PropTypes.string,
+            nameSpace: PropTypes.string,
             FormState: PropTypes.object,
             dispatch: PropTypes.func,
         }
@@ -122,10 +122,11 @@ describe("mount(Input)", () => {
 
     const defaultValue = "Input";
     const updatedDefaultValue = "Changed Input";
+    const type = "text"
     const onChangeCallback = sinon.spy();
     const onBlurCallback = sinon.spy();
 
-    const wrapper = mount(<Input {...allInputProps} onBlur={onBlurCallback} onChange={onChangeCallback} defaultValue={defaultValue} />, mountOptions)
+    const wrapper = mount(<Input {...allInputProps} onBlur={onBlurCallback} onChange={onChangeCallback} defaultValue={defaultValue} type={type} />, mountOptions)
 
     const label = wrapper.find('label');
     const input = wrapper.find("input")
@@ -152,6 +153,10 @@ describe("mount(Input)", () => {
 
     it('should set the correct defaultValue', () => {
         expect(input.prop('value') === defaultValue).toBe(true);
+    });
+
+    it('should set the correct type', () => {
+        expect(input.prop('type') === type).toBe(true);
     });
 
     it('should call onChange when value changes', () => {

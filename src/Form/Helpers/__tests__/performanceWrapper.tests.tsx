@@ -1,8 +1,8 @@
 import React, {HTMLAttributes, Component} from 'react';
 import sinon from "sinon";
 import {Map, fromJS} from 'immutable';
-import {mount} from "enzyme";
-import {getInputPath, getPrioritisedDefaultValue, getPrioritisedValue, updateLifcycle} from '../performanceWrapper';
+import {mount, shallow} from "enzyme";
+import {getInputPath, getPrioritisedDefaultValue, getPrioritisedValue, updateLifcycle, withNeededProps} from '../performanceWrapper';
 import {isEqual, isArray} from 'lodash';
 
 class TestComponent extends Component<any, {}> {
@@ -26,7 +26,6 @@ const inputPathPlainProps = {
 }
 
 describe('performanceWrapper', () => {
-
   // input path
   describe('getInputPath', () => {
 
@@ -104,14 +103,14 @@ describe('performanceWrapper', () => {
     
     it('should call inputChanged with correct value and field state when mounted', () => {
       let callback = sinon.spy();
-      const wrapper = mount(<WrappedComponent inputChanged={callback} value={initalValue} nameSpace={nameSpace} inputPath={inputPath} FormState={FormState}/>);
+      const wrapper = shallow(<WrappedComponent inputChanged={callback} value={initalValue} nameSpace={nameSpace} inputPath={inputPath} FormState={FormState}/>);
       
       expect(callback.calledWithExactly(initalValue, false)).toBe(true);
     });
 
      it('should call inputChanged with correct value and field state when defaultValue changed', () => {
       let callback = sinon.spy();
-      const wrapper = mount(<WrappedComponent inputChanged={callback} value={initalValue} nameSpace={nameSpace} inputPath={inputPath} FormState={FormState}/>);
+      const wrapper = shallow(<WrappedComponent inputChanged={callback} value={initalValue} nameSpace={nameSpace} inputPath={inputPath} FormState={FormState}/>);
       
       wrapper.setProps({defaultValue: updatedDefaultValue})
       expect(callback.calledWithExactly(updatedDefaultValue, false)).toBe(true);
@@ -119,7 +118,7 @@ describe('performanceWrapper', () => {
     
     it('should call inputChanged with correct value and field state when value changed', () => {
       let callback = sinon.spy();
-      const wrapper = mount(<WrappedComponent inputChanged={callback} value={initalValue} nameSpace={nameSpace} inputPath={inputPath} FormState={FormState}/>);
+      const wrapper = shallow(<WrappedComponent inputChanged={callback} value={initalValue} nameSpace={nameSpace} inputPath={inputPath} FormState={FormState}/>);
       
       wrapper.setProps({value: updatedValue})
       expect(callback.calledWithExactly(updatedValue, true)).toBe(true);
@@ -127,7 +126,7 @@ describe('performanceWrapper', () => {
     
     it('should call inputChanged with correct value and field state when both defaultValue and value change', () => {
       let callback = sinon.spy();
-      const wrapper = mount(<WrappedComponent inputChanged={callback} value={initalValue} nameSpace={nameSpace} inputPath={inputPath} FormState={FormState}/>);
+      const wrapper = shallow(<WrappedComponent inputChanged={callback} value={initalValue} nameSpace={nameSpace} inputPath={inputPath} FormState={FormState}/>);
       
       wrapper.setProps({defaultValue:updatedDefaultValue, value: updatedValue});
       expect(callback.secondCall.calledWithExactly(updatedDefaultValue, false)).toBe(true);
@@ -136,10 +135,22 @@ describe('performanceWrapper', () => {
 
     it('should call inputChanged with correct value and field state when the value doesnt exist in FormState', () => {
       let callback = sinon.spy();
-      const wrapper = mount(<WrappedComponent value={initalValue} inputChanged={callback} nameSpace={nameSpace} inputPath={inputPath} FormState={FormState}/>);
+      const wrapper = shallow(<WrappedComponent value={initalValue} inputChanged={callback} nameSpace={nameSpace} inputPath={inputPath} FormState={FormState}/>);
       wrapper.setProps({FormState: Map()})
       expect(callback.calledWithExactly(initalValue, false)).toBe(true);
     });
-    
+  });
+
+  describe('withNeedeProps', () => {
+    const WrappedComponent = withNeededProps<any>()(TestComponent);
+    it("should throw if nameSpace is undefined", () => {
+      expect(() => {
+        mount(<WrappedComponent inputPath={["test"]} FormState={Map()} name="withNeededProps"/>)
+      }).toThrow();
+      expect(() => {
+        mount(<WrappedComponent nameSpace="Test" inputPath={["test"]} FormState={Map()} name="withNeededProps"/>)
+      }).not.toThrow();
+    })
+
   });
 });
