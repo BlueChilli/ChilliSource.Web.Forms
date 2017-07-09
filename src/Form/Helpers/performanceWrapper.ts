@@ -66,7 +66,7 @@ export const getPrioritisedDefaultValue = (defaultValue?:PossibleDefaultValues, 
   returnCheckedValue((arg) => !isUndefined(arg) && arg !== false, defaultValue, defaultChecked, defaultSelected)
 );
 
-export const getPrioritisedValue = (value:ShallowCompare, inputInfoValue:ShallowCompare, prioritisedDefaultValue:PossibleDefaultValues, unsetValue:string) => (
+export const getPrioritisedValue = (value:ShallowCompare, inputInfoValue:ShallowCompare, prioritisedDefaultValue:PossibleDefaultValues, unsetValue:string | boolean) => (
   returnCheckedValue((arg) => !isUndefined(arg), value, inputInfoValue, prioritisedDefaultValue, unsetValue)
 );
 
@@ -127,6 +127,23 @@ export const validationPerformanceWrapper =<TOutter extends WithHandlersGuard> (
   createUniversalCompose<TOutter, PerformanceWrapperUncalledValidationHelpers>(setValidationWithHandlersObject)(ReactClass)
 )
 
+export const updateLifcycle =<TOutter extends ValueProp<PossibleValues>> () => lifecycle<PerformanceWrapperProps & TOutter, {}>({
+  componentWillMount() {
+    this.props.inputChanged(this.props.value, false);
+  },
+  componentWillReceiveProps(nextProps){
+    if(!specificShallowEqualDefault(nextProps, this.props)) {
+      nextProps.inputChanged(nextProps.defaultValue, false);
+    }
+    if(!specificShallowEqualValue(nextProps, this.props)) {
+      nextProps.inputChanged(nextProps.value, true);
+    }
+    if(!nextProps.FormState.hasIn([nextProps.nameSpace, ...nextProps.inputPath])) {
+      nextProps.inputChanged(nextProps.value, false);
+    }
+}});
+
+
 export default <TOutter extends WithHandlersGuard> (ReactClass:ComponentType<TOutter & PerformanceWrapperProps>) => {
   const inputWrapperCompose = createUniversalCompose<TOutter, PerformanceWrapperUncalledInputHelpers>({
       inputChanged: ({dispatch, nameSpace, name, id, fieldSetNameSpace}) => (value, changed:boolean = true) => {
@@ -142,20 +159,6 @@ export default <TOutter extends WithHandlersGuard> (ReactClass:ComponentType<TOu
 
   return compose<PerformanceWrapperProps & TOutter, TOutter>(
     inputWrapperCompose,
-    lifecycle<PerformanceWrapperProps & TOutter, {}>({
-      componentWillMount() {
-        this.props.inputChanged(this.props.value, false);
-      },
-      componentWillReceiveProps(nextProps:PerformanceWrapperProps & TOutter){
-        if(!specificShallowEqualDefault(nextProps, this.props)) {
-          nextProps.inputChanged(nextProps.defaultValue, false);
-        }
-        if(!specificShallowEqualValue(nextProps, this.props)) {
-          nextProps.inputChanged(nextProps.value, true);
-        }
-        if(!nextProps.FormState.hasIn([nextProps.nameSpace, ...nextProps.inputPath])) {
-          nextProps.inputChanged(nextProps.value, false);
-        }
-    }})
+    updateLifcycle<TOutter>()
   )(ReactClass);
 }

@@ -151,15 +151,11 @@ describe("mount(Input)", () => {
     });
 
     const value = "Strong";
-    const updatedValue = "Stronger";
     const valueWrapper = mount(<Input value="Strong" {...allInputProps} defaultValue={defaultValue} />, mountOptions);
     
     it("should set the value rather then defaultValue", () => {
         expect(valueWrapper.find('input').prop('value') === value).toBe(true);
     });
-
-    
-
 });
 
 // This should be in performance wrapper

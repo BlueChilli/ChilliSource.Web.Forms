@@ -1,7 +1,15 @@
-import {HTMLAttributes} from 'react';
-import {Map} from 'immutable';
-import {getInputPath, getPrioritisedDefaultValue, getPrioritisedValue} from '../performanceWrapper';
+import React, {HTMLAttributes, Component} from 'react';
+import sinon from "sinon";
+import {Map, fromJS} from 'immutable';
+import {mount} from "enzyme";
+import {getInputPath, getPrioritisedDefaultValue, getPrioritisedValue, updateLifcycle} from '../performanceWrapper';
 import {isEqual, isArray} from 'lodash';
+
+class TestComponent extends Component<any, {}> {
+  render() {
+    return (<div/>)
+  }
+} 
 
 const inputPathFieldsetProps = {
   fieldSetNameSpace: 'fieldset',
@@ -78,7 +86,53 @@ describe('performanceWrapper', () => {
     });
     
     it('should prioritise unsetValue', () => {
-      expect(getPrioritisedValue(undefined, undefined, undefined, false)).toBe(false);
+      expect(getPrioritisedValue(undefined, undefined, undefined, "")).toBe("");
     });
+  });
+
+  describe('updateLifecycle', () => {
+
+
+    const initalValue = "inital";
+    const updatedValue = "updated";
+    const updatedDefaultValue = "updatedDefault";
+
+    const WrappedComponent = updateLifcycle()(TestComponent);
+   
+
+    
+    it('should call inputChanged when mounted', () => {
+      let callback = sinon.spy();
+      const wrapper = mount(<WrappedComponent inputChanged={callback} value={initalValue} FormState={Map()} defaultValue={initalValue}/>);
+      
+      expect(callback.calledWith(initalValue)).toBe(true);
+    });
+    
+    it('should call inputChanged when value changed', () => {
+      let callback = sinon.spy();
+      const wrapper = mount(<WrappedComponent inputChanged={callback} value={initalValue} FormState={Map()} defaultValue={initalValue}/>);
+      
+      wrapper.setProps({value: updatedValue})
+      expect(callback.calledWith(updatedValue)).toBe(true);
+    });
+
+    it('should call inputChanged when defaultValue changed', () => {
+      let callback = sinon.spy();
+      const wrapper = mount(<WrappedComponent inputChanged={callback} value={initalValue} FormState={Map()} defaultValue={initalValue}/>);
+      
+      wrapper.setProps({defaultValue: updatedDefaultValue})
+      expect(callback.calledWith(updatedDefaultValue)).toBe(true);
+    });
+
+    it('should call inputChanged when the value doesnt exist in formsState changed', () => {
+      let callback = sinon.spy();
+      const nameSpace = "Input";
+      const inputPath = ["field"]
+      const FormState = Map().setIn([nameSpace, ...inputPath], initalValue);
+      const wrapper = mount(<WrappedComponent value={initalValue} inputChanged={callback} nameSpace={nameSpace} inputPath={inputPath} FormState={FormState}/>);
+      wrapper.setProps({FormState: Map()})
+      expect(callback.calledWith(initalValue)).toBe(true);
+    });
+    
   });
 });
