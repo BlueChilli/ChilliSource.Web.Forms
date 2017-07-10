@@ -66,7 +66,7 @@ export const getPrioritisedDefaultValue = (defaultValue?:PossibleDefaultValues, 
   returnCheckedValue((arg) => !isUndefined(arg) && arg !== false, defaultValue, defaultChecked, defaultSelected)
 );
 
-export const getPrioritisedValue = (value:ShallowCompare, inputInfoValue:ShallowCompare, prioritisedDefaultValue:PossibleDefaultValues, unsetValue:string) => (
+export const getPrioritisedValue = (value:ShallowCompare, inputInfoValue:ShallowCompare, prioritisedDefaultValue:PossibleDefaultValues, unsetValue:string | boolean) => (
   returnCheckedValue((arg) => !isUndefined(arg), value, inputInfoValue, prioritisedDefaultValue, unsetValue)
 );
 
@@ -77,24 +77,29 @@ const setIdToDefault = (type:string, id:string, defaultSwitch:string | number | 
   return defaultSwitch;
 }
 
-const withNeededProps = <TOutter extends WithNeededPropsGuard> (props: FormContext & TOutter) => {
-  const inputPath = getInputPath("input", props);
-  const inputInfo = props.FormState.getIn([props.nameSpace, ...inputPath], Map({}))
-  const {defaultValue, defaultChecked, defaultSelected} = props;
-  
-  const prioritisedDefaultValue = getPrioritisedDefaultValue(
-    defaultValue,
-    setIdToDefault(props.type, props.id, defaultChecked),
-    setIdToDefault(props.type, props.id, defaultSelected)
-  );
-  const value = getPrioritisedValue(props.value, inputInfo.get('value'), prioritisedDefaultValue, getUnsetValue(props));
-  return {
-    inputInfo,
-    defaultValue: prioritisedDefaultValue,
-    inputPath,
-    value
-  };
-}
+export const withNeededProps =<TOutter extends WithNeededPropsGuard> () => 
+  withProps<PerformanceWrapperWithProps, PerformanceWrapperWithHandlers & FormContext & TOutter>((props: FormContext & TOutter) => {
+    if(props.nameSpace === undefined){
+      throw new Error(`nameSpace is undefined ensure that a Form component is a parent of the component with name: "${props.name}"`);
+    }
+
+    const inputPath = getInputPath("input", props);
+    const inputInfo = props.FormState.getIn([props.nameSpace, ...inputPath], Map({}))
+    const {defaultValue, defaultChecked, defaultSelected} = props;
+    
+    const prioritisedDefaultValue = getPrioritisedDefaultValue(
+      defaultValue,
+      setIdToDefault(props.type, props.id, defaultChecked),
+      setIdToDefault(props.type, props.id, defaultSelected)
+    );
+    const value = getPrioritisedValue(props.value, inputInfo.get('value'), prioritisedDefaultValue, getUnsetValue(props));
+    return {
+      inputInfo,
+      defaultValue: prioritisedDefaultValue,
+      inputPath,
+      value
+    };
+  });
 
 const setValidationWithHandlersObject = {
   setValidation: ({dispatch, nameSpace, ...props}:SetValidation) => (type:string, test:string | boolean) => {
@@ -109,6 +114,23 @@ const setValidationWithHandlersObject = {
   },
 }
 
+export const updateLifcycle =<TOutter extends ValueProp<PossibleValues>> () => lifecycle<PerformanceWrapperProps & TOutter, {}>({
+  componentWillMount() {
+    this.props.inputChanged(this.props.value, false);
+  },
+  componentWillReceiveProps(nextProps){
+    if(!specificShallowEqualDefault(nextProps, this.props)) {
+      nextProps.inputChanged(nextProps.defaultValue, false);
+    }
+    if(!specificShallowEqualValue(nextProps, this.props)) {
+      nextProps.inputChanged(nextProps.value, true);
+    }
+    if(!nextProps.FormState.hasIn([nextProps.nameSpace, ...nextProps.inputPath])) {
+      nextProps.inputChanged(nextProps.value, false);
+    }
+}});
+
+
 const createUniversalCompose = <TOutter extends WithHandlersGuard, TWithHandlers extends {}> (withHandlersArgs:TWithHandlers, type:string = "input") => compose<PerformanceWrapperProps & TOutter, TOutter>(
   getContext<FormContext, TOutter>({
     nameSpace: PropTypes.string,
@@ -116,12 +138,13 @@ const createUniversalCompose = <TOutter extends WithHandlersGuard, TWithHandlers
     fieldSetNameSpace: PropTypes.string,
     dispatch: PropTypes.func
   }),
-  withProps<PerformanceWrapperWithProps, PerformanceWrapperWithHandlers & FormContext & TOutter>(withNeededProps),
+  withNeededProps<TOutter>(),
   withHandlers<TWithHandlers, FormContext & TOutter>(withHandlersArgs),
   shouldUpdate<PerformanceWrapperProps & TOutter>((props, nextProps) => {
     return !specificShallowEqual(props, nextProps) || !nextProps.compareAdditionalProps(props, nextProps);
   })
 );
+
 
 export const validationPerformanceWrapper =<TOutter extends WithHandlersGuard> (ReactClass:ComponentType<TOutter & PerformanceWrapperProps>) => (
   createUniversalCompose<TOutter, PerformanceWrapperUncalledValidationHelpers>(setValidationWithHandlersObject)(ReactClass)
@@ -142,20 +165,6 @@ export default <TOutter extends WithHandlersGuard> (ReactClass:ComponentType<TOu
 
   return compose<PerformanceWrapperProps & TOutter, TOutter>(
     inputWrapperCompose,
-    lifecycle<PerformanceWrapperProps & TOutter, {}>({
-      componentWillMount() {
-        this.props.inputChanged(this.props.value, false);
-      },
-      componentWillReceiveProps(nextProps:PerformanceWrapperProps & TOutter){
-        if(!specificShallowEqualDefault(nextProps, this.props)) {
-          nextProps.inputChanged(nextProps.defaultValue, false);
-        }
-        if(!specificShallowEqualValue(nextProps, this.props)) {
-          nextProps.inputChanged(nextProps.value, true);
-        }
-        if(!nextProps.FormState.hasIn([nextProps.nameSpace, ...nextProps.inputPath])) {
-          nextProps.inputChanged(nextProps.value, false);
-        }
-    }})
+    updateLifcycle<TOutter>()
   )(ReactClass);
 }
