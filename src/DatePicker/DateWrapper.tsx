@@ -40,12 +40,9 @@ class DateWrapper extends Component<InternalDateWrapperProps, StateProps>{
     const dateRangeClasses = classnames({hidden: this.state.hidden}, 'date-range-container');
     return (
       <div className="date-range-wrapper">
-        <InputWrapper className="input date-picker" name={this.props.name}
-                      labelPostfix={this.props.labelPostfix}
-                      label={this.props.label}>
+        <InputWrapper className="input date-picker" name={this.props.name} labelPostfix={this.props.labelPostfix} label={this.props.label}>
           <InputGroup prepend={this.props.prepend} append={this.props.append}>
-            <input onFocus={this.handleFocus} placeholder={this.props.placeholder}
-                   value={this.props.valueString} ref={this.props.name} readOnly={true}/>
+            <input onFocus={this.handleFocus} placeholder={this.props.placeholder} value={this.props.valueString} ref={this.props.name} readOnly={true}/>
           </InputGroup>
         </InputWrapper>
         <div className={dateRangeClasses}>
