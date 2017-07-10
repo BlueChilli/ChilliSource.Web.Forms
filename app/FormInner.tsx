@@ -148,8 +148,11 @@ export default class FormInner extends React.Component<{}, {}> {
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 
-        <DatePicker label="Date Picker" name="DatePicker" />
-        <DatePicker label="Date Picker" name="DatePicker" defaultValue="" />
+        <DatePicker label="Date Picker" name="DatePicker1" />
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        
+        <DatePicker label="Date Picker" name="DatePicker2" defaultValue="" />
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         <button>Submit</button>
