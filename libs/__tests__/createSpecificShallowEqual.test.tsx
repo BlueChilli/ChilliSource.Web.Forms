@@ -145,5 +145,7 @@ describe('createIsSpecificShallowEqual()', () => {
     it('compares throwing arr: object array\'t throw', () => {
       expect(() => isSpecificShallowEqual(currentPropsArr, currentPropsArr)).toThrowError();
     });
+
+    //TODO: Add tests for more datatypes
   });
 });

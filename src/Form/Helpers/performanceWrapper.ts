@@ -8,7 +8,7 @@ import {Map} from 'immutable';
 
 /** Components */
 import {isMultipleValueInput, returnCheckedValue} from './inputHelpers';
-import createSpecificShallowEqual from '../../../libs/createSpecificShallowEqual'
+import createSpecificShallowEqual, {isNotComparable, notValidError} from '../../../libs/createSpecificShallowEqual'
 import {setInput, setInputInteraction, setValidation} from '../Actions/fields';
 import {ShallowCompareProps, BaseReactProps, ShallowCompare} from '../../../libs/types';
 import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerformanceWrapperInputHelpers, FieldSetNameSpaceProp,
@@ -116,7 +116,11 @@ const setValidationWithHandlersObject = {
 
 export const updateLifcycle =<TOutter extends ValueProp<PossibleValues>> () => lifecycle<PerformanceWrapperProps & TOutter, {}>({
   componentWillMount() {
-    this.props.inputChanged(this.props.value, false);
+    if(isNotComparable(this.props.value)){
+      throw notValidError("value", this.props.value);
+    } else {
+      this.props.inputChanged(this.props.value, false);
+    }
   },
   componentWillReceiveProps(nextProps){
     if(!specificShallowEqualDefault(nextProps, this.props)) {

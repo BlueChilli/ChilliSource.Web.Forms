@@ -141,7 +141,7 @@ describe('performanceWrapper', () => {
     });
   });
 
-  describe('withNeedeProps', () => {
+  describe('withNeededProps', () => {
     const WrappedComponent = withNeededProps<any>()(TestComponent);
     it("should throw if nameSpace is undefined", () => {
       expect(() => {

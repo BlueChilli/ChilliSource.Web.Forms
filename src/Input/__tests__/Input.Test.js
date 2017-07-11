@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import {shallow, mount} from 'enzyme';
 import {isEqual} from 'lodash';
 import Input, {Input as ShallowInput} from '../Input';
-import {Map} from "immutable";
+import {Map, List} from "immutable";
 
 // Defining all the properties
 const allInputProps = {
@@ -104,21 +104,70 @@ describe('shallow(<Input />)', () => {
     });
 });
 
+const passDataTypesArray = List([
+    true,
+    false,
+    10000,
+    "test",
+    ""
+]);
+
+const passDefaultDataTypesArray = List([
+    true,
+    10000,
+    "test",
+    ""
+]);
+
+const failDataTypesArray = List([
+    NaN,
+    {here:"here"},
+    ["here"]
+]);
+
+const mountOptions = {
+    context:{
+        nameSpace: "Input",
+        FormState: Map(),
+        dispatch: () => {}
+    },
+    childContextTypes: {
+        nameSpace: PropTypes.string,
+        FormState: PropTypes.object,
+        dispatch: PropTypes.func,
+    }
+}
+
+const testPropAgainstDatatypes = (propType, HTMLProp, passDataTypes = passDataTypesArray, failDataTypes = failDataTypesArray) => {
+    describe(`propType: ${propType}`, () => {
+        const createPropObj = (value) => ({[propType]: value});
+        it("should successful render the following data types", () => {
+            const successfulRender = passDataTypes.every(passValue => {
+                const propObj = createPropObj(passValue);
+                const dataTypesWrapper = mount(<Input {...propObj} {...allInputProps} />, mountOptions);
+                return dataTypesWrapper.find('input').prop(HTMLProp) === passValue;
+            })
+            expect(successfulRender).toBe(true);
+        });
+
+        it("should successfully render render nothing when undefined is passed", () => {
+            const dataTypesWrapper = mount(<Input value={undefined} {...allInputProps} />, mountOptions);
+            expect(dataTypesWrapper.find('input').prop(HTMLProp) === "").toBe(true);
+        });
+
+        it("should throw when bad values are passed", () => {
+            failDataTypes.forEach(failValue => {
+                const propObj = createPropObj(failValue);
+                expect(() => mount(<Input {...propObj} {...allInputProps} />, mountOptions)).toThrow();
+            });
+        });
+    });
+}
+
 
 describe("mount(Input)", () => {
 
-    const mountOptions = {
-        context:{
-            nameSpace: "Input",
-            FormState: Map(),
-            dispatch: () => {}
-        },
-        childContextTypes: {
-            nameSpace: PropTypes.string,
-            FormState: PropTypes.object,
-            dispatch: PropTypes.func,
-        }
-    }
+
 
     const defaultValue = "Input";
     const updatedDefaultValue = "Changed Input";
@@ -159,6 +208,14 @@ describe("mount(Input)", () => {
         expect(input.prop('type') === type).toBe(true);
     });
 
+    // it('hidden type should only render the input field', () => {
+    //     const hiddenWrapper = mount(<Input {...allInputProps} onBlur={onBlurCallback} onChange={onChangeCallback} defaultValue={defaultValue} type="hidden" />, mountOptions)
+    //     console.log(hiddenWrapper.is({type="hidden"}));
+    //     console.log(hiddenWrapper..type());
+    //     console.log(hiddenWrapper.html())
+    //     expect(input.prop('type') === type).toBe(true);
+    // });
+
     it('should call onChange when value changes', () => {
         const event = {target: {value: 'Inpu'}}
         const changedEvent = {target: {value: 'Input'}}
@@ -181,4 +238,11 @@ describe("mount(Input)", () => {
     it("should set the value rather then defaultValue", () => {
         expect(valueWrapper.find('input').prop('value') === value).toBe(true);
     });
+
+
+   testPropAgainstDatatypes('value', 'value');
+   testPropAgainstDatatypes('defaultValue', 'value', passDefaultDataTypesArray);
+
+
+
 });
