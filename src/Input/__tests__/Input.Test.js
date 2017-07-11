@@ -208,14 +208,6 @@ describe("mount(Input)", () => {
         expect(input.prop('type') === type).toBe(true);
     });
 
-    // it('hidden type should only render the input field', () => {
-    //     const hiddenWrapper = mount(<Input {...allInputProps} onBlur={onBlurCallback} onChange={onChangeCallback} defaultValue={defaultValue} type="hidden" />, mountOptions)
-    //     console.log(hiddenWrapper.is({type="hidden"}));
-    //     console.log(hiddenWrapper..type());
-    //     console.log(hiddenWrapper.html())
-    //     expect(input.prop('type') === type).toBe(true);
-    // });
-
     it('should call onChange when value changes', () => {
         const event = {target: {value: 'Inpu'}}
         const changedEvent = {target: {value: 'Input'}}
