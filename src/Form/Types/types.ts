@@ -217,7 +217,8 @@ interface CommonDateProps extends BaseReactProps, NameProp, DateWrapperProps, On
 	theme?: Object,
 	onInit?: (date?: DateRangeMoment | Moment) => void | boolean,
 	minDate?: string | moment.Moment | Function,
-	maxDate?: string | moment.Moment | Function
+	maxDate?: string | moment.Moment | Function,
+	serverFormat?: string
 }
 
 export interface DatePickerProps extends CommonDateProps, DefaultValueProp<string>, ValueProp<Moment>{}
