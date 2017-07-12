@@ -53,3 +53,5 @@ export default compose<DatePickerProps & PerformanceWrapperProps, DatePickerProp
   }),
   performanceWrapper
 )(DatePicker);
+
+export {DatePicker, CalendarBase};

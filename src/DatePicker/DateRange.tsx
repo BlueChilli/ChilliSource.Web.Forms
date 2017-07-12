@@ -39,3 +39,4 @@ const DateRangePicker = ({children, ...props}:DateRangeProps & PerformanceWrappe
 );
 
 export default performanceWrapper<DateRangeProps>(DateRangePicker);
+export {DateRangeBase, DateRangePicker}

@@ -56,3 +56,4 @@ class DateWrapper extends Component<InternalDateWrapperProps, StateProps>{
 };
 
 export default onReactOutsideClick<any>(DateWrapper)
+export {DateWrapper};
