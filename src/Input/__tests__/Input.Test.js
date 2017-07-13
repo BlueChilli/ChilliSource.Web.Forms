@@ -167,8 +167,6 @@ const testPropAgainstDatatypes = (propType, HTMLProp, passDataTypes = passDataTy
 
 describe("mount(Input)", () => {
 
-
-
     const defaultValue = "Input";
     const updatedDefaultValue = "Changed Input";
     const type = "text"
@@ -234,7 +232,4 @@ describe("mount(Input)", () => {
 
    testPropAgainstDatatypes('value', 'value');
    testPropAgainstDatatypes('defaultValue', 'value', passDefaultDataTypesArray);
-
-
-
 });

@@ -1,20 +1,7 @@
 import {Iterable} from "immutable";
 import regExpList from "./validationRegExps";
 import {ShallowCompareProps, ShallowCompare} from "./types";
-import {Type, TypeProp, TypeOfTest, Tests} from "../src/Form/Types/types"
-
-
-
-interface ValidationTypes {
-  required: (value:ShallowCompare, test:boolean, type:Type) => boolean,
-  pattern: (value:ShallowCompare, test:string) => boolean,
-  type: (value:ShallowCompare, test: string) => boolean,
-  minLength: (value:ShallowCompare, test:string) => boolean,
-  maxLength: (value:ShallowCompare, test:string) => boolean,
-  min: (value:ShallowCompare, test:string) => boolean,
-  max: (value:ShallowCompare, test:string) => boolean,
-  default: () => false,
-}
+import {Type, TypeProp, TypeOfTest, Tests, ValidationTypes} from "../src/Form/Types/types"
 
 
 export const validations:ValidationTypes = {
@@ -81,13 +68,14 @@ export const validationsMessages = (type:string, test?:boolean | string | number
 export function testValidation(value:ShallowCompare, typeOfTest:TypeOfTest, typeOfInput:Type, test:Tests) {
   if (value !== undefined && value !== null) {
     if (validations[typeOfTest] !== undefined) {
-      if(typeOfTest === 'required'){
-        return validations[typeOfTest](value, test as boolean, typeOfInput);
-      } else {
-        return validations[typeOfTest](value, test as string);
+      switch (typeOfTest){
+        case "required":
+          return validations[typeOfTest](value, test as boolean, typeOfInput);
+        case "default":
+          return validations[typeOfTest]();
+        default: 
+          validations[typeOfTest](value, test as string);
       }
-    } else {
-      return validations['default']();
     }
   }
   return validations['default']();
@@ -107,21 +95,27 @@ interface TestElementProps extends TypeProp{
 
 export type TestElement = ({value, test, isFor, type, setValid}: TestElementProps) => void
 
+
+const isValidHTMLValidation = (isFor):isFor is keyof ValidationTypes => {
+  return Object.keys(validations).indexOf(isFor) !== -1
+}
+
 export const testElement:TestElement = ({value, test, isFor, type, setValid}) => {
   if (test === false || test === 'false') {
     return setValid(true);
-  } else if (isFor !== 'customValidation' && typeof test !== "function") {
+  } else if (isValidHTMLValidation(isFor)) {
     return setValid(testValidation(value, isFor, type, test));
   } else {
     if (typeof test === "function") {
       const customValidation = test(value);
+      console.log(customValidation);
       if (typeof customValidation === "boolean" || customValidation === "undefined") {
         return setValid(!!customValidation);
       } else if (customValidation instanceof Promise){
         customValidation.then(res => setValid(!!res)).catch(res => setValid(!!res));
         return setValid(true);
       } else {
-        return console.error("Custom validation functions must return a bool, undefined or a promise");
+         throw new Error("Custom validation functions must return a bool, undefined or a promise");
       }
     } 
     return setValid(false);

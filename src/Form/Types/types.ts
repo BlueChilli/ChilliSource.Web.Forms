@@ -8,8 +8,19 @@ import moment, {Moment} from 'moment';
 import {SetInputPayload, SetInputInteractionPayload, SetValidationPayload} from '../Actions/fields'
 
 
+export interface ValidationTypes {
+  required: (value:ShallowCompare, test:boolean, type:Type) => boolean,
+  pattern: (value:ShallowCompare, test:string) => boolean,
+  type: (value:ShallowCompare, test: string) => boolean,
+  minLength: (value:ShallowCompare, test:string) => boolean,
+  maxLength: (value:ShallowCompare, test:string) => boolean,
+  min: (value:ShallowCompare, test:string) => boolean,
+  max: (value:ShallowCompare, test:string) => boolean,
+  default: () => false,
+}
+
 export type Type = 'text' | 'radio' | 'checkbox' | 'number' | 'email' | 'password' | 'hidden' | 'file'
-export type TypeOfTest = "required" | "pattern" | "type" | "minLength" | "maxLength" | "min" | "max";
+export type TypeOfTest = keyof ValidationTypes;
 export type Tests = string | number | boolean | Function | undefined;
 
 export type DateRangeMoment = {
