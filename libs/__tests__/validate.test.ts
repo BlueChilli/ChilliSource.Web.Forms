@@ -51,7 +51,6 @@ describe('testElement', () => {
   it('should throw if it receives a function that returns a function', () => {
     let callback:any = () => () => true;
     let setValid = sinon.spy();
-    
     expect(() => {
       testElement({test: callback, setValid, value: 'string', isFor: "customValidation"});
     }).toThrow()
