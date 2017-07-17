@@ -34,6 +34,7 @@
       "js",
       "jsx"
     ],
+    "setupTestFrameworkScriptFile": "<rootDir>/setupTestFramework.js",
     "moduleDirectories": [
       "node_modules"
     ],
