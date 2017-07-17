@@ -54,12 +54,23 @@ const currentPropsArr = {
   name: [],
 }
 
+const returnFunctionTrue = (x) => () => true;
+const returnFunctionFalse = (x) => () => false;
+
 const currentPropsFunction = {
   name: () => true,
 }
 
 const nextPropsFunction = {
   name: () => false,
+}
+
+const currentPropsFunctionReturn = {
+  name: returnFunctionTrue,
+}
+
+const nextPropsFunctionReturn = {
+  name: returnFunctionFalse,
 }
 
 const currentPropsDom = {
@@ -130,6 +141,14 @@ describe('createIsSpecificShallowEqual()', () => {
     it('compares identical child functions', () => {
       expect(isSpecificShallowEqual(currentPropsFunction, currentPropsFunction)).toBe(true);
     });
+
+    it('compares different functions that returns functions', () => {
+      expect(isSpecificShallowEqual(currentPropsFunctionReturn, nextPropsFunctionReturn)).toBe(false);
+    });
+    it('compares identical child functions that return functions', () => {
+      expect(isSpecificShallowEqual(currentPropsFunctionReturn, currentPropsFunctionReturn)).toBe(true);
+    });
+
     it('compares different Files: file is different', () => {
       expect(isSpecificShallowEqual(currentPropsFile, nextPropsFile)).toBe(false);
     });

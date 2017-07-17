@@ -21,7 +21,10 @@ import {ShallowCompare, ShallowCompareProps} from "./types";
         const nextString = ReactDOMServer.renderToStaticMarkup(nextVal);
         return currentString === nextString;
       } else {
-        if ((isArray(nextVal) || isObject(nextVal) || isNaN(nextVal)) && !(isFunction(nextVal) || nextVal instanceof File)) {
+        if(isFunction(nextVal)){
+          return currentVal + "" === nextVal + "";
+        }
+        else if ((isArray(nextVal) || isObject(nextVal) || isNaN(nextVal)) && !(nextVal instanceof File)) {
           throw new Error(`Specific shallow equal does not support plain old JS objects, Arrays and NaN: prop ${keyToTest} is a ${typeof nextVal}`);
         }
         return currentVal === nextVal;

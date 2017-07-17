@@ -19,7 +19,7 @@ import Validate from '../src/Validation/Validate';
 import './FormInner.scss';
 
 export default class FormInner extends React.Component<{}, {}> {
-  lastNameValidation(value: string) {
+  lastNameValidation = () => (value: string) => {
     return value === 'Shane';
   }
   render() {
@@ -33,7 +33,7 @@ export default class FormInner extends React.Component<{}, {}> {
 
     return (
       <div style={{ padding: '20px 40px' }}>
-        <Input autoFocus label="First Name" required defaultValue="First Name" pattern="[A-Za-z]+$" name="firstName"  customValidation={this.lastNameValidation}>
+        <Input autoFocus label="First Name" required defaultValue="First Name" pattern="[A-Za-z]+$" name="firstName"  customValidation={this.lastNameValidation()}>
           <Validation isFor="required">This field is required</Validation>
           <Validation isFor="customValidation">This field must be Shane</Validation>
         </Input>
