@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { List } from 'immutable';
 import CheckBox from '../src/CheckBox/CheckBox';
 import Form from '../src/Form/Form';
@@ -144,14 +145,20 @@ export default class FormInner extends React.Component<{}, {}> {
           </div>
         </div>
         <br /><br />
-        <DateRange label="Date Range" name="DateRange" />
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-
-        <DatePicker label="Date Picker" name="DatePicker" />
-        <DatePicker label="Date Picker" name="DatePicker" defaultValue="" />
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <div className="clearfix" style={{ height: "300px" }}>
+          <div style={{ width: "300px", height: "300px", float: "left" }}>
+            <DateRange label="Date Range" name="DateRange" />
+          </div>
+          <div style={{ width: "300px", height: "300px", float: "left" }}>
+            <DatePicker label="Date Picker No Default" name="DatePickerNoDefault" />
+          </div>
+          <div style={{ width: "300px", height: "300px", float: "left" }}>
+            <DatePicker label="Date Picker Moment Object" name="DatePickerMomentObject" defaultValue={moment().format()} />
+          </div>
+          <div style={{ width: "300px", height: "300px", float: "left" }}>
+            <DatePicker label="Date Picker Blank Default" name="DatePickerBlankDefault" defaultValue="" />
+          </div>
+        </div>
         <button>Submit</button>
       </div>
     );

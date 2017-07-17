@@ -5,7 +5,7 @@
   "force": false,
   "pkgFiles": ["package.json"],
   "increment": "patch",
-  "buildCommand": false,
+  "buildCommand": "echo 'built by teamcity'",
   "changelogCommand": "git log --pretty=format:\"* %s (%h)\" [REV_RANGE]",
   "requireCleanWorkingDir": false,
   "src": {
@@ -17,6 +17,19 @@
     "beforeStageCommand": false,
     "afterReleaseCommand": false,
     "githubAssets": true
+  },
+  "dist": {
+    "repo": false,
+    "stageDir": ".stage",
+    "baseDir": "dist",
+    "files": ["**/*"],
+    "pkgFiles": null,
+    "commitMessage": "Release %s",
+    "tagName": "%s",
+    "tagAnnotation": "Release %s",
+    "beforeStageCommand": false,
+    "afterReleaseCommand": false,
+    "githubAssets": false
   },
   "npm": {
     "publish": false,
