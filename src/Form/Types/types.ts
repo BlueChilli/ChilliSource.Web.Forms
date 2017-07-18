@@ -1,7 +1,6 @@
 import {ChangeEvent, FocusEvent, AllHTMLAttributes} from "react";
-import {ShallowCompare, BaseReactProps} from '../../../libs/types';
 import {TypeOfTest} from './types';
-import {Dispatch} from 'redux';
+import {Dispatch, Action} from 'redux';
 import {Map, List} from 'immutable';
 import moment, {Moment} from 'moment';
 
@@ -13,10 +12,22 @@ export type TypeOfTest = "required" | "pattern" | "type" | "minLength" | "maxLen
 export type Tests = string | number | boolean | Function | undefined;
 
 
+export interface BaseAction<TType> extends Action {
+  type: TType;
+}
+
+export interface FSA<TPayload, TType> extends BaseAction<TType>{
+  payload?: TPayload,
+  meta?: any
+}
+
+
+
 export interface BaseReactProps {
   children?: React.ReactNode;
   key?: React.Key;
-  className?: string;
+	className?: string,
+	style?: Object
 }
 
 export type DateRangeMoment = {
@@ -26,7 +37,7 @@ export type DateRangeMoment = {
 
 export interface DateRangeMap extends Map<string, Moment> {}
 
-export type PossibleDefaultValues = number | string | boolean | Moment | DateRangeMap | undefined;
+export type PossibleDefaultValues = number | string | boolean | Moment | DateRangeMap | undefined | List<any>;
 export type PossibleValues = PossibleDefaultValues;
 
 export interface ValidationProps{
@@ -296,7 +307,7 @@ export interface SetValidation extends NameSpaceProp, NameProp, FieldSetNameSpac
 	dispatch: Dispatch<SetValidationPayload>
 }
 
-type inputChanged = (value: ShallowCompare, changed?:boolean) => void;
+type inputChanged = (value: PossibleValues, changed?:boolean) => void;
 type inputBlurred = () => void;
 type setValidation = (type: string, test?: Tests) => void;
 type compareAdditionalProps = <TProps> (props: TProps, nextProps: TProps) => boolean;

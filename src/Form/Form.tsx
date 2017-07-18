@@ -5,12 +5,12 @@ import classnames from "classnames";
 import {defer, isFunction} from "lodash";
 import {setAllInputInteractions, clearAllInputs} from "./Actions/fields";
 import {withReducerState} from "./Reducers";
-import {ShallowCompare, BaseReactProps} from "../../libs/types";
+import {PossibleValues, BaseReactProps} from "./Types/types";
 import {convertToFormData, normalizeFields} from "./Helpers/formHelpers";
 import {withReducer, compose, branch, ComponentEnhancer} from "recompose";
 
 
-type formState = Map<string, Map<string, ShallowCompare>>
+type formState = Map<string, Map<string, PossibleValues>>
 
 export type OnSubmit<T> = (e:any, formData:formState | FormData, submitGeneratedForm?:T) => void
 

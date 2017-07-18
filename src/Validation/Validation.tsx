@@ -7,8 +7,6 @@ import "./Validation.scss";
 import {isMultipleValueInput, returnCheckedValue} from "../Form/Helpers/inputHelpers";
 import {createSpecificShallowEqual} from "cs.core";
 import {ValidationAdditionProps, TextInputProps, ValidationInnerElementProps, ValueProp, TypeProp, PossibleValues, Tests} from "../Form/Types/types";
-import {ShallowCompare} from "../../libs/types";
-
 
 
 
@@ -58,7 +56,7 @@ const Validation = ({displayed, className, children}:ValidationInnerElementProps
   return <div className={classes}>{children}</div>;
 };
 
-const getValue = (name:string, inputInfo:Map<string, any>) : ShallowCompare => {
+const getValue = (name:string, inputInfo:Map<string, any>) : PossibleValues => {
   if(isMultipleValueInput(name) && Map.isMap(inputInfo)){
     return returnCheckedValue((arg) => typeof arg !== "undefined" && arg !== false, ...inputInfo.map(item => item.get('value', false)).toArray())
   } else {
@@ -71,7 +69,7 @@ export default compose<ValidationInnerElementProps, ValidationComponentProps>(
   withProps((ownerProps : ValidationAdditionProps) => {
     const {name, inputInfo, type} = ownerProps;
     const changed:boolean = isMultipleValueInput(name) ? inputInfo.some(item => item.get('changed', false)) : inputInfo.get('changed', false);
-    const value:ShallowCompare = getValue(name, inputInfo);
+    const value:PossibleValues = getValue(name, inputInfo);
     return {
       changed,
       value

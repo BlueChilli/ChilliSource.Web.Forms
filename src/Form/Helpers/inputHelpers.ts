@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import {pick} from 'lodash';
 
 /** Components */
-import {ShallowCompare, BaseReactProps} from '../../../libs/types';
-import {PossibleDefaultValues, PossibleValues, ValueProp, TypeProp, IdProp, InputValidationProps, NameProp} from '../Types/types';
+import {PossibleDefaultValues, PossibleValues, ValueProp, TypeProp, IdProp, InputValidationProps, NameProp, BaseReactProps} from '../Types/types';
 
 /** Interfaces */
 interface PickedAttrs {
