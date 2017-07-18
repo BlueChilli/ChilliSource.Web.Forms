@@ -51,7 +51,6 @@ const specificShallowEqualTestElement = createSpecificShallowEqual<{value: Value
 const availableValidationsShallowEqual = createSpecificShallowEqual<any>("isFor", "test", ...Object.keys(validations));
 
 
-
 const Validation = ({displayed, className, children}:ValidationInnerElementProps) => {
   const classes = classnames('validation', className, {
     'invalid': displayed
