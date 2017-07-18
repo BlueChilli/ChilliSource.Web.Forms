@@ -5,7 +5,7 @@ import {Type, TypeProp, TypeOfTest, Tests} from "../src/Form/Types/types"
 
 
 
-interface ValidationTypes {
+export interface ValidationTypes {
   required: (value:ShallowCompare, test:boolean, type:Type) => boolean,
   pattern: (value:ShallowCompare, test:string) => boolean,
   type: (value:ShallowCompare, test: string) => boolean,

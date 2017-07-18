@@ -2,33 +2,31 @@ import React, {ComponentType} from "react";
 import {Map} from "immutable"
 import {withProps, mapProps, shouldUpdate, ComponentEnhancer, InferableComponentEnhancer, compose, withState, withHandlers, lifecycle} from "recompose";
 import classnames from "classnames";
-import {testElement, validations, TestElement} from "../../libs/validate";
+import {testElement, validations, TestElement, ValidationTypes} from "../../libs/validate";
 import "./Validation.scss";
 import {isMultipleValueInput, returnCheckedValue} from "../Form/Helpers/inputHelpers";
-import createSpecificShallowEqual from "../../libs/createSpecificShallowEqual";
-import {ValidationAdditionProps, TextInputProps, ValidationInnerElementProps} from "../Form/Types/types";
+import {createSpecificShallowEqual} from "cs.core";
+import {ValidationAdditionProps, TextInputProps, ValidationInnerElementProps, ValueProp, TypeProp, PossibleValues, Tests} from "../Form/Types/types";
 import {ShallowCompare} from "../../libs/types";
 
-const specificShallowEqual = createSpecificShallowEqual('value', 'changed', 'type');
-const specificShallowEqualDisplayed = createSpecificShallowEqual('displayed', 'className');
-const specificShallowEqualTestElement = createSpecificShallowEqual("value", "typeOfValidation", "type");
-const availableValidationsShallowEqual = createSpecificShallowEqual("isFor", "test", ...Object.keys(validations));
+
 
 
 interface ValidationInternalAdditionProps extends ValidationAdditionProps{
-  value:any,
+  value:ValueProp<PossibleValues>,
   valid: boolean
 }
 
 interface ValidationMapProps extends ValidationAdditionProps{
   changed:boolean,
-  value:ShallowCompare
+  value:ValueProp<PossibleValues>
 }
 
 
 interface ValidationWithStateProps extends ValidationMapProps{
   valid: boolean,
-  setValid: (valid:boolean) => undefined
+  setValid: (valid:boolean) => undefined,
+  typeOfValidation: string
 }
 
 interface TestHandersUncalledInterface {
@@ -39,12 +37,18 @@ interface TestHandersInterface {
   testElement: TestElement
 }
 
-
 interface ValidationLifecycleProps extends ValidationMapProps, TestHandersInterface {}
+
 
 export interface ValidationComponentProps {
   isFor: string
 }
+
+
+const specificShallowEqual = createSpecificShallowEqual<ValidationMapProps & TypeProp>('value', 'changed', 'type');
+const specificShallowEqualDisplayed = createSpecificShallowEqual<{displayed: boolean, className:string}>('displayed', 'className');
+const specificShallowEqualTestElement = createSpecificShallowEqual<{value: ValueProp<PossibleValues>, typeOfValidation: string, type?: string}>("value", "typeOfValidation", "type");
+const availableValidationsShallowEqual = createSpecificShallowEqual<any>("isFor", "test", ...Object.keys(validations));
 
 
 

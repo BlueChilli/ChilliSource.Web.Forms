@@ -30,18 +30,6 @@ module.exports = {
     }]
   },
   plugins: [
-    // new webpack.NoErrorsPlugin(),
-    new webpack.DefinePlugin({
-      'process': {
-        'env.NODE_ENV': JSON.stringify(config.util.getEnv('NODE_ENV'))
-      },
-      'API_URL': JSON.stringify(config.get('apiURL')),
-      'BASE_URL': JSON.stringify(config.get('baseURL')),
-      'BASE_NAME': JSON.stringify(config.get('baseName')),
-      'API_KEY': JSON.stringify(config.get('apiKey')),
-      'LOGIN_URL': JSON.stringify(config.get('loginURL')),
-      'GA_TRACKING_CODE': JSON.stringify(config.get('ga_tracking_code'))
-    }),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       options: {

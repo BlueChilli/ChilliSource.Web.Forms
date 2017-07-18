@@ -8,11 +8,11 @@ import {Map} from 'immutable';
 
 /** Components */
 import {isMultipleValueInput, returnCheckedValue} from './inputHelpers';
-import createSpecificShallowEqual from '../../../libs/createSpecificShallowEqual'
+import {createSpecificShallowEqual} from 'cs.core';
 import {setInput, setInputInteraction, setValidation} from '../Actions/fields';
 import {ShallowCompareProps, BaseReactProps, ShallowCompare} from '../../../libs/types';
-import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerformanceWrapperInputHelpers, FieldSetNameSpaceProp,
-   PerformanceWrapperUncalledInputHelpers, PerformanceWrapperUncalledValidationHelpers, NameProp, IdProp, TypeProp, PossibleValues,
+import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerformanceWrapperInputHelpers, FieldSetNameSpaceProp, ValidationProps, OptionsProp,
+   PerformanceWrapperUncalledInputHelpers, PerformanceWrapperUncalledValidationHelpers, NameProp, IdProp, TypeProp, PossibleValues, OptionalValidationProps, LabelProp,
   DefaultValueProp, PossibleDefaultValues, InputInfoProps, DefaultSwitchProps, NameSpaceProp, FormStateProp, ValueProp, SetValidation, AdditionalCompareProps} from "../Types/types"
 
 /** Interfaces */
@@ -22,13 +22,14 @@ interface GetInputPathGuard extends NameProp, IdProp, FieldSetNameSpaceProp {}
 interface GetValidationPathGuard extends NameProp, FieldSetNameSpaceProp {}
 interface WithNeededPropsGuard extends DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, ValueProp<PossibleValues>, NameProp, IdProp, TypeProp {}
 
+
+type SpecificShallowEqualInterface = InputInfoProps & NameProp & NameSpaceProp & TypeProp & IdProp & BaseReactProps & OptionalValidationProps  & ValidationProps & DefaultValueProp<PossibleDefaultValues> & DefaultSwitchProps & OptionsProp & FieldSetNameSpaceProp & ValueProp<PossibleValues> & LabelProp
 /** Helpers */
-const specificShallowEqual = createSpecificShallowEqual("inputInfo", "name", "nameSpace", "type", "id", "disabled", "required", 
-"className", "defaultValue", "defaultChecked", "defaultSelected", "options", "fieldSetNameSpace", "value", "label");
+const specificShallowEqual = createSpecificShallowEqual<SpecificShallowEqualInterface>("inputInfo", "name", "nameSpace", "type", "id", "disabled", "noValidate", "required", "className", "defaultValue", "defaultChecked", "defaultSelected", "options", "fieldSetNameSpace", "value", "label");
 
 const specificShallowEqualDefault = createSpecificShallowEqual<DefaultValueProp<PossibleDefaultValues>>("defaultValue");
 
-const specificShallowEqualValue = createSpecificShallowEqual("value");
+const specificShallowEqualValue = createSpecificShallowEqual<ValueProp<PossibleValues>>("value");
 
 const getUnsetValue = ({type}:TypeProp) => {
   if (type === 'radio' || type === 'checkbox') {
@@ -107,7 +108,7 @@ const setValidationWithHandlersObject = {
   },
   compareAdditionalProps: ({additionalCompareProps}:AdditionalCompareProps) => {
     if(additionalCompareProps){
-      return createSpecificShallowEqual(...additionalCompareProps);
+      return createSpecificShallowEqual<any>(...additionalCompareProps);
     } else {
       return () => false;
     }

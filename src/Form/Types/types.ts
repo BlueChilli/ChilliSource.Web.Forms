@@ -121,6 +121,10 @@ export interface IdProp {
 	id?: string
 }
 
+export interface OptionsProp {
+	options?: List<any>
+}
+
 export interface DefaultValueProp<TDefault> {
 	/** Default value for the input to display */	
 	defaultValue?: TDefault,
@@ -168,8 +172,8 @@ export interface SelectInputProps extends BaseInputProps<string | number, string
 	arrow?: React.ReactNode
 }
 
-export interface MultiSelectProps extends InputWrapperProps, BaseInputProps<any, any, List<any>>, AdditionalCompareProps {
-	options: List<any>
+export interface MultiSelectProps extends InputWrapperProps, BaseInputProps<any, any, List<any>>, AdditionalCompareProps, OptionsProp{
+
 }
 
 export interface SwitchProps extends BaseInputProps<boolean | string | number, string | boolean | undefined>, DefaultSwitchProps, LabelProp, AdditionalCompareProps{
