@@ -1,4 +1,4 @@
-import {ChangeEvent, FocusEvent} from "react";
+import {ChangeEvent, FocusEvent, AllHTMLAttributes} from "react";
 import {ShallowCompare, BaseReactProps} from '../../../libs/types';
 import {TypeOfTest} from './types';
 import {Dispatch} from 'redux';
@@ -12,6 +12,13 @@ export type Type = 'text' | 'radio' | 'checkbox' | 'number' | 'email' | 'passwor
 export type TypeOfTest = "required" | "pattern" | "type" | "minLength" | "maxLength" | "min" | "max";
 export type Tests = string | number | boolean | Function | undefined;
 
+
+export interface BaseReactProps {
+  children?: React.ReactNode;
+  key?: React.Key;
+  className?: string;
+}
+
 export type DateRangeMoment = {
   startDate: Moment;
   endDate: Moment;
@@ -20,7 +27,7 @@ export type DateRangeMoment = {
 export interface DateRangeMap extends Map<string, Moment> {}
 
 export type PossibleDefaultValues = number | string | boolean | Moment | DateRangeMap | undefined;
-export type PossibleValues = number | string | boolean | Moment | DateRangeMap | undefined;
+export type PossibleValues = PossibleDefaultValues;
 
 export interface ValidationProps{
 	required?: boolean,

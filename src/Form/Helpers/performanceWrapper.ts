@@ -1,5 +1,5 @@
 /** Libraries */
-import {ComponentType} from "react";
+import {ComponentType, ReactHTMLElement} from "react";
 import PropTypes from 'prop-types';
 import Recompose from 'recompose';
 import {isUndefined} from 'lodash';
@@ -10,10 +10,11 @@ import {Map} from 'immutable';
 import {isMultipleValueInput, returnCheckedValue} from './inputHelpers';
 import {createSpecificShallowEqual} from 'cs.core';
 import {setInput, setInputInteraction, setValidation} from '../Actions/fields';
-import {ShallowCompareProps, BaseReactProps, ShallowCompare} from '../../../libs/types';
-import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerformanceWrapperInputHelpers, FieldSetNameSpaceProp, ValidationProps, OptionsProp,
+// import {ShallowCompareProps, BaseReactProps, ShallowCompare} from '../../../libs/types';
+import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerformanceWrapperInputHelpers, FieldSetNameSpaceProp, ValidationProps, OptionsProp, BaseReactProps,
    PerformanceWrapperUncalledInputHelpers, PerformanceWrapperUncalledValidationHelpers, NameProp, IdProp, TypeProp, PossibleValues, OptionalValidationProps, LabelProp,
   DefaultValueProp, PossibleDefaultValues, InputInfoProps, DefaultSwitchProps, NameSpaceProp, FormStateProp, ValueProp, SetValidation, AdditionalCompareProps} from "../Types/types"
+
 
 /** Interfaces */
 export interface WithHandlersGuard extends NameProp, IdProp, TypeProp, DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, NameProp, BaseReactProps, ValueProp<PossibleValues>, IdProp, TypeProp{}
@@ -67,7 +68,7 @@ export const getPrioritisedDefaultValue = (defaultValue?:PossibleDefaultValues, 
   returnCheckedValue((arg) => !isUndefined(arg) && arg !== false, defaultValue, defaultChecked, defaultSelected)
 );
 
-export const getPrioritisedValue = (value:ShallowCompare, inputInfoValue:ShallowCompare, prioritisedDefaultValue:PossibleDefaultValues, unsetValue:string | boolean) => (
+export const getPrioritisedValue = (value:PossibleValues, inputInfoValue:PossibleValues, prioritisedDefaultValue:PossibleDefaultValues, unsetValue:string | boolean) => (
   returnCheckedValue((arg) => !isUndefined(arg), value, inputInfoValue, prioritisedDefaultValue, unsetValue)
 );
 
