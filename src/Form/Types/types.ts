@@ -1,9 +1,10 @@
 import {ChangeEvent, FocusEvent, AllHTMLAttributes} from "react";
 import {TypeOfTest} from './types';
-import {Dispatch, Action} from 'redux';
+import {Dispatch} from 'redux';
 import {Map, List} from 'immutable';
 import moment, {Moment} from 'moment';
 
+import {BaseReactProps} from "cs.core";
 import {SetInputPayload, SetInputInteractionPayload, SetValidationPayload} from '../Actions/fields'
 
 
@@ -11,24 +12,6 @@ export type Type = 'text' | 'radio' | 'checkbox' | 'number' | 'email' | 'passwor
 export type TypeOfTest = "required" | "pattern" | "type" | "minLength" | "maxLength" | "min" | "max";
 export type Tests = string | number | boolean | Function | undefined;
 
-
-export interface BaseAction<TType> extends Action {
-  type: TType;
-}
-
-export interface FSA<TPayload, TType> extends BaseAction<TType>{
-  payload?: TPayload,
-  meta?: any
-}
-
-
-
-export interface BaseReactProps {
-  children?: React.ReactNode;
-  key?: React.Key;
-	className?: string,
-	style?: Object
-}
 
 export type DateRangeMoment = {
   startDate: Moment;

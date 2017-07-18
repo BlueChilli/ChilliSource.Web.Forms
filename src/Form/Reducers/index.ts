@@ -1,7 +1,7 @@
 import {Map} from "immutable";
 import {getInputValue, getInputState, getInputValidation} from "../Helpers/path";
 import {isMultipleValueInput} from "../Helpers/inputHelpers";
-import {FSA} from "../Types/types";
+import {FSA} from "cs.core";
 
 import {ClearAllInputsAction, SetInputAction, SetAllInputInteractionAction, SetInputInteractionAction, SetValidationAction} from "../Actions/fields"
 

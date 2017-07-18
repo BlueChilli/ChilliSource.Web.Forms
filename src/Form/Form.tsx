@@ -5,7 +5,8 @@ import classnames from "classnames";
 import {defer, isFunction} from "lodash";
 import {setAllInputInteractions, clearAllInputs} from "./Actions/fields";
 import {withReducerState} from "./Reducers";
-import {PossibleValues, BaseReactProps} from "./Types/types";
+import {PossibleValues} from "./Types/types";
+import {BaseReactProps} from "cs.core";
 import {convertToFormData, normalizeFields} from "./Helpers/formHelpers";
 import {withReducer, compose, branch, ComponentEnhancer} from "recompose";
 

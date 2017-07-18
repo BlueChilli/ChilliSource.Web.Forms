@@ -6,7 +6,8 @@ export const SET_ALL_INPUT_INTERACTIONS = "SET_ALL_INPUT_INTERACTIONS";
 export const CLEAR_ALL_INPUTS = "CLEAR_ALL_INPUTS";
 import {Dispatch, Action} from "redux"
 import {Map} from "immutable";
-import {PossibleValues, FSA} from "../Types/types"
+import {PossibleValues} from "../Types/types"
+import {FSA} from "cs.core";
 
 
 export interface ClearAllInputsPayload {
