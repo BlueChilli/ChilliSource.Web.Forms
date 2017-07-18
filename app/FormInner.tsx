@@ -130,6 +130,10 @@ export default class FormInner extends React.Component<{}, {}> {
 
         <MultiSelect name="FDs" options={options} defaultValue={List(['Pash', 'Hunter'])} label="Frontend Devs" />
 
+        <MultiSelect name="FDsPlaceholder" placeholder="This is a placeholder" options={options} label="Frontend Devs with placeholder" />
+
+        <MultiSelect name="FDsEmpty" placeholder="This MultiInput has no options" noResultsText="This is empty" options={List()} label="Empty MultiInput" />
+
         <a target="_blank" href="https://github.com/okonet/react-dropzone">Props avaliable here</a>
         <br />
         <br />
