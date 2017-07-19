@@ -1,4 +1,4 @@
-import {ChangeEvent, FocusEvent, AllHTMLAttributes} from "react";
+import {ChangeEvent, FocusEvent} from "react";
 import {TypeOfTest} from './types';
 import {Dispatch} from 'redux';
 import {Map, List} from 'immutable';
