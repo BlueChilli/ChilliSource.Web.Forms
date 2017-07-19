@@ -153,7 +153,7 @@ class Form extends React.Component<FormInnerProps<undefined>, FormState>{
           }
         } else {
           const scrollTo = firstError.getBoundingClientRect().top - 50;
-          if(scrollTo < 0) {
+          if(typeof window === 'object' && scrollTo < 0) {
             window.scrollTo(0, document.body.scrollTop + scrollTo - 5);
           }
         }
