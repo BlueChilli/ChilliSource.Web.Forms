@@ -2,9 +2,6 @@ import React from "react";
 import PropTypes from "prop-types"
 import {withContext} from "recompose";
 import {FieldSetProps, FormContext} from "./Types/types";
-import {BaseReactProps} from "../../libs/types"
-
-
 
 
 const Fieldset = ({children, ...props}:FieldSetProps) =>(

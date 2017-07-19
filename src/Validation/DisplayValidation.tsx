@@ -1,7 +1,7 @@
 import React from "react";
 import {validationsMessages, validationsAvailable} from "../../libs/validate";
 import {ValidationElementProps, InputInfoProps, ValidationAdditionProps, ValidationCloneElementProps, DisplayValidationProps, TypeProp, Type, TypeOfTest} from "../Form/Types/types"
-import {ReactElement} from "../../libs/types"
+// import {ReactElement} from "../../libs/types"
 import Validation from "../Validation/Validation";
 import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
 

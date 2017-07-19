@@ -4,9 +4,11 @@ export const SET_VALIDATION = "SET_VALIDATION";
 export const SET_INPUT_INTERACTION = "SET_INPUT_INTERACTION";
 export const SET_ALL_INPUT_INTERACTIONS = "SET_ALL_INPUT_INTERACTIONS";
 export const CLEAR_ALL_INPUTS = "CLEAR_ALL_INPUTS";
-import {ShallowCompare, FSA} from "../../../libs/types"
-import {Dispatch} from "redux"
+import {Dispatch, Action} from "redux"
 import {Map} from "immutable";
+import {PossibleValues} from "../Types/types"
+import {FSA} from "cs.core";
+
 
 export interface ClearAllInputsPayload {
   nameSpace: string,
@@ -15,7 +17,7 @@ export interface ClearAllInputsPayload {
 
 export interface SetInputPayload extends ClearAllInputsPayload {
   inputName:string[],
-  value: ShallowCompare
+  value: PossibleValues
 }
 
 export interface SetValidationPayload extends ClearAllInputsPayload {
@@ -39,7 +41,7 @@ export type SetInputInteractionAction = FSA<SetInputInteractionPayload, "SET_INP
 export type SetAllInputInteractionAction = FSA<SetAllInputInteractionPayload, "SET_ALL_INPUT_INTERACTIONS">
 export type ClearAllInputsAction = FSA<ClearAllInputsPayload, "CLEAR_ALL_INPUTS">
 
-export function setInput(nameSpace: string, inputName:string[], value:ShallowCompare):SetInputAction {
+export function setInput(nameSpace: string, inputName:string[], value:PossibleValues):SetInputAction {
   return {
     type: SET_INPUT,
     payload: {
@@ -96,7 +98,7 @@ export function clearAllInputs(nameSpace:string):ClearAllInputsAction {
 }
 
 
-export function setDefaultValue(nameSpace:string, inputName:string[], value:ShallowCompare) {
+export function setDefaultValue(nameSpace:string, inputName:string[], value:PossibleValues) {
   return function (dispatch:(action:SetInputAction) => void, getState: () => Map<string, any>) {
     const currentValue = getState().getIn(['FormState', nameSpace, inputName, 'value'], false);
     if (!currentValue) {

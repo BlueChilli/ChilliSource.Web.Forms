@@ -5,12 +5,13 @@ import classnames from "classnames";
 import {defer, isFunction} from "lodash";
 import {setAllInputInteractions, clearAllInputs} from "./Actions/fields";
 import {withReducerState} from "./Reducers";
-import {ShallowCompare, BaseReactProps} from "../../libs/types";
+import {PossibleValues} from "./Types/types";
+import {BaseReactProps} from "cs.core";
 import {convertToFormData, normalizeFields} from "./Helpers/formHelpers";
 import {withReducer, compose, branch, ComponentEnhancer} from "recompose";
 
 
-type formState = Map<string, Map<string, ShallowCompare>>
+type formState = Map<string, Map<string, PossibleValues>>
 
 export type OnSubmit<T> = (e:any, formData:formState | FormData, submitGeneratedForm?:T) => void
 
@@ -152,7 +153,7 @@ class Form extends React.Component<FormInnerProps<undefined>, FormState>{
           }
         } else {
           const scrollTo = firstError.getBoundingClientRect().top - 50;
-          if(scrollTo < 0) {
+          if(typeof window === 'object' && scrollTo < 0) {
             window.scrollTo(0, document.body.scrollTop + scrollTo - 5);
           }
         }

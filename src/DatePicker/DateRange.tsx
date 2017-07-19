@@ -1,18 +1,17 @@
 import React from "react";
-import moment from "moment";
+import moment, {Moment} from "moment";
 import DateWrapper from "./DateWrapper";
 import performanceWrapper, {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
 import {compose} from "recompose";
 import {Map} from "immutable";
 import {isFunction} from "lodash"
 import {DateRange} from "react-date-range";
-import {DateRangeProps} from "../Form/Types/types";
-import {DateRangeMap, DateRangeMoment} from "../Form/Types/types";
+import {DateRangeMap, DateRangeMoment, DateRangeProps} from "../Form/Types/types";
 import "./DateRange.scss";
 
 class DateRangeBase extends React.Component<DateRangeProps & PerformanceWrapperProps, {}>{
   handleChange = (dateRange: DateRangeMoment) => {
-    this.props.inputChanged(Map<string, string>({
+    this.props.inputChanged(Map<string, Moment>({
       startDate: dateRange.startDate.format('DD/MM/YYYY'),
       endDate: dateRange.endDate.format('DD/MM/YYYY')
     }));

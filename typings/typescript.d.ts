@@ -1,5 +1,5 @@
 import {Component, ComponentType} from "react"
-import {SwitchProps, DatePickerProps, DateRangeProps, DropZoneProps, InputGroupProps, ErrorWrapperProps, InputWrapperProps, DisplayValidationProps, TextInputProps, RadioTabProps, RadioTabsProps, SelectInputProps, MultiSelectProps, TextAreaProps, ValidateProps, FieldSetProps, InputUnionProps as InputUnionPackageProps, DateRangeMoment as DateRangePackageMoment, TypeOfTest} from "../src/Form/Types/types";
+import {SwitchProps, DatePickerProps, DateRangeProps, DropZoneProps, InputGroupProps, ErrorWrapperProps, InputWrapperProps, DisplayValidationProps, TextInputProps, RadioTabProps, RadioTabsProps, SelectInputProps, MultiSelectProps, TextAreaProps, ValidateProps, FieldSetProps, InputUnionProps as InputUnionPackageProps, DateRangeMoment as DateRangePackageMoment, TypeOfTest, PossibleValues as InternalPossibleValues} from "../src/Form/Types/types";
 import {BasicReducer} from "../src/Form/Reducers/index";
 import {PerformanceWrapperProps, WithHandlersGuard} from "../src/Form/Helpers/performanceWrapper";
 import {FormProps, FormOwnProps as FormOwnPackageProps, FormOptionalProps as FormOptionalPackageProps} from "../src/Form/Form"
@@ -35,6 +35,7 @@ declare module "cs.forms" {
   export type FormOwnProps<T> = FormOwnPackageProps<T>;
   export type FormOptionalProps<T> = FormOptionalPackageProps<T>
   export type DateRangeMoment = DateRangePackageMoment
+  export type PossibleValues = InternalPossibleValues;
 
   export function performanceWrapper<TOutter extends WithHandlersGuard> (Component:ComponentType<TOutter & PerformanceWrapperProps>): ComponentType<TOutter>
   export function validationsAvailable<T> (inputAttributes:T): TypeOfTest[];

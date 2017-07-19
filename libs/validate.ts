@@ -1,18 +1,17 @@
 import {Iterable} from "immutable";
 import regExpList from "./validationRegExps";
-import {ShallowCompareProps, ShallowCompare} from "./types";
-import {Type, TypeProp, TypeOfTest, Tests} from "../src/Form/Types/types"
+import {Type, TypeProp, TypeOfTest, Tests, PossibleValues} from "../src/Form/Types/types"
 
 
 
-interface ValidationTypes {
-  required: (value:ShallowCompare, test:boolean, type:Type) => boolean,
-  pattern: (value:ShallowCompare, test:string) => boolean,
-  type: (value:ShallowCompare, test: string) => boolean,
-  minLength: (value:ShallowCompare, test:string) => boolean,
-  maxLength: (value:ShallowCompare, test:string) => boolean,
-  min: (value:ShallowCompare, test:string) => boolean,
-  max: (value:ShallowCompare, test:string) => boolean,
+export interface ValidationTypes {
+  required: (value:PossibleValues, test:boolean, type:Type) => boolean,
+  pattern: (value:PossibleValues, test:string) => boolean,
+  type: (value:PossibleValues, test: string) => boolean,
+  minLength: (value:PossibleValues, test:string) => boolean,
+  maxLength: (value:PossibleValues, test:string) => boolean,
+  min: (value:PossibleValues, test:string) => boolean,
+  max: (value:PossibleValues, test:string) => boolean,
   default: () => false,
 }
 
@@ -21,7 +20,7 @@ export const validations:ValidationTypes = {
   required: (value, test, type) => {
     if (Iterable.isIterable(value)) {
       if (type === 'checkbox') {
-        return value.size > 0;
+        return (value as Iterable<any, any>).size > 0;
       }
     } else if (type === "checkbox") {
       return value === true;
@@ -31,14 +30,14 @@ export const validations:ValidationTypes = {
   pattern: (value, test) => {
     if(value !== undefined && (value + "").length > 0){
       let patternRegExp = new RegExp(test);
-      return patternRegExp.test(value);
+      return patternRegExp.test(value as string);
     }
     return true;
   },
   type: (value, test) => {
     if(test === 'number' || test ==='email'){
       let typeRegExp = new RegExp(regExpList[test]);
-      return typeRegExp.test(value);
+      return typeRegExp.test(value as string);
     }
     return true;
   },
@@ -49,10 +48,10 @@ export const validations:ValidationTypes = {
     return value.toString().length <= parseInt(test);
   },
   min: (value, test) => {
-    return parseInt(value) >= parseInt(test)
+    return parseInt(value as string) >= parseInt(test)
   },
   max: (value, test) => {
-    return parseInt(value) <= parseInt(test)
+    return parseInt(value as string) <= parseInt(test)
   },
   'default': () => {
     return false;
@@ -78,7 +77,7 @@ export const validationsMessages = (type:string, test?:boolean | string | number
   }
 };
 
-export function testValidation(value:ShallowCompare, typeOfTest:TypeOfTest, typeOfInput:Type, test:Tests) {
+export function testValidation(value:PossibleValues, typeOfTest:TypeOfTest, typeOfInput:Type, test:Tests) {
   if (value !== undefined && value !== null) {
     if (validations[typeOfTest] !== undefined) {
       if(typeOfTest === 'required'){
