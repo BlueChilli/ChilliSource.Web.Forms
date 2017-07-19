@@ -174,7 +174,8 @@ export interface SelectInputProps extends BaseInputProps<string | number, string
 }
 
 export interface MultiSelectProps extends InputWrapperProps, BaseInputProps<any, any, List<any>>, AdditionalCompareProps, OptionsProp{
-
+	noResultsText?: string,
+	placeholder?: string
 }
 
 export interface SwitchProps extends BaseInputProps<boolean | string | number, string | boolean | undefined>, DefaultSwitchProps, LabelProp, AdditionalCompareProps{

@@ -9,7 +9,7 @@ import {MultiSelectProps, InputWrapperProps} from '../Form/Types/types';
 import classnames from 'classnames';
 
 export class MultiSelect extends React.Component<MultiSelectProps & PerformanceWrapperProps, {}> {
-  defaultProps = {
+  static defaultProps = {
     options: List([])
   }
 
@@ -29,13 +29,13 @@ export class MultiSelect extends React.Component<MultiSelectProps & PerformanceW
   }
 
   render() {
-    const {options, value, className, label, labelPrefix, labelPostfix, ...props} = this.props;
+    const {options, value, className, label, labelPrefix, labelPostfix, noResultsText, placeholder, ...props} = this.props;
     const safeValue = value !== '' ? List(value) : List();
     const classes = classnames(className, 'input');
     
     return (
       <InputWrapper name={props.name} label={label} labelPrefix={labelPrefix} labelPostfix={labelPostfix} className={classes}>
-        <Select value={safeValue.toJS()} options={options.toJS()} multi={true} onChange={this.handleChange}/>
+        <Select value={safeValue.toJS()} options={options.toJS()} multi={true} onChange={this.handleChange} noResultsText={noResultsText} placeholder={placeholder}/>
       </InputWrapper>
     )
   }

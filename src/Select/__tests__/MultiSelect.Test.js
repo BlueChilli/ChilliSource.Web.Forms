@@ -23,7 +23,9 @@ const allMultiSelectProps = {
     label: 'MultiSelect Label',
     labelPrefix: 'Label Prefix',
     labelPostfix: 'Label Postfix',
-    inputChanged: values => ({})
+    inputChanged: values => ({}),
+    placeholder: 'Please make a selection',
+    noResultsText: 'There are no options to choose from'
 };
 
 const {name, label, labelPrefix, labelPostfix} = allMultiSelectProps;
