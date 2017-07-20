@@ -1,16 +1,17 @@
 import {ChangeEvent, FocusEvent} from "react";
-import {ShallowCompare, BaseReactProps} from '../../../libs/types';
 import {TypeOfTest} from './types';
 import {Dispatch} from 'redux';
 import {Map, List} from 'immutable';
 import moment, {Moment} from 'moment';
 
+import {BaseReactProps} from "cs.core";
 import {SetInputPayload, SetInputInteractionPayload, SetValidationPayload} from '../Actions/fields'
 
 
 export type Type = 'text' | 'radio' | 'checkbox' | 'number' | 'email' | 'password' | 'hidden' | 'file'
 export type TypeOfTest = "required" | "pattern" | "type" | "minLength" | "maxLength" | "min" | "max";
 export type Tests = string | number | boolean | Function | undefined;
+
 
 export type DateRangeMoment = {
   startDate: Moment;
@@ -19,8 +20,8 @@ export type DateRangeMoment = {
 
 export interface DateRangeMap extends Map<string, Moment> {}
 
-export type PossibleDefaultValues = number | string | boolean | Moment | DateRangeMap | undefined;
-export type PossibleValues = number | string | boolean | Moment | DateRangeMap | undefined;
+export type PossibleDefaultValues = number | string | boolean | Moment | DateRangeMap | undefined | List<any>;
+export type PossibleValues = PossibleDefaultValues;
 
 export interface ValidationProps{
 	required?: boolean,
@@ -121,6 +122,10 @@ export interface IdProp {
 	id?: string
 }
 
+export interface OptionsProp {
+	options?: List<any>
+}
+
 export interface DefaultValueProp<TDefault> {
 	/** Default value for the input to display */	
 	defaultValue?: TDefault,
@@ -168,8 +173,7 @@ export interface SelectInputProps extends BaseInputProps<string | number, string
 	arrow?: React.ReactNode
 }
 
-export interface MultiSelectProps extends InputWrapperProps, BaseInputProps<any, any, List<any>>, AdditionalCompareProps {
-	options: List<any>,
+export interface MultiSelectProps extends InputWrapperProps, BaseInputProps<any, any, List<any>>, AdditionalCompareProps, OptionsProp{
 	noResultsText?: string,
 	placeholder?: string
 }
@@ -287,7 +291,7 @@ export interface SetValidation extends NameSpaceProp, NameProp, FieldSetNameSpac
 	dispatch: Dispatch<SetValidationPayload>
 }
 
-type inputChanged = (value: ShallowCompare, changed?:boolean) => void;
+type inputChanged = (value: PossibleValues, changed?:boolean) => void;
 type inputBlurred = () => void;
 type setValidation = (type: string, test?: Tests) => void;
 type compareAdditionalProps = <TProps> (props: TProps, nextProps: TProps) => boolean;

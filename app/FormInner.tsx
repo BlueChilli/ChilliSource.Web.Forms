@@ -149,7 +149,7 @@ export default class FormInner extends React.Component<{}, {}> {
           </div>
         </div>
         <br /><br />
-        <div className="clearfix" style={{ height: "300px" }}>
+        <div className="clearfix" style={{ overflow: "hidden" }}>
           <div style={{ width: "300px", height: "300px", float: "left" }}>
             <DateRange label="Date Range" name="DateRange" />
           </div>
@@ -163,6 +163,8 @@ export default class FormInner extends React.Component<{}, {}> {
             <DatePicker label="Date Picker Blank Default" name="DatePickerBlankDefault" defaultValue="" />
           </div>
         </div>
+        <br /><br />
+        
         <button>Submit</button>
       </div>
     );

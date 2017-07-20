@@ -4,7 +4,6 @@ import {withProps} from 'recompose';
 import {List} from 'immutable';
 
 /** Components */
-import {ShallowCompare} from '../../libs/types';
 import {getHTMLAttributes} from '../Form/Helpers/inputHelpers';
 import {SelectInputProps} from '../Form/Types/types';
 import {PerformanceWrapperProps} from '../Form/Helpers/performanceWrapper';
