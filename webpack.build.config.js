@@ -1,13 +1,6 @@
-var webpack = require("webpack");
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CleanWebpackPlugin = require('clean-webpack-plugin');
-var ContextReplacementPlugin = require("webpack/lib/ContextReplacementPlugin");
-var config = require('config');
 var autoprefixer = require('autoprefixer');
-var baseURL = config.get('baseURL');
 var path = require('path');
-
-process.env.NODE_ENV = JSON.stringify(config.get('buildEnvironment'));
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: path.join(__dirname, '/app/index'),
@@ -24,7 +17,17 @@ module.exports = {
       use: "awesome-typescript-loader"
     }, {
       test: /\.(s?css)/,
-      use: ["style-loader" , "css-loader", "postcss-loader", "sass-loader"]
+      use: ExtractTextPlugin.extract({
+        fallback: "style-loader",
+         use:  [
+            'css-loader',
+            {
+                loader: 'postcss-loader',
+                options: { plugins: () => [autoprefixer()] },
+            },
+            "sass-loader"
+          ]
+      })
     }, {
       test: /\.(jpe?g$|gif|png|svg)$/i,
       use: ["url-loader", "img-loader"]
@@ -89,15 +92,8 @@ module.exports = {
   },
 
   plugins: [
-    // new webpack.NoErrorsPlugin(),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      options: {
-        postcss: () => {
-          return [autoprefixer]
-        }
-      }
-    })
+    new ExtractTextPlugin("chillisource-web-forms.css")
+   
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.tsx', '.ts'],

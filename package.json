@@ -3,6 +3,7 @@
   "version": "1.0.50",
   "description": "A collection of forms components, helpers and abstractions built in React. These can be used with or without Redux.",
   "main": "dist/chillisource-web-forms.js",
+  "style": "dist/chillisource-web-forms.css",
   "repository": {
     "type": "git",
     "url": "https://github.com/BlueChilli/ChilliSource.Web.Forms.git"
@@ -24,7 +25,7 @@
     "test": "jest",
     "test-watch": "jest --watch",
     "start": "node server.js",
-    "build": "webpack --config webpack.build.config.js -p"
+    "build": "webpack --config webpack.build.config.js"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -66,6 +67,7 @@
     "dts-generator": "^2.1.0",
     "enzyme": "^2.8.1",
     "express": "^4.15.2",
+    "extract-text-webpack-plugin": "^2.1.2",
     "file-loader": "^0.11.1",
     "html-webpack-plugin": "^2.28.0",
     "img-loader": "^2.0.0",

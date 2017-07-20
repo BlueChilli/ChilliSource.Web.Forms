@@ -28,7 +28,7 @@ export const validations:ValidationTypes = {
     return value.toString().length > 0 && value !== false;
   },
   pattern: (value, test) => {
-    if(value !== undefined && (value + "").length > 0){
+    if(value !== undefined && value !== null && (value + "").length > 0){
       let patternRegExp = new RegExp(test);
       return patternRegExp.test(value as string);
     }

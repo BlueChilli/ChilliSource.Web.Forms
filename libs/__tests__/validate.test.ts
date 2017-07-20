@@ -8,6 +8,7 @@ describe('validations for input fields', () => {
     const regexp = "[0-9]";
     expect(pattern("", regexp)).toBe(true);
     expect(pattern(undefined, regexp)).toBe(true);
+    expect(pattern(null, regexp)).toBe(true);
   });
   it('passes if a valid value is passed in', () => {
     const regexp = "[0-9]";
