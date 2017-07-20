@@ -1,10 +1,5 @@
-var webpack = require("webpack");
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CleanWebpackPlugin = require('clean-webpack-plugin');
-var ContextReplacementPlugin = require("webpack/lib/ContextReplacementPlugin");
 var config = require('config');
 var autoprefixer = require('autoprefixer');
-var baseURL = config.get('baseURL');
 var path = require('path');
 
 process.env.NODE_ENV = JSON.stringify(config.get('buildEnvironment'));
