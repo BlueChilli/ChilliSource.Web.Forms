@@ -1,6 +1,6 @@
 import React from 'react';
 import {List} from 'immutable';
-import {shallow} from 'enzyme';
+import {shallow, mount} from 'enzyme';
 import {isEqual} from 'lodash';
 import sinon from 'sinon';
 import {MultiSelect} from '../MultiSelect';
@@ -26,6 +26,11 @@ const allMultiSelectProps = {
     inputChanged: values => ({}),
     placeholder: 'Please make a selection',
     noResultsText: 'There are no options to choose from'
+};
+
+const inputWrapperPropsNotList = {
+    ...allMultiSelectProps,
+    options: options
 };
 
 const {name, label, labelPrefix, labelPostfix} = allMultiSelectProps;
@@ -59,9 +64,25 @@ describe('<MultiSelect />', () => {
         expect(isEqual(multi, Multi)).toBe(true);
     });
 
+    it('should render a Select)', () => {
+        expect(wrapper.find('Select')).toHaveLength(1);
+    });
+
     /**
      * Not testing the 'Select'(from react-select) component as its
      * an external package and assuming it to be tested
      * by its developer
      */
+});
+
+describe('Bad <MultiSelect />', () => {
+    it("should throw if options are not an Immutable List", () => {
+      expect(() => {
+        mount(<MultiSelect {...inputWrapperPropsNotList} />)
+      }).toThrow();
+
+      expect(() => {
+        mount(<MultiSelect {...allMultiSelectProps} />)
+      }).not.toThrow();
+    })
 });
