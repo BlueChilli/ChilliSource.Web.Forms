@@ -53,7 +53,9 @@ describe('<RadioTabs />', () => {
         };
 
         const wrapper = shallow(<Form name="Form"><RadioTabs {...radioTabsProps} /></Form>);
-        expect(wrapper.contains(htmlChildren)).toBe(true);
+        htmlChildren.map(item => {
+            expect(wrapper.contains(item)).toBe(true);
+        });
     });
 
     it('should render react higher order components', () => {
@@ -62,7 +64,9 @@ describe('<RadioTabs />', () => {
             ...allRadioTabsProps
         };
         const wrapper = shallow(<Form name="Form"><RadioTabs {...radioTabsProps} /></Form>);
-        expect(wrapper.contains(radioTabChildren)).toBe(true);
+        radioTabChildren.map(item => {
+            expect(wrapper.contains(item)).toBe(true);
+        });
     });
     it('should set the name, chosenId and setId prop on children', () => {
         const radioTabsProps = {
@@ -105,6 +109,32 @@ describe('<RadioTabs />', () => {
         expect(wrapper.find(".active").find("#RadioTab2").exists()).toBe(true);
     });
 
+
+    it('should throw error when Radio tab is not a direct children of Radio Tabs', () => {
+      const tabItems = [{id: "tab1", selected: true},{id: "tab2", selected:false}, {id:"tab3", selected:false}];
+      expect(() => {
+            mount(<Form name="Form">
+                                        <RadioTabs {...allRadioTabsProps}>
+                                        {
+                                            tabItems.map(item => {
+
+                                                return (
+                                                    <div>
+                                                        <RadioTab id={item.id} defaultSelected={item.selected}>
+                                                            
+                                                        </RadioTab>
+                                                        <h5>Hello</h5>
+                                                    </div>   
+                                                )
+                                            })
+                                        }    
+                                        </RadioTabs>
+                                </Form>);
+        
+      }).toThrow();
+  
+
+    });
 
 });
 
