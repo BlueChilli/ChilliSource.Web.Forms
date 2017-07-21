@@ -20756,6 +20756,8 @@ var Number = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Radio_Radio__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_recompose__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_recompose___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_recompose__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lodash__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_lodash__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -20787,25 +20789,38 @@ var __rest = (this && this.__rest) || function (s, e) {
 
 
 
+
 var RadioTab = (function (_super) {
     __extends(RadioTab, _super);
     function RadioTab() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.setId = function (id) {
+            var setId = _this.props.setId;
+            if (!setId)
+                throw new Error("setId is not pass down from RadioTabs. please check RadioTab - " + id + " is direct child of RadioTabs or create the wrapper to pass the props from RadioTabs");
+            if (setId && __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_lodash__["isFunction"])(setId))
+                setId(id);
+        };
+        _this.onClick = function () {
+            var id = _this.props.id;
+            _this.setId(id);
+        };
+        return _this;
     }
     RadioTab.prototype.componentWillMount = function () {
         if (this.props.defaultSelected) {
-            this.props.setId(this.props.id);
+            this.setId(this.props.id);
         }
     };
     RadioTab.prototype.componentWillReceiveProps = function (nextProps) {
         if (this.props.defaultSelected !== nextProps.defaultSelected) {
-            this.props.setId(nextProps.id);
+            this.setId(nextProps.id);
         }
     };
     RadioTab.prototype.render = function () {
-        var _a = this.props, className = _a.className, children = _a.children, setId = _a.setId, chosenId = _a.chosenId, props = __rest(_a, ["className", "children", "setId", "chosenId"]);
+        var _a = this.props, className = _a.className, children = _a.children, chosenId = _a.chosenId, props = __rest(_a, ["className", "children", "chosenId"]);
         var classes = __WEBPACK_IMPORTED_MODULE_1_classnames___default()(className, 'radio-tab', { active: chosenId === props.id });
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: classes, onClick: function () { return setId(props.id); } },
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: classes, onClick: this.onClick },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Radio_Radio__["a" /* default */], __assign({}, props)),
             children));
     };
