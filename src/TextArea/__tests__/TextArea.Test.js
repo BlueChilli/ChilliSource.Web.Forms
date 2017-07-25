@@ -88,47 +88,48 @@ describe('<TextArea /> shallow', () => {
 });
 
 describe('<TextArea /> mount', () => {
-    const defaultValue = "Hello, this is a Textarea";
-    const updatedDefaultValue = "Changed Input";
-    const onChangeCallback = sinon.spy();
-    const onBlurCallback = sinon.spy();
+    const mountProps = {
+        autoFocus,
+        labelPrefix,
+        labelPostfix,
+        label,
+        name,
+        className,
+        id,
+        onBlur: sinon.spy(),
+        onChange: sinon.spy()
+    }
 
     const wrapper = mount(
         <Form name="textAreaTest">
-            <TextArea 
-                autoFocus={false}
-                labelPrefix="Label Prefix"
-                labelPostfix="Label Postfix"
-                label="TextArea Label"
-                name="SampleTextArea"
-                className="SampleTextAreaClass"
-                id="TextAreaId"
-                onBlur={onBlurCallback}
-                onChange={onChangeCallback}
-            />
+            <TextArea {...mountProps} />
         </Form>
     );
 
-    const label = wrapper.find('label');
-    const input = wrapper.find("textarea");
+    const mountLabel = wrapper.find('label');
+    const mountInput = wrapper.find('textarea');
+
+    it('should render a label and an input', () => {
+        expect(mountInput.exists() && mountLabel.exists()).toBe(true);
+    });
 
     it('should set the className', () => {
         expect(wrapper.find('.SampleTextAreaClass').exists()).toBe(true);
     });
 
     it('should set the label', () => {
-        expect(label.prop('children') === "TextArea Label").toBe(true);
+        expect(mountLabel.text() === mountProps.label).toBe(true);
     });
 
     it('should set the labelPrefix', () => {
-        expect(wrapper.find(".input-label-prefix").prop('children') === "Label Prefix").toBe(true);
+        expect(wrapper.find(".input-label-prefix").text() === "Label Prefix").toBe(true);
     });
 
     it('should set the labelPostfix', () => {
-        expect(wrapper.find(".input-label-postfix").prop('children') === "Label Postfix").toBe(true);
+        expect(wrapper.find(".input-label-postfix").text() === "Label Postfix").toBe(true);
     });
 
     it('should set labelFor and name to be the same', () => {
-        expect(label.prop("htmlFor") === input.prop("name")).toBe(true);
+        expect(mountLabel.prop("htmlFor") === mountInput.prop("name")).toBe(true);
     });
 });
