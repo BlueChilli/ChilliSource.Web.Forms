@@ -1,3 +1,4 @@
+var webpack = require("webpack");
 var config = require('config');
 var autoprefixer = require('autoprefixer');
 var path = require('path');

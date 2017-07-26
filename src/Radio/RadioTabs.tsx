@@ -30,17 +30,28 @@ class RadioTabs extends React.Component<RadioTabsProps, {chosenId: string}> {
   }
 
   render() {
-    const {className, radioClasses, name, label, children} = this.props;
+    const {className, radioClasses = undefined, name, label, children} = this.props;
     const {chosenId} = this.state;
     var classes:string = classnames(className, 'input', 'radio-tabs');
 
+    // Deprication warning, v1.0.x
+    if(radioClasses != undefined) {
+      throw new Error("radioClasses prop has been replaced with className");
+    }
+
     return (
       <InputWrapper className={classes} name={name} label={label}>
-          {React.Children.map(children, child => React.cloneElement(child as React.ReactElement<RadioTabsPassedDownProps>, {
+        {React.Children.map(children, (child:React.ReactElement<any>) => {
+          if(typeof child.type === 'string' || child.type.name !== 'RadioTab') {
+              throw new Error("RadioTabs can only accept RadioTab components as childen");
+          } 
+
+          return React.cloneElement(child as React.ReactElement<RadioTabsPassedDownProps>, {
             name,
             chosenId,
             setId: this.setId
-          }))}
+          })
+        })}
       </InputWrapper>
     );
   }

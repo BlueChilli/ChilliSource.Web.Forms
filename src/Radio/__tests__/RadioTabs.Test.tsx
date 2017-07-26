@@ -13,7 +13,7 @@ const radioTabChildren = [
 
 const radioTabDefaultChildren = [
     <RadioTab key="radiotab1" id="RadioTab1">Tab1</RadioTab>,
-    <RadioTab defaultSelected key="radiotab2" id="RadioTab2">Tab2</RadioTab>,
+    <RadioTab key="radiotab2" defaultSelected id="RadioTab2">Tab2</RadioTab>,
     <RadioTab key="radiotab3" id="RadioTab3">Tab3</RadioTab>
 ];
 
@@ -25,12 +25,11 @@ const htmlChildren = [
 
 const allRadioTabsProps = {
     name: 'name',
-    radioClasses: 'RadioClasses',
-    className: 'RadioTabsClass',
+    className: 'RadioTabsClass input radio-tabs',
     label: 'RadioTabs Label',
 };
 
-const {name, radioClasses, className, label} = allRadioTabsProps;
+const {name, className, label} = allRadioTabsProps;
 
 const inputWrapperProps = {
     name,
@@ -39,12 +38,11 @@ const inputWrapperProps = {
 };
 
 describe('<RadioTabs />', () => {
-
-    // it('should have the required props for InputWrapper', () => {
-    //     const wrapper = shallow(<Form name="Form"><RadioTabs {...radioTabsProps} /></Form>).find(RadioTabs);
-    //     const {children, ...InputWrapperProps} = wrapper.props();
-    //     expect(isEqual(InputWrapperProps, inputWrapperProps)).toBe(true);
-    // });
+    it('should have the required props for InputWrapper', () => {
+        const wrapper = shallow(<Form name="Form"><RadioTabs {...allRadioTabsProps} /></Form>).find(RadioTabs);
+        const {children, ...InputWrapperProps} = wrapper.props();
+        expect(isEqual(InputWrapperProps, inputWrapperProps)).toBe(true);
+    });
 
     it('should render pure HTML children', () => {
         const radioTabsProps = {
@@ -68,6 +66,7 @@ describe('<RadioTabs />', () => {
             expect(wrapper.contains(item)).toBe(true);
         });
     });
+
     it('should set the name, chosenId and setId prop on children', () => {
         const radioTabsProps = {
             children: radioTabChildren,
@@ -109,33 +108,38 @@ describe('<RadioTabs />', () => {
         expect(wrapper.find(".active").find("#RadioTab2").exists()).toBe(true);
     });
 
+    it('should throw if you pass in radioClasses', () => {
+        const brokenProps = {
+            ...allRadioTabsProps,
+            radioClasses: "This_will_break"
+        }
 
-    it('should throw error when Radio tab is not a direct children of Radio Tabs', () => {
-      const tabItems = [{id: "tab1", selected: true},{id: "tab2", selected:false}, {id:"tab3", selected:false}];
-      expect(() => {
-            mount(<Form name="Form">
-                                        <RadioTabs {...allRadioTabsProps}>
-                                        {
-                                            tabItems.map(item => {
-
-                                                return (
-                                                    <div>
-                                                        <RadioTab id={item.id} defaultSelected={item.selected}>
-                                                            
-                                                        </RadioTab>
-                                                        <h5>Hello</h5>
-                                                    </div>   
-                                                )
-                                            })
-                                        }    
-                                        </RadioTabs>
-                                </Form>);
-        
-      }).toThrow();
-  
-
+        const wrapper = shallow(<Form name="Form"><RadioTabs {...brokenProps} /></Form>).find(RadioTabs);
+        expect(wrapper).toThrow();
     });
 
+    it('should throw error when Radio tab is not a direct children of Radio Tabs', () => {
+        const tabItems = [
+            {id: "tab1", selected: true},
+            {id: "tab2", selected:false},
+            {id: "tab3", selected:false}
+        ];
+
+        expect(() => {
+            mount(
+                <Form name="Form">
+                    <RadioTabs {...allRadioTabsProps}>
+                        {tabItems.map((item, index) =>
+                            <div key={index}>
+                                <RadioTab id={item.id} defaultSelected={item.selected}></RadioTab>
+                                <h5>Hello</h5>
+                            </div>
+                        )}    
+                    </RadioTabs>
+                </Form>
+            );
+        }).toThrow();
+    });
 });
 
 //Throws error if form doesnt exist

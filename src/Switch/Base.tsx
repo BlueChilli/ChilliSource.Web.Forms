@@ -49,8 +49,7 @@ class SwitchBase extends React.Component<SwitchProps & PerformanceWrapperProps, 
 
   render() {
     var attributes = getHTMLAttributes(this.props);
-    return <input onBlur={this.handleBlur} onChange={this.handleChange} checked={isChecked(this.props)} ref={this.props.name}
-                  value={attributes.id} {...attributes} id={this.props.id}/>;
+    return <input onBlur={this.handleBlur} onChange={this.handleChange} checked={isChecked(this.props)} ref={this.props.name} value={attributes.id} {...attributes} id={this.props.id}/>;
   }
 };
 
