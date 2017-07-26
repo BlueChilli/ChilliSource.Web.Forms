@@ -19826,6 +19826,7 @@ var getValue = function (name, inputInfo) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* unused harmony export DateWrapper */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(1);
@@ -19883,6 +19884,7 @@ var DateWrapper = (function (_super) {
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
 ;
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_2_react_onclickoutside___default()(DateWrapper));
+
 
 
 /***/ }),
@@ -20196,6 +20198,8 @@ var CheckBox = (function (_super) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* unused harmony export DatePicker */
+/* unused harmony export CalendarBase */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment__ = __webpack_require__(33);
@@ -20294,11 +20298,14 @@ var DatePicker = (function (_super) {
 }), __WEBPACK_IMPORTED_MODULE_4__Form_Helpers_performanceWrapper__["a" /* default */])(DatePicker));
 
 
+
 /***/ }),
 /* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* unused harmony export DateRangeBase */
+/* unused harmony export DateRangePicker */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment__ = __webpack_require__(33);
@@ -20379,6 +20386,7 @@ var DateRangePicker = function (_a) {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(DateRangeBase, __assign({}, props))));
 };
 /* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__Form_Helpers_performanceWrapper__["a" /* default */])(DateRangePicker));
+
 
 
 /***/ }),
@@ -20872,14 +20880,23 @@ var RadioTabs = (function (_super) {
     }
     RadioTabs.prototype.render = function () {
         var _this = this;
-        var _a = this.props, className = _a.className, radioClasses = _a.radioClasses, name = _a.name, label = _a.label, children = _a.children;
+        var _a = this.props, className = _a.className, _b = _a.radioClasses, radioClasses = _b === void 0 ? undefined : _b, name = _a.name, label = _a.label, children = _a.children;
         var chosenId = this.state.chosenId;
         var classes = __WEBPACK_IMPORTED_MODULE_1_classnames___default()(className, 'input', 'radio-tabs');
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Form_InputWrapper__["a" /* default */], { className: classes, name: name, label: label }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.Children.map(children, function (child) { return __WEBPACK_IMPORTED_MODULE_0_react___default.a.cloneElement(child, {
-            name: name,
-            chosenId: chosenId,
-            setId: _this.setId
-        }); })));
+        // Deprication warning, v1.0.x
+        if (radioClasses != undefined) {
+            throw new Error("radioClasses prop has been replaced with className");
+        }
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Form_InputWrapper__["a" /* default */], { className: classes, name: name, label: label }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.Children.map(children, function (child) {
+            if (typeof child.type === 'string' || child.type.name !== 'RadioTab') {
+                throw new Error("RadioTabs can only accept RadioTab components as childen");
+            }
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.cloneElement(child, {
+                name: name,
+                chosenId: chosenId,
+                setId: _this.setId
+            });
+        })));
     };
     return RadioTabs;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
@@ -20952,6 +20969,9 @@ var MultiSelect = (function (_super) {
         var _a = this.props, options = _a.options, value = _a.value, className = _a.className, label = _a.label, labelPrefix = _a.labelPrefix, labelPostfix = _a.labelPostfix, noResultsText = _a.noResultsText, placeholder = _a.placeholder, props = __rest(_a, ["options", "value", "className", "label", "labelPrefix", "labelPostfix", "noResultsText", "placeholder"]);
         var safeValue = value !== '' ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["List"])(value) : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["List"])();
         var classes = __WEBPACK_IMPORTED_MODULE_6_classnames___default()(className, 'input');
+        if (!__WEBPACK_IMPORTED_MODULE_2_immutable__["Iterable"].isIterable(options)) {
+            throw new Error("options must be an Immutable List()");
+        }
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Form_InputWrapper__["a" /* default */], { name: props.name, label: label, labelPrefix: labelPrefix, labelPostfix: labelPostfix, className: classes },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_select___default.a, { value: safeValue.toJS(), options: options.toJS(), multi: true, onChange: this.handleChange, noResultsText: noResultsText, placeholder: placeholder })));
     };
