@@ -1,6 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
-import {List, fromJS} from 'immutable';
+import {List, fromJS, Iterable} from 'immutable';
 import 'react-select/dist/react-select.css';
 import InputWrapper from '../Form/InputWrapper';
 import {SelectInputProps} from "../Form/Types/types";
@@ -32,6 +32,10 @@ export class MultiSelect extends React.Component<MultiSelectProps & PerformanceW
     const {options, value, className, label, labelPrefix, labelPostfix, noResultsText, placeholder, ...props} = this.props;
     const safeValue = value !== '' ? List(value) : List();
     const classes = classnames(className, 'input');
+
+    if(!Iterable.isIterable(options)) {
+      throw new Error("options must be an Immutable List()")
+    }
     
     return (
       <InputWrapper name={props.name} label={label} labelPrefix={labelPrefix} labelPostfix={labelPostfix} className={classes}>
