@@ -41,7 +41,7 @@ describe('performanceWrapper', () => {
 
     it('should include fieldset name in the inputPath', () => {
       const inputPath = getInputPath('input', inputPathFieldsetProps);
-      expect(isEqual(inputPath, ['fieldset', 'name'])).toBe(true);
+      expect(isEqual(inputPath, ['fieldset', 'name', 'input'])).toBe(true);
     });
 
     it('should includes array-formatted name(i.e. _name_[]) in the inputPath', () => {
@@ -68,6 +68,10 @@ describe('performanceWrapper', () => {
     it('should prioritise defaultSelected', () => {
       expect(getPrioritisedDefaultValue(undefined, undefined, 'defaultSelected')).toBe('defaultSelected');
     });
+
+    it('should return undefined if all fields are undefined', () => {
+      expect(getPrioritisedDefaultValue(undefined, undefined, undefined)).toBe(undefined);
+    });
   });
 
   describe('getPrioritisedValue', () => {
@@ -86,6 +90,10 @@ describe('performanceWrapper', () => {
     
     it('should prioritise unsetValue', () => {
       expect(getPrioritisedValue(undefined, undefined, undefined, "")).toBe("");
+    });
+
+    it('should return undefined if all values are undefined', () => {
+      expect(getPrioritisedValue(undefined, undefined, undefined, undefined)).toBe(undefined);
     });
   });
 
@@ -129,8 +137,7 @@ describe('performanceWrapper', () => {
       const wrapper = shallow(<WrappedComponent inputChanged={callback} value={initalValue} nameSpace={nameSpace} inputPath={inputPath} FormState={FormState}/>);
       
       wrapper.setProps({defaultValue:updatedDefaultValue, value: updatedValue});
-      expect(callback.secondCall.calledWithExactly(updatedDefaultValue, false)).toBe(true);
-      expect(callback.lastCall.calledWithExactly(updatedValue, true)).toBe(true);
+      expect(callback.calledWithExactly(updatedValue, true) && callback.calledTwice).toBe(true);
     });
 
     it('should call inputChanged with correct value and field state when the value doesnt exist in FormState', () => {
@@ -141,16 +148,23 @@ describe('performanceWrapper', () => {
     });
   });
 
-  describe('withNeedeProps', () => {
+  describe('withNeededProps', () => {
     const WrappedComponent = withNeededProps<any>()(TestComponent);
-    it("should throw if nameSpace is undefined", () => {
+    it("should throw if name is undefined", () => {
       expect(() => {
-        mount(<WrappedComponent inputPath={["test"]} FormState={Map()} name="withNeededProps"/>)
-      }).toThrow();
+        mount(<WrappedComponent nameSpace="Test" inputPath={["test"]} FormState={Map()} />)
+      }).toThrow("name is a required field please specifiy a name");
       expect(() => {
         mount(<WrappedComponent nameSpace="Test" inputPath={["test"]} FormState={Map()} name="withNeededProps"/>)
       }).not.toThrow();
     })
-
+    it("should throw if nameSpace is undefined", () => {
+      expect(() => {
+        mount(<WrappedComponent inputPath={["test"]} FormState={Map()} name="withNeededProps"/>)
+      }).toThrow(`nameSpace is undefined ensure that a Form component is a parent of the component with name: "withNeededProps"`);
+      expect(() => {
+        mount(<WrappedComponent nameSpace="Test" inputPath={["test"]} FormState={Map()} name="withNeededProps"/>)
+      }).not.toThrow();
+    })
   });
 });
