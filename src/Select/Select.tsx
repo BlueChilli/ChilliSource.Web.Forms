@@ -13,7 +13,7 @@ import {SelectInputProps} from '../Form/Types/types';
 import './Select.scss';
 
 /** Class Select */
-class Select extends React.Component<SelectInputProps & PerformanceWrapperProps, {}> {
+export class Select extends React.Component<SelectInputProps & PerformanceWrapperProps, {}> {
   render() {
     const {className, label, labelPostfix, labelPrefix, arrow, ...props} = this.props;
     const {autoFocus, onChange, onBlur, id, defaultChecked, defaultSelected, value, children, ...validationProps} = props;
