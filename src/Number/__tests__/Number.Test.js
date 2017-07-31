@@ -1,5 +1,7 @@
 import React from 'react';
-import sinon from "sinon";
+import PropTypes from "prop-types";
+import sinon from 'sinon';
+import {Map} from 'immutable';
 import {shallow, mount} from 'enzyme';
 import Form from '../../Form/Form';
 import Number from '../Number';
@@ -21,11 +23,6 @@ const numberProps = {
 };
 
 describe('<Number />', () => {
-    it('should render a <input /> component without being given any props', () => {
-        const wrapper = shallow(<Number />);
-        expect(wrapper.find('Input')).not.toBeUndefined()
-    });
-
     it('should use default props when not given any props', () => {
         const wrapper = shallow(<Number />);
         expect(isEqual(defaultNumberProps, wrapper.props())).toBe(true);
@@ -38,14 +35,23 @@ describe('<Number />', () => {
 });
 
 describe('<Number /> mount', () => {
+    const mountOptions = {
+        context: {
+            nameSpace: "Input",
+            FormState: Map(),
+            dispatch: () => {}
+        },
+        childContextTypes: {
+            nameSpace: PropTypes.string,
+            FormState: PropTypes.object,
+            dispatch: PropTypes.func,
+        }
+    }
+
     const onChangeCallback = sinon.spy();
     const onBlurCallback = sinon.spy();
 
-    const wrapper = mount(
-        <Form name="numberTest">
-            <Number {...numberProps} onChange={onChangeCallback} onBlur={onBlurCallback} />
-        </Form>
-    );
+    const wrapper = mount(<Number {...numberProps} onChange={onChangeCallback} onBlur={onBlurCallback} />, mountOptions);
     const label = wrapper.find('label');
     const input = wrapper.find('input');
 

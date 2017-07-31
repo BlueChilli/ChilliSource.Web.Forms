@@ -106,9 +106,8 @@ describe('shallow(<Input />)', () => {
 
 
 describe("mount(Input)", () => {
-
     const mountOptions = {
-        context:{
+        context: {
             nameSpace: "Input",
             FormState: Map(),
             dispatch: () => {}
