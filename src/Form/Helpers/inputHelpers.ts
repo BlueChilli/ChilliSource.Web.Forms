@@ -45,6 +45,6 @@ export function returnCheckedValue<T>(check:(arg:T) => boolean, ...args:T[]){
  * @param props All the props on which the 'picking' is performed
  */
 export const getHTMLAttributes = <T extends GetHTMLAttributesGuard> (props:T) => {
-  const safeProps = pick<PickedAttrs, T>(props, "id", "autoFocus", "required", "name", "type", "value", "min", "max", "minLength", "maxLength", "pattern", "accept", "multiple", "placeholder");
+  const safeProps = pick<PickedAttrs, T>(props, "id", "autoFocus", "required", "name", "type", "value", "min", "max", "minLength", "maxLength", "pattern", "accept", "multiple", "placeholder", "disabled");
   return safeProps;
 }

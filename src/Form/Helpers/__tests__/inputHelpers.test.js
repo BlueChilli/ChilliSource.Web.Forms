@@ -12,7 +12,8 @@ const supportedProps = {
   type: "input",
   minLength: 5,
   maxLength: 1000,
-  pattern: "[0-9]"
+  pattern: "[0-9]",
+  disabled: true
 }
 
 const unsupportedProps = {
