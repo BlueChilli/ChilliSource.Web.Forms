@@ -321,7 +321,7 @@ function returnCheckedValue(check) {
  * @param props All the props on which the 'picking' is performed
  */
 var getHTMLAttributes = function (props) {
-    var safeProps = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_lodash__["pick"])(props, "id", "autoFocus", "required", "name", "type", "value", "min", "max", "minLength", "maxLength", "pattern", "accept", "multiple", "placeholder");
+    var safeProps = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_lodash__["pick"])(props, "id", "autoFocus", "required", "name", "type", "value", "min", "max", "minLength", "maxLength", "pattern", "accept", "multiple", "placeholder", "disabled");
     return safeProps;
 };
 
