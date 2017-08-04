@@ -91,11 +91,35 @@ describe('<Select /> mount', () => {
         }
     }
 
-    const wrapper = mount(<Select {...allSelectProps} />, mountOptions)
+    const wrapper = mount(<Select {...allSelectProps} />, mountOptions);
+    const label = wrapper.find('label');
+    const select = wrapper.find("select")
 
-    console.log(wrapper.debug());
+     it('should set the className', () => {
+        expect(wrapper.find('.SelectClass').exists()).toBe(true);
+     });
+    
+    it('should set the label', () => {
+        expect(label.text() === "SelectBase Label").toBe(true);
+    });
+     
+    it('should set the labelPrefix', () => {
+        expect(wrapper.find(".input-label-prefix").text() === allSelectProps.labelPrefix).toBe(true);
+    });
 
-    it('mitch is awesome', () => {
-        expect(true).toBe(true);
-    })
+    it('should set the labelPrefix', () => {
+        expect(wrapper.find(".input-label-prefix").text() === allSelectProps.labelPrefix).toBe(true);
+    });
+
+    it('should set the labelPostfix', () => {
+        expect(wrapper.find(".input-label-postfix").text() === allSelectProps.labelPostfix).toBe(true);
+    });
+
+    it('should set labelFor and name to be the same', () => {
+        expect(label.prop("htmlFor") === select.prop("name")).toBe(true);
+    });
+
+    it('should set the correct defaultValue', () => {
+        expect(select.prop('value') === defaultValue).toBe(true);
+    });
 });
