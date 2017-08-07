@@ -1,19 +1,9 @@
 import {Map} from "immutable";
 import {getInputValue, getInputState, getInputValidation} from "../Helpers/path";
 import {isMultipleValueInput} from "../Helpers/inputHelpers";
-import {FSA} from "cs.core";
 
-import {ClearAllInputsAction, SetInputAction, SetAllInputInteractionAction, SetInputInteractionAction, SetValidationAction} from "../Actions/fields"
-
-
-export type BasicReducer = {
-  SET_INPUT: ReducerFunc<Map<string, any>, SetInputAction>
-  SET_VALIDATION: ReducerFunc<Map<string, any>, SetValidationAction>
-  SET_INPUT_INTERACTION: ReducerFunc<Map<string, any>, SetInputInteractionAction>
-  SET_ALL_INPUT_INTERACTIONS: ReducerFunc<Map<string, any>, SetAllInputInteractionAction>
-  CLEAR_ALL_INPUTS: ReducerFunc<Map<string, any>, ClearAllInputsAction>
-}
-
+import {FSA, ClearAllInputsAction, SetInputAction, SetAllInputInteractionAction, 
+  SetInputInteractionAction, SetValidationAction, ReducerFunc, BasicReducer} from "../../../index.d";
 
 export const basicReducer:BasicReducer = {
   SET_INPUT: (state, {payload}) => {
@@ -52,8 +42,6 @@ export const basicReducer:BasicReducer = {
     return state.set(payload.nameSpace, Map({}))
   }
 }
-
-export type ReducerFunc<TState = Map<string, {}>, TAction = ClearAllInputsAction | SetInputAction | SetAllInputInteractionAction | SetInputInteractionAction | SetValidationAction> = (state: TState, action:TAction) => TState
 
 export const withReducerState = (state = Map<string, {}>(), action:ClearAllInputsAction | SetInputAction | SetAllInputInteractionAction | SetInputInteractionAction | SetValidationAction) => {
   const reducerFunc:ReducerFunc<Map<string, {}>> = basicReducer[action.type];

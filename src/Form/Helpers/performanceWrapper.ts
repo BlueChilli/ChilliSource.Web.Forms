@@ -4,34 +4,28 @@ import PropTypes from 'prop-types';
 import Recompose from 'recompose';
 import {isUndefined} from 'lodash';
 import {getContext, withProps, shouldUpdate, withHandlers, compose, lifecycle} from 'recompose';
-import {Map} from 'immutable';
+import {Map} from 'immutable'; 
 
 /** Components */
 import {isMultipleValueInput, returnCheckedValue} from './inputHelpers';
 import {createSpecificShallowEqual} from 'cs.core';
 import {setInput, setInputInteraction, setValidation} from '../Actions/fields';
-// import {ShallowCompareProps, BaseReactProps, ShallowCompare} from '../../../libs/types';
-import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerformanceWrapperInputHelpers, FieldSetNameSpaceProp, ValidationProps, OptionsProp,
-   PerformanceWrapperUncalledInputHelpers, PerformanceWrapperUncalledValidationHelpers, NameProp, IdProp, TypeProp, PossibleValues, OptionalValidationProps, LabelProp,
-  DefaultValueProp, PossibleDefaultValues, InputInfoProps, DefaultSwitchProps, NameSpaceProp, FormStateProp, ValueProp, SetValidation, AdditionalCompareProps} from "../Types/types"
-import {BaseReactProps} from "cs.core";
+import {BaseReactProps, WithHandlersGuard, PerformanceWrapperProps, FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerformanceWrapperInputHelpers, FieldSetNameSpaceProp, ValidationProps, OptionsProp,
+   PerformanceWrapperUncalledInputHelpers, PerformanceWrapperUncalledValidationHelpers, NameProp, IdProp, TypeProp, PossibleInputValue, OptionalValidationProps, LabelProp,
+  DefaultValueProp, InputInfoProps, DefaultSwitchProps, NameSpaceProp, FormStateProp, ValueProp, SetValidation, AdditionalCompareProps} from '../../../index.d';
+ 
 
-
-/** Interfaces */
-export interface WithHandlersGuard extends NameProp, IdProp, TypeProp, DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, NameProp, BaseReactProps, ValueProp<PossibleValues>, IdProp, TypeProp{}
-export interface PerformanceWrapperProps extends PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, FormContext {}
 interface GetInputPathGuard extends NameProp, IdProp, FieldSetNameSpaceProp {}
 interface GetValidationPathGuard extends NameProp, FieldSetNameSpaceProp {}
-interface WithNeededPropsGuard extends DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, ValueProp<PossibleValues>, NameProp, IdProp, TypeProp {}
+interface WithNeededPropsGuard extends DefaultSwitchProps, DefaultValueProp<PossibleInputValue>, ValueProp<PossibleInputValue>, NameProp, IdProp, TypeProp {}
+type SpecificShallowEqualInterface = InputInfoProps & NameProp & NameSpaceProp & TypeProp & IdProp & BaseReactProps & OptionalValidationProps  & ValidationProps & DefaultValueProp<PossibleInputValue> & DefaultSwitchProps & OptionsProp & FieldSetNameSpaceProp & ValueProp<PossibleInputValue> & LabelProp
 
-
-type SpecificShallowEqualInterface = InputInfoProps & NameProp & NameSpaceProp & TypeProp & IdProp & BaseReactProps & OptionalValidationProps  & ValidationProps & DefaultValueProp<PossibleDefaultValues> & DefaultSwitchProps & OptionsProp & FieldSetNameSpaceProp & ValueProp<PossibleValues> & LabelProp
 /** Helpers */
 const specificShallowEqual = createSpecificShallowEqual<SpecificShallowEqualInterface>("inputInfo", "name", "nameSpace", "type", "id", "disabled", "noValidate", "required", "className", "defaultValue", "defaultChecked", "defaultSelected", "options", "fieldSetNameSpace", "value", "label");
 
-const specificShallowEqualDefault = createSpecificShallowEqual<DefaultValueProp<PossibleDefaultValues>>("defaultValue");
+const specificShallowEqualDefault = createSpecificShallowEqual<DefaultValueProp<PossibleInputValue>>("defaultValue");
 
-const specificShallowEqualValue = createSpecificShallowEqual<ValueProp<PossibleValues>>("value");
+const specificShallowEqualValue = createSpecificShallowEqual<ValueProp<PossibleInputValue>>("value");
 
 const getUnsetValue = ({type}:TypeProp) => {
   if (type === 'radio' || type === 'checkbox') {
@@ -65,11 +59,11 @@ export const getInputPath = (type: 'input' | 'validation', {name, id, fieldSetNa
   return [name];
 }
 
-export const getPrioritisedDefaultValue = (defaultValue?:PossibleDefaultValues, defaultChecked?:boolean | number | string, defaultSelected?:boolean | number | string) => (
+export const getPrioritisedDefaultValue = (defaultValue?:PossibleInputValue, defaultChecked?:boolean | number | string, defaultSelected?:boolean | number | string) => (
   returnCheckedValue((arg) => !isUndefined(arg) && arg !== false, defaultValue, defaultChecked, defaultSelected)
 );
 
-export const getPrioritisedValue = (value:PossibleValues, inputInfoValue:PossibleValues, prioritisedDefaultValue:PossibleDefaultValues, unsetValue:string | boolean) => (
+export const getPrioritisedValue = (value:PossibleInputValue, inputInfoValue:PossibleInputValue, prioritisedDefaultValue:PossibleInputValue, unsetValue:string | boolean) => (
   returnCheckedValue((arg) => !isUndefined(arg), value, inputInfoValue, prioritisedDefaultValue, unsetValue)
 );
 
@@ -117,7 +111,7 @@ const setValidationWithHandlersObject = {
   },
 }
 
-export const updateLifcycle =<TOutter extends ValueProp<PossibleValues>> () => lifecycle<PerformanceWrapperProps & TOutter, {}>({
+export const updateLifcycle =<TOutter extends ValueProp<PossibleInputValue>> () => lifecycle<PerformanceWrapperProps & TOutter, {}>({
   componentWillMount() {
     this.props.inputChanged(this.props.value, false);
   },

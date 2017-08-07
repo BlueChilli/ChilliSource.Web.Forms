@@ -5,49 +5,14 @@ import classnames from "classnames";
 import {defer, isFunction} from "lodash";
 import {setAllInputInteractions, clearAllInputs} from "./Actions/fields";
 import {withReducerState} from "./Reducers";
-import {PossibleValues} from "./Types/types";
-import {BaseReactProps} from "cs.core";
+import {BaseReactProps, PossibleInputValue, OnSubmit, formState, 
+  FormOptionalProps, FormOwnProps, FormStateProps, FormDispatchProps,
+  FormState, FormProps} from "../../index.d";
 import {convertToFormData, normalizeFields} from "./Helpers/formHelpers";
 import {withReducer, compose, branch, ComponentEnhancer} from "recompose";
 
 
-type formState = Map<string, Map<string, PossibleValues>>
 
-export type OnSubmit<T> = (e:any, formData:formState | FormData, submitGeneratedForm?:T) => void
-
-export interface FormOptionalProps<T> extends BaseReactProps {
-    /** Accepts different mime types and ensures the user specified onSubmit is called with data in the correct format
-     * currently supports: application/json and multipart/form-data */
-    encType?: 'application/json' | 'multipart/form-data',
-    /** Called before the form is submitted, ths is a chance to modify the contents of the payload
-     * primarily used by the form generator */    
-    mapOutput?: (data?: Map<string, any>) => Map<string, any>,
-     /** Called once Form has ensured that all child Input components are valid */
-    onSubmit?: OnSubmit<T>,    
-}
-
-interface FormStateProps {
-  /** Can optionally be passed down by the user to intergrate with redux global state */
-  FormState?: formState,
-}
-
-interface FormDispatchProps {
-  /** Can optionally be passed down by the user to intergrate with redux global state */
-  dispatch?: any
-}
-
-interface FormState {
-  canSubmitString: string
-}
-
-export interface FormOwnProps<T> extends FormOptionalProps<T> {
-   /** Used to namespace all child input components in the redux store or local state */
-    name: string,
-}
-
-export interface FormProps<T> extends FormOwnProps<T>, FormStateProps, FormDispatchProps {
-
-}
 interface FormInnerProps<T> extends FormOwnProps<T>, FormStateProps, FormDispatchProps {
   FormState: formState,
   dispatch: any,
