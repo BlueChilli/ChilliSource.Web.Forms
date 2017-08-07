@@ -7,7 +7,7 @@ import "./Validation.scss";
 import {isMultipleValueInput, returnCheckedValue} from "../Form/Helpers/inputHelpers";
 import {createSpecificShallowEqual} from "cs.core";
 import {ValidationAdditionProps, TextInputProps, ValidationInnerElementProps, 
-  ValueProp, TypeProp, PossibleInputValue, ValidationTypes} from "../../index.d";
+  ValueProp, TypeProp, PossibleInputValue, ValidationTypes, ValidationComponentProps} from "../../index.d";
 
 
 
@@ -37,11 +37,6 @@ interface TestHandersInterface {
 }
 
 interface ValidationLifecycleProps extends ValidationMapProps, TestHandersInterface {}
-
-
-export interface ValidationComponentProps {
-  isFor: string
-}
 
 
 const specificShallowEqual = createSpecificShallowEqual<ValidationMapProps & TypeProp>('value', 'changed', 'type');
