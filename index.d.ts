@@ -5,6 +5,7 @@
 // Reference Types
 /// <reference types="react" />
 
+import {Component} from 'react';
 import {Moment} from 'moment';
 import {List, Map} from 'immutable';
 import {Dispatch, Action} from 'redux';
@@ -22,7 +23,7 @@ declare namespace CSForms {
   
   type TestType = string | number | boolean | Function | undefined;
 
-  type DateRange = {
+  type DateRangeMoment = {
     startDate: Moment;
     endDate: Moment;
   }
@@ -240,12 +241,12 @@ declare namespace CSForms {
     children: React.ReactElement<any>
   }
 
-  interface CommonDateProps extends BaseReactProps, NameProp, DateWrapperProps, OnChangeEventProps<DateRange | Moment>, AdditionalCompareProps {
+  interface CommonDateProps extends BaseReactProps, NameProp, DateWrapperProps, OnChangeEventProps<DateRangeMoment | Moment>, AdditionalCompareProps {
     date?: Moment,
     dateFormat?: string,
     firstDayOfTheWeek?: number,
     theme?: Object,
-    onInit?: (date?: DateRange | Moment) => void | boolean,
+    onInit?: (date?: DateRangeMoment | Moment) => void | boolean,
     minDate?: string | Moment | Function,
     maxDate?: string | Moment | Function,
     serverFormat?: string
@@ -296,6 +297,10 @@ declare namespace CSForms {
 
   interface NameSpaceProp {
     nameSpace: string
+  }
+
+  interface ValidationComponentProps {
+    isFor: string
   }
 
   interface FormStateProp {
@@ -438,6 +443,7 @@ declare namespace CSForms {
     CLEAR_ALL_INPUTS: ReducerFunc<Map<string, any>, ClearAllInputsAction>
   }
 
+
   // Functions
   // ----------------------------------------------------------------------------
   function performanceWrapper<TOutter extends WithHandlersGuard> (Component: React.ComponentType<TOutter & PerformanceWrapperProps>): React.ComponentType<TOutter>
@@ -445,4 +451,46 @@ declare namespace CSForms {
   function validationsAvailable<T> (inputAttributes:T): InputTest[];
   
   function clearAllInputs(nameSpace: string): ClearAllInputsAction;
+
+
+  // Components
+  class CheckBox extends Component<SwitchProps, {}>{}
+
+  class DatePicker extends Component<DatePickerProps, {}>{}
+
+  class DateRange extends Component<DateRangeProps, {}>{}
+  
+  class DropZone extends Component<DropZoneProps, {}>{}
+  
+  class Input extends Component<TextInputProps, {}>{}
+
+  class Number extends Component<TextInputProps, {}>{}
+
+  class Radio extends Component<SwitchProps, {}>{}
+
+  class RadioTab extends Component<RadioTabProps, {}>{}
+
+  class RadioTabs extends Component<RadioTabsProps, {}>{}
+
+  class Select extends Component<SelectInputProps, {}>{}
+  
+  class MultiSelect extends Component<MultiSelectProps, {}>{}
+
+  class TextArea extends Component<TextAreaProps, {}>{}
+
+  class Validate extends Component<ValidateProps, {}>{}
+
+  class Validation extends Component<ValidationComponentProps, {}>{}
+
+  class Form extends Component<FormProps<undefined>, {}>{}
+
+  class Fieldset extends Component<FieldSetProps, {}>{}
+
+  class InputGroup extends Component<InputGroupProps, {}>{}
+
+  class InputWrapper extends Component<InputWrapperProps, {}>{}
+
+  class ErrorWrapper extends Component<ErrorWrapperProps, {}>{}
+  
+  class DisplayValidation extends Component<DisplayValidationProps, {}>{}
 }
