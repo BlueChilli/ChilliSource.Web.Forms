@@ -1,4 +1,5 @@
 import React from 'react';
+import sinon from "sinon";
 import PropTypes from 'prop-types';
 import {shallow, mount} from 'enzyme';
 import {isEqual} from 'lodash';
@@ -7,8 +8,7 @@ import Form from '../../Form/Form';
 import SelectBase from '../Base';
 import {Map} from 'immutable';
 
-const options = ['Pash', 'Shane', 'Jeremy', 'Mitch', 'Mick']
-                .map((person, key) => <option key={key} value={person}>{person}</option>);
+const options = ['Pash', 'Shane', 'Jeremy', 'Mitch', 'Mick'].map((person, key) => <option key={key} value={person}>{person}</option>);
 
 const allSelectProps = {
     children: options,
@@ -80,7 +80,7 @@ describe('<Select /> shallow', () => {
 describe('<Select /> mount', () => {
     const mountOptions = {
         context:{
-            nameSpace: "Select",
+            nameSpace: 'Select',
             FormState: Map(),
             dispatch: () => {}
         },
@@ -93,33 +93,33 @@ describe('<Select /> mount', () => {
 
     const wrapper = mount(<Select {...allSelectProps} />, mountOptions);
     const label = wrapper.find('label');
-    const select = wrapper.find("select")
+    const select = wrapper.find('select')
 
      it('should set the className', () => {
         expect(wrapper.find('.SelectClass').exists()).toBe(true);
      });
     
     it('should set the label', () => {
-        expect(label.text() === "SelectBase Label").toBe(true);
+        expect(label.text() === 'SelectBase Label').toBe(true);
     });
      
     it('should set the labelPrefix', () => {
-        expect(wrapper.find(".input-label-prefix").text() === allSelectProps.labelPrefix).toBe(true);
+        expect(wrapper.find('.input-label-prefix').text() === allSelectProps.labelPrefix).toBe(true);
     });
 
     it('should set the labelPrefix', () => {
-        expect(wrapper.find(".input-label-prefix").text() === allSelectProps.labelPrefix).toBe(true);
+        expect(wrapper.find('.input-label-prefix').text() === allSelectProps.labelPrefix).toBe(true);
     });
 
     it('should set the labelPostfix', () => {
-        expect(wrapper.find(".input-label-postfix").text() === allSelectProps.labelPostfix).toBe(true);
+        expect(wrapper.find('.input-label-postfix').text() === allSelectProps.labelPostfix).toBe(true);
     });
 
     it('should set labelFor and name to be the same', () => {
-        expect(label.prop("htmlFor") === select.prop("name")).toBe(true);
+        expect(label.prop('htmlFor') === select.prop('name')).toBe(true);
     });
 
     it('should set the correct defaultValue', () => {
-        expect(select.prop('value') === defaultValue).toBe(true);
+        expect(select.prop('value') === allSelectProps.value).toBe(true);
     });
 });
