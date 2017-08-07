@@ -1,7 +1,8 @@
 import React from "react";
 import {Map} from "immutable";
-import Form, {FormProps, FormOptionalProps} from "./Form";
+import Form from "./Form";
 import {connect, Dispatch} from "react-redux";
+import {FormProps, FormOptionalProps} from '../../index.d';
 
 interface MapStateToProps {
   FormState: Map<string, any>

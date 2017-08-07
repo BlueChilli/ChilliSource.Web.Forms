@@ -1,7 +1,6 @@
 import React, {Component, ChangeEvent, FocusEvent} from "react";
 import {getHTMLAttributes} from '../Form/Helpers/inputHelpers';
-import {TextAreaProps} from "../Form/Types/types";
-import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
+import {TextAreaProps, PerformanceWrapperProps} from "../../index.d";
 
 class TextAreaBase extends Component<TextAreaProps & PerformanceWrapperProps, {}>{
   displayName: 'TextAreaBase'

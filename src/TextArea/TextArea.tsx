@@ -4,8 +4,8 @@ import InputWrapper from "../Form/InputWrapper";
 import InputGroup from "../Form/InputGroup";
 import TextAreaBase from "./Base";
 import DisplayValidation from "../Validation/DisplayValidation";
-import performanceWrapper, {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
-import {TextAreaProps} from "../Form/Types/types";
+import performanceWrapper from "../Form/Helpers/performanceWrapper";
+import {TextAreaProps, PerformanceWrapperProps} from "../../index.d";
 
 export class TextArea extends React.Component<TextAreaProps & PerformanceWrapperProps, {}> {
   render() {

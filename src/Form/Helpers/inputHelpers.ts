@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import {pick} from 'lodash';
 
 /** Components */
-import {PossibleDefaultValues, PossibleValues, ValueProp, TypeProp, IdProp, InputValidationProps, NameProp} from '../Types/types';
+import {PossibleInputValue, ValueProp, TypeProp, IdProp, InputValidationProps, NameProp} from '../../../index.d';
 import {BaseReactProps} from "cs.core";
 
 /** Interfaces */
 interface PickedAttrs {
   [name: string]: any
 }
-interface GetHTMLAttributesGuard extends ValueProp<PossibleValues>, BaseReactProps, TypeProp, IdProp {}
+interface GetHTMLAttributesGuard extends ValueProp<PossibleInputValue>, BaseReactProps, TypeProp, IdProp {}
 
 /**
  * Checks whether the specified input field is a multi-value

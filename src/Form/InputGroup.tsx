@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import './InputGroup.scss';
-import {InputGroupProps} from  "./Types/types"
+import {InputGroupProps} from  "../../index.d"
 
 /** Internal method to make creation of input boxes with appended or prepended segments easier */
 const InputGroup = ({prepend, append, children} : InputGroupProps) => {

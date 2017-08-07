@@ -3,8 +3,8 @@ import classnames from "classnames";
 import SwitchBase from "./Base";
 import DisplayValidation from "../Validation/DisplayValidation";
 import ErrorWrapper from "../Form/ErrorWrapper";
-import performanceWrapper, {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
-import {SwitchProps} from "../Form/Types/types";
+import performanceWrapper from "../Form/Helpers/performanceWrapper";
+import {SwitchProps, PerformanceWrapperProps} from "../../index.d";
 
 import {snakeCase, toLower} from "lodash"
 import "./Switch.scss";

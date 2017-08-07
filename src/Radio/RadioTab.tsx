@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import {RadioTabProps} from "../Form/Types/types";
+import {RadioTabProps} from "../../index.d";
 import Radio from "../Radio/Radio";
 import {RadioTabsPassedDownProps} from "./RadioTabs"
 import {compose} from "recompose"

@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import Switch from "../Switch/Switch";
-import {SwitchProps} from "../Form/Types/types";
+import {SwitchProps} from "../../index.d";
 
 
 /** 

@@ -1,9 +1,9 @@
 import React from "react";
 import {validationsMessages, validationsAvailable} from "../../libs/validate";
-import {ValidationElementProps, InputInfoProps, ValidationAdditionProps, ValidationCloneElementProps, DisplayValidationProps, TypeProp, Type, TypeOfTest} from "../Form/Types/types"
+import {ValidationElementProps, InputInfoProps, ValidationAdditionProps, ValidationCloneElementProps, 
+  DisplayValidationProps, TypeProp, InputType, InputTest, PerformanceWrapperProps} from "../../index.d"
 // import {ReactElement} from "../../libs/types"
 import Validation from "../Validation/Validation";
-import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
 
 type ValidationChild = React.ReactElement<ValidationElementProps>
 
@@ -12,18 +12,18 @@ type ValidationAdditionChild = React.ReactElement<ValidationAdditionProps>
 
 const childrenValidations = (children:React.ReactNode) => {
   if (React.Children.count(children) > 0) {
-    return React.Children.map<TypeOfTest>(children, (child:ValidationChild) => {
+    return React.Children.map<InputTest>(children, (child:ValidationChild) => {
       return child.props.isFor;
     })
   }
   return [];
 };
 
-const isSwitch = (type?:Type):boolean => {
+const isSwitch = (type?: InputType): boolean => {
   return type === "checkbox" || type === 'radio';
 };
 
-const validationsUnused = (validationsUsed:TypeOfTest[], validationsAvailable:TypeOfTest[], isSwitch:boolean):TypeOfTest[] => {
+const validationsUnused = (validationsUsed: InputTest[], validationsAvailable: InputTest[], isSwitch:boolean): InputTest[] => {
   return validationsAvailable.filter(validation => {
     if (validation === 'type' && isSwitch) return false;
     return validationsUsed.indexOf(validation) === -1;

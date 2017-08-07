@@ -9,8 +9,7 @@ import {isFunction} from "lodash";
 /** * Components */
 import performanceWrapper from '../Form/Helpers/performanceWrapper';
 import {getHTMLAttributes} from '../Form/Helpers/inputHelpers';
-import {DropZoneProps, DropZoneFile} from '../Form/Types/types';
-import {PerformanceWrapperProps} from '../Form/Helpers/performanceWrapper';
+import {DropZoneProps, DropZoneFile, PerformanceWrapperProps} from '../../index.d';
 
 /** Styles */
 import './DropZone.scss';

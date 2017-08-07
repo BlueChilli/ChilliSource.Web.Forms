@@ -1,8 +1,7 @@
 import React, {ChangeEvent, FocusEvent} from "react";
 import ReactDOM from "react-dom";
-import {SwitchProps} from "../Form/Types/types";
+import {SwitchProps, PerformanceWrapperProps} from "../../index.d";
 import {snakeCase} from "lodash";
-import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
 import {getHTMLAttributes} from "../Form/Helpers/inputHelpers";
 
 interface SwitchBaseElement extends Element{

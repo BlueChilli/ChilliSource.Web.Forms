@@ -1,7 +1,7 @@
 import React from 'react';
 import Input from '../Input/Input';
 
-import {TextInputProps} from "../Form/Types/types";
+import {TextInputProps} from "../../index.d";
 
 class Number extends React.Component<TextInputProps, {}> {
   static defaultProps = {

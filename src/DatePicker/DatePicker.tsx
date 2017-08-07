@@ -2,8 +2,8 @@ import React from "react";
 import moment, {Moment} from "moment";
 import DateWrapper, {DateWrapperPassedDownProps} from "./DateWrapper";
 import {compose, defaultProps} from "recompose";
-import performanceWrapper, {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
-import {DatePickerProps} from "../Form/Types/types";
+import performanceWrapper from "../Form/Helpers/performanceWrapper";
+import {DatePickerProps, PerformanceWrapperProps} from "../../index.d";
 import {Calendar} from "react-date-range";
 import "./DateRange.scss";
 

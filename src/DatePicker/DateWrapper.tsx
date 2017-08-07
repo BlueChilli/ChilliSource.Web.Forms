@@ -3,8 +3,7 @@ import classnames from "classnames";
 import onReactOutsideClick, {OnClickOutProps, InjectedOnClickOutProps} from "react-onclickoutside";
 import InputWrapper from "../Form/InputWrapper";
 import InputGroup from "../Form/InputGroup";
-import {InternalDateWrapperProps} from "../Form/Types/types";
-import {DateRangeMoment} from "../Form/Types/types";
+import {InternalDateWrapperProps, DateRange} from "../../index.d";
 
 interface StateProps {
   hidden: boolean

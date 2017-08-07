@@ -1,12 +1,12 @@
 import React from "react";
 import moment, {Moment} from "moment";
 import DateWrapper from "./DateWrapper";
-import performanceWrapper, {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
+import performanceWrapper from "../Form/Helpers/performanceWrapper";
 import {compose} from "recompose";
 import {Map} from "immutable";
 import {isFunction} from "lodash"
 import {DateRange} from "react-date-range";
-import {DateRangeMap, DateRangeMoment, DateRangeProps} from "../Form/Types/types";
+import {DateRangeMap, DateRange as DateRangeMoment, DateRangeProps, PerformanceWrapperProps} from "../../index.d";
 import "./DateRange.scss";
 
 class DateRangeBase extends React.Component<DateRangeProps & PerformanceWrapperProps, {}>{

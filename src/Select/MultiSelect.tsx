@@ -3,9 +3,8 @@ import Select from 'react-select';
 import {List, fromJS, Iterable} from 'immutable';
 import 'react-select/dist/react-select.css';
 import InputWrapper from '../Form/InputWrapper';
-import {SelectInputProps} from "../Form/Types/types";
-import performanceWrapper, {PerformanceWrapperProps} from '../Form/Helpers/performanceWrapper';
-import {MultiSelectProps, InputWrapperProps} from '../Form/Types/types';
+import performanceWrapper from '../Form/Helpers/performanceWrapper';
+import {MultiSelectProps, InputWrapperProps, SelectInputProps, PerformanceWrapperProps} from '../../index.d';
 import classnames from 'classnames';
 
 export class MultiSelect extends React.Component<MultiSelectProps & PerformanceWrapperProps, {}> {

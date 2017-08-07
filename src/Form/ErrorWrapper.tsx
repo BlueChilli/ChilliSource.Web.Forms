@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import {ErrorWrapperProps} from "./Types/types"
+import {ErrorWrapperProps} from "../../index.d"
 
 
 export default ({className, style, type, children} : ErrorWrapperProps) => {

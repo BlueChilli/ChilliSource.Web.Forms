@@ -2,7 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import InputWrapper from "../Form/InputWrapper";
 import "./RadioTabs.scss";
-import {RadioTabsProps, RadioTabProps, SwitchProps} from "../Form/Types/types";
+import {RadioTabsProps, RadioTabProps, SwitchProps} from "../../index.d";
 
 export interface RadioTabsPassedDownProps {
   name: string, 

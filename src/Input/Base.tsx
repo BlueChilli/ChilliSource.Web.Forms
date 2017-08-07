@@ -1,8 +1,7 @@
 import React, {ChangeEvent, FocusEvent} from "react";
 import {isFunction} from "lodash";
 import {getHTMLAttributes} from '../Form/Helpers/inputHelpers';
-import {TextInputProps} from "../Form/Types/types";
-import {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
+import {TextInputProps, PerformanceWrapperProps} from "../../index.d";
 
 
 class InputBase extends React.Component<TextInputProps & PerformanceWrapperProps, {}>{

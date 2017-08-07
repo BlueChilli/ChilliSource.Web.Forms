@@ -2,10 +2,10 @@ import React from 'react';
 import classnames from "classnames";
 import InputGroup from "../Form/InputGroup";
 import InputWrapper from "../Form/InputWrapper";
-import {TextInputProps} from "../Form/Types/types";
+import {TextInputProps, PerformanceWrapperProps} from "../../index.d";
 import InputBase from "./Base";
 import DisplayValidation from "../Validation/DisplayValidation";
-import performanceWrapper, {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
+import performanceWrapper from "../Form/Helpers/performanceWrapper";
 
 
 export class Input extends React.Component<TextInputProps & PerformanceWrapperProps, {}> {

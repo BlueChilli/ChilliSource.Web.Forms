@@ -1,7 +1,7 @@
 import React from 'react';
 import ErrorWrapper from './ErrorWrapper';
 import './InputWrapper.scss';
-import {InputWrapperProps} from "./Types/types";
+import {InputWrapperProps} from "../../index.d";
 
 
 const InputWrapper = ({className, name, label, labelPrefix, labelPostfix, type, children}: InputWrapperProps) => (
