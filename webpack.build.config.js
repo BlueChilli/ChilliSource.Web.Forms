@@ -7,7 +7,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, "/dist/"),
     libraryTarget: "umd",
-    filename: "chillisource-web-forms.js"
+    filename: "main.js"
   },
   
   module: {
@@ -92,7 +92,7 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin("chillisource-web-forms.css")
+    new ExtractTextPlugin("main.css")
    
   ],
   resolve: {

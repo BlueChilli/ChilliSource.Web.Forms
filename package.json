@@ -1,42 +1,44 @@
 {
-  "name": "cs.forms",
+  "name": "CS.Forms",
   "version": "1.0.56",
+  "author": "Blue Chilli Technology Pty Ltd",
   "description": "A collection of forms components, helpers and abstractions built in React. These can be used with or without Redux.",
-  "main": "dist/chillisource-web-forms.js",
-  "style": "dist/chillisource-web-forms.css",
+  "main": "dist/main.js",
+  "types": "index.d.ts",
+  "style": "dist/main.css",
   "repository": {
     "type": "git",
     "url": "https://github.com/BlueChilli/ChilliSource.Web.Forms.git"
   },
-  "keywords": [
-    "react",
-    "redux",
-    "form",
-    "forms"
-  ],
-  "author": "Blue Chilli Technology Pty Ltd",
+  "keywords": ["react", "redux", "form", "forms"],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/BlueChilli/ChilliSource.Web.Forms/issues"
   },
   "homepage": "https://github.com/BlueChilli/ChilliSource.Web.Forms#readme",
-  "types": "./typings/typescript.d.ts",
   "scripts": {
     "test": "jest",
     "test-watch": "jest --watch",
     "start": "node server.js",
     "build": "webpack --config webpack.build.config.js"
   },
+  "dependencies": {
+    "@types/react": "^15.0.27",
+    "cs.core": "BlueChilli/ChilliSource.Web.Core#1.0.6",
+    "classnames": "^2.2.5",
+    "immutable": "^3.8.1",
+    "moment": "^2.18.1",
+    "react": "^15.5.4",
+    "react-date-range": "^0.9.3",
+    "react-dom": "^15.5.4",
+    "react-dropzone": "^3.13.1",
+    "react-onclickoutside": "^5.11.1",
+    "react-select": "^1.0.0-rc.3",
+    "recompose": "0.24"
+  },
   "jest": {
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx"
-    ],
-    "moduleDirectories": [
-      "node_modules"
-    ],
+    "moduleFileExtensions": ["ts","tsx","js","jsx"],
+    "moduleDirectories": ["node_modules"],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.s?css$": "<rootDir>/__mocks__/fileMock.js"
@@ -86,19 +88,5 @@
     "webpack": "^2.3.3",
     "webpack-dev-middleware": "^1.10.1",
     "webpack-hot-middleware": "^2.18.0"
-  },
-  "dependencies": {
-    "@types/react": "^15.0.27",
-    "cs.core": "BlueChilli/ChilliSource.Web.Core#1.0.6",
-    "classnames": "^2.2.5",
-    "immutable": "^3.8.1",
-    "moment": "^2.18.1",
-    "react": "^15.5.4",
-    "react-date-range": "^0.9.3",
-    "react-dom": "^15.5.4",
-    "react-dropzone": "^3.13.1",
-    "react-onclickoutside": "^5.11.1",
-    "react-select": "^1.0.0-rc.3",
-    "recompose": "0.24"
   }
 }
