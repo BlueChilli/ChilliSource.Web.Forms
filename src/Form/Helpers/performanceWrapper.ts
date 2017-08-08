@@ -138,7 +138,7 @@ export const updateLifcycle =<TOutter extends ValueProp<PossibleValues>> () => l
 
 
 const createUniversalCompose = <TOutter extends WithHandlersGuard, TWithHandlers extends {}> (withHandlersArgs:TWithHandlers, type:string = "input") => compose<PerformanceWrapperProps & TOutter, TOutter>(
-  getContext<FormContext, any>({
+  getContext<FormContext>({
     nameSpace: PropTypes.string,
     FormState: PropTypes.object,
     fieldSetNameSpace: PropTypes.string,
