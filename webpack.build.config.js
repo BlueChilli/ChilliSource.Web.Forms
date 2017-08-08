@@ -1,6 +1,7 @@
 var autoprefixer = require('autoprefixer');
 var path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: path.join(__dirname, '/app/index'),
@@ -92,8 +93,10 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin("chillisource-web-forms.css")
-   
+    new ExtractTextPlugin("chillisource-web-forms.css"),
+    new CleanWebpackPlugin(['dist/*'], {
+      "verbose": true // Write logs to console.
+    })
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.tsx', '.ts'],
