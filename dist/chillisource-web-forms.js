@@ -321,7 +321,7 @@ function returnCheckedValue(check) {
  * @param props All the props on which the 'picking' is performed
  */
 var getHTMLAttributes = function (props) {
-    var safeProps = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_lodash__["pick"])(props, "id", "autoFocus", "required", "name", "type", "value", "min", "max", "minLength", "maxLength", "pattern", "accept", "multiple", "placeholder", "disabled");
+    var safeProps = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_lodash__["pick"])(props, "id", "autoFocus", "required", "name", "type", "value", "min", "max", "minLength", "maxLength", "pattern", "accept", "multiple", "placeholder", "disabled", "rows");
     return safeProps;
 };
 
@@ -19261,6 +19261,7 @@ var testElement = function (_a) {
 /* harmony export (immutable) */ __webpack_exports__["a"] = clearAllInputs;
 /* unused harmony export setDefaultValue */
 // Constants
+// Constants
 var SET_INPUT = "SET_INPUT";
 var SET_VALIDATION = "SET_VALIDATION";
 var SET_INPUT_INTERACTION = "SET_INPUT_INTERACTION";
@@ -19419,45 +19420,43 @@ var emptyFunction = __webpack_require__(18);
 var warning = emptyFunction;
 
 if (process.env.NODE_ENV !== 'production') {
-  (function () {
-    var printWarning = function printWarning(format) {
-      for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        args[_key - 1] = arguments[_key];
+  var printWarning = function printWarning(format) {
+    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    var argIndex = 0;
+    var message = 'Warning: ' + format.replace(/%s/g, function () {
+      return args[argIndex++];
+    });
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  };
+
+  warning = function warning(condition, format) {
+    if (format === undefined) {
+      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
+    }
+
+    if (format.indexOf('Failed Composite propType: ') === 0) {
+      return; // Ignore CompositeComponent proptype check.
+    }
+
+    if (!condition) {
+      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+        args[_key2 - 2] = arguments[_key2];
       }
 
-      var argIndex = 0;
-      var message = 'Warning: ' + format.replace(/%s/g, function () {
-        return args[argIndex++];
-      });
-      if (typeof console !== 'undefined') {
-        console.error(message);
-      }
-      try {
-        // --- Welcome to debugging React ---
-        // This error was thrown as a convenience so that you can use this stack
-        // to find the callsite that caused this warning to fire.
-        throw new Error(message);
-      } catch (x) {}
-    };
-
-    warning = function warning(condition, format) {
-      if (format === undefined) {
-        throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
-      }
-
-      if (format.indexOf('Failed Composite propType: ') === 0) {
-        return; // Ignore CompositeComponent proptype check.
-      }
-
-      if (!condition) {
-        for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-          args[_key2 - 2] = arguments[_key2];
-        }
-
-        printWarning.apply(undefined, [format].concat(args));
-      }
-    };
-  })();
+      printWarning.apply(undefined, [format].concat(args));
+    }
+  };
 }
 
 module.exports = warning;
@@ -20491,11 +20490,11 @@ var DropZoneFrecl = (function (_super) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_dropzone___default.a, __assign({ className: classes, onDrop: this.onDrop, multiple: multiple }, attributes), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_lodash__["isFunction"])(children) ? (children(this.getFiles(), this.deleteFile)) : (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, children && PassDownProps({ files: files }, children))))),
             __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_lodash__["isFunction"])(fileListComponent) && (fileListComponent(this.getFiles(), this.deleteFile))));
     };
-    DropZoneFrecl.defaultProps = {
-        children: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("noscript", null)
-    };
     return DropZoneFrecl;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
+DropZoneFrecl.defaultProps = {
+    children: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("noscript", null)
+};
 /* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__Form_Helpers_performanceWrapper__["a" /* default */])(DropZoneFrecl));
 
 
@@ -20681,18 +20680,18 @@ var Form = (function (_super) {
         var classes = __WEBPACK_IMPORTED_MODULE_3_classnames___default()('form', className);
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("form", { name: name, ref: name, onSubmit: this.handleFormSubmit, className: classes, noValidate: true, encType: encType }, this.props.children));
     };
-    Form.childContextTypes = {
-        FormState: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.object,
-        nameSpace: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
-        dispatch: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func
-    };
-    //FIXME: any to make TS happy unsure why it needs to be this way
-    Form.defaultProps = {
-        encType: 'application/json',
-        mapOutput: function (data) { return data; }
-    };
     return Form;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
+Form.childContextTypes = {
+    FormState: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.object,
+    nameSpace: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
+    dispatch: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func
+};
+//FIXME: any to make TS happy unsure why it needs to be this way
+Form.defaultProps = {
+    encType: 'application/json',
+    mapOutput: function (data) { return data; }
+};
 ;
 /* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_8_recompose__["branch"])(function (props) {
     return !(props.FormState && props.dispatch);
@@ -20743,12 +20742,12 @@ var Number = (function (_super) {
     Number.prototype.render = function () {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Input_Input__["a" /* default */], __assign({}, this.props));
     };
-    Number.defaultProps = {
-        pattern: '[0-9]+.?[0-9]*',
-        type: 'number',
-    };
     return Number;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
+Number.defaultProps = {
+    pattern: '[0-9]+.?[0-9]*',
+    type: 'number',
+};
 /* harmony default export */ __webpack_exports__["a"] = (Number);
 
 
@@ -20975,12 +20974,12 @@ var MultiSelect = (function (_super) {
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Form_InputWrapper__["a" /* default */], { name: props.name, label: label, labelPrefix: labelPrefix, labelPostfix: labelPostfix, className: classes },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_select___default.a, { value: safeValue.toJS(), options: options.toJS(), multi: true, onChange: this.handleChange, noResultsText: noResultsText, placeholder: placeholder })));
     };
-    MultiSelect.defaultProps = {
-        options: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["List"])([])
-    };
     return MultiSelect;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
 
+MultiSelect.defaultProps = {
+    options: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["List"])([])
+};
 /* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__Form_Helpers_performanceWrapper__["a" /* default */])(MultiSelect));
 
 
