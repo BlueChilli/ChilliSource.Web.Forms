@@ -166,7 +166,10 @@ interface OptionTypes{
   children: List<React.ReactText>
 }
 
-export interface TextAreaProps extends BaseInputProps<string, string>, BaseFreclValidationProps, InputWrapperProps, PlaceholderProp, AdditionalCompareProps {}
+export interface TextAreaProps extends BaseInputProps<string, string>, BaseFreclValidationProps, InputWrapperProps, PlaceholderProp, AdditionalCompareProps {
+  rows?: number
+}
+
 export interface TextInputProps extends BaseInputProps<string, string | number>, BaseFreclValidationProps, InputWrapperProps, InputGroupProps, PlaceholderProp, AdditionalCompareProps{} 
 export interface SelectInputProps extends BaseInputProps<string | number, string | number>, BaseFreclValidationProps, InputWrapperProps, DefaultSwitchProps, AdditionalCompareProps{
 	/** Pass in an arrow to display at the edge of the select box */ 
