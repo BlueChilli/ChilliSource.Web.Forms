@@ -20887,6 +20887,8 @@ var RadioTabs = (function (_super) {
             throw new Error("radioClasses prop has been replaced with className");
         }
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Form_InputWrapper__["a" /* default */], { className: classes, name: name, label: label }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.Children.map(children, function (child) {
+            {
+            }
             if (typeof child.type === 'string' || child.type.name !== 'RadioTab') {
                 throw new Error("RadioTabs can only accept RadioTab components as childen");
             }
