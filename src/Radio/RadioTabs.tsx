@@ -42,9 +42,11 @@ class RadioTabs extends React.Component<RadioTabsProps, {chosenId: string}> {
     return (
       <InputWrapper className={classes} name={name} label={label}>
         {React.Children.map(children, (child:React.ReactElement<any>) => {
+          {/* 
+          ATTN SHANE: Your hack doesn't work. Fix it!
           if(typeof child.type === 'string' || child.type.name !== 'RadioTab') {
-              throw new Error("RadioTabs can only accept RadioTab components as childen");
-          } 
+            console.warn("RadioTabs can only accept RadioTab components as childen", "Element is " + child);
+          }  */}
 
           return React.cloneElement(child as React.ReactElement<RadioTabsPassedDownProps>, {
             name,
