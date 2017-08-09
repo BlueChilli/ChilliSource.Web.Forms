@@ -54,7 +54,7 @@ export const getInputPath = (type: 'input' | 'validation', {name, id, fieldSetNa
       return [fieldSetNameSpace, name, type];
     }
   } else if (fieldSetNameSpace !== undefined) {
-    return [fieldSetNameSpace, name];
+    return [fieldSetNameSpace, name, type];
   } else if (isMultipleValueInput(name)) {
     if(id){
       return [name, type, id];
@@ -82,9 +82,13 @@ const setIdToDefault = (type:string, id:string, defaultSwitch:string | number | 
 
 export const withNeededProps =<TOutter extends WithNeededPropsGuard> () => 
   withProps<PerformanceWrapperWithProps, PerformanceWrapperWithHandlers & FormContext & TOutter>((props: FormContext & TOutter) => {
+    if(props.name === undefined){
+      throw new Error(`name is a required field please specifiy a name`);
+    } 
     if(props.nameSpace === undefined){
       throw new Error(`nameSpace is undefined ensure that a Form component is a parent of the component with name: "${props.name}"`);
     }
+    
 
     const inputPath = getInputPath("input", props);
     const inputInfo = props.FormState.getIn([props.nameSpace, ...inputPath], Map({}))
@@ -122,11 +126,10 @@ export const updateLifcycle =<TOutter extends ValueProp<PossibleValues>> () => l
     this.props.inputChanged(this.props.value, false);
   },
   componentWillReceiveProps(nextProps){
-    if(!specificShallowEqualDefault(nextProps, this.props)) {
-      nextProps.inputChanged(nextProps.defaultValue, false);
-    }
     if(!specificShallowEqualValue(nextProps, this.props)) {
       nextProps.inputChanged(nextProps.value, true);
+    } else if(!specificShallowEqualDefault(nextProps, this.props)) {
+      nextProps.inputChanged(nextProps.defaultValue, false);
     }
     if(!nextProps.FormState.hasIn([nextProps.nameSpace, ...nextProps.inputPath])) {
       nextProps.inputChanged(nextProps.value, false);
