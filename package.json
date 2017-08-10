@@ -25,7 +25,8 @@
     "test": "jest",
     "test-watch": "jest --watch",
     "start": "node server.js",
-    "build": "webpack --config webpack.build.config.js"
+    "build": "webpack --config webpack.build.config.js",
+    "build-static": "webpack --config webpack.static.config.js"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -59,6 +60,7 @@
     "@types/react-redux": "^4.4.39",
     "@types/react-select": "^1.0.48",
     "@types/recompose": "0.23.3",
+    "autodll-webpack-plugin": "^0.2.1",
     "autoprefixer": "^6.7.7",
     "awesome-typescript-loader": "^3.1.2",
     "clean-webpack-plugin": "^0.1.16",
