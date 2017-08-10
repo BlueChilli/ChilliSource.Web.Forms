@@ -1,0 +1,19 @@
+input {
+  border: $input-border-width solid $input-border-color;
+  border-radius: $input-border-radius;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  color: $input-text-color;
+  padding: 10px;
+
+  &:focus {
+    border-color: $input-border-color-focus;
+  }
+
+  &[type=number]::-webkit-inner-spin-button,
+  &[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

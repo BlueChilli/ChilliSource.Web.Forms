@@ -1,0 +1,13 @@
+@import "config/type.scss";
+
+body, p {
+  @include typeset(body-copy);
+}
+
+h1 {
+  @include typeset(primary-heading);
+}
+
+h2 {
+  @include typeset(secondary-heading);
+}

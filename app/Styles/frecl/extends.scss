@@ -1,0 +1,40 @@
+@import "../../node_modules/breakpoint-sass/stylesheets/_breakpoint";
+@import "variables";
+
+.visibile {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.mobile-hidden {
+  @include breakpoint($mobile-only) {
+    display: none;
+  }
+}
+
+.center-text {
+  text-align: center;
+}
+
+.upper {
+  text-transform: uppercase;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+%unstyled, .unstyled {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+%clearfix:after, .clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}

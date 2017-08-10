@@ -1,0 +1,12 @@
+.textarea textarea {
+  width: 100%;
+  border-radius: $input-border-radius;
+  border: $input-border-width solid $input-border-color;
+  outline: none;
+  color: $input-text-color;
+  padding: 10px;
+
+  &:focus {
+    border-color: $input-border-color-focus;
+  }
+}

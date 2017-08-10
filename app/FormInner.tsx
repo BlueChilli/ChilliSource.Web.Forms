@@ -18,6 +18,7 @@ import Validation from '../src/Validation/Validation';
 import Validate from '../src/Validation/Validate';
 
 import './FormInner.scss';
+import './Styles/main.scss';
 
 export default class FormInner extends React.Component<{}, {}> {
   lastNameValidation = () => (value: string) => {
