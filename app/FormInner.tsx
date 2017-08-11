@@ -1,6 +1,9 @@
 import React from 'react';
 import moment from 'moment';
 import { List } from 'immutable';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import jsxToString from 'jsx-to-string';
+import { docco } from 'react-syntax-highlighter/dist/styles';
 import CheckBox from '../src/CheckBox/CheckBox';
 import Form from '../src/Form/Form';
 import Fieldset from '../src/Form/Fieldset';
@@ -16,10 +19,23 @@ import DatePicker from '../src/DatePicker/DatePicker';
 import TextArea from '../src/TextArea/TextArea';
 import Validation from '../src/Validation/Validation';
 import Validate from '../src/Validation/Validate';
+import GitSnippet from './GitSnippet/GitSnippet';
 
 import './FormInner.scss';
 import './Styles/main.scss';
+        
+    const Syntax = () => {
+      const codeString = '(num) => num + 1';
 
+      var code = `
+      <Input autoFocus label="First Name" required defaultValue="First Name" pattern="[A-Za-z]+$" name="firstName"  customValidation={this.lastNameValidation()}>
+        <Validation isFor="required">This field is required</Validation>
+        <Validation isFor="customValidation">This field must be Shane</Validation>
+      </Input>`
+
+      return <SyntaxHighlighter language='jsx' style={docco} >{code}</SyntaxHighlighter>;
+    }
+    
 export default class FormInner extends React.Component<{}, {}> {
   lastNameValidation = () => (value: string) => {
     return value === 'Shane';
@@ -31,10 +47,15 @@ export default class FormInner extends React.Component<{}, {}> {
       { value: 'Hunter', label: 'Hunter' },
       { value: 'Mouse', label: 'Mouse' },
       { value: 'Millenial', label: 'Millenial' },
-    ]);
+    ]); 
 
     return (
       <div style={{ padding: '20px 40px' }}>
+
+        <p>hi how are you lol</p> 
+
+        <GitSnippet src="https://gist-it.appspot.com/github/robertkrimen/gist-it-example/blob/master/example.js"/>
+        
         <Input autoFocus label="First Name" required defaultValue="First Name" pattern="[A-Za-z]+$" name="firstName"  customValidation={this.lastNameValidation()}>
           <Validation isFor="required">This field is required</Validation>
           <Validation isFor="customValidation">This field must be Shane</Validation>
