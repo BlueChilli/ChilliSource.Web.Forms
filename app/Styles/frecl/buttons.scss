@@ -1,0 +1,9 @@
+.btn {
+  line-height: 1;
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+  &:focus {
+    outline: 0;
+  }
+}

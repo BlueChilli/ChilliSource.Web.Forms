@@ -1,0 +1,23 @@
+$type-variants: (
+  'body-copy': (font-size: 16px, line-height: 24px),
+  'primary-heading': (font-size: 48px, font-weight: 800),
+  'secondary-heading': (font-size: 16px, font-weight: 700, line-height: 22px),
+  'button': (font-size: 14px, line-height: 16px)
+);
+
+@mixin typeset( $type: body-copy ) {
+  $type: map-get($type-variants, $type);
+  font-size: scut-em(map-get($type, font-size));
+
+  @if map-has-key($type, font-weight) {
+    font-weight: map-get($type, font-weight);
+  }
+
+  @if map-has-key($type, line-height) {
+    line-height: scut-em(map-get($type, line-height), map-get($type, font-size));
+  }
+
+  @if map-has-key($type, font-family) {
+    font-family: map-get($type, font-family);
+  }
+}

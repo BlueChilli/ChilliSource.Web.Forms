@@ -1,0 +1,44 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+@include breakpoint($mobile-only) {
+  table:not(.unresponsive) {
+    &, thead, tbody, th, td, tr {
+      display: block;
+      box-sizing: border-box;
+    }
+  }
+  table:not(.unresponsive) {
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+    tr:not(.no-heading) {
+      td {
+        position: relative;
+        padding-left: $responsive-table-header;
+        text-align: left;
+        &:first-child {
+          padding-left: $responsive-table-header;
+        }
+        &:before {
+          position: absolute;
+          width: $responsive-table-header;
+          white-space: nowrap;
+          content: attr(data-title);
+        }
+      }
+      &:last-child {
+        td:last-child {
+          border: none;
+        }
+      }
+    }
+  }
+}

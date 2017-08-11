@@ -1,0 +1,42 @@
+@import "config/buttons.scss";
+@import "config/type.scss";
+
+input[type="button"],
+input[type="submit"],
+input[type="cancel"],
+button,
+.button {
+  display: inline-block;
+  outline: none;
+  border-radius: $button-border-radius;
+  padding: $button-padding;
+  border: $button-border-width solid;
+  text-decoration: none;
+  border: $button-border-width solid;
+  @include typeset(button);
+
+  @each $button-class, $bgcolor, $fgcolor, $border-color in $button-color-variations {
+    &.button-#{$button-class} {
+      background: $bgcolor;
+      color: $fgcolor;
+      border-color: $border-color;
+      transition: background-color $button-transition-time linear;
+
+      &:hover {
+        background: darken($bgcolor, $button-hover-darken);
+      }
+
+      &:active {
+        background: darken($bgcolor, $button-active-darken);
+      }
+    }
+  }
+
+  & + input[type="button"],
+  & + input[type="submit"],
+  & + input[type="cancel"],
+  & + button,
+  & + .button {
+    margin-left: 5px;
+  }
+}
