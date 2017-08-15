@@ -1,7 +1,7 @@
-import {ChangeEvent, FocusEvent} from "react";
+import {ChangeEvent, FocusEvent, ReactText} from 'react';
 import {TypeOfTest} from './types';
 import {Dispatch} from 'redux';
-import {Map, List} from 'immutable';
+import {Map, List, Set} from 'immutable';
 import moment, {Moment} from 'moment';
 
 import {BaseReactProps} from "cs.core";
@@ -21,35 +21,35 @@ export type DateRangeMoment = {
 export interface DateRangeMap extends Map<string, Moment> {}
 
 export type PossibleDefaultValues = number | string | boolean | Moment | DateRangeMap | undefined | List<any>;
-export type PossibleValues = PossibleDefaultValues;
+
+export type PossibleValues = number | string | boolean | Moment | DateRangeMap | Set<File> | undefined;
 
 export interface ValidationProps{
 	required?: boolean,
 }
-
 
 export interface InputValidationProps extends ValidationProps{
 	/**
 	 * Lowest number(including itself) possible in
 	 * the input field
 	 */
-	min?: string | number,
+	min?: ReactText,
 
 	/**
 	 * Highest number(including itself) possible in
 	 * the input field
 	 */
-	max?: string | number,
+	max?: ReactText,
 
 	/**
 	 * The minimum length of the input text
 	 */
-	minLength?: string | number,
+	minLength?: ReactText,
 
 	/**
 	 * The maximum length of the input text
 	 */
-	maxLength?: string | number,
+	maxLength?: ReactText,
 
 	/**
 	 * A regular expression(regex) for the input text
@@ -148,11 +148,12 @@ export interface InputWrapperProps extends BaseReactProps, LabelProp, NameProp, 
 	labelPostfix?: any,
 }
 
-
-interface BaseInputProps<TDefault, TValue, TChangeEvent = ChangeEvent<{}>> extends BaseReactProps, OnChangeEventProps<TChangeEvent>, OnBlurEventProps<FocusEvent<{}>>, ValidationProps, NameProp, TypeProp, IdProp, DefaultValueProp<TDefault>, ValueProp<TValue>{
-	/** Automatically select this field on navigation*/			
-	autoFocus?: boolean,
+export interface AutoFocusProp {
+	/** Automatically select this field on navigation */
+	autoFocus?: boolean
 }
+
+interface BaseInputProps<TDefault, TValue, TChangeEvent = ChangeEvent<{}>> extends BaseReactProps, OnChangeEventProps<TChangeEvent>, OnBlurEventProps<FocusEvent<{}>>, ValidationProps, NameProp, TypeProp, IdProp, DefaultValueProp<TDefault>, ValueProp<TValue>, AutoFocusProp {}
 
 export interface OptionalValidationProps{
 	/** Disable the input*/	
@@ -196,20 +197,24 @@ export interface RadioTabProps extends BaseReactProps{
 	defaultSelected?: boolean
 }
 
-
 export interface ValidationElementProps extends BaseReactProps, NameProp, AdditionalCompareProps{
 	/** What validation attribute is the message for */
 	isFor: TypeOfTest,
 }
 
-
 export interface DisplayValidationProps extends BaseReactProps, OptionalValidationProps, BaseFreclValidationProps, TypeProp, NameProp{}
 
-export interface DropZoneProps extends BaseReactProps, NameProp, ValueProp<List<File>>, AdditionalCompareProps{
-	/** Can you upload multiple files*/	
+export interface DropZoneProps extends BaseReactProps, NameProp, PlaceholderProp, ValueProp<Set<File>>, AdditionalCompareProps{
+	/** Controls whether multiple files can be uploaded or not */	
 	multiple?: boolean,
-	/** Display a list of uploaded files*/		
+	/** Display a list of uploaded files */
 	showList?: boolean,
+	/**
+	 * User-defined function to display the file list.
+	 * The first argument is the list of files. The second argument 
+	 * is a function to delete a file
+	 */
+	fileListComponent?: Function
 }
 
 export interface DateWrapperProps extends InputWrapperProps, InputGroupProps, BaseReactProps, PlaceholderProp{}

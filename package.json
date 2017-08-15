@@ -35,6 +35,7 @@
       "js",
       "jsx"
     ],
+    "setupTestFrameworkScriptFile": "<rootDir>/setupTestFramework.js",
     "moduleDirectories": [
       "node_modules"
     ],
@@ -59,8 +60,7 @@
     "@types/react-onclickoutside": "^5.7.3",
     "@types/react-redux": "^4.4.39",
     "@types/react-select": "^1.0.48",
-    "@types/recompose": "0.23.3",
-    "autodll-webpack-plugin": "^0.2.1",
+    "@types/recompose": "^0.23.1",
     "autoprefixer": "^6.7.7",
     "awesome-typescript-loader": "^3.1.2",
     "clean-webpack-plugin": "^0.1.16",
