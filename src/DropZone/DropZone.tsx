@@ -42,7 +42,7 @@ class DropZone extends React.Component<DropZoneProps & PerformanceWrapperProps, 
     const {multiple = false, inputChanged} = this.props;
     
     if(multiple) {
-      inputChanged(this.getFiles().concat(Set(acceptedFiles)));
+      inputChanged(Set(this.getFiles().concat(Set(acceptedFiles))));
     } else {
       inputChanged(Set([acceptedFiles[0]]));
     }

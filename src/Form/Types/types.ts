@@ -22,7 +22,7 @@ export interface DateRangeMap extends Map<string, Moment> {}
 
 export type PossibleDefaultValues = number | string | boolean | Moment | DateRangeMap | undefined | List<any>;
 
-export type PossibleValues = number | string | boolean | Moment | DateRangeMap | Set<File> | undefined;
+export type PossibleValues = number | string | boolean | Moment | DateRangeMap | Set<any> | undefined | List<any>;
 
 export interface ValidationProps{
 	required?: boolean,
