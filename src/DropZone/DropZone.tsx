@@ -65,17 +65,19 @@ class DropZone extends React.Component<DropZoneProps & PerformanceWrapperProps, 
     return (
       <div>
         {/* Drop zone */}
-        <div className="drop-zone">
-          <ReactDropzone className={classes} onDrop={this.onDrop} multiple={multiple} {...attributes}>
-            {isFunction(children) ? (
-              children(files, this.deleteFile)
-            ) : (
-              <div>
-                {children && passPropsToChildren({files}, children)}
-              </div>
-            )}
-          </ReactDropzone>
-        </div>
+        {!multiple && files.size > 0 ? <noscript /> : (
+          <div className="drop-zone">
+            <ReactDropzone className={classes} onDrop={this.onDrop} multiple={multiple} {...attributes}>
+              {isFunction(children) ? (
+                children(files, this.deleteFile)
+              ) : (
+                <div>
+                  {children && passPropsToChildren({files}, children)}
+                </div>
+              )}
+            </ReactDropzone>
+          </div>
+        )}
 
         {isFunction(fileListComponent) && (
           fileListComponent(files, this.deleteFile)

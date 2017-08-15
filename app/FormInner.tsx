@@ -136,7 +136,7 @@ export default class FormInner extends React.Component<{}, {}> {
         <div className="dropzone-container">
           <div className="dropzone-item">
             <DropZone name="dropzone-single" placeholder="Drop a single file here" fileListComponent={files => files.map(file => <p>{file.name}</p>)}>
-               {(files) => files.map(file => <p>{file.name}</p>)}
+               
             </DropZone>
           </div>
 
