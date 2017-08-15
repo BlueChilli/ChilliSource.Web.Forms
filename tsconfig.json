@@ -22,6 +22,7 @@
         "node_modules",
         "custom_modules",
         "**/*.test*.*",
-        "doc"
+        "doc",
+        "static"
     ]
 }
