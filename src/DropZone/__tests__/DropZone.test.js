@@ -82,15 +82,15 @@ describe('DropZone', () => {
   });
 
   it('should show file preview(s) if user has provided preview component', () => {
-    const singleFileWrapper = shallow(<DropZoneUI {...singleFileAllowedProps} children={filePreviewComponent} value={Set([droppableFiles[0]])} />);
-    const multipleFileWrapper = shallow(<DropZoneUI {...multipleFilesAllowedProps} children={filePreviewComponent} value={Set(droppableFiles)} />);
+    const singleFileWrapper = shallow(<DropZoneUI {...singleFileAllowedProps} fileListComponent={filePreviewComponent} value={Set([droppableFiles[0]])} />);
+    const multipleFileWrapper = shallow(<DropZoneUI {...multipleFilesAllowedProps} fileListComponent={filePreviewComponent} value={Set(droppableFiles)} />);
     const filePreviewItems = wrapper => wrapper.find('p.preview-item');
 
     expect(filePreviewItems(singleFileWrapper)).toHaveLength(1);
     expect(filePreviewItems(multipleFileWrapper)).toHaveLength(3);
   });
 
-  it('should mounted', () => {
+  it('should mount', () => {
     const filePreviewItems = wrapper => wrapper.find('p.preview-item');
     let state = Map();
     const context = {
@@ -111,11 +111,11 @@ describe('DropZone', () => {
         }
     }
 
-    const singleFileWrapper = mount(<DropZone {...singleFileAllowedProps} children={filePreviewComponent} />, mountOptions);
+    const singleFileWrapper = mount(<DropZone {...singleFileAllowedProps} fileListComponent={filePreviewComponent} />, mountOptions);
     singleFileWrapper.find(ReactDropZone).simulate('drop', { target: {files: droppableFiles}});
     singleFileWrapper.setContext(Object.assign({}, context, {FormState: state}))
     
-    const multipleFileWrapper = mount(<DropZone {...multipleFilesAllowedProps} children={filePreviewComponent} />, mountOptions);
+    const multipleFileWrapper = mount(<DropZone {...multipleFilesAllowedProps} fileListComponent={filePreviewComponent} />, mountOptions);
     multipleFileWrapper.find(ReactDropZone).simulate('drop', { target: {files: droppableFiles}});
     multipleFileWrapper.setContext(Object.assign({}, context, {FormState: state}))
 
