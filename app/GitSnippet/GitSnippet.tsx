@@ -1,4 +1,5 @@
 import React from 'react';
+import scriptLoader from 'react-async-script-loader'
 
 interface GitSnippetProps {
     src: string,
@@ -8,7 +9,7 @@ interface GitSnippetState {
     element?: any,
 }
 
-export default class GitSnippet extends React.Component<GitSnippetProps, GitSnippetState> {
+class GitSnippet extends React.Component<GitSnippetProps, GitSnippetState> {
     constructor(props) {
         super(props) 
         this.state = {
@@ -16,10 +17,9 @@ export default class GitSnippet extends React.Component<GitSnippetProps, GitSnip
         } 
     }
     componentDidMount() {
-        
     }
     render() {
-        const { element } = this.state;
+       /*  const { element } = this.state;
         console.log('component did render: ', null)
         if (element) {
             console.log('appending element');
@@ -27,15 +27,14 @@ export default class GitSnippet extends React.Component<GitSnippetProps, GitSnip
             const script = document.createElement("script");
             script.src = src;
             element.appendChild(script);
-        }
+        } */
         return(
-            <div ref={(element) => { 
-                if (!this.state.element) {
-                    console.log('setting state')
-                    this.setState({ element });    
-                }
-            }}> 
+            <div ref={(element) => { }}> 
             </div>
         )
     }
 }
+
+export default scriptLoader([
+    'https://cdnjs.cloudflare.com/ajax/libs/absurd/0.3.8/absurd.min.js',
+])(GitSnippet)
