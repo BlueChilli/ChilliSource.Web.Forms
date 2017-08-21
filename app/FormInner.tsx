@@ -35,7 +35,7 @@ export default class FormInner extends React.Component<{}, {}> {
 
     return (
       <div style={{ padding: '20px 40px' }}>
-        <Input autoFocus label="First Name" required defaultValue="First Name" pattern="[A-Za-z]+$" name="firstName"  customValidation={this.lastNameValidation()}>
+      {/*   <Input autoFocus label="First Name" required defaultValue="First Name" pattern="[A-Za-z]+$" name="firstName"  customValidation={this.lastNameValidation()}>
           <Validation isFor="required">This field is required</Validation>
           <Validation isFor="customValidation">This field must be Shane</Validation>
         </Input>
@@ -65,12 +65,15 @@ export default class FormInner extends React.Component<{}, {}> {
         </Input>
         <Input label="Expiry Date" type="text" required name="ExpiryDate">
           <Validation isFor="required">Expiry Date is required</Validation>
+        </Input> */}
+        <Input label="Text" type="text" required name="Text">
+          <Validation isFor="required">Currency is required</Validation>
         </Input>
-        <Input label="Email" type="email" required name="Email">
+       {/*  <Input label="Email" type="email" required name="Email">
           <Validation isFor="required">Email is required</Validation>
           <Validation isFor="type">Must be a valid email</Validation>
-        </Input>
-        <Input label="Password" labelPostfix="Your password must be at least 6 characters long." minLength="5"
+        </Input> */}
+        {/* <Input label="Password" labelPostfix="Your password must be at least 6 characters long." minLength="5"
           type="password" required name="password">
           <Validation isFor="required">Password is required</Validation>
           <Validation isFor="minLength">Password must be 5 characters long</Validation>
@@ -164,7 +167,7 @@ export default class FormInner extends React.Component<{}, {}> {
         </div>
         <br /><br />
         
-        <button>Submit</button>
+        <button>Submit</button> */}
       </div>
     );
   }

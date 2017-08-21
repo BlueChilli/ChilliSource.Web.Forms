@@ -39,6 +39,7 @@ const DisplayValidation = ({children, disabled, inputInfo, noValidate, type, ...
   }
   return (
     <div>
+      <p> Display Validation Component is rendering</p>
       {React.Children.map<ValidationAdditionChild>(children, (child:ValidationAdditionChild) => {
         const typeOfValidation = child.props.isFor;
         return React.cloneElement<ValidationAdditionProps, ValidationCloneElementProps>(child, {

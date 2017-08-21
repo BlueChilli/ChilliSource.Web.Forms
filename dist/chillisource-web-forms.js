@@ -19727,6 +19727,7 @@ var DisplayValidation = function (_a) {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", null);
     }
     return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", null, " Display Validation Component is rendering"),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.Children.map(children, function (child) {
             var typeOfValidation = child.props.isFor;
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.cloneElement(child, {
@@ -22769,6 +22770,7 @@ var validations = {
         return true;
     },
     type: function (value, test) {
+        console.log('type validation fired > test: ' + test + ' value: ' + value);
         if (test === 'number' || test === 'email') {
             var typeRegExp = new RegExp(__WEBPACK_IMPORTED_MODULE_1__validationRegExps__["a" /* default */][test]);
             return typeRegExp.test(value);
@@ -22810,6 +22812,7 @@ var validationsMessages = function (type, test) {
     }
 };
 function testValidation(value, typeOfTest, typeOfInput, test) {
+    console.log('test validation fired');
     if (value !== undefined && value !== null) {
         if (validations[typeOfTest] !== undefined) {
             if (typeOfTest === 'required') {
@@ -22826,6 +22829,7 @@ function testValidation(value, typeOfTest, typeOfInput, test) {
     return validations['default']();
 }
 function validationsAvailable(inputAttributes) {
+    console.log('validationsAvailable fired');
     var validationsAvail = Object.keys(validations);
     return validationsAvail.filter(function (validation) { return inputAttributes.hasOwnProperty(validation) && validation !== 'default'; });
 }
@@ -22872,7 +22876,6 @@ var testElement = function (_a) {
 /* harmony export (immutable) */ __webpack_exports__["e"] = setAllInputInteractions;
 /* harmony export (immutable) */ __webpack_exports__["a"] = clearAllInputs;
 /* unused harmony export setDefaultValue */
-// Constants
 // Constants
 var SET_INPUT = "SET_INPUT";
 var SET_VALIDATION = "SET_VALIDATION";
@@ -25588,6 +25591,14 @@ var Radio = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Form_Helpers_inputHelpers__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_cs_core__ = __webpack_require__(132);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_cs_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_cs_core__);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 
 
 
@@ -25600,6 +25611,7 @@ var specificShallowEqual = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7_cs_
 var specificShallowEqualDisplayed = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7_cs_core__["createSpecificShallowEqual"])('displayed', 'className');
 var specificShallowEqualTestElement = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7_cs_core__["createSpecificShallowEqual"])("value", "typeOfValidation", "type");
 var availableValidationsShallowEqual = __WEBPACK_IMPORTED_MODULE_7_cs_core__["createSpecificShallowEqual"].apply(void 0, ["isFor", "test"].concat(Object.keys(__WEBPACK_IMPORTED_MODULE_4__libs_validate__["c" /* validations */])));
+console.log('');
 var Validation = function (_a) {
     var displayed = _a.displayed, className = _a.className, children = _a.children;
     var classes = __WEBPACK_IMPORTED_MODULE_3_classnames___default()('validation', className, {
@@ -25635,12 +25647,16 @@ var getValue = function (name, inputInfo) {
         testElement(this.props);
     },
     componentWillReceiveProps: function (nextProps) {
+        /* console.log('validatin will recieve props');
+        console.log('validation props are equal:', availableValidationsShallowEqual(this.props, { type: 'email', ...nextProps })) */
         if (!specificShallowEqualTestElement(this.props, nextProps)) {
             nextProps.testElement(nextProps);
         }
-        if (!availableValidationsShallowEqual(this.props, nextProps)) {
+        if (!availableValidationsShallowEqual(this.props, __assign({ type: 'email' }, nextProps))) {
+            console.log('setting validation');
             nextProps.setValidation(nextProps.isFor, nextProps.test);
         }
+        /* console.log('availableValidationShallowEqual: ', availableValidationsShallowEqual(this.props, nextProps)); */
     }
 }), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_recompose__["mapProps"])(function (ownerProps) {
     var valid = ownerProps.valid, value = ownerProps.value, className = ownerProps.className, changed = ownerProps.changed, children = ownerProps.children, test = ownerProps.test;
@@ -30844,18 +30860,18 @@ var Form = (function (_super) {
         var classes = __WEBPACK_IMPORTED_MODULE_3_classnames___default()('form', className);
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("form", { name: name, ref: name, onSubmit: this.handleFormSubmit, className: classes, noValidate: true, encType: encType }, this.props.children));
     };
+    Form.childContextTypes = {
+        FormState: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.object,
+        nameSpace: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
+        dispatch: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func
+    };
+    //FIXME: any to make TS happy unsure why it needs to be this way
+    Form.defaultProps = {
+        encType: 'application/json',
+        mapOutput: function (data) { return data; }
+    };
     return Form;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
-Form.childContextTypes = {
-    FormState: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.object,
-    nameSpace: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
-    dispatch: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func
-};
-//FIXME: any to make TS happy unsure why it needs to be this way
-Form.defaultProps = {
-    encType: 'application/json',
-    mapOutput: function (data) { return data; }
-};
 ;
 /* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_8_recompose__["branch"])(function (props) {
     return !(props.FormState && props.dispatch);
@@ -30906,12 +30922,12 @@ var Number = (function (_super) {
     Number.prototype.render = function () {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Input_Input__["a" /* default */], __assign({}, this.props));
     };
+    Number.defaultProps = {
+        pattern: '[0-9]+.?[0-9]*',
+        type: 'number',
+    };
     return Number;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
-Number.defaultProps = {
-    pattern: '[0-9]+.?[0-9]*',
-    type: 'number',
-};
 /* harmony default export */ __webpack_exports__["a"] = (Number);
 
 
@@ -31137,12 +31153,12 @@ var MultiSelect = (function (_super) {
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Form_InputWrapper__["a" /* default */], { name: props.name, label: label, labelPrefix: labelPrefix, labelPostfix: labelPostfix, className: classes },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_select___default.a, { value: safeValue.toJS(), options: options.toJS(), multi: true, onChange: this.handleChange, noResultsText: noResultsText, placeholder: placeholder })));
     };
+    MultiSelect.defaultProps = {
+        options: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["List"])([])
+    };
     return MultiSelect;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
 
-MultiSelect.defaultProps = {
-    options: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["List"])([])
-};
 /* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__Form_Helpers_performanceWrapper__["a" /* default */])(MultiSelect));
 
 

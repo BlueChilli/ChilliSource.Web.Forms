@@ -48,7 +48,6 @@ const specificShallowEqualDisplayed = createSpecificShallowEqual<{displayed: boo
 const specificShallowEqualTestElement = createSpecificShallowEqual<{value: ValueProp<PossibleValues>, typeOfValidation: string, type?: string}>("value", "typeOfValidation", "type");
 const availableValidationsShallowEqual = createSpecificShallowEqual<any>("isFor", "test", ...Object.keys(validations));
 
-
 const Validation = ({displayed, className, children}:ValidationInnerElementProps) => {
   const classes = classnames('validation', className, {
     'invalid': displayed
@@ -89,12 +88,16 @@ export default compose<ValidationInnerElementProps, ValidationComponentProps>(
       testElement(this.props);
     }, 
     componentWillReceiveProps(nextProps){
+      /* console.log('validatin will recieve props');
+      console.log('validation props are equal:', availableValidationsShallowEqual(this.props, { type: 'email', ...nextProps })) */
       if(!specificShallowEqualTestElement(this.props, nextProps)){
         nextProps.testElement(nextProps);
       }
-      if(!availableValidationsShallowEqual(this.props, nextProps)){
+      if(!availableValidationsShallowEqual(this.props, {type: 'email', ...nextProps})){
+        console.log('setting validation');
         nextProps.setValidation(nextProps.isFor, nextProps.test)
       }
+      /* console.log('availableValidationShallowEqual: ', availableValidationsShallowEqual(this.props, nextProps)); */
     }
   }),
   mapProps((ownerProps:ValidationWithStateProps) => {

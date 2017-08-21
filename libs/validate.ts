@@ -35,6 +35,7 @@ export const validations:ValidationTypes = {
     return true;
   },
   type: (value, test) => {
+    console.log('type validation fired > test: ' + test + ' value: ' + value);
     if(test === 'number' || test ==='email'){
       let typeRegExp = new RegExp(regExpList[test]);
       return typeRegExp.test(value as string);
@@ -78,6 +79,7 @@ export const validationsMessages = (type:string, test?:boolean | string | number
 };
 
 export function testValidation(value:PossibleValues, typeOfTest:TypeOfTest, typeOfInput:Type, test:Tests) {
+  console.log('test validation fired')
   if (value !== undefined && value !== null) {
     if (validations[typeOfTest] !== undefined) {
       if(typeOfTest === 'required'){
@@ -93,6 +95,7 @@ export function testValidation(value:PossibleValues, typeOfTest:TypeOfTest, type
 }
 
 export function validationsAvailable<T>(inputAttributes:T) {
+  console.log('validationsAvailable fired')
   const validationsAvail = Object.keys(validations) as (keyof ValidationTypes)[];
   return validationsAvail.filter(validation => inputAttributes.hasOwnProperty(validation) && validation !== 'default') as TypeOfTest[];
 }
