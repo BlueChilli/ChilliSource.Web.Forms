@@ -127,7 +127,7 @@ describe("mount(Input)", () => {
     const onBlurCallback = sinon.spy();
 
     const wrapper = mount(<Input {...allInputProps} onBlur={onBlurCallback} onChange={onChangeCallback} defaultValue={defaultValue} type={type} />, mountOptions)
-
+    
     const label = wrapper.find('label');
     const input = wrapper.find("input")
 

@@ -1,5 +1,5 @@
 /** Libraries */
-import {ComponentType, ReactHTMLElement} from "react";
+import {ComponentType} from "react";
 import PropTypes from 'prop-types';
 import Recompose from 'recompose';
 import {isUndefined} from 'lodash';
@@ -8,14 +8,12 @@ import {Map} from 'immutable';
 
 /** Components */
 import {isMultipleValueInput, returnCheckedValue} from './inputHelpers';
-import {createSpecificShallowEqual} from 'cs.core';
+import createSpecificShallowEqual from '../../../libs/createSpecificShallowEqual'
 import {setInput, setInputInteraction, setValidation} from '../Actions/fields';
-// import {ShallowCompareProps, BaseReactProps, ShallowCompare} from '../../../libs/types';
-import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerformanceWrapperInputHelpers, FieldSetNameSpaceProp, ValidationProps, OptionsProp,
-   PerformanceWrapperUncalledInputHelpers, PerformanceWrapperUncalledValidationHelpers, NameProp, IdProp, TypeProp, PossibleValues, OptionalValidationProps, LabelProp,
+import {ShallowCompareProps, BaseReactProps, ShallowCompare} from '../../../libs/types';
+import {FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerformanceWrapperInputHelpers, FieldSetNameSpaceProp,
+   PerformanceWrapperUncalledInputHelpers, PerformanceWrapperUncalledValidationHelpers, NameProp, IdProp, TypeProp, PossibleValues,
   DefaultValueProp, PossibleDefaultValues, InputInfoProps, DefaultSwitchProps, NameSpaceProp, FormStateProp, ValueProp, SetValidation, AdditionalCompareProps} from "../Types/types"
-import {BaseReactProps} from "cs.core";
-
 
 /** Interfaces */
 export interface WithHandlersGuard extends NameProp, IdProp, TypeProp, DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, NameProp, BaseReactProps, ValueProp<PossibleValues>, IdProp, TypeProp{}
@@ -24,14 +22,13 @@ interface GetInputPathGuard extends NameProp, IdProp, FieldSetNameSpaceProp {}
 interface GetValidationPathGuard extends NameProp, FieldSetNameSpaceProp {}
 interface WithNeededPropsGuard extends DefaultSwitchProps, DefaultValueProp<PossibleDefaultValues>, ValueProp<PossibleValues>, NameProp, IdProp, TypeProp {}
 
-
-type SpecificShallowEqualInterface = InputInfoProps & NameProp & NameSpaceProp & TypeProp & IdProp & BaseReactProps & OptionalValidationProps  & ValidationProps & DefaultValueProp<PossibleDefaultValues> & DefaultSwitchProps & OptionsProp & FieldSetNameSpaceProp & ValueProp<PossibleValues> & LabelProp
 /** Helpers */
-const specificShallowEqual = createSpecificShallowEqual<SpecificShallowEqualInterface>("inputInfo", "name", "nameSpace", "type", "id", "disabled", "noValidate", "required", "className", "defaultValue", "defaultChecked", "defaultSelected", "options", "fieldSetNameSpace", "value", "label");
+const specificShallowEqual = createSpecificShallowEqual("inputInfo", "name", "nameSpace", "type", "id", "disabled", "required", 
+"className", "defaultValue", "defaultChecked", "defaultSelected", "options", "fieldSetNameSpace", "value", "label");
 
 const specificShallowEqualDefault = createSpecificShallowEqual<DefaultValueProp<PossibleDefaultValues>>("defaultValue");
 
-const specificShallowEqualValue = createSpecificShallowEqual<ValueProp<PossibleValues>>("value");
+const specificShallowEqualValue = createSpecificShallowEqual("value");
 
 const getUnsetValue = ({type}:TypeProp) => {
   if (type === 'radio' || type === 'checkbox') {
@@ -69,7 +66,7 @@ export const getPrioritisedDefaultValue = (defaultValue?:PossibleDefaultValues, 
   returnCheckedValue((arg) => !isUndefined(arg) && arg !== false, defaultValue, defaultChecked, defaultSelected)
 );
 
-export const getPrioritisedValue = (value:PossibleValues, inputInfoValue:PossibleValues, prioritisedDefaultValue:PossibleDefaultValues, unsetValue:string | boolean) => (
+export const getPrioritisedValue = (value:ShallowCompare, inputInfoValue:ShallowCompare, prioritisedDefaultValue:PossibleDefaultValues, unsetValue:string | boolean) => (
   returnCheckedValue((arg) => !isUndefined(arg), value, inputInfoValue, prioritisedDefaultValue, unsetValue)
 );
 
@@ -110,7 +107,7 @@ const setValidationWithHandlersObject = {
   },
   compareAdditionalProps: ({additionalCompareProps}:AdditionalCompareProps) => {
     if(additionalCompareProps){
-      return createSpecificShallowEqual<any>(...additionalCompareProps);
+      return createSpecificShallowEqual(...additionalCompareProps);
     } else {
       return () => false;
     }
