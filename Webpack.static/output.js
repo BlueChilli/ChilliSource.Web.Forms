@@ -1,7 +1,7 @@
 var path = require('path');
 
 const prodOutput = {
-  path: path.join(__dirname,  "../static/"),
+  path: path.join(__dirname,  "../"),
   filename: "bundle.js",
   publicPath: ""
 }
