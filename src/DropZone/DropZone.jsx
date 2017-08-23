@@ -4,12 +4,12 @@ import {Set} from 'immutable';
 import DropZone from 'react-dropzone';
 import classnames from 'classnames';
 import {compose} from 'recompose';
-import {isFunction} from "lodash";
+import {isFunction} from 'lodash';
 
 /** * Components */
 import performanceWrapper from '../Form/Helpers/performanceWrapper';
 import {getHTMLAttributes} from '../Form/Helpers/inputHelpers';
-import {DropZoneProps, DropZoneFile, PerformanceWrapperProps} from '../../index.d';
+import {DropZoneProps, DropZoneFile, PerformanceWrapperProps} from '../../typings/types.d';
 
 /** Styles */
 import './DropZone.scss';

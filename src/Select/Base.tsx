@@ -5,7 +5,7 @@ import {List} from 'immutable';
 
 /** Components */
 import {getHTMLAttributes} from '../Form/Helpers/inputHelpers';
-import {SelectInputProps, PerformanceWrapperProps} from '../../index.d';
+import {SelectInputProps, PerformanceWrapperProps} from '../../typings/types.d';
 
 /** Interfaces */
 interface WithProps extends SelectInputProps {

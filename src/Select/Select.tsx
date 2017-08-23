@@ -7,7 +7,7 @@ import InputWrapper from '../Form/InputWrapper';
 import performanceWrapper from '../Form/Helpers/performanceWrapper';
 import DisplayValidation from '../Validation/DisplayValidation';
 import SelectBase from './Base';
-import {SelectInputProps, PerformanceWrapperProps} from '../../index.d';
+import {SelectInputProps, PerformanceWrapperProps} from '../../typings/types.d';
 
 /** Styles */
 import './Select.scss';

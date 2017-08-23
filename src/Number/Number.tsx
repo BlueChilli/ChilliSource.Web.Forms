@@ -1,7 +1,11 @@
+/** Libraries */
 import React from 'react';
+
+/** Components */
 import Input from '../Input/Input';
 
-import {TextInputProps} from "../../index.d";
+/** Interfaces */
+import {TextInputProps} from '../../typings/types.d';
 
 class Number extends React.Component<TextInputProps, {}> {
   static defaultProps = {

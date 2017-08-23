@@ -1,8 +1,15 @@
-import React from "react";
-import classnames from "classnames";
-import InputWrapper from "../Form/InputWrapper";
-import "./RadioTabs.scss";
-import {RadioTabsProps, RadioTabProps, SwitchProps} from "../../index.d";
+/** Libraries */
+import React from 'react';
+import classnames from 'classnames';
+
+/** Components */
+import InputWrapper from '../Form/InputWrapper';
+
+/** Interfaces */
+import {RadioTabsProps, RadioTabProps, SwitchProps} from '../../typings/types.d';
+
+/** Styles */
+import './RadioTabs.scss';
 
 export interface RadioTabsPassedDownProps {
   name: string, 
@@ -10,12 +17,16 @@ export interface RadioTabsPassedDownProps {
   setId: (chosenId: string) => undefined
 }
 
+interface RadioTabsStateProps {
+  chosenId: string
+}
 
 interface RadioTabsInnerProps extends RadioTabsProps{
   children: React.ReactElement<RadioTabProps>
 }
 
-class RadioTabs extends React.Component<RadioTabsProps, {chosenId: string}> {
+/** Class RadioTabs */
+class RadioTabs extends React.Component<RadioTabsProps, RadioTabsStateProps> {
   constructor(){
     super();
     this.state = {
@@ -32,9 +43,9 @@ class RadioTabs extends React.Component<RadioTabsProps, {chosenId: string}> {
   render() {
     const {className, radioClasses = undefined, name, label, children} = this.props;
     const {chosenId} = this.state;
-    var classes:string = classnames(className, 'input', 'radio-tabs');
+    var classes: string = classnames(className, 'input', 'radio-tabs');
 
-    // Deprication warning, v1.0.x
+    // Deprecation warning, v1.0.x
     if(radioClasses != undefined) {
       throw new Error("radioClasses prop has been replaced with className");
     }

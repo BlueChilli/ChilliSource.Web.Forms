@@ -1,12 +1,18 @@
+/** Libraries */
 import React from 'react';
 import Select from 'react-select';
 import {List, fromJS, Iterable} from 'immutable';
 import 'react-select/dist/react-select.css';
-import InputWrapper from '../Form/InputWrapper';
-import performanceWrapper from '../Form/Helpers/performanceWrapper';
-import {MultiSelectProps, InputWrapperProps, SelectInputProps, PerformanceWrapperProps} from '../../index.d';
 import classnames from 'classnames';
 
+/** Components */
+import InputWrapper from '../Form/InputWrapper';
+import performanceWrapper from '../Form/Helpers/performanceWrapper';
+
+/** Interfaces */
+import {MultiSelectProps, InputWrapperProps, SelectInputProps, PerformanceWrapperProps} from '../../typings/types.d';
+
+/** Class MultiSelect */
 export class MultiSelect extends React.Component<MultiSelectProps & PerformanceWrapperProps, {}> {
   static defaultProps = {
     options: List([])

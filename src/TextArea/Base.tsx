@@ -1,9 +1,16 @@
-import React, {Component, ChangeEvent, FocusEvent} from "react";
-import {getHTMLAttributes} from '../Form/Helpers/inputHelpers';
-import {TextAreaProps, PerformanceWrapperProps} from "../../index.d";
+/** Libraries */
+import React, {Component, ChangeEvent, FocusEvent} from 'react';
 
+/** Helpers */
+import {getHTMLAttributes} from '../Form/Helpers/inputHelpers';
+
+/** Interfaces */
+import {TextAreaProps, PerformanceWrapperProps} from '../../typings/types.d';
+
+/** Class TextAreaBase */
 class TextAreaBase extends Component<TextAreaProps & PerformanceWrapperProps, {}>{
   displayName: 'TextAreaBase'
+
   handleChange = (event:ChangeEvent<{value: string}>) => {
     const {inputChanged, onChange} = this.props;
   
@@ -26,6 +33,6 @@ class TextAreaBase extends Component<TextAreaProps & PerformanceWrapperProps, {}
     var attributes = getHTMLAttributes<TextAreaProps & PerformanceWrapperProps>(this.props);
     return <textarea onBlur={this.handleBlur} onChange={this.handleChange} {...attributes} />
   }
-};
+}
 
 export default TextAreaBase;

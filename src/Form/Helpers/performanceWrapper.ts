@@ -10,9 +10,11 @@ import {Map} from 'immutable';
 import {isMultipleValueInput, returnCheckedValue} from './inputHelpers';
 import {createSpecificShallowEqual} from 'cs.core';
 import {setInput, setInputInteraction, setValidation} from '../Actions/fields';
-import {BaseReactProps, WithHandlersGuard, PerformanceWrapperProps, FormContext, PerformanceWrapperWithProps, PerformanceWrapperWithHandlers, PerformanceWrapperInputHelpers, FieldSetNameSpaceProp, ValidationProps, OptionsProp,
-   PerformanceWrapperUncalledInputHelpers, PerformanceWrapperUncalledValidationHelpers, NameProp, IdProp, TypeProp, PossibleInputValue, OptionalValidationProps, LabelProp,
-  DefaultValueProp, InputInfoProps, DefaultSwitchProps, NameSpaceProp, FormStateProp, ValueProp, SetValidation, AdditionalCompareProps} from '../../../index.d';
+import {BaseReactProps, WithHandlersGuard, PerformanceWrapperProps, FormContext, PerformanceWrapperWithProps, 
+        PerformanceWrapperWithHandlers, PerformanceWrapperInputHelpers, FieldSetNameSpaceProp, ValidationProps, OptionsProp,
+        PerformanceWrapperUncalledInputHelpers, PerformanceWrapperUncalledValidationHelpers, NameProp, IdProp, TypeProp, 
+        PossibleInputValue, OptionalValidationProps, LabelProp, DefaultValueProp, InputInfoProps, DefaultSwitchProps, 
+        NameSpaceProp, FormStateProp, ValueProp, SetValidation, AdditionalCompareProps} from '../../../typings/types.d';
  
 
 interface GetInputPathGuard extends NameProp, IdProp, FieldSetNameSpaceProp {}
@@ -129,7 +131,7 @@ export const updateLifcycle =<TOutter extends ValueProp<PossibleInputValue>> () 
 
 
 const createUniversalCompose = <TOutter extends WithHandlersGuard, TWithHandlers extends {}> (withHandlersArgs:TWithHandlers, type:string = "input") => compose<PerformanceWrapperProps & TOutter, TOutter>(
-  getContext<FormContext, any>({
+  getContext<FormContext>({
     nameSpace: PropTypes.string,
     FormState: PropTypes.object,
     fieldSetNameSpace: PropTypes.string,

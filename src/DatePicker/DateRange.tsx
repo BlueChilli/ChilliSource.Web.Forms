@@ -1,14 +1,30 @@
-import React from "react";
-import moment, {Moment} from "moment";
-import DateWrapper from "./DateWrapper";
-import performanceWrapper from "../Form/Helpers/performanceWrapper";
-import {compose} from "recompose";
-import {Map} from "immutable";
-import {isFunction} from "lodash"
-import {DateRange} from "react-date-range";
-import {DateRangeMap, DateRangeMoment, DateRangeProps, PerformanceWrapperProps} from "../../index.d";
-import "./DateRange.scss";
+/** Libraries */
+import React from 'react';
+import moment, {Moment} from 'moment';
+import {compose} from 'recompose';
+import {Map} from 'immutable';
+import {isFunction} from 'lodash';
+import {DateRange} from 'react-date-range';
 
+/** Components */
+import DateWrapper from './DateWrapper';
+import performanceWrapper from '../Form/Helpers/performanceWrapper';
+
+/** Interfaces */
+import {DateRangeMap, DateRangeMoment, DateRangeProps, PerformanceWrapperProps} from '../../typings/types.d';
+
+/** Helpers */
+const getValue = (dateRange?: DateRangeMap, dateFormat:string = 'DD/MM/YYYY') => {
+  if (Map.isMap(dateRange) && dateRange) {
+    return moment(dateRange.get('startDate'), 'DD/MM/YYYY').format(dateFormat) + " to " + moment(dateRange.get('endDate'), 'DD/MM/YYYY').format(dateFormat);
+  }
+  return moment().format(dateFormat) + " to " + moment().format(dateFormat);
+}
+
+/** Styles */
+import './DateRange.scss';
+
+/** Class DateRangeBase */
 class DateRangeBase extends React.Component<DateRangeProps & PerformanceWrapperProps, {}>{
   handleChange = (dateRange: DateRangeMoment) => {
     this.props.inputChanged(Map<string, Moment>({
@@ -24,18 +40,18 @@ class DateRangeBase extends React.Component<DateRangeProps & PerformanceWrapperP
   }
 };
 
-const getValue = (dateRange?: DateRangeMap, dateFormat:string = 'DD/MM/YYYY') => {
-  if (Map.isMap(dateRange) && dateRange) {
-    return moment(dateRange.get('startDate'), 'DD/MM/YYYY').format(dateFormat) + " to " + moment(dateRange.get('endDate'), 'DD/MM/YYYY').format(dateFormat);
-  }
-  return moment().format(dateFormat) + " to " + moment().format(dateFormat);
-};
+/** Class DateRangePicker */
+class DateRangePicker extends React.Component<DateRangeProps & PerformanceWrapperProps, undefined> {
+  render() {
+    const {children, ...props} = this.props;
 
-const DateRangePicker = ({children, ...props}:DateRangeProps & PerformanceWrapperProps) => (
-  <DateWrapper {...props} valueString={getValue(props.value, props.dateFormat)}>
-    <DateRangeBase {...props}/>
-  </DateWrapper>
-);
+    return (
+      <DateWrapper {...props} valueString={getValue(props.value, props.dateFormat)}>
+        <DateRangeBase {...props}/>
+      </DateWrapper>
+    );
+  }
+}
 
 export default performanceWrapper<DateRangeProps>(DateRangePicker);
 export {DateRangeBase, DateRangePicker}

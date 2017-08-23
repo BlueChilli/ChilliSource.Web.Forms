@@ -1,12 +1,10 @@
-import React, {ChangeEvent, FocusEvent} from "react";
-import ReactDOM from "react-dom";
-import {SwitchProps, PerformanceWrapperProps} from "../../index.d";
-import {snakeCase} from "lodash";
-import {getHTMLAttributes} from "../Form/Helpers/inputHelpers";
+/** Libraries */
+import React, {ChangeEvent, FocusEvent} from 'react';
+import ReactDOM from 'react-dom';
+import {snakeCase} from 'lodash';
 
-interface SwitchBaseElement extends Element{
-  checked: boolean
-}
+/** Helpers */
+import {getHTMLAttributes} from '../Form/Helpers/inputHelpers';
 
 const isChecked = (props: SwitchProps & PerformanceWrapperProps) => {
   if (props.type === 'radio') {
@@ -14,13 +12,20 @@ const isChecked = (props: SwitchProps & PerformanceWrapperProps) => {
   } else {
     return !!props.value
   }
+}
+
+/** Interfaces */
+import {SwitchProps, PerformanceWrapperProps} from '../../typings/types.d';
+
+interface SwitchBaseElement extends Element{
+  checked: boolean
 } 
 
 /** {Internal} Method used internally to display a switch component(radio or checkbox)  */
 class SwitchBase extends React.Component<SwitchProps & PerformanceWrapperProps, {}>{
   displayName: 'SwitchBase'
   
-  getChecked = (event:ChangeEvent<{checked?: boolean}>) => {
+  getChecked = (event: ChangeEvent<{checked?: boolean}>) => {
     if (this.props.type === 'radio') {
       return this.props.id;
     } else {
@@ -28,7 +33,7 @@ class SwitchBase extends React.Component<SwitchProps & PerformanceWrapperProps, 
     }
   }
   
-  handleChange = (event:ChangeEvent<{checked?: boolean}>) => {
+  handleChange = (event: ChangeEvent<{checked?: boolean}>) => {
     const {inputChanged, onChange} = this.props;
 
     inputChanged(this.getChecked(event));
@@ -37,7 +42,7 @@ class SwitchBase extends React.Component<SwitchProps & PerformanceWrapperProps, 
     }
   }
 
-  handleBlur = (event:FocusEvent<{}>) => {
+  handleBlur = (event: FocusEvent<{}>) => {
     const {onBlur, setInputBlurred} = this.props;
     
     setInputBlurred();

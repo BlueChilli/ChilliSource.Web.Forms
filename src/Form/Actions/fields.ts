@@ -1,14 +1,17 @@
-// Constants
-export const SET_INPUT = "SET_INPUT";
-export const SET_VALIDATION = "SET_VALIDATION";
-export const SET_INPUT_INTERACTION = "SET_INPUT_INTERACTION";
-export const SET_ALL_INPUT_INTERACTIONS = "SET_ALL_INPUT_INTERACTIONS";
-export const CLEAR_ALL_INPUTS = "CLEAR_ALL_INPUTS";
-import {Dispatch, Action} from "redux"
-import {Map} from "immutable";
-import {PossibleInputValue, SetInputAction, SetValidationAction, SetInputInteractionAction, ClearAllInputsAction, SetAllInputInteractionAction} from "../../../index.d";
-import {FSA} from "cs.core";
+/** Libraries */
+import {Dispatch, Action} from 'redux';
+import {Map} from 'immutable';
+import {FSA} from 'cs.core';
 
+/** Constants */
+export const SET_INPUT = 'SET_INPUT';
+export const SET_VALIDATION = 'SET_VALIDATION';
+export const SET_INPUT_INTERACTION = 'SET_INPUT_INTERACTION';
+export const SET_ALL_INPUT_INTERACTIONS = 'SET_ALL_INPUT_INTERACTIONS';
+export const CLEAR_ALL_INPUTS = 'CLEAR_ALL_INPUTS';
+
+/** Interfaces */
+import {PossibleInputValue, SetInputAction, SetValidationAction, SetInputInteractionAction, ClearAllInputsAction, SetAllInputInteractionAction} from '../../../typings/types.d';
 
 export function setInput(nameSpace: string, inputName:string[], value:PossibleInputValue):SetInputAction {
   return {
@@ -20,7 +23,7 @@ export function setInput(nameSpace: string, inputName:string[], value:PossibleIn
     }
   };
 }
-//
+
 export function setValidation(nameSpace: string, inputName:string[], type:string, test:string|boolean):SetValidationAction {
   return {
     type: SET_VALIDATION,
@@ -32,7 +35,7 @@ export function setValidation(nameSpace: string, inputName:string[], type:string
     }
   };
 }
-//
+
 export function setInputInteraction(nameSpace:string, inputName:string[], interaction:string, value:boolean):SetInputInteractionAction {
   return {
     type: SET_INPUT_INTERACTION,
@@ -45,7 +48,6 @@ export function setInputInteraction(nameSpace:string, inputName:string[], intera
   };
 }
 
-//
 export function setAllInputInteractions(nameSpace:string, interaction:string, value:boolean):SetAllInputInteractionAction {
   return {
     type: SET_ALL_INPUT_INTERACTIONS,
@@ -56,7 +58,7 @@ export function setAllInputInteractions(nameSpace:string, interaction:string, va
     }
   };
 }
-//
+
 export function clearAllInputs(nameSpace:string):ClearAllInputsAction {
   return {
     type: CLEAR_ALL_INPUTS,
@@ -66,7 +68,6 @@ export function clearAllInputs(nameSpace:string):ClearAllInputsAction {
   }
 }
 
-//
 export function setDefaultValue(nameSpace:string, inputName:string[], value:PossibleInputValue) {
   return function (dispatch:(action:SetInputAction) => void, getState: () => Map<string, any>) {
     const currentValue = getState().getIn(['FormState', nameSpace, inputName, 'value'], false);

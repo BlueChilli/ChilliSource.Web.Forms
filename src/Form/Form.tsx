@@ -1,25 +1,17 @@
-import React, {FormEvent} from "react";
-import PropTypes from "prop-types";
-import {is, List, Map, Iterable} from "immutable";
-import classnames from "classnames";
-import {defer, isFunction} from "lodash";
-import {setAllInputInteractions, clearAllInputs} from "./Actions/fields";
-import {withReducerState} from "./Reducers";
-import {BaseReactProps, PossibleInputValue, OnSubmit, formState, 
-  FormOptionalProps, FormOwnProps, FormStateProps, FormDispatchProps,
-  FormState, FormProps} from "../../index.d";
-import {convertToFormData, normalizeFields} from "./Helpers/formHelpers";
-import {withReducer, compose, branch, ComponentEnhancer} from "recompose";
+/** Libraries */
+import React, {FormEvent} from 'react';
+import PropTypes from 'prop-types';
+import {is, List, Map, Iterable} from 'immutable';
+import classnames from 'classnames';
+import {defer, isFunction} from 'lodash';
+import {withReducer, compose, branch, ComponentEnhancer} from 'recompose';
 
+/** Helpers */
+import {setAllInputInteractions, clearAllInputs} from './Actions/fields';
+import {withReducerState} from './Reducers';
+import {convertToFormData, normalizeFields} from './Helpers/formHelpers';
 
-
-interface FormInnerProps<T> extends FormOwnProps<T>, FormStateProps, FormDispatchProps {
-  FormState: formState,
-  dispatch: any,
-  mapOutput: (data?: Map<string, any>) => Map<string, any>
-}
-
-const mapOutput = (data:Map<string, any>, mapOutputFunc: ((data?: Map<string, any>) => Map<string, any>)) => {
+const mapOutput = (data: Map<string, any>, mapOutputFunc: ((data?: Map<string, any>) => Map<string, any>)) => {
   if (isFunction(mapOutputFunc)){
     const mappedData = mapOutputFunc(data)
     if(!Iterable.isIterable(mappedData)){
@@ -32,6 +24,17 @@ const mapOutput = (data:Map<string, any>, mapOutputFunc: ((data?: Map<string, an
 }
 
 const randomString = (length) => Math.random().toString(36).substring(length);
+
+/** Interfaces */
+import {BaseReactProps, PossibleInputValue, OnSubmit, formState, 
+        FormOptionalProps, FormOwnProps, FormStateProps,
+        FormDispatchProps, FormState, FormProps} from '../../typings/types.d';
+
+interface FormInnerProps<T> extends FormOwnProps<T>, FormStateProps, FormDispatchProps {
+  FormState: formState,
+  dispatch: any,
+  mapOutput: (data?: Map<string, any>) => Map<string, any>
+}
 
 /** Displays a form component, inserts all user input into redux state and ensures that all inputs are validated
  * before allowing the user to submit the form. */

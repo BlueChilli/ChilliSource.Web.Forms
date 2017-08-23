@@ -1,9 +1,13 @@
-import {Map} from "immutable";
-import {getInputValue, getInputState, getInputValidation} from "../Helpers/path";
-import {isMultipleValueInput} from "../Helpers/inputHelpers";
+/** Libraries */
+import {Map} from 'immutable';
 
+/** Helpers */
+import {getInputValue, getInputState, getInputValidation} from '../Helpers/path';
+import {isMultipleValueInput} from '../Helpers/inputHelpers';
+
+/** Interfaces */
 import {FSA, ClearAllInputsAction, SetInputAction, SetAllInputInteractionAction, 
-  SetInputInteractionAction, SetValidationAction, ReducerFunc, BasicReducer} from "../../../index.d";
+  SetInputInteractionAction, SetValidationAction, ReducerFunc, BasicReducer} from '../../../typings/types.d';
 
 export const basicReducer:BasicReducer = {
   SET_INPUT: (state, {payload}) => {
