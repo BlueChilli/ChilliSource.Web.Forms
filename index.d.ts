@@ -372,7 +372,6 @@ declare namespace CSForms {
     inputName:string[]
   }
   
-
   interface InputBlurred extends NameProp, NameSpaceProp, IdProp, FieldSetNameSpaceProp {
     dispatch: Dispatch<SetInputInteractionPayload>
   }
@@ -380,7 +379,6 @@ declare namespace CSForms {
   interface InputChanged extends NameProp, NameSpaceProp, IdProp, FieldSetNameSpaceProp {
     dispatch: Dispatch<SetInputPayload>
   }
-
 
   interface SetValidation extends NameSpaceProp, NameProp, FieldSetNameSpaceProp {
     dispatch: Dispatch<SetValidationPayload>
