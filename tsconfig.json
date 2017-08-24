@@ -23,6 +23,7 @@
         "custom_modules",
         "**/*.test*.*",
         "doc",
-        "static"
+        "dist",
+        "bundle.js"
     ]
 }
