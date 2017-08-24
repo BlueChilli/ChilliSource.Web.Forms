@@ -3,3 +3,11 @@ app
 __mocks__
 config
 libs
+webpack.config.js
+webpack.build.config.js
+tsconfig.json
+.release.json
+.npmignore
+node_modules
+server.js
+preprocessor.js
