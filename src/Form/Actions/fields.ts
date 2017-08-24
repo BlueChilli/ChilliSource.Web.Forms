@@ -1,7 +1,6 @@
 /** Libraries */
 import {Dispatch, Action} from 'redux';
 import {Map} from 'immutable';
-import {FSA} from 'cs.core';
 
 /** Constants */
 export const SET_INPUT = 'SET_INPUT';
