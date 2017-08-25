@@ -66,13 +66,13 @@ export default class FormInner extends React.Component<{}, {}> {
         <Input label="Expiry Date" type="text" required name="ExpiryDate">
           <Validation isFor="required">Expiry Date is required</Validation>
         </Input> */}
-        <Input label="Text" type="text" required name="Text">
+        {/* <Input label="Text" type="text" required name="Text">
           <Validation isFor="required">Currency is required</Validation>
-        </Input>
-       {/*  <Input label="Email" type="email" required name="Email">
+        </Input> */}
+        <Input label="Email" type="email" required name="Email">
           <Validation isFor="required">Email is required</Validation>
           <Validation isFor="type">Must be a valid email</Validation>
-        </Input> */}
+        </Input>
         {/* <Input label="Password" labelPostfix="Your password must be at least 6 characters long." minLength="5"
           type="password" required name="password">
           <Validation isFor="required">Password is required</Validation>

@@ -22770,10 +22770,12 @@ var validations = {
         return true;
     },
     type: function (value, test) {
-        console.log('type validation fired > test: ' + test + ' value: ' + value);
+        console.log('type validation fired > test is this working: ' + test + ' value: ' + value);
         if (test === 'number' || test === 'email') {
             var typeRegExp = new RegExp(__WEBPACK_IMPORTED_MODULE_1__validationRegExps__["a" /* default */][test]);
-            return typeRegExp.test(value);
+            var regexResult = typeRegExp.test(value);
+            console.log('regex test result: ', regexResult);
+            return regexResult;
         }
         return true;
     },
@@ -25611,7 +25613,6 @@ var specificShallowEqual = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7_cs_
 var specificShallowEqualDisplayed = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7_cs_core__["createSpecificShallowEqual"])('displayed', 'className');
 var specificShallowEqualTestElement = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7_cs_core__["createSpecificShallowEqual"])("value", "typeOfValidation", "type");
 var availableValidationsShallowEqual = __WEBPACK_IMPORTED_MODULE_7_cs_core__["createSpecificShallowEqual"].apply(void 0, ["isFor", "test"].concat(Object.keys(__WEBPACK_IMPORTED_MODULE_4__libs_validate__["c" /* validations */])));
-console.log('');
 var Validation = function (_a) {
     var displayed = _a.displayed, className = _a.className, children = _a.children;
     var classes = __WEBPACK_IMPORTED_MODULE_3_classnames___default()('validation', className, {

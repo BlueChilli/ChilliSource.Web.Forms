@@ -35,10 +35,12 @@ export const validations:ValidationTypes = {
     return true;
   },
   type: (value, test) => {
-    console.log('type validation fired > test: ' + test + ' value: ' + value);
+    console.log('type validation fired > test is this working: ' + test + ' value: ' + value);
     if(test === 'number' || test ==='email'){
       let typeRegExp = new RegExp(regExpList[test]);
-      return typeRegExp.test(value as string);
+      const regexResult = typeRegExp.test(value as string);
+      console.log('regex test result: ', regexResult);
+      return regexResult;
     }
     return true;
   },
