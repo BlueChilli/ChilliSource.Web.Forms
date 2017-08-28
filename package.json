@@ -26,7 +26,9 @@
     "test-watch": "jest --watch",
     "start": "node server.js",
     "build": "webpack --config webpack.build.config.js",
-    "build-static": "webpack --config webpack.static.config.js"
+    "build-static": "webpack --config webpack.static.config.js",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -88,7 +90,10 @@
     "url-loader": "^0.5.8",
     "webpack": "^2.3.3",
     "webpack-dev-middleware": "^1.10.1",
-    "webpack-hot-middleware": "^2.18.0"
+    "webpack-hot-middleware": "^2.18.0",
+    "@storybook/react": "^3.2.8",
+    "@storybook/addon-actions": "^3.2.6",
+    "@storybook/addon-links": "^3.2.6"
   },
   "dependencies": {
     "@types/react": "^15.0.27",
