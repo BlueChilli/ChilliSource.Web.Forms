@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import {shallow, mount} from 'enzyme';
 import {isEqual} from 'lodash';
 import Form from "../../Form/Form";
@@ -142,4 +142,4 @@ describe('<RadioTabs />', () => {
     });
 });
 
-//Throws error if form doesnt exist
+//Throws error if form doesnt exist */

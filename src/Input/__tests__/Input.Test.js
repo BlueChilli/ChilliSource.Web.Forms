@@ -210,10 +210,11 @@ describe("Input Validation", () => {
     
 
     describe("Email Validation", () => {
-        const input = wrapper.find('input').get(0);
+        const input = wrapper.find('input')
+        console.log('inputs: ', input.debug())
 
-        console.log('XXXXXXXXXXXX: ', debug(input))
-        input.value = "test@email.com";
+        input.simulate('change', input)
+        console.log('input get: ', input.get(0).value); 
         it('should set text ', () => {
             expect(input.prop('value') === "test@email.com").toBe(true);
         });
