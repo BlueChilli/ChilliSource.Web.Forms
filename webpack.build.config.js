@@ -1,14 +1,13 @@
 var autoprefixer = require('autoprefixer');
 var path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: path.join(__dirname, '/app/index'),
   output: {
     path: path.join(__dirname, "/dist/"),
     libraryTarget: "umd",
-    filename: "chillisource-web-forms.js"
+    filename: "main.js"
   },
   
   module: {
@@ -93,10 +92,8 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin("chillisource-web-forms.css"),
-    new CleanWebpackPlugin(['dist/*'], {
-      "verbose": true // Write logs to console.
-    })
+    new ExtractTextPlugin("main.css")
+   
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.tsx', '.ts'],

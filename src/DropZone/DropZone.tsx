@@ -9,8 +9,12 @@ import {isFunction} from 'lodash';
 /** Components */
 import performanceWrapper from '../Form/Helpers/performanceWrapper';
 import {getHTMLAttributes} from '../Form/Helpers/inputHelpers';
+<<<<<<< HEAD:src/DropZone/DropZone.tsx
 import {DropZoneProps} from '../Form/Types/types';
 import {PerformanceWrapperProps} from '../Form/Helpers/performanceWrapper';
+=======
+import {DropZoneProps, DropZoneFile, PerformanceWrapperProps} from '../../typings/types.d';
+>>>>>>> unified-types:src/DropZone/DropZone.jsx
 
 /** Styles */
 import './DropZone.scss';
@@ -37,6 +41,7 @@ class DropZone extends React.Component<DropZoneProps & PerformanceWrapperProps, 
     const {value} = this.props;
     return value ?  value : Set();
   }
+<<<<<<< HEAD:src/DropZone/DropZone.tsx
 
   onDrop = (acceptedFiles: FileList, rejectedFiles: FileList) => {
     const {multiple = false, inputChanged} = this.props;
@@ -49,6 +54,28 @@ class DropZone extends React.Component<DropZoneProps & PerformanceWrapperProps, 
   }
 
   deleteFile = (index: number) => {
+=======
+  
+  onDrop = (files) => {
+    const {multiple = false, inputChanged, onDrop} = this.props;
+    if(multiple) {
+      const allFiles = this.getFiles().concat(files);
+      inputChanged(allFiles);
+
+      if(isFunction(onDrop)) {
+        onDrop(allFiles);
+      }
+    } else {
+      inputChanged(Set(files));
+      
+      if(isFunction(onDrop)) {
+        onDrop(files);
+      }
+    }
+  }
+
+  deleteFile = (index) => {
+>>>>>>> unified-types:src/DropZone/DropZone.jsx
     const {multiple = false, inputChanged} = this.props;
     const filesInState = this.getFiles();
 
@@ -64,6 +91,7 @@ class DropZone extends React.Component<DropZoneProps & PerformanceWrapperProps, 
     
     return (
       <div>
+<<<<<<< HEAD:src/DropZone/DropZone.tsx
         {/* Drop zone */}
         {!multiple && files.size > 0 ? <noscript /> : (
           <div className="drop-zone">
@@ -78,6 +106,19 @@ class DropZone extends React.Component<DropZoneProps & PerformanceWrapperProps, 
             </ReactDropzone>
           </div>
         )}
+=======
+        <div className="drop-zone">
+          <DropZone className={classes} onDrop={this.onDrop} multiple={multiple} {...attributes}>
+            {isFunction(children) ? (
+              children(this.getFiles(), this.deleteFile)
+            ) : (
+              <div>
+                {children && PassDownProps({files}, children)}
+              </div>
+            )}
+          </DropZone>
+        </div>
+>>>>>>> unified-types:src/DropZone/DropZone.jsx
 
         {isFunction(fileListComponent) && (
           fileListComponent(files, this.deleteFile)
@@ -87,5 +128,10 @@ class DropZone extends React.Component<DropZoneProps & PerformanceWrapperProps, 
   }
 }
 
+<<<<<<< HEAD:src/DropZone/DropZone.tsx
 export default performanceWrapper<DropZoneProps>(DropZone);
 export {DropZone};
+=======
+export default performanceWrapper(DropZoneFrecl);
+export {DropZoneFrecl};
+>>>>>>> unified-types:src/DropZone/DropZone.jsx

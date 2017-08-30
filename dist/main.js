@@ -7,7 +7,11 @@
 		var a = typeof exports === 'object' ? factory(require("react"), require("classnames"), require("immutable"), require("recompose"), require("moment"), require("react-date-range"), require("react-dom"), require("react-dropzone"), require("react-onclickoutside")) : factory(root["React"], root["classnames"], root["Immutable"], root["Recompose"], root["Moment"], root["ReactDateRange"], root["ReactDOM"], root["ReactDropzone"], root["ReactOnclickoutside"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 })(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_23__, __WEBPACK_EXTERNAL_MODULE_108__, __WEBPACK_EXTERNAL_MODULE_109__, __WEBPACK_EXTERNAL_MODULE_247__, __WEBPACK_EXTERNAL_MODULE_248__, __WEBPACK_EXTERNAL_MODULE_249__) {
+=======
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_33__, __WEBPACK_EXTERNAL_MODULE_34__, __WEBPACK_EXTERNAL_MODULE_79__, __WEBPACK_EXTERNAL_MODULE_80__, __WEBPACK_EXTERNAL_MODULE_81__) {
+>>>>>>> unified-types:dist/main.js
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -73,7 +77,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /******/ 	return __webpack_require__(__webpack_require__.s = 124);
+=======
+/******/ 	return __webpack_require__(__webpack_require__.s = 48);
+>>>>>>> unified-types:dist/main.js
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -383,6 +391,7 @@ if (process.env.NODE_ENV !== 'production') {
     } catch (x) {}
   };
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
   warning = function warning(condition, format) {
     if (format === undefined) {
       throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
@@ -400,6 +409,16 @@ if (process.env.NODE_ENV !== 'production') {
       printWarning.apply(undefined, [format].concat(args));
     }
   };
+=======
+  // By explicitly using `prop-types` you are opting into new development behavior.
+  // http://fb.me/prop-types-in-prod
+  var throwOnDirectAccess = true;
+  module.exports = __webpack_require__(68)(isValidElement, throwOnDirectAccess);
+} else {
+  // By explicitly using `prop-types` you are opting into new production behavior.
+  // http://fb.me/prop-types-in-prod
+  module.exports = __webpack_require__(67)();
+>>>>>>> unified-types:dist/main.js
 }
 
 module.exports = warning;
@@ -410,6 +429,7 @@ module.exports = warning;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -420,6 +440,26 @@ module.exports = warning;
  *
  * 
  */
+=======
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ErrorWrapper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__InputWrapper_scss__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__InputWrapper_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__InputWrapper_scss__);
+
+
+
+var InputWrapper = function (_a) {
+    var className = _a.className, name = _a.name, label = _a.label, labelPrefix = _a.labelPrefix, labelPostfix = _a.labelPostfix, type = _a.type, children = _a.children;
+    return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ErrorWrapper__["a" /* default */], { className: className, type: type },
+        (label || labelPostfix || labelPrefix) && (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "input-label-wrapper" },
+            labelPrefix && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "input-label-prefix" }, labelPrefix),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("label", { className: "input-label", htmlFor: name }, label),
+            labelPostfix && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "input-label-postfix" }, labelPostfix))),
+        children));
+};
+/* harmony default export */ __webpack_exports__["a"] = (InputWrapper);
+>>>>>>> unified-types:dist/main.js
 
 
 /**
@@ -569,7 +609,12 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_6__;
 
 
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 var _prodInvariant = __webpack_require__(4);
+=======
+var React = __webpack_require__(0);
+var factory = __webpack_require__(55);
+>>>>>>> unified-types:dist/main.js
 
 var DOMProperty = __webpack_require__(28);
 var ReactDOMComponentFlags = __webpack_require__(81);
@@ -35343,6 +35388,7 @@ var ReactCompositeComponent = {
     refs[ref] = publicComponentInstance;
   },
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
   /**
    * Detaches a reference name.
    *
@@ -35354,6 +35400,9 @@ var ReactCompositeComponent = {
     var refs = this.getPublicInstance().refs;
     delete refs[ref];
   },
+=======
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(77), __webpack_require__(78)(module)))
+>>>>>>> unified-types:dist/main.js
 
   /**
    * Get a text description of the component that can be used to identify it
@@ -35367,6 +35416,7 @@ var ReactCompositeComponent = {
     return type.displayName || constructor && constructor.displayName || type.name || constructor && constructor.name || null;
   },
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
   /**
    * Get the publicly accessible representation of this component - i.e. what
    * is exposed by refs and returned by render. Can be null for stateless
@@ -35382,6 +35432,28 @@ var ReactCompositeComponent = {
     }
     return inst;
   },
+=======
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__InputGroup_scss__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__InputGroup_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__InputGroup_scss__);
+
+
+
+/** Internal method to make creation of input boxes with appended or prepended segments easier */
+var InputGroup = function (_a) {
+    var prepend = _a.prepend, append = _a.append, children = _a.children;
+    var inputGroupClass = __WEBPACK_IMPORTED_MODULE_1_classnames___default()('input-group', { 'input-prepend': !!prepend }, { 'input-append': !!append });
+    return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: inputGroupClass },
+        !!append && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", { className: "input-addon" }, append),
+        children,
+        !!prepend && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", { className: "input-addon" }, prepend)));
+};
+/* harmony default export */ __webpack_exports__["a"] = (InputGroup);
+>>>>>>> unified-types:dist/main.js
 
   // Stub
   _instantiateReactComponent: null
@@ -35549,6 +35621,7 @@ function assertValidProps(component, props) {
   !(props.style == null || typeof props.style === 'object') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'The `style` prop expects a mapping from style properties to values, not a string. For example, style={{marginRight: spacing + \'em\'}} when using JSX.%s', getDeclarationErrorAddendum(component)) : _prodInvariant('62', getDeclarationErrorAddendum(component)) : void 0;
 }
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 function enqueuePutListener(inst, registrationName, listener, transaction) {
   if (transaction instanceof ReactServerRenderingTransaction) {
     return;
@@ -35568,16 +35641,23 @@ function enqueuePutListener(inst, registrationName, listener, transaction) {
     listener: listener
   });
 }
+=======
+var _reactDom = __webpack_require__(79);
+>>>>>>> unified-types:dist/main.js
 
 function putListener() {
   var listenerToPut = this;
   EventPluginHub.putListener(listenerToPut.inst, listenerToPut.registrationName, listenerToPut.listener);
 }
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 function inputPostMount() {
   var inst = this;
   ReactDOMInput.postMountWrapper(inst);
 }
+=======
+var _reactInputAutosize = __webpack_require__(69);
+>>>>>>> unified-types:dist/main.js
 
 function textareaPostMount() {
   var inst = this;
@@ -35597,6 +35677,7 @@ if (process.env.NODE_ENV !== 'production') {
     // This ID represents the inlined child that has no backing instance:
     var contentDebugID = -debugID;
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
     if (content == null) {
       if (hasExistingContent) {
         ReactInstrumentation.debugTool.onUnmountComponent(this._contentDebugID);
@@ -35604,6 +35685,9 @@ if (process.env.NODE_ENV !== 'production') {
       this._contentDebugID = null;
       return;
     }
+=======
+var _utilsDefaultArrowRenderer = __webpack_require__(75);
+>>>>>>> unified-types:dist/main.js
 
     validateDOMNesting(null, String(content), this, this._ancestorInfo);
     this._contentDebugID = contentDebugID;
@@ -35694,6 +35778,7 @@ function postUpdateSelectWrapper() {
   ReactDOMSelect.postUpdateWrapper(this);
 }
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 // For HTML, certain tags should omit their close tag. We keep a whitelist for
 // those special-case tags.
 
@@ -35715,6 +35800,9 @@ var omittedCloseTags = {
   wbr: true
   // NOTE: menuitem's close tag should be omitted, but that causes problems.
 };
+=======
+var _utilsDefaultClearRenderer = __webpack_require__(76);
+>>>>>>> unified-types:dist/main.js
 
 var newlineEatingTags = {
   listing: true,
@@ -35722,33 +35810,49 @@ var newlineEatingTags = {
   textarea: true
 };
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 // For HTML, certain tags cannot have children. This has the same purpose as
 // `omittedCloseTags` except that `menuitem` should still have its closing tag.
+=======
+var _Async = __webpack_require__(70);
+>>>>>>> unified-types:dist/main.js
 
 var voidElementTags = _assign({
   menuitem: true
 }, omittedCloseTags);
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 // We accept any tag to be rendered but since this gets injected into arbitrary
 // HTML, we want to make sure that it's a safe tag.
 // http://www.w3.org/TR/REC-xml/#NT-Name
+=======
+var _AsyncCreatable = __webpack_require__(71);
+>>>>>>> unified-types:dist/main.js
 
 var VALID_TAG_REGEX = /^[a-zA-Z][a-zA-Z:_\.\-\d]*$/; // Simplified subset
 var validatedTagCache = {};
 var hasOwnProperty = {}.hasOwnProperty;
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 function validateDangerousTag(tag) {
   if (!hasOwnProperty.call(validatedTagCache, tag)) {
     !VALID_TAG_REGEX.test(tag) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Invalid tag: %s', tag) : _prodInvariant('65', tag) : void 0;
     validatedTagCache[tag] = true;
   }
 }
+=======
+var _Creatable = __webpack_require__(72);
+>>>>>>> unified-types:dist/main.js
 
 function isCustomComponent(tagName, props) {
   return tagName.indexOf('-') >= 0 || props.is != null;
 }
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 var globalIdCounter = 1;
+=======
+var _Option = __webpack_require__(73);
+>>>>>>> unified-types:dist/main.js
 
 /**
  * Creates a new React class that is idempotent and capable of containing other
@@ -35787,7 +35891,11 @@ function ReactDOMComponent(element) {
   }
 }
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 ReactDOMComponent.displayName = 'ReactDOMComponent';
+=======
+var _Value = __webpack_require__(74);
+>>>>>>> unified-types:dist/main.js
 
 ReactDOMComponent.Mixin = {
   /**
@@ -37151,8 +37259,127 @@ function setModernOffsets(node, offsets) {
     start = temp;
   }
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
   var startMarker = getNodeForCharacterOffset(node, start);
   var endMarker = getNodeForCharacterOffset(node, end);
+=======
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return validations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return validationsMessages; });
+/* unused harmony export testValidation */
+/* harmony export (immutable) */ __webpack_exports__["a"] = validationsAvailable;
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return testElement; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_immutable__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_immutable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_immutable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validationRegExps__ = __webpack_require__(49);
+
+
+var validations = {
+    required: function (value, test, type) {
+        if (__WEBPACK_IMPORTED_MODULE_0_immutable__["Iterable"].isIterable(value)) {
+            if (type === 'checkbox') {
+                return value.size > 0;
+            }
+        }
+        else if (type === "checkbox") {
+            return value === true;
+        }
+        return value.toString().length > 0 && value !== false;
+    },
+    pattern: function (value, test) {
+        if (value !== undefined && value !== null && (value + "").length > 0) {
+            var patternRegExp = new RegExp(test);
+            return patternRegExp.test(value);
+        }
+        return true;
+    },
+    type: function (value, test) {
+        if (test === 'number' || test === 'email') {
+            var typeRegExp = new RegExp(__WEBPACK_IMPORTED_MODULE_1__validationRegExps__["a" /* default */][test]);
+            return typeRegExp.test(value);
+        }
+        return true;
+    },
+    minLength: function (value, test) {
+        return value.toString().length >= parseInt(test);
+    },
+    maxLength: function (value, test) {
+        return value.toString().length <= parseInt(test);
+    },
+    min: function (value, test) {
+        return parseInt(value) >= parseInt(test);
+    },
+    max: function (value, test) {
+        return parseInt(value) <= parseInt(test);
+    },
+    'default': function () {
+        return false;
+    }
+};
+var validationsMessages = function (type, test) {
+    switch (type) {
+        case "required":
+            return "This is a required field.";
+        case "minLength":
+            return "This is too short, it must have at least " + test + " characters.";
+        case "maxLength":
+            return "This is too long, it cannot have more then " + test + " characters.";
+        case "min":
+            return "This must be at least " + test + ".";
+        case "max":
+            return "This must not be greater than " + test + ".";
+        case "type":
+            return "That's not a valid " + test + ".";
+        default:
+            return "It looks like something went wrong. Try again?";
+    }
+};
+function testValidation(value, typeOfTest, typeOfInput, test) {
+    if (value !== undefined && value !== null) {
+        if (validations[typeOfTest] !== undefined) {
+            if (typeOfTest === 'required') {
+                return validations[typeOfTest](value, test, typeOfInput);
+            }
+            else {
+                return validations[typeOfTest](value, test);
+            }
+        }
+        else {
+            return validations['default']();
+        }
+    }
+    return validations['default']();
+}
+function validationsAvailable(inputAttributes) {
+    var validationsAvail = Object.keys(validations);
+    return validationsAvail.filter(function (validation) { return inputAttributes.hasOwnProperty(validation) && validation !== 'default'; });
+}
+var testElement = function (_a) {
+    var value = _a.value, test = _a.test, isFor = _a.isFor, type = _a.type, setValid = _a.setValid;
+    if (test === false || test === 'false') {
+        return setValid(true);
+    }
+    else if (isFor !== 'customValidation' && typeof test !== "function") {
+        return setValid(testValidation(value, isFor, type, test));
+    }
+    else {
+        if (typeof test === "function") {
+            var customValidation = test(value);
+            if (typeof customValidation === "boolean" || customValidation === "undefined") {
+                return setValid(!!customValidation);
+            }
+            else if (customValidation instanceof Promise) {
+                customValidation.then(function (res) { return setValid(!!res); }).catch(function (res) { return setValid(!!res); });
+                return setValid(true);
+            }
+            else {
+                return console.error("Custom validation functions must return a bool, undefined or a promise");
+            }
+        }
+        return setValid(false);
+    }
+};
+>>>>>>> unified-types:dist/main.js
 
   if (startMarker && endMarker) {
     var range = document.createRange();
@@ -37191,6 +37418,7 @@ module.exports = ReactDOMSelection;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -37206,6 +37434,88 @@ module.exports = ReactDOMSelection;
 var ReactDefaultInjection = __webpack_require__(182);
 var ReactServerRendering = __webpack_require__(198);
 var ReactVersion = __webpack_require__(200);
+=======
+/* unused harmony export SET_INPUT */
+/* unused harmony export SET_VALIDATION */
+/* unused harmony export SET_INPUT_INTERACTION */
+/* unused harmony export SET_ALL_INPUT_INTERACTIONS */
+/* unused harmony export CLEAR_ALL_INPUTS */
+/* harmony export (immutable) */ __webpack_exports__["c"] = setInput;
+/* harmony export (immutable) */ __webpack_exports__["b"] = setValidation;
+/* harmony export (immutable) */ __webpack_exports__["d"] = setInputInteraction;
+/* harmony export (immutable) */ __webpack_exports__["e"] = setAllInputInteractions;
+/* harmony export (immutable) */ __webpack_exports__["a"] = clearAllInputs;
+/* unused harmony export setDefaultValue */
+// Constants
+var SET_INPUT = "SET_INPUT";
+var SET_VALIDATION = "SET_VALIDATION";
+var SET_INPUT_INTERACTION = "SET_INPUT_INTERACTION";
+var SET_ALL_INPUT_INTERACTIONS = "SET_ALL_INPUT_INTERACTIONS";
+var CLEAR_ALL_INPUTS = "CLEAR_ALL_INPUTS";
+function setInput(nameSpace, inputName, value) {
+    return {
+        type: SET_INPUT,
+        payload: {
+            nameSpace: nameSpace,
+            inputName: inputName,
+            value: value
+        }
+    };
+}
+//
+function setValidation(nameSpace, inputName, type, test) {
+    return {
+        type: SET_VALIDATION,
+        payload: {
+            nameSpace: nameSpace,
+            inputName: inputName,
+            type: type,
+            test: test
+        }
+    };
+}
+//
+function setInputInteraction(nameSpace, inputName, interaction, value) {
+    return {
+        type: SET_INPUT_INTERACTION,
+        payload: {
+            nameSpace: nameSpace,
+            inputName: inputName,
+            interaction: interaction,
+            value: value,
+        }
+    };
+}
+//
+function setAllInputInteractions(nameSpace, interaction, value) {
+    return {
+        type: SET_ALL_INPUT_INTERACTIONS,
+        payload: {
+            nameSpace: nameSpace,
+            interaction: interaction,
+            value: value
+        }
+    };
+}
+//
+function clearAllInputs(nameSpace) {
+    return {
+        type: CLEAR_ALL_INPUTS,
+        payload: {
+            nameSpace: nameSpace
+        }
+    };
+}
+//
+function setDefaultValue(nameSpace, inputName, value) {
+    return function (dispatch, getState) {
+        var currentValue = getState().getIn(['FormState', nameSpace, inputName, 'value'], false);
+        if (!currentValue) {
+            dispatch(setInput(nameSpace, inputName, value));
+        }
+    };
+}
+>>>>>>> unified-types:dist/main.js
 
 ReactDefaultInjection.inject();
 
@@ -38117,6 +38427,7 @@ function inject() {
   ReactInjection.EventPluginUtils.injectComponentTree(ReactDOMComponentTree);
   ReactInjection.EventPluginUtils.injectTreeTraversal(ReactDOMTreeTraversal);
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
   /**
    * Some important event plugins included by default (without having to require
    * them).
@@ -38140,6 +38451,67 @@ function inject() {
   ReactInjection.EmptyComponent.injectEmptyComponentFactory(function (instantiate) {
     return new ReactDOMEmptyComponent(instantiate);
   });
+=======
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return basicReducer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return withReducerState; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_immutable__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_immutable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_immutable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Helpers_path__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Helpers_inputHelpers__ = __webpack_require__(4);
+
+
+
+var basicReducer = {
+    SET_INPUT: function (state, _a) {
+        var payload = _a.payload;
+        var valuePath = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__Helpers_path__["a" /* getInputValue */])(payload.nameSpace, payload.inputName);
+        return state.setIn(valuePath, payload.value);
+    },
+    SET_VALIDATION: function (state, _a) {
+        var payload = _a.payload;
+        var validationPath = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__Helpers_path__["b" /* getInputValidation */])(payload.nameSpace, payload.inputName);
+        return state.updateIn(validationPath, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_immutable__["Map"])(), function (validationMap) {
+            return validationMap.set(payload.type, payload.test);
+        });
+    },
+    SET_INPUT_INTERACTION: function (state, _a) {
+        var payload = _a.payload;
+        var interactionPath = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__Helpers_path__["c" /* getInputState */])(payload.nameSpace, payload.inputName, payload.interaction);
+        return state.setIn(interactionPath, payload.value);
+    },
+    SET_ALL_INPUT_INTERACTIONS: function (state, _a) {
+        var payload = _a.payload;
+        var inputs = state.get(payload.nameSpace, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_immutable__["Map"])({}));
+        if (inputs.size && inputs.size === 0) {
+            return state;
+        }
+        var updatedFields = inputs.map(function (input, key) {
+            if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__Helpers_inputHelpers__["a" /* isMultipleValueInput */])(key)) {
+                return input.map(function (innerInput) {
+                    return innerInput.setIn(["input", payload.interaction], payload.value);
+                });
+            }
+            return input.set(payload.interaction, payload.value);
+        });
+        return state.set(payload.nameSpace, updatedFields);
+    },
+    CLEAR_ALL_INPUTS: function (state, _a) {
+        var payload = _a.payload;
+        return state.set(payload.nameSpace, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_immutable__["Map"])({}));
+    }
+};
+var withReducerState = function (state, action) {
+    if (state === void 0) { state = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_immutable__["Map"])(); }
+    var reducerFunc = basicReducer[action.type];
+    if (typeof reducerFunc === 'function') {
+        return reducerFunc(state, action);
+    }
+    else {
+        return state;
+    }
+};
+>>>>>>> unified-types:dist/main.js
 
   ReactInjection.Updates.injectReconcileTransaction(ReactReconcileTransaction);
   ReactInjection.Updates.injectBatchingStrategy(ReactDefaultBatchingStrategy);
@@ -38156,6 +38528,7 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /**
  * Copyright 2014-present, Facebook, Inc.
  * All rights reserved.
@@ -38167,6 +38540,74 @@ module.exports = {
  * 
  */
 
+=======
+/* unused harmony export Input */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Form_InputGroup__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Form_InputWrapper__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Base__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Validation_DisplayValidation__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Form_Helpers_performanceWrapper__ = __webpack_require__(3);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
+
+
+
+
+
+
+
+var Input = (function (_super) {
+    __extends(Input, _super);
+    function Input() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Input.prototype.render = function () {
+        var _a = this.props, className = _a.className, label = _a.label, labelPostfix = _a.labelPostfix, labelPrefix = _a.labelPrefix, prepend = _a.prepend, append = _a.append, props = __rest(_a, ["className", "label", "labelPostfix", "labelPrefix", "prepend", "append"]);
+        var autoFocus = props.autoFocus, onChange = props.onChange, onBlur = props.onBlur, id = props.id, value = props.value, validationProps = __rest(props, ["autoFocus", "onChange", "onBlur", "id", "value"]);
+        var classes = __WEBPACK_IMPORTED_MODULE_1_classnames___default()(className, 'input');
+        if (props.type !== 'hidden') {
+            return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Form_InputWrapper__["a" /* default */], { className: classes, type: props.type, name: props.name, labelPrefix: labelPrefix, labelPostfix: labelPostfix, label: label },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Form_InputGroup__["a" /* default */], { prepend: prepend, append: append },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Base__["a" /* default */], __assign({}, props))),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Validation_DisplayValidation__["a" /* default */], __assign({}, validationProps))));
+        }
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Base__["a" /* default */], __assign({}, props));
+    };
+    return Input;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
+
+;
+/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__Form_Helpers_performanceWrapper__["a" /* default */])(Input));
+>>>>>>> unified-types:dist/main.js
 
 
 // The Symbol used to tag the ReactElement type. If there is no native Symbol
@@ -38218,6 +38659,7 @@ module.exports = ReactEventEmitterMixin;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -38292,6 +38734,86 @@ function handleTopLevelImpl(bookKeeping) {
     ReactEventListener._handleTopLevel(bookKeeping.topLevelType, targetInst, bookKeeping.nativeEvent, getEventTarget(bookKeeping.nativeEvent));
   }
 }
+=======
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_immutable__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_immutable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_immutable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_recompose__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_recompose___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_recompose__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_classnames__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__libs_validate__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Validation_scss__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Validation_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__Validation_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Form_Helpers_inputHelpers__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_cs_core__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_cs_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_cs_core__);
+
+
+
+
+
+
+
+
+var specificShallowEqual = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7_cs_core__["createSpecificShallowEqual"])('value', 'changed', 'type');
+var specificShallowEqualDisplayed = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7_cs_core__["createSpecificShallowEqual"])('displayed', 'className');
+var specificShallowEqualTestElement = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7_cs_core__["createSpecificShallowEqual"])("value", "typeOfValidation", "type");
+var availableValidationsShallowEqual = __WEBPACK_IMPORTED_MODULE_7_cs_core__["createSpecificShallowEqual"].apply(void 0, ["isFor", "test"].concat(Object.keys(__WEBPACK_IMPORTED_MODULE_4__libs_validate__["c" /* validations */])));
+var Validation = function (_a) {
+    var displayed = _a.displayed, className = _a.className, children = _a.children;
+    var classes = __WEBPACK_IMPORTED_MODULE_3_classnames___default()('validation', className, {
+        'invalid': displayed
+    });
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: classes }, children);
+};
+var getValue = function (name, inputInfo) {
+    if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__Form_Helpers_inputHelpers__["a" /* isMultipleValueInput */])(name) && __WEBPACK_IMPORTED_MODULE_1_immutable__["Map"].isMap(inputInfo)) {
+        return __WEBPACK_IMPORTED_MODULE_6__Form_Helpers_inputHelpers__["b" /* returnCheckedValue */].apply(void 0, [function (arg) { return typeof arg !== "undefined" && arg !== false; }].concat(inputInfo.map(function (item) { return item.get('value', false); }).toArray()));
+    }
+    else {
+        return inputInfo.get('value') || false;
+    }
+};
+/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_recompose__["compose"])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_recompose__["withProps"])(function (ownerProps) {
+    var name = ownerProps.name, inputInfo = ownerProps.inputInfo, type = ownerProps.type;
+    var changed = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__Form_Helpers_inputHelpers__["a" /* isMultipleValueInput */])(name) ? inputInfo.some(function (item) { return item.get('changed', false); }) : inputInfo.get('changed', false);
+    var value = getValue(name, inputInfo);
+    return {
+        changed: changed,
+        value: value
+    };
+}), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_recompose__["shouldUpdate"])(function (currentProps, nextProps) {
+    return !specificShallowEqual(currentProps, nextProps) || !availableValidationsShallowEqual(currentProps, nextProps);
+}), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_recompose__["withState"])('valid', 'setValid', false), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_recompose__["withHandlers"])({
+    testElement: function () { return __WEBPACK_IMPORTED_MODULE_4__libs_validate__["d" /* testElement */]; }
+}), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_recompose__["lifecycle"])({
+    componentWillMount: function () {
+        var _a = this.props, testElement = _a.testElement, setValidation = _a.setValidation, value = _a.value, type = _a.type, isFor = _a.isFor, test = _a.test;
+        setValidation(isFor, test);
+        // value, test, isFor, type, setValid
+        testElement(this.props);
+    },
+    componentWillReceiveProps: function (nextProps) {
+        if (!specificShallowEqualTestElement(this.props, nextProps)) {
+            nextProps.testElement(nextProps);
+        }
+        if (!availableValidationsShallowEqual(this.props, nextProps)) {
+            nextProps.setValidation(nextProps.isFor, nextProps.test);
+        }
+    }
+}), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_recompose__["mapProps"])(function (ownerProps) {
+    var valid = ownerProps.valid, value = ownerProps.value, className = ownerProps.className, changed = ownerProps.changed, children = ownerProps.children, test = ownerProps.test;
+    return {
+        displayed: !valid && changed,
+        className: className,
+        children: children
+    };
+}), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_recompose__["shouldUpdate"])(function (currentProps, nextProps) {
+    return !specificShallowEqualDisplayed(currentProps, nextProps);
+}))(Validation));
+>>>>>>> unified-types:dist/main.js
 
 function scrollValueMonitor(cb) {
   var scrollPosition = getUnboundedScrollPosition(window);
@@ -38302,6 +38824,7 @@ var ReactEventListener = {
   _enabled: true,
   _handleTopLevel: null,
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
   WINDOW_HANDLE: ExecutionEnvironment.canUseDOM ? window : null,
 
   setHandleTopLevel: function (handleTopLevel) {
@@ -38359,6 +38882,68 @@ var ReactEventListener = {
     if (!ReactEventListener._enabled) {
       return;
     }
+=======
+"use strict";
+/* unused harmony export DateWrapper */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_onclickoutside__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_onclickoutside___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_onclickoutside__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Form_InputWrapper__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Form_InputGroup__ = __webpack_require__(12);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+
+var DateWrapper = (function (_super) {
+    __extends(DateWrapper, _super);
+    function DateWrapper(props) {
+        var _this = _super.call(this, props) || this;
+        _this.handleFocus = function (event) {
+            event.preventDefault();
+            _this.setState({ hidden: false });
+        };
+        _this.handleClickOutside = function () {
+            _this.setState({ hidden: true });
+        };
+        _this.closeInput = function () {
+            _this.setState({ hidden: true });
+            _this.refs[_this.props.name].blur();
+        };
+        _this.state = {
+            hidden: true
+        };
+        return _this;
+    }
+    DateWrapper.prototype.render = function () {
+        var dateRangeClasses = __WEBPACK_IMPORTED_MODULE_1_classnames___default()({ hidden: this.state.hidden }, 'date-range-container');
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "date-range-wrapper" },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Form_InputWrapper__["a" /* default */], { className: "input date-picker", name: this.props.name, labelPostfix: this.props.labelPostfix, label: this.props.label },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Form_InputGroup__["a" /* default */], { prepend: this.props.prepend, append: this.props.append },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { onFocus: this.handleFocus, placeholder: this.props.placeholder, value: this.props.valueString, ref: this.props.name, readOnly: true }))),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: dateRangeClasses }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.cloneElement(this.props.children, {
+                close: this.closeInput
+            }))));
+    };
+    return DateWrapper;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
+;
+/* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_2_react_onclickoutside___default()(DateWrapper));
+
+>>>>>>> unified-types:dist/main.js
 
     var bookKeeping = TopLevelCallbackBookKeeping.getPooled(topLevelType, nativeEvent);
     try {
@@ -38378,6 +38963,7 @@ module.exports = ReactEventListener;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -38397,6 +38983,74 @@ var ReactFeatureFlags = {
   // timeline profiles in Chrome, for example.
   logTopLevelRenders: false
 };
+=======
+/* unused harmony export Switch */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Base__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Validation_DisplayValidation__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Form_ErrorWrapper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Form_Helpers_performanceWrapper__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Switch_scss__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Switch_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__Switch_scss__);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
+
+
+
+
+
+
+
+var Switch = (function (_super) {
+    __extends(Switch, _super);
+    function Switch() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Switch.prototype.render = function () {
+        var _a = this.props, className = _a.className, label = _a.label, style = _a.style, props = __rest(_a, ["className", "label", "style"]);
+        var autoFocus = props.autoFocus, onChange = props.onChange, onBlur = props.onBlur, id = props.id, defaultChecked = props.defaultChecked, defaultSelected = props.defaultSelected, defaultValue = props.defaultValue, value = props.value, validationProps = __rest(props, ["autoFocus", "onChange", "onBlur", "id", "defaultChecked", "defaultSelected", "defaultValue", "value"]);
+        var classes = __WEBPACK_IMPORTED_MODULE_1_classnames___default()("switch", className);
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Form_ErrorWrapper__["a" /* default */], { className: classes, type: props.type, style: style },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Base__["a" /* default */], __assign({}, props, { id: id || this.props.name })),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("label", { htmlFor: id || this.props.name },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", { className: "box" }),
+                label),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Validation_DisplayValidation__["a" /* default */], __assign({}, validationProps))));
+    };
+    return Switch;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
+
+;
+/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__Form_Helpers_performanceWrapper__["a" /* default */])(Switch));
+>>>>>>> unified-types:dist/main.js
 
 module.exports = ReactFeatureFlags;
 
@@ -38744,6 +39398,7 @@ if (process.env.NODE_ENV !== 'production') {
   };
 }
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /**
  * ReactMultiChild are capable of reconciling multiple children.
  *
@@ -39024,6 +39679,113 @@ var ReactMultiChild = {
     }
   }
 };
+=======
+"use strict";
+/* unused harmony export DropZoneFrecl */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_immutable__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_immutable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_immutable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dropzone__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dropzone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_dropzone__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_classnames__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lodash__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Form_Helpers_performanceWrapper__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Form_Helpers_inputHelpers__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__DropZone_scss__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__DropZone_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__DropZone_scss__);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+/** Libraries */
+
+
+
+
+
+/** * Components */
+
+
+/** Styles */
+
+/** Helpers */
+var isFileArray = function (files) {
+    return __WEBPACK_IMPORTED_MODULE_1_immutable__["Set"].isSet(files) && files.size > 1;
+};
+var isSingleFile = function (files) {
+    return __WEBPACK_IMPORTED_MODULE_1_immutable__["Set"].isSet(files) && files.size === 1;
+};
+var PassDownProps = function (props, children) {
+    if (children.type === 'span' || children.type === 'div') {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.cloneElement(children);
+    }
+    else {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.cloneElement(children, __assign({}, props));
+    }
+};
+/** Class DropZone */
+var DropZoneFrecl = (function (_super) {
+    __extends(DropZoneFrecl, _super);
+    function DropZoneFrecl() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.getFiles = function () {
+            var value = _this.props.value;
+            return isFileArray(value) ? value : isSingleFile(value) ? value.first() : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_immutable__["Set"])();
+        };
+        _this.onDrop = function (files) {
+            var _a = _this.props, _b = _a.multiple, multiple = _b === void 0 ? false : _b, inputChanged = _a.inputChanged;
+            if (multiple) {
+                inputChanged(_this.getFiles().concat(files));
+            }
+            else {
+                inputChanged(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_immutable__["Set"])(files));
+            }
+        };
+        _this.deleteFile = function (index) {
+            var _a = _this.props, _b = _a.multiple, multiple = _b === void 0 ? false : _b, inputChanged = _a.inputChanged;
+            var stateFiles = _this.getFiles();
+            inputChanged(stateFiles.delete(index));
+        };
+        return _this;
+    }
+    DropZoneFrecl.prototype.componentDidMount = function () {
+        this.props.inputChanged(this.getFiles(), false);
+    };
+    DropZoneFrecl.prototype.render = function () {
+        var _a = this.props, children = _a.children, className = _a.className, _b = _a.placeholder, placeholder = _b === void 0 ? "Drop here" : _b, _c = _a.multiple, multiple = _c === void 0 ? false : _c, _d = _a.showList, showList = _d === void 0 ? true : _d, fileListComponent = _a.fileListComponent;
+        var attributes = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__Form_Helpers_inputHelpers__["c" /* getHTMLAttributes */])(this.props);
+        var files = this.getFiles();
+        var classes = __WEBPACK_IMPORTED_MODULE_3_classnames___default()("drop-zone-box", className);
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "drop-zone" },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_dropzone___default.a, __assign({ className: classes, onDrop: this.onDrop, multiple: multiple }, attributes), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_lodash__["isFunction"])(children) ? (children(this.getFiles(), this.deleteFile)) : (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, children && PassDownProps({ files: files }, children))))),
+            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_lodash__["isFunction"])(fileListComponent) && (fileListComponent(this.getFiles(), this.deleteFile))));
+    };
+    DropZoneFrecl.defaultProps = {
+        children: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("noscript", null)
+    };
+    return DropZoneFrecl;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
+/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__Form_Helpers_performanceWrapper__["a" /* default */])(DropZoneFrecl));
+
+>>>>>>> unified-types:dist/main.js
 
 module.exports = ReactMultiChild;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
@@ -39174,6 +39936,7 @@ module.exports = ReactOwner;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -39207,6 +39970,10 @@ module.exports = ReactPropTypeLocationNames;
 /***/ }),
 /* 195 */
 /***/ (function(module, exports, __webpack_require__) {
+=======
+/* 41 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+>>>>>>> unified-types:dist/main.js
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -39389,8 +40156,13 @@ module.exports = ReactReconcileTransaction;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /* 196 */
 /***/ (function(module, exports, __webpack_require__) {
+=======
+/* 42 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+>>>>>>> unified-types:dist/main.js
 
 "use strict";
 /**
@@ -39483,6 +40255,7 @@ ReactRef.detachRefs = function (instance, element) {
 module.exports = ReactRef;
 
 /***/ }),
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -39498,6 +40271,70 @@ module.exports = ReactRef;
  */
 
 
+=======
+/* 43 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Form_InputWrapper__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RadioTabs_scss__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RadioTabs_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__RadioTabs_scss__);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+var RadioTabs = (function (_super) {
+    __extends(RadioTabs, _super);
+    function RadioTabs() {
+        var _this = _super.call(this) || this;
+        _this.setId = function (chosenId) {
+            _this.setState({
+                chosenId: chosenId
+            });
+        };
+        _this.state = {
+            chosenId: ""
+        };
+        return _this;
+    }
+    RadioTabs.prototype.render = function () {
+        var _this = this;
+        var _a = this.props, className = _a.className, _b = _a.radioClasses, radioClasses = _b === void 0 ? undefined : _b, name = _a.name, label = _a.label, children = _a.children;
+        var chosenId = this.state.chosenId;
+        var classes = __WEBPACK_IMPORTED_MODULE_1_classnames___default()(className, 'input', 'radio-tabs');
+        // Deprication warning, v1.0.x
+        if (radioClasses != undefined) {
+            throw new Error("radioClasses prop has been replaced with className");
+        }
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Form_InputWrapper__["a" /* default */], { className: classes, name: name, label: label }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.Children.map(children, function (child) {
+            if (typeof child.type === 'string' || child.type.name !== 'RadioTab') {
+                throw new Error("RadioTabs can only accept RadioTab components as childen");
+            }
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.cloneElement(child, {
+                name: name,
+                chosenId: chosenId,
+                setId: _this.setId
+            });
+        })));
+    };
+    return RadioTabs;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
+/* harmony default export */ __webpack_exports__["a"] = (RadioTabs);
+>>>>>>> unified-types:dist/main.js
 
 var ReactServerBatchingStrategy = {
   isBatchingUpdates: false,
@@ -39510,6 +40347,7 @@ var ReactServerBatchingStrategy = {
 module.exports = ReactServerBatchingStrategy;
 
 /***/ }),
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -39723,6 +40561,86 @@ var ReactServerUpdateQueue = function () {
       warnNoop(publicInstance, 'replaceState');
     }
   };
+=======
+/* 44 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export MultiSelect */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_select__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_select__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_immutable__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_immutable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_immutable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_select_dist_react_select_css__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_select_dist_react_select_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_react_select_dist_react_select_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Form_InputWrapper__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Form_Helpers_performanceWrapper__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_classnames__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_classnames__);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
+
+
+
+
+
+
+
+var MultiSelect = (function (_super) {
+    __extends(MultiSelect, _super);
+    function MultiSelect() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.handleChange = function (values) {
+            var _a = _this.props, inputChanged = _a.inputChanged, onChange = _a.onChange;
+            var newValues = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["List"])([]).concat(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["fromJS"])(values)).toList();
+            inputChanged(newValues);
+            if (typeof onChange === 'function') {
+                onChange(newValues);
+            }
+        };
+        return _this;
+    }
+    MultiSelect.prototype.componentWillMount = function () {
+        var _a = this.props, inputChanged = _a.inputChanged, defaultValue = _a.defaultValue;
+        inputChanged(defaultValue || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["List"])([]), false);
+    };
+    MultiSelect.prototype.render = function () {
+        var _a = this.props, options = _a.options, value = _a.value, className = _a.className, label = _a.label, labelPrefix = _a.labelPrefix, labelPostfix = _a.labelPostfix, noResultsText = _a.noResultsText, placeholder = _a.placeholder, props = __rest(_a, ["options", "value", "className", "label", "labelPrefix", "labelPostfix", "noResultsText", "placeholder"]);
+        var safeValue = value !== '' ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["List"])(value) : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["List"])();
+        var classes = __WEBPACK_IMPORTED_MODULE_6_classnames___default()(className, 'input');
+        if (!__WEBPACK_IMPORTED_MODULE_2_immutable__["Iterable"].isIterable(options)) {
+            throw new Error("options must be an Immutable List()");
+        }
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Form_InputWrapper__["a" /* default */], { name: props.name, label: label, labelPrefix: labelPrefix, labelPostfix: labelPostfix, className: classes },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_select___default.a, { value: safeValue.toJS(), options: options.toJS(), multi: true, onChange: this.handleChange, noResultsText: noResultsText, placeholder: placeholder })));
+    };
+    MultiSelect.defaultProps = {
+        options: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["List"])([])
+    };
+    return MultiSelect;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
+
+/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__Form_Helpers_performanceWrapper__["a" /* default */])(MultiSelect));
+>>>>>>> unified-types:dist/main.js
 
   /**
    * Sets a subset of the state. This only exists because _pendingState is
@@ -39735,6 +40653,7 @@ var ReactServerUpdateQueue = function () {
    * @internal
    */
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 
   ReactServerUpdateQueue.prototype.enqueueSetState = function enqueueSetState(publicInstance, partialState) {
     if (this.transaction.isInTransaction()) {
@@ -39743,6 +40662,81 @@ var ReactServerUpdateQueue = function () {
       warnNoop(publicInstance, 'setState');
     }
   };
+=======
+/***/ }),
+/* 45 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Form_InputWrapper__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Form_Helpers_performanceWrapper__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Validation_DisplayValidation__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Base__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Select_scss__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Select_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__Select_scss__);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
+/** Libraries */
+
+
+/** Components */
+
+
+
+
+/** Styles */
+
+/** Class Select */
+var Select = (function (_super) {
+    __extends(Select, _super);
+    function Select() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Select.prototype.render = function () {
+        var _a = this.props, className = _a.className, label = _a.label, labelPostfix = _a.labelPostfix, labelPrefix = _a.labelPrefix, arrow = _a.arrow, props = __rest(_a, ["className", "label", "labelPostfix", "labelPrefix", "arrow"]);
+        var autoFocus = props.autoFocus, onChange = props.onChange, onBlur = props.onBlur, id = props.id, defaultChecked = props.defaultChecked, defaultSelected = props.defaultSelected, value = props.value, children = props.children, validationProps = __rest(props, ["autoFocus", "onChange", "onBlur", "id", "defaultChecked", "defaultSelected", "value", "children"]);
+        var classes = __WEBPACK_IMPORTED_MODULE_1_classnames___default()(className, "select", "input");
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Form_InputWrapper__["a" /* default */], { className: classes, name: props.name, labelPrefix: labelPrefix, labelPostfix: labelPostfix, label: label },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "input-group" },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "styled-select" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Base__["a" /* default */], __assign({}, props)),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "arrow" }, arrow))),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Validation_DisplayValidation__["a" /* default */], __assign({}, validationProps))));
+    };
+    return Select;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
+;
+/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__Form_Helpers_performanceWrapper__["a" /* default */])(Select));
+>>>>>>> unified-types:dist/main.js
 
   return ReactServerUpdateQueue;
 }();
@@ -39751,6 +40745,7 @@ module.exports = ReactServerUpdateQueue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -39765,13 +40760,87 @@ module.exports = ReactServerUpdateQueue;
  *
  */
 
+=======
+/* 46 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export TextArea */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Form_InputWrapper__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Form_InputGroup__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Base__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Validation_DisplayValidation__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Form_Helpers_performanceWrapper__ = __webpack_require__(3);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
+
+
+
+
+
+
+
+var TextArea = (function (_super) {
+    __extends(TextArea, _super);
+    function TextArea() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    TextArea.prototype.render = function () {
+        var _a = this.props, className = _a.className, label = _a.label, labelPrefix = _a.labelPrefix, labelPostfix = _a.labelPostfix, props = __rest(_a, ["className", "label", "labelPrefix", "labelPostfix"]);
+        var autoFocus = props.autoFocus, onChange = props.onChange, onBlur = props.onBlur, id = props.id, value = props.value, validationProps = __rest(props, ["autoFocus", "onChange", "onBlur", "id", "value"]);
+        var classes = __WEBPACK_IMPORTED_MODULE_1_classnames___default()(className, 'textarea', 'input');
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Form_InputWrapper__["a" /* default */], { className: classes, name: props.name, labelPrefix: labelPrefix, labelPostfix: labelPostfix, label: label },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Form_InputGroup__["a" /* default */], null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Base__["a" /* default */], __assign({}, props))),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Validation_DisplayValidation__["a" /* default */], __assign({}, validationProps))));
+    };
+    return TextArea;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
+
+;
+/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__Form_Helpers_performanceWrapper__["a" /* default */])(TextArea));
+>>>>>>> unified-types:dist/main.js
 
 
 module.exports = '15.6.1';
 
 /***/ }),
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /* 201 */
 /***/ (function(module, exports, __webpack_require__) {
+=======
+/* 47 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+>>>>>>> unified-types:dist/main.js
 
 "use strict";
 /**
@@ -39785,6 +40854,7 @@ module.exports = '15.6.1';
  */
 
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 
 var NS = {
   xlink: 'http://www.w3.org/1999/xlink',
@@ -40073,12 +41143,100 @@ Object.keys(ATTRS).forEach(function (key) {
     SVGDOMPropertyConfig.DOMAttributeNames[key] = ATTRS[key];
   }
 });
+=======
+/***/ }),
+/* 48 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_CheckBox_CheckBox__ = __webpack_require__(35);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CheckBox", function() { return __WEBPACK_IMPORTED_MODULE_0__src_CheckBox_CheckBox__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_DatePicker_DatePicker__ = __webpack_require__(36);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "DatePicker", function() { return __WEBPACK_IMPORTED_MODULE_1__src_DatePicker_DatePicker__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__src_DatePicker_DateRange__ = __webpack_require__(37);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "DateRange", function() { return __WEBPACK_IMPORTED_MODULE_2__src_DatePicker_DateRange__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_DropZone_DropZone__ = __webpack_require__(38);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "DropZone", function() { return __WEBPACK_IMPORTED_MODULE_3__src_DropZone_DropZone__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__src_Input_Input__ = __webpack_require__(23);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Input", function() { return __WEBPACK_IMPORTED_MODULE_4__src_Input_Input__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__src_Number_Number__ = __webpack_require__(41);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Number", function() { return __WEBPACK_IMPORTED_MODULE_5__src_Number_Number__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__src_Radio_Radio__ = __webpack_require__(24);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Radio", function() { return __WEBPACK_IMPORTED_MODULE_6__src_Radio_Radio__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__src_Radio_RadioTabs__ = __webpack_require__(43);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "RadioTabs", function() { return __WEBPACK_IMPORTED_MODULE_7__src_Radio_RadioTabs__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__src_Radio_RadioTab__ = __webpack_require__(42);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "RadioTab", function() { return __WEBPACK_IMPORTED_MODULE_8__src_Radio_RadioTab__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__src_Select_Select__ = __webpack_require__(45);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Select", function() { return __WEBPACK_IMPORTED_MODULE_9__src_Select_Select__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__src_Select_MultiSelect__ = __webpack_require__(44);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "MultiSelect", function() { return __WEBPACK_IMPORTED_MODULE_10__src_Select_MultiSelect__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__src_TextArea_TextArea__ = __webpack_require__(46);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "TextArea", function() { return __WEBPACK_IMPORTED_MODULE_11__src_TextArea_TextArea__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__src_Validation_Validation__ = __webpack_require__(25);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Validation", function() { return __WEBPACK_IMPORTED_MODULE_12__src_Validation_Validation__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__src_Validation_Validate__ = __webpack_require__(47);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Validate", function() { return __WEBPACK_IMPORTED_MODULE_13__src_Validation_Validate__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__src_Form_Form__ = __webpack_require__(40);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Form", function() { return __WEBPACK_IMPORTED_MODULE_14__src_Form_Form__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__src_Form_Reducers_index__ = __webpack_require__(22);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ReduxReducer", function() { return __WEBPACK_IMPORTED_MODULE_15__src_Form_Reducers_index__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__src_Form_Helpers_performanceWrapper__ = __webpack_require__(3);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "performanceWrapper", function() { return __WEBPACK_IMPORTED_MODULE_16__src_Form_Helpers_performanceWrapper__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__src_Form_Fieldset__ = __webpack_require__(39);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Fieldset", function() { return __WEBPACK_IMPORTED_MODULE_17__src_Form_Fieldset__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__src_Form_InputGroup__ = __webpack_require__(12);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "InputGroup", function() { return __WEBPACK_IMPORTED_MODULE_18__src_Form_InputGroup__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__src_Form_InputWrapper__ = __webpack_require__(6);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "InputWrapper", function() { return __WEBPACK_IMPORTED_MODULE_19__src_Form_InputWrapper__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__src_Form_ErrorWrapper__ = __webpack_require__(17);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ErrorWrapper", function() { return __WEBPACK_IMPORTED_MODULE_20__src_Form_ErrorWrapper__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__src_Validation_DisplayValidation__ = __webpack_require__(9);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "DisplayValidation", function() { return __WEBPACK_IMPORTED_MODULE_21__src_Validation_DisplayValidation__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__src_Form_Helpers_formHelpers__ = __webpack_require__(21);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "convertToFormData", function() { return __WEBPACK_IMPORTED_MODULE_22__src_Form_Helpers_formHelpers__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__libs_validate__ = __webpack_require__(15);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "validationsAvailable", function() { return __WEBPACK_IMPORTED_MODULE_23__libs_validate__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__src_Form_Actions_fields__ = __webpack_require__(16);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "clearAllInputs", function() { return __WEBPACK_IMPORTED_MODULE_24__src_Form_Actions_fields__["a"]; });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> unified-types:dist/main.js
 
 module.exports = SVGDOMPropertyConfig;
 
 /***/ }),
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /* 202 */
 /***/ (function(module, exports, __webpack_require__) {
+=======
+/* 49 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+>>>>>>> unified-types:dist/main.js
 
 "use strict";
 /**
@@ -40092,6 +41250,12 @@ module.exports = SVGDOMPropertyConfig;
  */
 
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
+=======
+/***/ }),
+/* 50 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+>>>>>>> unified-types:dist/main.js
 
 var EventPropagators = __webpack_require__(30);
 var ExecutionEnvironment = __webpack_require__(8);
@@ -40103,7 +41267,13 @@ var getActiveElement = __webpack_require__(75);
 var isTextInputElement = __webpack_require__(96);
 var shallowEqual = __webpack_require__(44);
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 var skipSelectionChangeEvent = ExecutionEnvironment.canUseDOM && 'documentMode' in document && document.documentMode <= 11;
+=======
+/***/ }),
+/* 51 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+>>>>>>> unified-types:dist/main.js
 
 var eventTypes = {
   select: {
@@ -40120,9 +41290,15 @@ var activeElementInst = null;
 var lastSelection = null;
 var mouseDown = false;
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 // Track whether a listener exists for this plugin. If none exist, we do
 // not extract events. See #3639.
 var hasListener = false;
+=======
+/***/ }),
+/* 52 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+>>>>>>> unified-types:dist/main.js
 
 /**
  * Get an object which is a unique representation of the current selection.
@@ -40173,10 +41349,16 @@ function constructSelectEvent(nativeEvent, nativeEventTarget) {
     return null;
   }
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
   // Only fire when selection has actually changed.
   var currentSelection = getSelection(activeElement);
   if (!lastSelection || !shallowEqual(lastSelection, currentSelection)) {
     lastSelection = currentSelection;
+=======
+/***/ }),
+/* 53 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+>>>>>>> unified-types:dist/main.js
 
     var syntheticEvent = SyntheticEvent.getPooled(eventTypes.select, activeElementInst, nativeEvent, nativeEventTarget);
 
@@ -40191,6 +41373,7 @@ function constructSelectEvent(nativeEvent, nativeEventTarget) {
   return null;
 }
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /**
  * This plugin creates an `onSelect` event that normalizes select events
  * across form elements.
@@ -40207,6 +41390,11 @@ function constructSelectEvent(nativeEvent, nativeEventTarget) {
  */
 var SelectEventPlugin = {
   eventTypes: eventTypes,
+=======
+/***/ }),
+/* 54 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+>>>>>>> unified-types:dist/main.js
 
   extractEvents: function (topLevelType, targetInst, nativeEvent, nativeEventTarget) {
     if (!hasListener) {
@@ -40270,7 +41458,11 @@ var SelectEventPlugin = {
 module.exports = SelectEventPlugin;
 
 /***/ }),
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /* 203 */
+=======
+/* 55 */
+>>>>>>> unified-types:dist/main.js
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40287,6 +41479,7 @@ module.exports = SelectEventPlugin;
 
 
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 var _prodInvariant = __webpack_require__(4);
 
 var EventListener = __webpack_require__(73);
@@ -40303,6 +41496,12 @@ var SyntheticTouchEvent = __webpack_require__(211);
 var SyntheticTransitionEvent = __webpack_require__(212);
 var SyntheticUIEvent = __webpack_require__(32);
 var SyntheticWheelEvent = __webpack_require__(213);
+=======
+var _assign = __webpack_require__(65);
+
+var emptyObject = __webpack_require__(64);
+var _invariant = __webpack_require__(13);
+>>>>>>> unified-types:dist/main.js
 
 var emptyFunction = __webpack_require__(9);
 var getEventCharCode = __webpack_require__(57);
@@ -41302,8 +42501,19 @@ module.exports = flattenChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /* 218 */
 /***/ (function(module, exports, __webpack_require__) {
+=======
+/* 56 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports) {
+>>>>>>> unified-types:dist/main.js
 
 "use strict";
 /**
@@ -41434,6 +42644,7 @@ module.exports = getEventKey;
  * 
  */
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 
 
 /* global Symbol */
@@ -41466,6 +42677,10 @@ module.exports = getIteratorFn;
 
 /***/ }),
 /* 220 */
+=======
+/***/ }),
+/* 64 */
+>>>>>>> unified-types:dist/main.js
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41544,7 +42759,11 @@ function getNodeForCharacterOffset(root, offset) {
 module.exports = getNodeForCharacterOffset;
 
 /***/ }),
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /* 221 */
+=======
+/* 65 */
+>>>>>>> unified-types:dist/main.js
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41650,7 +42869,11 @@ function getVendorPrefixedEventName(eventName) {
 module.exports = getVendorPrefixedEventName;
 
 /***/ }),
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /* 222 */
+=======
+/* 66 */
+>>>>>>> unified-types:dist/main.js
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41691,7 +42914,11 @@ module.exports = __webpack_require__(177);
 
 
 /***/ }),
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /* 224 */
+=======
+/* 67 */
+>>>>>>> unified-types:dist/main.js
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41862,15 +43089,24 @@ var AutosizeInput = createClass({
 module.exports = AutosizeInput;
 
 /***/ }),
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /* 225 */
+=======
+/* 68 */
+>>>>>>> unified-types:dist/main.js
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 Object.defineProperty(exports, '__esModule', {
 	value: true
 });
+=======
+var ReactPropTypesSecret = __webpack_require__(20);
+var checkPropTypes = __webpack_require__(66);
+>>>>>>> unified-types:dist/main.js
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -42138,7 +43374,11 @@ function defaultChildren(props) {
 module.exports = exports['default'];
 
 /***/ }),
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /* 226 */
+=======
+/* 69 */
+>>>>>>> unified-types:dist/main.js
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42209,7 +43449,11 @@ var AsyncCreatable = (0, _createReactClass2['default'])({
 module.exports = AsyncCreatable;
 
 /***/ }),
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /* 227 */
+=======
+/* 70 */
+>>>>>>> unified-types:dist/main.js
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42666,7 +43910,11 @@ var Option = (0, _createReactClass2['default'])({
 module.exports = Option;
 
 /***/ }),
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /* 229 */
+=======
+/* 71 */
+>>>>>>> unified-types:dist/main.js
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42786,7 +44034,11 @@ var Value = (0, _createReactClass2['default'])({
 module.exports = Value;
 
 /***/ }),
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /* 230 */
+=======
+/* 72 */
+>>>>>>> unified-types:dist/main.js
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43397,7 +44649,11 @@ module.exports = ReactDOMFactories;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /* 236 */
+=======
+/* 73 */
+>>>>>>> unified-types:dist/main.js
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43493,7 +44749,11 @@ module.exports = ReactPropTypesSecret;
 module.exports = '15.6.1';
 
 /***/ }),
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /* 240 */
+=======
+/* 74 */
+>>>>>>> unified-types:dist/main.js
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43640,7 +44900,11 @@ function getNextDebugID() {
 module.exports = getNextDebugID;
 
 /***/ }),
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /* 243 */
+=======
+/* 75 */
+>>>>>>> unified-types:dist/main.js
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43684,7 +44948,11 @@ module.exports = onlyChild;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /* 244 */
+=======
+/* 76 */
+>>>>>>> unified-types:dist/main.js
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43866,7 +45134,11 @@ module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /* 245 */
+=======
+/* 77 */
+>>>>>>> unified-types:dist/main.js
 /***/ (function(module, exports) {
 
 var g;
@@ -43893,7 +45165,11 @@ module.exports = g;
 
 
 /***/ }),
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /* 246 */
+=======
+/* 78 */
+>>>>>>> unified-types:dist/main.js
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -43921,6 +45197,7 @@ module.exports = function(module) {
 
 
 /***/ }),
+<<<<<<< HEAD:dist/chillisource-web-forms.js
 /* 247 */
 /***/ (function(module, exports) {
 
@@ -43937,6 +45214,24 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_248__;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_249__;
+=======
+/* 79 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_79__;
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_80__;
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_81__;
+>>>>>>> unified-types:dist/main.js
 
 /***/ })
 /******/ ]);
