@@ -1,6 +1,6 @@
 import {Iterable} from "immutable";
 import regExpList from "./validationRegExps";
-import {ValidationTypes, PossibleInputValue, TestType, InputTest, InputType, TypeProp} from "../index.d";
+import {ValidationTypes, PossibleInputValue, TestType, InputTest, InputType, TypeProp} from '../typings/types.d';
 
 export const validations:ValidationTypes = {
   required: (value, test, type) => {

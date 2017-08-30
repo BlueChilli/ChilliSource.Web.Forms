@@ -5,7 +5,7 @@ import {Map, List, Set} from 'immutable';
 import moment, {Moment} from 'moment';
 
 import {BaseReactProps} from "cs.core";
-import {SetInputPayload, SetInputInteractionPayload, SetValidationPayload} from '../Actions/fields'
+import {SetInputPayload, SetInputInteractionPayload, SetValidationPayload} from '../../../typings/types.d';
 
 
 export type Type = 'text' | 'radio' | 'checkbox' | 'number' | 'email' | 'password' | 'hidden' | 'file'

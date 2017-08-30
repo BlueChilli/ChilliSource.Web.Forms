@@ -4,7 +4,7 @@
 /** Libraries */
 import {Component} from 'react';
 import {Moment} from 'moment';
-import {List, Map} from 'immutable';
+import {List, Map, Set} from 'immutable';
 import {Dispatch, Action} from 'redux';
 
 /** Types */
@@ -19,7 +19,7 @@ export type DateRangeMoment = {
   endDate: Moment;
 }
 
-export type PossibleInputValue = number | string | boolean | Moment | DateRangeMap | undefined | List<any>;
+export type PossibleInputValue = number | string | boolean | Moment | DateRangeMap | undefined | List<any> | Set<File>;
 
 export type getInputPath = () => Array<string>
 
@@ -260,6 +260,12 @@ export interface DropZoneProps extends BaseReactProps, NameProp, ValueProp<List<
   multiple?: boolean,
   /** Display a list of uploaded files*/		
   showList?: boolean,
+  /** Custom onDrop handler */
+  onDrop?: Function,
+  /** Placeholder text inside the dropzone */
+  placeholder?: string,
+  /** A function to display the dropped files */
+  fileListComponent?: (files: Set<File>, deleteFile: (index: number) => any) => any
 }
 
 export interface DateWrapperProps extends InputWrapperProps, InputGroupProps, BaseReactProps, PlaceholderProp {}
