@@ -49,14 +49,22 @@ class DropZoneFrecl extends React.Component{
   }
   
   onDrop = (files) => {
-    const {multiple = false, inputChanged} = this.props;
+    const {multiple = false, inputChanged, onDrop} = this.props;
     if(multiple) {
-      inputChanged(this.getFiles().concat(files));
+      const allFiles = this.getFiles().concat(files);
+      inputChanged(allFiles);
+
+      if(isFunction(onDrop)) {
+        onDrop(allFiles);
+      }
     } else {
       inputChanged(Set(files));
+      
+      if(isFunction(onDrop)) {
+        onDrop(files);
+      }
     }
   }
-
 
   deleteFile = (index) => {
     const {multiple = false, inputChanged} = this.props;
@@ -83,7 +91,6 @@ class DropZoneFrecl extends React.Component{
                 {children && PassDownProps({files}, children)}
               </div>
             )}
-            
           </DropZone>
         </div>
 
