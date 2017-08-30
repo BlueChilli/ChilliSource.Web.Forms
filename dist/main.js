@@ -20492,7 +20492,7 @@ var DateRangePicker = (function (_super) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export DropZoneFrecl */
+/* unused harmony export DropZone */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_immutable__ = __webpack_require__(2);
@@ -20552,9 +20552,9 @@ var PassDownProps = function (props, children) {
     }
 };
 /** Class DropZone */
-var DropZoneFrecl = (function (_super) {
-    __extends(DropZoneFrecl, _super);
-    function DropZoneFrecl() {
+var DropZone = (function (_super) {
+    __extends(DropZone, _super);
+    function DropZone() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.getFiles = function () {
             var value = _this.props.value;
@@ -20576,9 +20576,9 @@ var DropZoneFrecl = (function (_super) {
                 }
             }
             else {
-                inputChanged(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_immutable__["Set"])([files.first()]));
+                inputChanged(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_immutable__["Set"])([files]));
                 if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_lodash__["isFunction"])(onDrop)) {
-                    onDrop(files.first());
+                    onDrop(files);
                 }
             }
         };
@@ -20589,13 +20589,13 @@ var DropZoneFrecl = (function (_super) {
         };
         return _this;
     }
-    DropZoneFrecl.prototype.componentDidMount = function () {
+    DropZone.prototype.componentDidMount = function () {
         var files = this.getFiles();
         if (files.size > 0) {
             this.props.inputChanged(this.getFiles(), false);
         }
     };
-    DropZoneFrecl.prototype.render = function () {
+    DropZone.prototype.render = function () {
         var _a = this.props, children = _a.children, className = _a.className, _b = _a.placeholder, placeholder = _b === void 0 ? "Drop here" : _b, _c = _a.multiple, multiple = _c === void 0 ? false : _c, _d = _a.showList, showList = _d === void 0 ? true : _d, fileListComponent = _a.fileListComponent;
         var attributes = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__Form_Helpers_inputHelpers__["c" /* getHTMLAttributes */])(this.props);
         var files = this.getFiles();
@@ -20605,12 +20605,12 @@ var DropZoneFrecl = (function (_super) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_dropzone___default.a, __assign({ className: classes, onDrop: this.onDrop, multiple: multiple }, attributes), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_lodash__["isFunction"])(children) ? (children(this.getFiles(), this.deleteFile)) : (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, children && PassDownProps({ files: files }, children))))),
             __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_lodash__["isFunction"])(fileListComponent) && (fileListComponent(this.getFiles(), this.deleteFile))));
     };
-    return DropZoneFrecl;
+    DropZone.defaultProps = {
+        children: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("noscript", null)
+    };
+    return DropZone;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
-DropZoneFrecl.defaultProps = {
-    children: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("noscript", null)
-};
-/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__Form_Helpers_performanceWrapper__["a" /* default */])(DropZoneFrecl));
+/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__Form_Helpers_performanceWrapper__["a" /* default */])(DropZone));
 
 
 
@@ -20816,18 +20816,18 @@ var Form = (function (_super) {
         var classes = __WEBPACK_IMPORTED_MODULE_3_classnames___default()('form', className);
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("form", { name: name, ref: name, onSubmit: this.handleFormSubmit, className: classes, noValidate: true, encType: encType }, this.props.children));
     };
+    Form.childContextTypes = {
+        FormState: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.object,
+        nameSpace: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
+        dispatch: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func
+    };
+    //FIXME: any to make TS happy unsure why it needs to be this way
+    Form.defaultProps = {
+        encType: 'application/json',
+        mapOutput: function (data) { return data; }
+    };
     return Form;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
-Form.childContextTypes = {
-    FormState: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.object,
-    nameSpace: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
-    dispatch: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func
-};
-//FIXME: any to make TS happy unsure why it needs to be this way
-Form.defaultProps = {
-    encType: 'application/json',
-    mapOutput: function (data) { return data; }
-};
 ;
 /* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_recompose__["branch"])(function (props) {
     return !(props.FormState && props.dispatch);
@@ -20874,12 +20874,12 @@ var Number = (function (_super) {
     Number.prototype.render = function () {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Input_Input__["a" /* default */], __assign({}, this.props));
     };
+    Number.defaultProps = {
+        pattern: '[0-9]+.?[0-9]*',
+        type: 'number',
+    };
     return Number;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
-Number.defaultProps = {
-    pattern: '[0-9]+.?[0-9]*',
-    type: 'number',
-};
 /* harmony default export */ __webpack_exports__["a"] = (Number);
 
 
@@ -21114,12 +21114,12 @@ var MultiSelect = (function (_super) {
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Form_InputWrapper__["a" /* default */], { name: props.name, label: label, labelPrefix: labelPrefix, labelPostfix: labelPostfix, className: classes },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_select___default.a, { value: safeValue.toJS(), options: options.toJS(), multi: true, onChange: this.handleChange, noResultsText: noResultsText, placeholder: placeholder })));
     };
+    MultiSelect.defaultProps = {
+        options: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["List"])([])
+    };
     return MultiSelect;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
 
-MultiSelect.defaultProps = {
-    options: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["List"])([])
-};
 /* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__Form_Helpers_performanceWrapper__["a" /* default */])(MultiSelect));
 
 
