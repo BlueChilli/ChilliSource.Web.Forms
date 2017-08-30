@@ -1,7 +1,7 @@
 /** Libraries */
 import React, {Children} from 'react';
 import {Set} from 'immutable';
-import DropZone from 'react-dropzone';
+import ReactDropZone from 'react-dropzone';
 import classnames from 'classnames';
 import {compose} from 'recompose';
 import {isFunction} from 'lodash';
@@ -34,7 +34,7 @@ const PassDownProps = (props, children) => {
 };
 
 /** Class DropZone */
-class DropZoneFrecl extends React.Component<DropZoneProps & PerformanceWrapperProps, undefined> {
+class DropZone extends React.Component<DropZoneProps & PerformanceWrapperProps, undefined> {
   static defaultProps = {
     children: <noscript />
   }
@@ -68,10 +68,10 @@ class DropZoneFrecl extends React.Component<DropZoneProps & PerformanceWrapperPr
         onDrop(allFiles);
       }
     } else {
-      inputChanged(Set([files.first()]));
+      inputChanged(Set([files]));
       
       if(isFunction(onDrop)) {
-        onDrop(files.first());
+        onDrop(files);
       }
     }
   }
@@ -93,7 +93,7 @@ class DropZoneFrecl extends React.Component<DropZoneProps & PerformanceWrapperPr
     return (
       <div>
         <div className="drop-zone">
-          <DropZone className={classes} onDrop={this.onDrop} multiple={multiple} {...attributes}>
+          <ReactDropZone className={classes} onDrop={this.onDrop} multiple={multiple} {...attributes}>
             {isFunction(children) ? (
               children(this.getFiles(), this.deleteFile)
             ) : (
@@ -101,7 +101,7 @@ class DropZoneFrecl extends React.Component<DropZoneProps & PerformanceWrapperPr
                 {children && PassDownProps({files}, children)}
               </div>
             )}
-          </DropZone>
+          </ReactDropZone>
         </div>
 
         {isFunction(fileListComponent) && (
@@ -112,5 +112,5 @@ class DropZoneFrecl extends React.Component<DropZoneProps & PerformanceWrapperPr
   }
 }
 
-export default performanceWrapper(DropZoneFrecl);
-export {DropZoneFrecl};
+export default performanceWrapper(DropZone);
+export {DropZone};
