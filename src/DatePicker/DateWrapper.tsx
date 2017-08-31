@@ -11,6 +11,9 @@ import InputGroup from '../Form/InputGroup';
 import dateInactiveIcon from './Assets/date-icon-inactive.svg';
 import dateActiveIcon from './Assets/date-icon-active.svg';
 
+/** Styles */
+import './Date.scss';
+
 /** Interfaces */
 import {InternalDateWrapperProps} from '../../typings/types.d';
 
