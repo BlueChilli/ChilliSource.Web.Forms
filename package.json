@@ -1,10 +1,10 @@
 {
   "name": "cs.forms",
-  "version": "1.0.70",
+  "version": "1.0.79",
   "author": "Blue Chilli Technology Pty Ltd",
   "description": "A collection of forms components, helpers and abstractions built in React. These can be used with or without Redux.",
   "main": "dist/main.js",
-  "types": "index.d.ts",
+  "types": "typings/types.d.ts",
   "style": "dist/main.css",
   "repository": {
     "type": "git",
@@ -25,7 +25,8 @@
     "test": "jest",
     "test-watch": "jest --watch",
     "start": "node server.js",
-    "build": "webpack --config webpack.build.config.js"
+    "build": "webpack --config webpack.build.config.js",
+    "build-static": "webpack --config webpack.static.config.js"
   },
   "dependencies": {
     "@types/react": "^15.0.27",
@@ -78,6 +79,7 @@
     "@types/recompose": "0.23.3",
     "autoprefixer": "^6.7.7",
     "awesome-typescript-loader": "^3.1.2",
+    "breakpoint-sass": "^2.7.1",
     "clean-webpack-plugin": "^0.1.16",
     "config": "^1.25.1",
     "css-loader": "^0.28.0",
@@ -95,8 +97,10 @@
     "raw-loader": "^0.5.1",
     "react-test-renderer": "^15.5.4",
     "sass-loader": "^6.0.3",
+    "scut": "^1.4.0",
     "sinon": "^2.1.0",
     "style-loader": "^0.16.1",
+    "susy": "^2.2.12",
     "ts-jest": "^20.0.6",
     "typescript": "^2.4.1",
     "url-loader": "^0.5.8",
