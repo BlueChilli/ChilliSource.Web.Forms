@@ -1,0 +1,47 @@
+{
+  "non-interactive": true,
+  "dry-run": false,
+  "verbose": true,
+  "force": false,
+  "pkgFiles": ["package.json"],
+  "increment": "patch",
+  "buildCommand": "echo 'built by teamcity'",
+  "changelogCommand": "git log --pretty=format:\"* %s (%h)\" [REV_RANGE]",
+  "requireCleanWorkingDir": false,
+  "src": {
+    "commitMessage": "Release %s",
+    "tagName": "%s",
+    "tagAnnotation": "%s",
+    "pushRepo": null,
+    "beforeStartCommand": false,
+    "beforeStageCommand": false,
+    "afterReleaseCommand": false,
+    "githubAssets": true
+  },
+  "dist": {
+    "repo": false,
+    "stageDir": ".stage",
+    "baseDir": "dist",
+    "files": ["**/*"],
+    "pkgFiles": null,
+    "commitMessage": "Release %s",
+    "tagName": "%s",
+    "tagAnnotation": "Release %s",
+    "beforeStageCommand": false,
+    "afterReleaseCommand": false,
+    "githubAssets": false
+  },
+  "npm": {
+    "publish": false,
+    "publishPath": ".",
+    "tag": "latest",
+    "private": true,
+    "forcePublishSourceRepo": false
+  },
+  "github": {
+    "release": true,
+    "releaseName": "%s",
+    "preRelease": true,
+    "tokenRef": "GITHUB_TOKEN"
+  }
+}
