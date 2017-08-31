@@ -7,7 +7,7 @@
 		var a = typeof exports === 'object' ? factory(require("react"), require("classnames"), require("immutable"), require("recompose"), require("moment"), require("react-date-range"), require("react-dom"), require("react-dropzone"), require("react-onclickoutside")) : factory(root["React"], root["classnames"], root["Immutable"], root["Recompose"], root["Moment"], root["ReactDateRange"], root["ReactDOM"], root["ReactDropzone"], root["ReactOnclickoutside"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_33__, __WEBPACK_EXTERNAL_MODULE_34__, __WEBPACK_EXTERNAL_MODULE_79__, __WEBPACK_EXTERNAL_MODULE_80__, __WEBPACK_EXTERNAL_MODULE_81__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_33__, __WEBPACK_EXTERNAL_MODULE_34__, __WEBPACK_EXTERNAL_MODULE_81__, __WEBPACK_EXTERNAL_MODULE_82__, __WEBPACK_EXTERNAL_MODULE_83__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -17823,7 +17823,7 @@ module.exports = factory(
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(77), __webpack_require__(78)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(79), __webpack_require__(80)(module)))
 
 /***/ }),
 /* 12 */
@@ -17952,7 +17952,7 @@ var _propTypes = __webpack_require__(5);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _reactDom = __webpack_require__(79);
+var _reactDom = __webpack_require__(81);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -19902,10 +19902,14 @@ var getValue = function (name, inputInfo) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_onclickoutside__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_onclickoutside__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_onclickoutside___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_onclickoutside__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Form_InputWrapper__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Form_InputGroup__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Assets_date_icon_inactive_svg__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Assets_date_icon_inactive_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__Assets_date_icon_inactive_svg__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Assets_date_icon_active_svg__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Assets_date_icon_active_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__Assets_date_icon_active_svg__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -19921,6 +19925,9 @@ var __extends = (this && this.__extends) || (function () {
 
 
 /** Components */
+
+
+/** Icons & Images */
 
 
 /** Class DateWrapper */
@@ -19945,11 +19952,14 @@ var DateWrapper = (function (_super) {
         return _this;
     }
     DateWrapper.prototype.render = function () {
-        var dateRangeClasses = __WEBPACK_IMPORTED_MODULE_1_classnames___default()({ hidden: this.state.hidden }, 'date-range-container');
+        var hidden = this.state.hidden;
+        var dateRangeClasses = __WEBPACK_IMPORTED_MODULE_1_classnames___default()({ 'hidden': hidden }, 'date-range-container');
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "date-range-wrapper" },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Form_InputWrapper__["a" /* default */], { className: "input date-picker", name: this.props.name, labelPostfix: this.props.labelPostfix, label: this.props.label },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Form_InputGroup__["a" /* default */], { prepend: this.props.prepend, append: this.props.append },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { onFocus: this.handleFocus, placeholder: this.props.placeholder, value: this.props.valueString, ref: this.props.name, readOnly: true }))),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: __WEBPACK_IMPORTED_MODULE_1_classnames___default()('date-input-container', { 'active': !hidden }) },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { onFocus: this.handleFocus, placeholder: this.props.placeholder, value: this.props.valueString, ref: this.props.name, readOnly: true }),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: hidden ? __WEBPACK_IMPORTED_MODULE_5__Assets_date_icon_inactive_svg___default.a : __WEBPACK_IMPORTED_MODULE_6__Assets_date_icon_active_svg___default.a })))),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: dateRangeClasses }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.cloneElement(this.props.children, {
                 close: this.closeInput
             }))));
@@ -20378,7 +20388,7 @@ var DatePicker = (function (_super) {
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
 /* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_recompose__["compose"])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_recompose__["defaultProps"])({
     defaultValue: __WEBPACK_IMPORTED_MODULE_1_moment___default()().format(),
-    dateFormat: 'DD/MM/YYYY',
+    dateFormat: 'DD-MM-YYYY',
     serverFormat: null
 }), __WEBPACK_IMPORTED_MODULE_5__Form_Helpers_performanceWrapper__["a" /* default */])(DatePicker));
 
@@ -20440,9 +20450,9 @@ var __rest = (this && this.__rest) || function (s, e) {
 
 /** Helpers */
 var getValue = function (dateRange, dateFormat) {
-    if (dateFormat === void 0) { dateFormat = 'DD/MM/YYYY'; }
+    if (dateFormat === void 0) { dateFormat = 'DD-MM-YYYY'; }
     if (__WEBPACK_IMPORTED_MODULE_2_immutable__["Map"].isMap(dateRange) && dateRange) {
-        return __WEBPACK_IMPORTED_MODULE_1_moment___default()(dateRange.get('startDate'), 'DD/MM/YYYY').format(dateFormat) + " to " + __WEBPACK_IMPORTED_MODULE_1_moment___default()(dateRange.get('endDate'), 'DD/MM/YYYY').format(dateFormat);
+        return __WEBPACK_IMPORTED_MODULE_1_moment___default()(dateRange.get('startDate'), 'DD-MM-YYYY').format(dateFormat) + " to " + __WEBPACK_IMPORTED_MODULE_1_moment___default()(dateRange.get('endDate'), 'DD-MM-YYYY').format(dateFormat);
     }
     return __WEBPACK_IMPORTED_MODULE_1_moment___default()().format(dateFormat) + " to " + __WEBPACK_IMPORTED_MODULE_1_moment___default()().format(dateFormat);
 };
@@ -20455,8 +20465,8 @@ var DateRangeBase = (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.handleChange = function (dateRange) {
             _this.props.inputChanged(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["Map"])({
-                startDate: dateRange.startDate.format('DD/MM/YYYY'),
-                endDate: dateRange.endDate.format('DD/MM/YYYY')
+                startDate: dateRange.startDate.format('DD-MM-YYYY'),
+                endDate: dateRange.endDate.format('DD-MM-YYYY')
             }));
             if (typeof _this.props.onChange === 'function') {
                 _this.props.onChange(dateRange);
@@ -20497,7 +20507,7 @@ var DateRangePicker = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_immutable__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_immutable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_immutable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dropzone__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dropzone__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dropzone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_dropzone__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_classnames__);
@@ -24584,6 +24594,18 @@ module.exports = exports['default'];
 /* 77 */
 /***/ (function(module, exports) {
 
+module.exports = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxNiAxOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+aWNvbi1jYWxlbmRhci1mb2N1czwvdGl0bGU+PHBhdGggZD0iTTE0LjMyOCAxNi4zNjloLTIuMjE2di0yLjM3MmgyLjc4djEuODA4YS41NjQuNTY0IDAgMCAxLS41NjQuNTY0em0tMTMuMi0uNTY0di0xLjgwOGgyLjgxOHYyLjM3MkgxLjY5MWEuNTY0LjU2NCAwIDAgMS0uNTYzLS41NjR6bS41NjMtMTMuMThoMS42NzJWMy44MWEuNTY0LjU2NCAwIDAgMCAxLjEyOCAwVjIuNjI0aDYuOTk4VjMuODFhLjU2NC41NjQgMCAwIDAgMS4xMjggMFYyLjYyNGgxLjcxYy4zMTIgMCAuNTY1LjI1My41NjUuNTY0djIuNjI1SDEuMTI4VjMuMTg4YzAtLjMxLjI1Mi0uNTY0LjU2My0uNTY0em0xMC40MiAxMC40NTloMi43OHYtMi43NDJoLTIuNzh2Mi43NDJ6bS0zLjY1NC4wMTl2LTIuNzZoMi43NHYyLjc0aC0yLjc0di4wMnptMCAzLjI2NmgyLjc0di0yLjM3MmgtMi43NHYyLjM3MnptLTMuNTk3IDBoMi43MDJ2LTIuMzcySDQuODZ2Mi4zNzJ6bTAtMy4yODVoMi43MDJ2LTIuNzQySDQuODZ2Mi43NDJ6bS0zLjczMiAwaDIuODE4di0yLjc0MkgxLjEyOHYyLjc0MnptMC0zLjYzNmgyLjgxOFY2LjkyMUgxLjEyOHYyLjUyN3ptMTAuOTg0IDBoMi43OFY2LjkyMWgtMi43OHYyLjUyN3ptLTMuNjU1IDBoMi43NlY2LjkyMWgtMi43NnYyLjUyN3ptLTMuNTk3IDBoMi43MDJWNi45MjFINC44NnYyLjUyN3ptOS40NjgtNy45NTFoLTEuNzExVi41NjRhLjU2NC41NjQgMCAwIDAtMS4xMjggMHYuOTMzSDQuNDkxVi41NjRhLjU2NC41NjQgMCAwIDAtMS4xMjggMHYuOTMzSDEuNjkxQy43NTggMS40OTcgMCAyLjI1NSAwIDMuMTg4djEyLjYxN2MwIC45MzMuNzU4IDEuNjkyIDEuNjkxIDEuNjkyaDEyLjYxN2MuOTMzIDAgMS42OTItLjc1OSAxLjY5Mi0xLjY5MlYzLjE4OGExLjY2NCAxLjY2NCAwIDAgMC0xLjY3Mi0xLjY5MXoiIGZpbGw9IiMwMDlERTAiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg=="
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxNiAxOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+aWNvbi1jYWxlbmRhcjwvdGl0bGU+PHBhdGggZD0iTTE0LjMyOCAxNi4zNjloLTIuMjE2di0yLjM3MmgyLjc4djEuODA4YS41NjQuNTY0IDAgMCAxLS41NjQuNTY0em0tMTMuMi0uNTY0di0xLjgwOGgyLjgxOHYyLjM3MkgxLjY5MWEuNTY0LjU2NCAwIDAgMS0uNTYzLS41NjR6bS41NjMtMTMuMThoMS42NzJWMy44MWEuNTY0LjU2NCAwIDAgMCAxLjEyOCAwVjIuNjI0aDYuOTk4VjMuODFhLjU2NC41NjQgMCAwIDAgMS4xMjggMFYyLjYyNGgxLjcxYy4zMTIgMCAuNTY1LjI1My41NjUuNTY0djIuNjI1SDEuMTI4VjMuMTg4YzAtLjMxLjI1Mi0uNTY0LjU2My0uNTY0em0xMC40MiAxMC40NTloMi43OHYtMi43NDJoLTIuNzh2Mi43NDJ6bS0zLjY1NC4wMTl2LTIuNzZoMi43NHYyLjc0aC0yLjc0di4wMnptMCAzLjI2NmgyLjc0di0yLjM3MmgtMi43NHYyLjM3MnptLTMuNTk3IDBoMi43MDJ2LTIuMzcySDQuODZ2Mi4zNzJ6bTAtMy4yODVoMi43MDJ2LTIuNzQySDQuODZ2Mi43NDJ6bS0zLjczMiAwaDIuODE4di0yLjc0MkgxLjEyOHYyLjc0MnptMC0zLjYzNmgyLjgxOFY2LjkyMUgxLjEyOHYyLjUyN3ptMTAuOTg0IDBoMi43OFY2LjkyMWgtMi43OHYyLjUyN3ptLTMuNjU1IDBoMi43NlY2LjkyMWgtMi43NnYyLjUyN3ptLTMuNTk3IDBoMi43MDJWNi45MjFINC44NnYyLjUyN3ptOS40NjgtNy45NTFoLTEuNzExVi41NjRhLjU2NC41NjQgMCAwIDAtMS4xMjggMHYuOTMzSDQuNDkxVi41NjRhLjU2NC41NjQgMCAwIDAtMS4xMjggMHYuOTMzSDEuNjkxQy43NTggMS40OTcgMCAyLjI1NSAwIDMuMTg4djEyLjYxN2MwIC45MzMuNzU4IDEuNjkyIDEuNjkxIDEuNjkyaDEyLjYxN2MuOTMzIDAgMS42OTItLjc1OSAxLjY5Mi0xLjY5MlYzLjE4OGExLjY2NCAxLjY2NCAwIDAgMC0xLjY3Mi0xLjY5MXoiIGZpbGw9IiNBREFEQjAiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg=="
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports) {
+
 var g;
 
 // This works in non-strict mode
@@ -24608,7 +24630,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 78 */
+/* 80 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -24636,22 +24658,22 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 79 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_79__;
-
-/***/ }),
-/* 80 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_80__;
-
-/***/ }),
 /* 81 */
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_81__;
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_82__;
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_83__;
 
 /***/ })
 /******/ ]);
