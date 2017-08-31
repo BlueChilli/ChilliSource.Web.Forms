@@ -12,6 +12,9 @@ import performanceWrapper from '../Form/Helpers/performanceWrapper';
 import {DateWrapperPassedDownProps} from './DateWrapper';
 import {DatePickerProps, PerformanceWrapperProps} from '../../typings/types.d';
 
+/** Styles */
+import './DateRange.scss';
+
 /** Class CalendarBase */
 class CalendarBase extends React.Component<DatePickerProps & PerformanceWrapperProps & DateWrapperPassedDownProps, {}>{
   handleChange = (dateRange:Moment) => {

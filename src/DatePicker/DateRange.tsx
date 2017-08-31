@@ -21,6 +21,9 @@ const getValue = (dateRange?: DateRangeMap, dateFormat:string = 'DD-MM-YYYY') =>
   return moment().format(dateFormat) + " to " + moment().format(dateFormat);
 }
 
+/** Styles */
+import './DateRange.scss';
+
 /** Class DateRangeBase */
 class DateRangeBase extends React.Component<DateRangeProps & PerformanceWrapperProps, {}>{
   handleChange = (dateRange: DateRangeMoment) => {
