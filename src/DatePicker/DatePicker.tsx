@@ -58,7 +58,7 @@ class DatePicker extends React.Component<DatePickerProps & PerformanceWrapperPro
 export default compose<DatePickerProps & PerformanceWrapperProps, DatePickerProps>(
   defaultProps({
     defaultValue: moment().format(),
-    dateFormat: 'DD/MM/YYYY',
+    dateFormat: 'DD-MM-YYYY',
     serverFormat: null
   }),
   performanceWrapper

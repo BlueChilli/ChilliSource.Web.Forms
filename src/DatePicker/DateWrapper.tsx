@@ -7,6 +7,10 @@ import onReactOutsideClick from 'react-onclickoutside';
 import InputWrapper from '../Form/InputWrapper';
 import InputGroup from '../Form/InputGroup';
 
+/** Icons & Images */
+import dateInactiveIcon from './Assets/date-icon-inactive.svg';
+import dateActiveIcon from './Assets/date-icon-active.svg';
+
 /** Interfaces */
 import {InternalDateWrapperProps} from '../../typings/types.d';
 
@@ -48,13 +52,18 @@ class DateWrapper extends Component<InternalDateWrapperProps, StateProps>{
   }
 
   render() {
-    const dateRangeClasses = classnames({hidden: this.state.hidden}, 'date-range-container');
+    const {hidden} = this.state;
+
+    const dateRangeClasses = classnames({'hidden': hidden}, 'date-range-container');
 
     return (
       <div className="date-range-wrapper">
         <InputWrapper className="input date-picker" name={this.props.name} labelPostfix={this.props.labelPostfix} label={this.props.label}>
           <InputGroup prepend={this.props.prepend} append={this.props.append}>
-            <input onFocus={this.handleFocus} placeholder={this.props.placeholder} value={this.props.valueString} ref={this.props.name} readOnly={true}/>
+            <div className={classnames('date-input-container', {'active': !hidden})}>
+              <input onFocus={this.handleFocus} placeholder={this.props.placeholder} value={this.props.valueString} ref={this.props.name} readOnly={true} />
+              <img src={hidden ? dateInactiveIcon : dateActiveIcon} />
+            </div>
           </InputGroup>
         </InputWrapper>
         <div className={dateRangeClasses}>
