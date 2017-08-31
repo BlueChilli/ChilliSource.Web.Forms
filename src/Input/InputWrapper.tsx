@@ -2,13 +2,10 @@
 import React from 'react';
 
 /** Components */
-import ErrorWrapper from './ErrorWrapper';
+import ErrorWrapper from '../Form/ErrorWrapper';
 
 /** Interfaces */
 import {InputWrapperProps} from '../../typings/types.d';
-
-/** Styles */
-import './InputWrapper.scss';
 
 /** Class InputWrapper */
 class InputWrapper extends React.Component<InputWrapperProps, undefined> {

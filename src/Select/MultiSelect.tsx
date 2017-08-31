@@ -6,7 +6,7 @@ import 'react-select/dist/react-select.css';
 import classnames from 'classnames';
 
 /** Components */
-import InputWrapper from '../Form/InputWrapper';
+import InputWrapper from '../Input/InputWrapper';
 import performanceWrapper from '../Form/Helpers/performanceWrapper';
 
 /** Interfaces */

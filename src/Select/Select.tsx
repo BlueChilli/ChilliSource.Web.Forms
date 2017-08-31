@@ -3,7 +3,7 @@ import React from 'react';
 import classnames from 'classnames';
 
 /** Components */
-import InputWrapper from '../Form/InputWrapper';
+import InputWrapper from '../Input/InputWrapper';
 import performanceWrapper from '../Form/Helpers/performanceWrapper';
 import DisplayValidation from '../Validation/DisplayValidation';
 import SelectBase from './Base';

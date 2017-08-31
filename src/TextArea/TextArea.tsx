@@ -3,8 +3,8 @@ import React from 'react';
 import classnames from 'classnames';
 
 /** Components */
-import InputWrapper from '../Form/InputWrapper';
-import InputGroup from '../Form/InputGroup';
+import InputWrapper from '../Input/InputWrapper';
+import InputGroup from '../Input/InputGroup';
 import TextAreaBase from './Base';
 import DisplayValidation from '../Validation/DisplayValidation';
 import performanceWrapper from '../Form/Helpers/performanceWrapper';

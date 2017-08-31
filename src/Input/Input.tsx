@@ -3,14 +3,17 @@ import React from 'react';
 import classnames from 'classnames';
 
 /** Components */
-import InputGroup from '../Form/InputGroup';
-import InputWrapper from '../Form/InputWrapper';
+import InputGroup from './InputGroup';
+import InputWrapper from './InputWrapper';
 import InputBase from './Base';
 import DisplayValidation from '../Validation/DisplayValidation';
 import performanceWrapper from '../Form/Helpers/performanceWrapper';
 
 /** Interfaces */
 import {TextInputProps, PerformanceWrapperProps} from '../../typings/types.d';
+
+/** Styles */
+import './Input.scss';
 
 /** Class Input */
 export class Input extends React.Component<TextInputProps & PerformanceWrapperProps, {}> {

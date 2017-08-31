@@ -3,7 +3,7 @@ import React from 'react';
 import classnames from 'classnames';
 
 /** Components */
-import InputWrapper from '../Form/InputWrapper';
+import InputWrapper from '../Input/InputWrapper';
 
 /** Interfaces */
 import {RadioTabsProps, RadioTabProps, SwitchProps} from '../../typings/types.d';

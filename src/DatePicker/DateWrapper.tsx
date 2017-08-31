@@ -4,8 +4,8 @@ import classnames from 'classnames';
 import onReactOutsideClick from 'react-onclickoutside';
 
 /** Components */
-import InputWrapper from '../Form/InputWrapper';
-import InputGroup from '../Form/InputGroup';
+import InputWrapper from '../Input/InputWrapper';
+import InputGroup from '../Input/InputGroup';
 
 /** Icons & Images */
 import dateInactiveIcon from './Assets/date-icon-inactive.svg';
