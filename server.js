@@ -46,5 +46,5 @@ httpsServer.listen(port, function onStart(err) {
     console.log(err);
   }
   open(url);
-  console.info('Listening to =>%s in your browser.', url);
+  console.info('Listening to => %s in your browser.', url);
 });

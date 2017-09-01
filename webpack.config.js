@@ -7,7 +7,7 @@ process.env.NODE_ENV = JSON.stringify(config.get('buildEnvironment'));
 
 module.exports = {
   devtool: 'eval-source-map',
-  entry: path.join(__dirname, '/app/entry'),
+  entry: ['webpack-hot-middleware/client', path.join(__dirname, '/app/entry')],
   output: {
     path: "/",
     publicPath: "/"
@@ -33,7 +33,8 @@ module.exports = {
           return [autoprefixer]
         }
       }
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.tsx', '.ts'],
