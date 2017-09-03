@@ -200,6 +200,8 @@ export interface InputWrapperProps extends BaseReactProps, LabelProp, NameProp, 
   labelPrefix?: any,
   /** Pass in something to be appended to the label */ 	
   labelPostfix?: any,
+  /** Hint text */
+  explanation?: string
 }
 
 export interface BaseInputProps<TDefault, TValue, TChangeEvent = React.ChangeEvent<{}>> extends BaseReactProps, OnChangeEventProps<TChangeEvent>, OnBlurEventProps<React.FocusEvent<{}>>, ValidationProps, NameProp, TypeProp, IdProp, DefaultValueProp<TDefault>, ValueProp<TValue> {

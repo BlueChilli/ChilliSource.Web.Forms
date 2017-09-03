@@ -75,13 +75,23 @@ export class Input extends React.Component<TextInputProps & PerformanceWrapperPr
   }
 
   render () {
-    const {className, label, labelPostfix, labelPrefix, prepend, append, format, radius, ...props} = this.props;
+    const {className, label, labelPostfix, labelPrefix, explanation, prepend, append, format, radius, ...props} = this.props;
     const {autoFocus, onChange, onBlur, id, value, ...validationProps} = props;
     const classes:string = classnames(className, 'input');
     
     if (props.type !== 'hidden') {
+      const inputWrapperProps = {
+        labelPrefix,
+        labelPostfix,
+        explanation,
+        label,
+        name: props.name,
+        type: props.type,
+        className: classes
+      };
+
       return (
-        <InputWrapper className={classes} type={props.type} name={props.name} labelPrefix={labelPrefix} labelPostfix={labelPostfix} label={label}>
+        <InputWrapper {...inputWrapperProps}>
           <InputGroup {...this.getInputGroupProps()} style={{borderRadius: radius ? `${radius}px` : 0}}>
             <InputBase {...props} style={{borderRadius: radius ? `${radius}px` : 0}} />
           </InputGroup>
