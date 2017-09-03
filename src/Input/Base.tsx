@@ -29,7 +29,8 @@ class InputBase extends React.Component<TextInputProps & PerformanceWrapperProps
 
   render() {
     const attributes = getHTMLAttributes<TextInputProps & PerformanceWrapperProps>(this.props);
-    return <input onBlur={this.handleBlured} {...attributes} onChange={this.handleChange}/>
+    
+    return <input onBlur={this.handleBlured} onChange={this.handleChange} {...attributes} />
   }
 }
 

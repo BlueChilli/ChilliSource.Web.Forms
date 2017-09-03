@@ -221,7 +221,12 @@ export interface OptionTypes {
 
 export interface TextAreaProps extends BaseInputProps<string, string>, CustomValidationProps, InputWrapperProps, PlaceholderProp, AdditionalCompareProps {}
 
-export interface TextInputProps extends BaseInputProps<string, string | number>, CustomValidationProps, InputWrapperProps, InputGroupProps, PlaceholderProp, AdditionalCompareProps{} 
+export interface TextInputProps extends BaseInputProps<string, string | number>, CustomValidationProps, InputWrapperProps, InputGroupProps, PlaceholderProp, AdditionalCompareProps {
+  /** The corner radius for the input area */
+  radius?: number,
+  /** Type of preconfigured input */
+  format?: 'percentage' | 'dollar' | 'euro' | 'yen' | 'search'
+} 
 
 export interface SelectInputProps extends BaseInputProps<string | number, string | number>, CustomValidationProps, InputWrapperProps, DefaultSwitchProps, AdditionalCompareProps{
   /** Pass in an arrow to display at the edge of the select box */ 
