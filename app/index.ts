@@ -13,7 +13,7 @@ export {default as TextArea} from "../src/TextArea/TextArea";
 export {default as Validation} from "../src/Validation/Validation";
 export {default as Validate} from "../src/Validation/Validate";
 export {default as Form} from "../src/Form/Form";
-export {FormOwnProps, FormOptionalProps} from '../typings/types.d';
+export {FormOwnProps, FormOptionalProps} from '../index.d';
 export {basicReducer as ReduxReducer} from "../src/Form/Reducers/index";
 export {default as performanceWrapper} from "../src/Form/Helpers/performanceWrapper";
 export {default as Fieldset} from "../src/Form/Fieldset";
