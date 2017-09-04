@@ -7,6 +7,7 @@ import {Calendar} from 'react-date-range';
 /** Components */
 import DateWrapper from './DateWrapper';
 import performanceWrapper from '../Form/Helpers/performanceWrapper';
+import {theme} from './theme';
 
 /** Interfaces */
 import {DateWrapperPassedDownProps} from './DateWrapper';
@@ -28,7 +29,7 @@ class CalendarBase extends React.Component<DatePickerProps & PerformanceWrapperP
     }
   }
   render() {
-    return <Calendar {...this.props} onChange={this.handleChange}/>
+    return <Calendar {...this.props} onChange={this.handleChange} theme={theme} />
   }
 }
 

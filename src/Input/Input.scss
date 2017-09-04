@@ -17,7 +17,6 @@ $primaryColor: #00AFEE;
 
   .input-description {
     height: 16px;
-    margin-bottom: 4px;
 
     p {
       margin: 0;
@@ -28,6 +27,7 @@ $primaryColor: #00AFEE;
 
   // Input
   .input-group {
+    margin-top: 4px;
     position: relative;
     height: $inputHeight;
     overflow: hidden;

@@ -9,6 +9,7 @@ import {DateRange} from 'react-date-range';
 /** Components */
 import DateWrapper from './DateWrapper';
 import performanceWrapper from '../Form/Helpers/performanceWrapper';
+import {theme} from './theme';
 
 /** Interfaces */
 import {DateRangeMap, DateRangeMoment, DateRangeProps, PerformanceWrapperProps} from '../../typings/types.d';
@@ -36,7 +37,7 @@ class DateRangeBase extends React.Component<DateRangeProps & PerformanceWrapperP
     }
   }
   render(){
-    return <DateRange {...this.props} calendars={1} onChange={this.handleChange}/>
+    return <DateRange {...this.props} calendars={1} onChange={this.handleChange} theme={theme} />
   }
 };
 
