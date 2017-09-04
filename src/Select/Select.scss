@@ -35,3 +35,44 @@
     justify-content: center;
   }
 }
+
+// MultiSelect Styles
+.Select {
+  margin-top: 4px;
+  cursor: pointer;
+  border: none;
+
+  div {
+    height: 32px;
+    padding: 8px;
+    padding-left: 20px;
+
+    .Select-value {
+      margin: 0;
+      padding: 0;
+      margin-right: 8px;
+      border: none;
+
+      span {
+        margin-top: 4px;
+      }
+
+      span.Select-value-icon {
+        border: none;
+      }
+
+      background-color: #00AFEF;
+      color: #FFFFFF;
+      border-radius: 2px;
+    }
+  }
+
+  .Select-menu-outer {
+    height: auto;
+
+    .Select-menu {
+      z-index: 1000;
+      height: auto;
+    }
+  }
+}
