@@ -1,1 +1,37 @@
+.styled-select {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: white;
+  border: 1px solid #D8D8D8;
+  overflow: hidden;
+  display: inline-block;
 
+  &.round {
+    border-radius: 4px;
+  }
+
+  select {
+    appearance: none;
+    background: transparent;
+    border: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-left: 12px;
+    padding-right: 52px;
+  }
+
+  .arrow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
