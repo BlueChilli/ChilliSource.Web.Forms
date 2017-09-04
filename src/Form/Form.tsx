@@ -178,4 +178,4 @@ export default branch<FormProps<undefined>>(props => {
 (Form);
 
 
-export {clearAllInputs}
+export {clearAllInputs, Form}

@@ -27,4 +27,6 @@ export class Input extends React.Component<TextInputProps & PerformanceWrapperPr
   }
 };
 
-export default performanceWrapper<TextInputProps>(Input);
+const WrappedInput = performanceWrapper<TextInputProps>(Input);
+
+export default WrappedInput;
