@@ -221,7 +221,10 @@ export interface OptionTypes {
   children: List<React.ReactText>
 }
 
-export interface TextAreaProps extends BaseInputProps<string, string>, CustomValidationProps, InputWrapperProps, PlaceholderProp, AdditionalCompareProps {}
+export interface TextAreaProps extends BaseInputProps<string, string>, CustomValidationProps, InputWrapperProps, PlaceholderProp, AdditionalCompareProps {
+  /** The number of rows initially shown in the text area */
+  rows: number
+}
 
 export interface TextInputProps extends BaseInputProps<string, string | number>, CustomValidationProps, InputWrapperProps, InputGroupProps, PlaceholderProp, AdditionalCompareProps {
   /** The corner radius for the input area */
