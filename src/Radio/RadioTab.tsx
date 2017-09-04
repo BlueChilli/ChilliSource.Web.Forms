@@ -24,7 +24,7 @@ class RadioTab extends React.Component<RadioTabsPassedDownProps & RadioTabProps,
     }
   }
 
-  setId = (id:string) => {
+  setId = (id: string) => {
     const {setId} = this.props;
     if(!setId) throw new Error(`setId is not pass down from RadioTabs. please check RadioTab - ${id} is direct child of RadioTabs or create the wrapper to pass the props from RadioTabs`);
     if(setId && isFunction(setId)) setId(id);
