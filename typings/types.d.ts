@@ -200,6 +200,8 @@ export interface InputWrapperProps extends BaseReactProps, LabelProp, NameProp, 
   labelPrefix?: any,
   /** Pass in something to be appended to the label */ 	
   labelPostfix?: any,
+  /** Hint text */
+  explanation?: string
 }
 
 export interface BaseInputProps<TDefault, TValue, TChangeEvent = React.ChangeEvent<{}>> extends BaseReactProps, OnChangeEventProps<TChangeEvent>, OnBlurEventProps<React.FocusEvent<{}>>, ValidationProps, NameProp, TypeProp, IdProp, DefaultValueProp<TDefault>, ValueProp<TValue> {
@@ -221,7 +223,12 @@ export interface OptionTypes {
 
 export interface TextAreaProps extends BaseInputProps<string, string>, CustomValidationProps, InputWrapperProps, PlaceholderProp, AdditionalCompareProps {}
 
-export interface TextInputProps extends BaseInputProps<string, string | number>, CustomValidationProps, InputWrapperProps, InputGroupProps, PlaceholderProp, AdditionalCompareProps{} 
+export interface TextInputProps extends BaseInputProps<string, string | number>, CustomValidationProps, InputWrapperProps, InputGroupProps, PlaceholderProp, AdditionalCompareProps {
+  /** The corner radius for the input area */
+  radius?: number,
+  /** Type of preconfigured input */
+  format?: 'percentage' | 'dollar' | 'euro' | 'yen' | 'search'
+} 
 
 export interface SelectInputProps extends BaseInputProps<string | number, string | number>, CustomValidationProps, InputWrapperProps, DefaultSwitchProps, AdditionalCompareProps{
   /** Pass in an arrow to display at the edge of the select box */ 
@@ -242,7 +249,7 @@ export interface RadioTabsProps extends BaseReactProps, NameProp, LabelProp{
   radioClasses?: string
 }
 
-export interface RadioTabProps extends BaseReactProps{
+export interface RadioTabProps extends BaseReactProps, LabelProp {
   /** Put into state as the value of the selected switch */
   id: string,
   defaultSelected?: boolean

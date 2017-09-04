@@ -2,12 +2,14 @@
 import React from 'react';
 import Select from 'react-select';
 import {List, fromJS, Iterable} from 'immutable';
-import 'react-select/dist/react-select.css';
 import classnames from 'classnames';
 
 /** Components */
-import InputWrapper from '../Form/InputWrapper';
+import InputWrapper from '../Input/InputWrapper';
 import performanceWrapper from '../Form/Helpers/performanceWrapper';
+
+/** Styles */
+import 'react-select/dist/react-select.css';
 
 /** Interfaces */
 import {MultiSelectProps, InputWrapperProps, SelectInputProps, PerformanceWrapperProps} from '../../typings/types.d';

@@ -39,59 +39,76 @@ export default class FormInner extends React.Component<{}, {}> {
 
     return (
       <div style={{ padding: '20px 40px' }}>
-        <div className="row"> 
-          <div className="demo-form-wrapper">
-            <div className="desktop-col-12">
-              <GitSnippet src="https://gist-it.appspot.com/github/robertkrimen/gist-it-example/blob/master/example.js"/>
-              <Input autoFocus label="First Name" required defaultValue="First Name" pattern="[A-Za-z]+$" name="firstName"  customValidation={this.lastNameValidation()}>
-                <Validation isFor="required">This field is required</Validation>
-                <Validation isFor="customValidation">This field must be Shane</Validation>
-              </Input>
-              <Fieldset name="users" id="test">
-                <Input label="Last Name" name="LastName" required minLength="2">
-                  <Validation isFor="required">This field is required</Validation>
-                </Input>
-                <Input label="First Name" name="FirstName" required minLength="2">
-                  <Validation isFor="required">This field is required</Validation>
-                </Input>
-              </Fieldset>
-              <Fieldset name="users" id="test2">
-                <Input label="Last Name" name="LastName" required minLength="2">
-                  <Validation isFor="required">This field is required</Validation>
-                </Input>
-                <Input label="First Name" name="FirstName" required minLength="2">
-                  <Validation isFor="required">This field is required</Validation>
-                </Input>
-              </Fieldset>
-              <Input label="Currency" prepend="$" type="text" required min="10" max="100000"
-                pattern="[0-9]" name="Currency" placeholder="Test"/>
-              <Input label="Percentage" append="%" type="number" required name="Percentage">
-                <Validation isFor="pattern">Percentage must be a number</Validation>
-              </Input>
-              <Input label="Credit Card" type="text" required name="CreditCard">
-                <Validation isFor="required">Currency is required</Validation>
-              </Input>
-              <Input label="Expiry Date" type="text" required name="ExpiryDate">
-                <Validation isFor="required">Expiry Date is required</Validation>
-              </Input>
-              <Input label="Email" type="email" required name="Email">
-                <Validation isFor="required">Email is required</Validation>
-                <Validation isFor="type">Must be a valid email</Validation>
-              </Input>
-              <Input label="Password" labelPostfix="Your password must be at least 6 characters long." minLength="5"
-                type="password" required name="password">
-                <Validation isFor="required">Password is required</Validation>
-                <Validation isFor="minLength">Password must be 5 characters long</Validation>
-              </Input>
-              <TextArea label="Write something" name="something"  additionalCompareProps={['name']} />
-              <TextArea label="With validation" required name="withValidation">
-                <Validation isFor="required">With validation is required</Validation>
-              </TextArea>
-              <div className="switch-container">
-                <CheckBox id="tanscs" required label="Terms and Conditions" name="tandcs">
-                  <Validation isFor="required">Please accept the T&Cs</Validation>
-                </CheckBox>
-              </div>
+        <Form name="demo-form">
+
+          {/* INPUTS */}
+          <div className="row">
+            <div className="tablet-col-6">
+              <Input label="First Name" required placeholder="John" name="firstName" radius={4} />
+            </div>
+
+            <div className="tablet-col-6">
+              <Input label="Last Name" required placeholder="Doe" name="lastName" radius={4} />
+            </div>
+
+            <div className="tablet-col-12">
+              <Input name="search" label="Search" format="search" required explanation="Enter the text you would like to search for" />
+            </div>
+
+            <div className="tablet-col-3">
+              <Input name="dollars" label="Dollars" format="dollar" required radius={100} />
+            </div>
+
+            <div className="tablet-col-3">
+              <Input name="yen" label="Yen" format="yen" required />
+            </div>
+
+            <div className="tablet-col-3">
+              <Input name="euro" label="Euro" format="euro" required />
+            </div>
+
+            <div className="tablet-col-3">
+              <Input name="discount" label="Discount" format="percentage" required />
+            </div>
+          </div>
+
+          {/* DATE & RANGE PICKERS */}
+          <div className="row">
+            <div className="tablet-col-6">
+              <DatePicker label="Date Picker" name="DatePickerNoDefault" />
+            </div>
+
+            <div className="tablet-col-6">
+              <DateRange label="Date Range" name="DateRange" />
+            </div>
+          </div>
+
+          {/* SELECTS */}
+          <div className="row">
+            <div className="tablet-col-6">
+              <Select label="Front End Developers" defaultSelected="Mick" name="FrontEndDevelopers">
+                <option value="Shane">Shane</option>
+                <option value="Mick">Mick</option>
+                <option value="Mitch">Mitch</option>
+              </Select>
+            </div>
+
+            <div className="tablet-col-6">
+              <Select label="Numbers" name="Numbers">
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </Select>
+            </div>
+
+            <div className="tablet-col-12">
+              <MultiSelect name="FDs" options={options} defaultValue={List(['Pash', 'Hunter'])} label="Frontend Devs" />
+            </div>
+          </div>
+
+          {/* CHECKBOXES */}
+          <div className="row">
+            <div className="tablet-col-12">
               <div className="switch-container">
                 <CheckBox defaultChecked id="red" label="Red" name="color[]" />
                 <CheckBox defaultChecked={false} id="blue" label="Blue" name="color[]" />
@@ -100,7 +117,12 @@ export default class FormInner extends React.Component<{}, {}> {
                   <Validation isFor="required">Please choose a color</Validation>
                 </Validate>
               </div>
+            </div>
+          </div>
 
+          {/* Radios */}
+          <div className="row">
+            <div className="tablet-col-12">
               <div className="switch-container">
                 <Radio name="size" label="Extra Small" id="x-small" />
                 <Radio name="size" label="Small" id="small" />
@@ -110,73 +132,34 @@ export default class FormInner extends React.Component<{}, {}> {
                   <Validation isFor="required">Please choose a size</Validation>
                 </Validate>
               </div>
-              <br/>
-              
-
-              <div>
-                <RadioTabs name="radio-tabs">
-                  <RadioTab id="tab-1">Tab 1</RadioTab>
-                  <RadioTab defaultSelected id="tab-2">Tab 2</RadioTab>
-                </RadioTabs>
-              </div>
-
-              <br/>
-              <br/>
-
-              
-
-              <Select label="Front End Developers" defaultSelected="Mick" name="FrontEndDevelopers">
-                <option value="Shane">Shane</option>
-                <option value="Mick">Mick</option>
-                <option value="Mitch">Mitch</option>
-              </Select>
-
-              <Select label="Numbers" name="Numbers">
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-              </Select>
-
-              <MultiSelect name="FDs" options={options} defaultValue={List(['Pash', 'Hunter'])} label="Frontend Devs" />
-
-              <MultiSelect name="FDsPlaceholder" placeholder="This is a placeholder" options={options} label="Frontend Devs with placeholder" />
-
-              <MultiSelect name="FDsEmpty" placeholder="This MultiInput has no options" noResultsText="This is empty" options={List()} label="Empty MultiInput" />
-              <a target="_blank" href="https://github.com/okonet/react-dropzone">Props avaliable here</a>
-              <br />
-              <br />
-              <div className="dropzone-container">
-                <div className="dropzone-item">
-                  <DropZone name="dropzone-single" placeholder="Drop a single file here">
-                    {(file) => <Input name="file-demo" value={file.name}/>}
-                  </DropZone>
-                </div>
-
-                <div className="dropzone-item">
-                  <DropZone name="dropzone-multiple" placeholder="Drop multiple files here" multiple fileListComponent={files => files.map(file => <p>{file.name}</p>)}/>
-                </div>
-              </div>
-              <br /><br />
-              <div className="clearfix" style={{ overflow: "visible" }}>
-                <div style={{ width: "300px", overflow: "visible", float: "left" }}>
-                  <DateRange label="Date Range" name="DateRange" />
-                </div>
-                <div style={{ width: "300px", overflow: "visible", float: "left" }}>
-                  <DatePicker label="Date Picker No Default" name="DatePickerNoDefault" />
-                </div>
-                <div style={{ width: "300px", overflow: "visible", float: "left" }}>
-                  <DatePicker label="Date Picker Moment Object" name="DatePickerMomentObject" defaultValue={moment().format()} />
-                </div>
-                <div style={{ width: "300px", overflow: "visible", float: "left" }}>
-                  <DatePicker label="Date Picker Blank Default" name="DatePickerBlankDefault" defaultValue="" />
-                </div>
-              </div>
-              <br /><br />
-              
-              <button style={{ marginBottom: "300px" }}>Submit</button>
             </div>
           </div>
-        </div>
+
+          {/* RadioTabs */}
+          <div className="row">
+            <div className="tablet-col-12">
+              <RadioTabs name="radio-tabs">
+                <RadioTab id="tab-1" label="Tab 1" />
+                <RadioTab defaultSelected id="tab-2" label="Tab 2" />
+              </RadioTabs>
+            </div>
+          </div>
+
+          {/* DROPZONE */}
+          <div className="row">
+            <div className="tablet-col-6">
+              <DropZone name="dropzone-single" placeholder="Drop a single file here">
+                {(file) => <p>{file.name}</p>}
+              </DropZone>
+            </div>
+
+            <div className="tablet-col-6">
+              <DropZone name="dropzone-multiple" placeholder="Drop multiple files here" multiple fileListComponent={files => files.map(file => <p>{file.name}</p>)}/>
+            </div>
+          </div>
+
+          <button className="button button-primary">Submit</button>
+        </Form>
       </div>
     );
   }

@@ -1,1 +1,80 @@
+.styled-select {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: white;
+  border: 1px solid #D8D8D8;
+  overflow: hidden;
+  display: inline-block;
 
+  &.round {
+    border-radius: 4px;
+  }
+
+  select {
+    appearance: none;
+    background: transparent;
+    border: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-left: 12px;
+    padding-right: 52px;
+  }
+
+  .arrow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// MultiSelect Styles
+.Select {
+  margin-top: 4px;
+  cursor: pointer;
+  border: none;
+
+  div {
+    height: 32px;
+    padding: 8px;
+    padding-left: 20px;
+
+    .Select-value {
+      margin: 0;
+      padding: 0;
+      margin-right: 8px;
+      border: none;
+
+      span {
+        margin-top: 4px;
+      }
+
+      span.Select-value-icon {
+        border: none;
+      }
+
+      background-color: #00AFEF;
+      color: #FFFFFF;
+      border-radius: 2px;
+    }
+  }
+
+  .Select-menu-outer {
+    height: auto;
+    padding: 0;
+
+    .Select-menu {
+      padding: 0;
+      z-index: 1000;
+      height: auto;
+    }
+  }
+}

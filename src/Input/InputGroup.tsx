@@ -5,18 +5,23 @@ import classnames from 'classnames';
 /** Interfaces */
 import {InputGroupProps} from '../../typings/types.d';
 
-/** Styles */
-import './InputGroup.scss';
-
 /** Internal method to make creation of input boxes with appended or prepended segments easier */
-const InputGroup = ({prepend, append, children} : InputGroupProps) => {
+const InputGroup = ({prepend, append, style, children} : InputGroupProps) => {
   const inputGroupClass:string = classnames('input-group', {'input-prepend': !!prepend}, {'input-append': !!append});
   
   return (
-    <div className={inputGroupClass}>
-      {!!append && <span className="input-addon">{append}</span>}
+    <div className={inputGroupClass} style={style}>
+      {!!append && (
+        <div className="input-addon">
+          {append}
+        </div>
+      )}
       {children}
-      {!!prepend && <span className="input-addon">{prepend}</span>}
+      {!!prepend && (
+        <div className="input-addon">
+          {prepend}
+        </div>
+      )}
     </div>
   );
 };

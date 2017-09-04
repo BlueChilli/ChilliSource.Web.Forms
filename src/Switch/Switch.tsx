@@ -13,7 +13,7 @@ import performanceWrapper from '../Form/Helpers/performanceWrapper';
 import {SwitchProps, PerformanceWrapperProps} from '../../typings/types.d';
 
 /** Styles */
-import "./Switch.scss";
+import './Switch.scss';
 
 /** Class Switch */
 export class Switch extends React.Component<SwitchProps & PerformanceWrapperProps, {}>{

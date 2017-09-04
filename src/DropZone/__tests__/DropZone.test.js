@@ -123,9 +123,7 @@ describe('DropZone', () => {
     multipleFileWrapper.setContext(Object.assign({}, context, {FormState: state}))
 
 
-    console.log(filePreviewItems(singleFileWrapper))
     expect(filePreviewItems(singleFileWrapper)).toHaveLength(1);
-    console.log(filePreviewItems(multipleFileWrapper))
     expect(filePreviewItems(multipleFileWrapper)).toHaveLength(3);
   });
 });
