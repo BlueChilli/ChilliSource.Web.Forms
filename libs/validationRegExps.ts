@@ -9,4 +9,3 @@ const validations:Validations = {
 }
 
 export default validations;
-

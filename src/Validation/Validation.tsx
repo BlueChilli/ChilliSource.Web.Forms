@@ -1,25 +1,50 @@
-import React, {ComponentType} from "react";
-import {Map} from "immutable"
-import {withProps, mapProps, shouldUpdate, ComponentEnhancer, InferableComponentEnhancer, compose, withState, withHandlers, lifecycle} from "recompose";
-import classnames from "classnames";
-import {testElement, validations, TestElement, ValidationTypes} from "../../libs/validate";
-import "./Validation.scss";
-import {isMultipleValueInput, returnCheckedValue} from "../Form/Helpers/inputHelpers";
-import {createSpecificShallowEqual} from "cs.core";
-import {ValidationAdditionProps, TextInputProps, ValidationInnerElementProps, ValueProp, TypeProp, PossibleValues, Tests} from "../Form/Types/types";
+/** Libraries */
+import React, {ComponentType} from 'react';
+import {Map} from 'immutable';
+import {withProps, mapProps, shouldUpdate, ComponentEnhancer, InferableComponentEnhancer, compose, withState, withHandlers, lifecycle} from 'recompose';
+import classnames from 'classnames';
+import {createSpecificShallowEqual} from 'cs.core';
 
+/** Helpers */
+import {testElement, validations, TestElement} from '../../libs/validate';
+import {isMultipleValueInput, returnCheckedValue} from '../Form/Helpers/inputHelpers';
 
+const specificShallowEqual = createSpecificShallowEqual<ValidationMapProps & TypeProp>('value', 'changed', 'type');
+
+const specificShallowEqualDisplayed = createSpecificShallowEqual<{displayed: boolean, className: string}>('displayed', 'className');
+
+const specificShallowEqualTestElement = createSpecificShallowEqual<{value: ValueProp<PossibleInputValue>, typeOfValidation: string, type?: string}>("value", "typeOfValidation", "type");
+
+const availableValidationsShallowEqual = createSpecificShallowEqual<any>("isFor", "test", ...Object.keys(validations));
+
+const Validation = ({displayed, className, children}: ValidationInnerElementProps) => {
+  const classes = classnames('validation', className, {
+    'invalid': displayed
+  });
+  return <div className={classes}>{children}</div>;
+};
+
+const getValue = (name: string, inputInfo: Map<string, any>) : PossibleInputValue => {
+  if(isMultipleValueInput(name) && Map.isMap(inputInfo)){
+    return returnCheckedValue((arg) => typeof arg !== "undefined" && arg !== false, ...inputInfo.map(item => item.get('value', false)).toArray())
+  } else {
+    return inputInfo.get('value') || false;
+  }
+}
+
+/** Interfaces */
+import {ValidationAdditionProps, TextInputProps, ValidationInnerElementProps, 
+        ValueProp, TypeProp, PossibleInputValue, ValidationTypes, ValidationComponentProps} from '../../typings/types.d';
 
 interface ValidationInternalAdditionProps extends ValidationAdditionProps{
-  value:ValueProp<PossibleValues>,
+  value:ValueProp<PossibleInputValue>,
   valid: boolean
 }
 
 interface ValidationMapProps extends ValidationAdditionProps{
   changed:boolean,
-  value:ValueProp<PossibleValues>
+  value:ValueProp<PossibleInputValue>
 }
-
 
 interface ValidationWithStateProps extends ValidationMapProps{
   valid: boolean,
@@ -37,39 +62,15 @@ interface TestHandersInterface {
 
 interface ValidationLifecycleProps extends ValidationMapProps, TestHandersInterface {}
 
+/** Styles */
+import './Validation.scss';
 
-export interface ValidationComponentProps {
-  isFor: string
-}
-
-
-const specificShallowEqual = createSpecificShallowEqual<ValidationMapProps & TypeProp>('value', 'changed', 'type');
-const specificShallowEqualDisplayed = createSpecificShallowEqual<{displayed: boolean, className:string}>('displayed', 'className');
-const specificShallowEqualTestElement = createSpecificShallowEqual<{value: ValueProp<PossibleValues>, typeOfValidation: string, type?: string}>("value", "typeOfValidation", "type");
-const availableValidationsShallowEqual = createSpecificShallowEqual<any>("isFor", "test", ...Object.keys(validations));
-
-
-const Validation = ({displayed, className, children}:ValidationInnerElementProps) => {
-  const classes = classnames('validation', className, {
-    'invalid': displayed
-  });
-  return <div className={classes}>{children}</div>;
-};
-
-const getValue = (name:string, inputInfo:Map<string, any>) : PossibleValues => {
-  if(isMultipleValueInput(name) && Map.isMap(inputInfo)){
-    return returnCheckedValue((arg) => typeof arg !== "undefined" && arg !== false, ...inputInfo.map(item => item.get('value', false)).toArray())
-  } else {
-    return inputInfo.get('value') || false;
-  }
-} 
-
-
+/** Class Validation */
 export default compose<ValidationInnerElementProps, ValidationComponentProps>(
   withProps((ownerProps : ValidationAdditionProps) => {
     const {name, inputInfo, type} = ownerProps;
     const changed:boolean = isMultipleValueInput(name) ? inputInfo.some(item => item.get('changed', false)) : inputInfo.get('changed', false);
-    const value:PossibleValues = getValue(name, inputInfo);
+    const value:PossibleInputValue = getValue(name, inputInfo);
     return {
       changed,
       value

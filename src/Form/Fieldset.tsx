@@ -1,12 +1,21 @@
-import React from "react";
-import PropTypes from "prop-types"
-import {withContext} from "recompose";
-import {FieldSetProps, FormContext} from "./Types/types";
+/** Libraries */
+import React from 'react';
+import PropTypes from 'prop-types';
+import {withContext} from 'recompose';
 
+/** Interfaces */
+import {FieldSetProps, FormContext} from '../../typings/types.d';
 
-const Fieldset = ({children, ...props}:FieldSetProps) =>(
-  <fieldset {...props}>{children}</fieldset>
-);
+/** Class Fieldset */
+class Fieldset extends React.Component<FieldSetProps, undefined> {
+  render() {
+    const {children, ...props} = this.props;
+
+    return (
+      <fieldset {...props}>{children}</fieldset>
+    );
+  }
+}
 
 export default withContext<FormContext, FieldSetProps>({
   fieldSetNameSpace: PropTypes.string
