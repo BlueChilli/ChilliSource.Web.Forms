@@ -15,7 +15,7 @@ module.exports = {
   module: {
     rules: [{
       test: /\.(t|j)sx?$/,
-      exclude:  /(node_modules|custom_modules|dist|dll)/,
+      exclude:  /(node_modules|custom_modules)/,
       use: "awesome-typescript-loader"
     }, {
       test: /\.(s?css)/,
@@ -37,8 +37,5 @@ module.exports = {
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.tsx', '.ts'],
-  },
-  node: {
-    fs: "empty"
   }
 };

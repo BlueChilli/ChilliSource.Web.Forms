@@ -28,8 +28,7 @@
     "build": "webpack --config webpack.build.config.js",
     "build-static": "webpack --config webpack.static.config.js",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "deploy-storybook": "storybook-to-ghpages"
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@types/react": "^15.0.27",
@@ -68,11 +67,6 @@
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^3.2.6",
-    "@storybook/addon-info": "^3.2.9",
-    "@storybook/addon-links": "^3.2.6",
-    "@storybook/react": "^3.2.8",
-    "@storybook/storybook-deployer": "^2.0.0",
     "@types/classnames": "0.0.32",
     "@types/enzyme": "^2.7.8",
     "@types/jest": "^19.2.2",
@@ -103,7 +97,6 @@
     "open": "0.0.5",
     "postcss-loader": "^1.3.3",
     "raw-loader": "^0.5.1",
-    "react-komposer": "^2.0.0",
     "react-test-renderer": "^15.5.4",
     "sass-loader": "^6.0.3",
     "scut": "^1.4.0",
