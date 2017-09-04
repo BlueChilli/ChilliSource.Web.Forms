@@ -223,7 +223,7 @@ export interface OptionTypes {
 
 export interface TextAreaProps extends BaseInputProps<string, string>, CustomValidationProps, InputWrapperProps, PlaceholderProp, AdditionalCompareProps {
   /** The number of rows initially shown in the text area */
-  rows: number
+  rows?: number
 }
 
 export interface TextInputProps extends BaseInputProps<string, string | number>, CustomValidationProps, InputWrapperProps, InputGroupProps, PlaceholderProp, AdditionalCompareProps {
