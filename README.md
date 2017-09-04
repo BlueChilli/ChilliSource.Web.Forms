@@ -15,12 +15,14 @@ Standard components like `input`, `button` and the rest are already available to
 - `Input`
 - `Number`
 - `Radio`
-- `Select`
+- `Select` & `MultiSelect`
 - `Switch` (base component for CheckBox & Radio)
 - `TextArea`
 
 ## State Retention
 The state of the form is stored within the `Form` itself. Although this framework can be used with Redux, not having it within your stack will not prevent you from using it.
+
+We will post the guide instructing how integrate with Redux soon.
 
 ## Validations
 All the components can have their own validation(even custom validation is allowed) with custom validation messages as your project requires. The `Validation` component provides the necessary implementation so that you can directly start using them.
