@@ -52,7 +52,7 @@ class RadioTabs extends React.Component<RadioTabsProps, RadioTabsStateProps> {
 
     return (
       <InputWrapper className={classes} name={name} label={label}>
-        {React.Children.map(children, (child:React.ReactElement<any>) => {
+        {React.Children.map(children, (child: React.ReactElement<any>) => {
           {/* 
           ATTN SHANE: Your hack doesn't work. Fix it!
           if(typeof child.type === 'string' || child.type.name !== 'RadioTab') {
