@@ -69,8 +69,10 @@
 
   .Select-menu-outer {
     height: auto;
+    padding: 0;
 
     .Select-menu {
+      padding: 0;
       z-index: 1000;
       height: auto;
     }
