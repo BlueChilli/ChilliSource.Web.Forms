@@ -39,6 +39,9 @@ export default class FormInner extends React.Component<{}, {}> {
 
     return (
       <div style={{ padding: '20px 40px' }}>
+
+        <h1>Hi</h1>
+
         <Form name="demo-form">
 
           {/* INPUTS */}
