@@ -1,0 +1,11 @@
+.input {
+  .validation {
+    display: none;
+
+    &.invalid {
+      display: block;
+      margin-top: 5px;
+      color: $validation-invalid-color;
+    }
+  }
+}
