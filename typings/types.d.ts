@@ -266,6 +266,10 @@ export interface ValidationElementProps extends BaseReactProps, NameProp, Additi
 export interface DisplayValidationProps extends BaseReactProps, OptionalValidationProps, CustomValidationProps, TypeProp, NameProp {}
 
 export interface DropZoneProps extends BaseReactProps, NameProp, ValueProp<List<File>>, AdditionalCompareProps {
+  /** Width of the droppable area */
+  width?: string,
+  /** Height of the droppable area */
+  height?: string,
   /** Can you upload multiple files*/	
   multiple?: boolean,
   /** Display a list of uploaded files*/		

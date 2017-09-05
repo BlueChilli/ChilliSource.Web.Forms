@@ -1,60 +1,13 @@
-@import "../../node_modules/scut/dist/_scut";
- @import "./frecl/main"; 
+// @import '../../node_modules/scut/dist/_scut';
 
-@import "variables";
-@import "spacing";
-@import "type.scss";
-@import "buttons.scss";
-@import "forms.scss";
-@import "calander.scss";
+@import './frecl/main'; 
+@import './config/colors';
+@import 'variables';
+@import 'type';
+@import 'buttons';
+@import 'utilities';
 
 body {
-  background: #F2F2F2;
-}
-
-header {
-  background: #ffffff;
-  border-bottom: 1px solid #ADADAD;
-  margin-bottom: 50px;
-
-  nav {
-    overflow: hidden;
-    max-width: 80em;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-
-    ul {
-      margin: 110px 0 0 0;
-      padding: 0;
-
-      li {
-        display: inline-block;
-
-        a {
-          display: block;
-          color: #000000;
-          text-decoration: none;
-          border-bottom: 4px solid transparent;
-          padding: 20px 10px;
-
-          &.active {
-            border-color: #4A90E2;
-          }
-        }
-
-        & + li {
-          margin-left: 15px;
-        }
-      }
-    }
-  }
-}
-
-.pull-left{
-  float:left;
-}
-
-.pull-right{
-  float:right;
+  background: $colorWhite;
+  color: $darkTextColor;
 }
