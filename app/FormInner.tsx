@@ -39,36 +39,36 @@ export default class FormInner extends React.Component<{}, {}> {
         {/* INPUTS */}
         <div className="row">
           <div className="tablet-col-6">
-            <Input label="First Name" required placeholder="John" name="firstName" radius={4} />
+            <Input label="First Name" required placeholder="John" name="firstName" explanation="Enter it exactly as it appears on your passport" radius={4} />
           </div>
 
           <div className="tablet-col-6">
-            <Input label="Last Name" required placeholder="Doe" name="lastName" radius={4} />
+            <Input label="Last Name" required placeholder="Doe" name="lastName" explanation="Enter it exactly as it appears on your passport" radius={4} />
           </div>
 
-          <div className="tablet-col-12">
-            <Input name="search" label="Search" format="search" required explanation="Enter the text you would like to search for" />
+          <div className="tablet-col-12 margin-top-2">
+            <Input name="search" label="Search" format="search" placeholder="Enter the text you would like to search for" radius={100} />
           </div>
 
-          <div className="tablet-col-3">
-            <Input name="dollars" label="Dollars" format="dollar" required radius={100} />
+          <div className="tablet-col-3 margin-top-2">
+            <Input name="dollars" label="Dollars" format="dollar" type="number" />
           </div>
 
-          <div className="tablet-col-3">
-            <Input name="yen" label="Yen" format="yen" required />
+          <div className="tablet-col-3 margin-top-2">
+            <Input name="yen" label="Yen" format="yen" type="number" />
           </div>
 
-          <div className="tablet-col-3">
-            <Input name="euro" label="Euro" format="euro" required />
+          <div className="tablet-col-3 margin-top-2">
+            <Input name="euro" label="Euro" format="euro" type="number" />
           </div>
 
-          <div className="tablet-col-3">
-            <Input name="discount" label="Discount" format="percentage" required />
+          <div className="tablet-col-3 margin-top-2">
+            <Input name="discount" label="Discount" format="percentage" type="number" />
           </div>
         </div>
 
         {/* DATE & RANGE PICKERS */}
-        <div className="row">
+        <div className="row margin-top-2">
           <div className="tablet-col-6">
             <DatePicker label="Date Picker" name="DatePickerNoDefault" />
           </div>
@@ -79,7 +79,7 @@ export default class FormInner extends React.Component<{}, {}> {
         </div>
 
         {/* SELECTS */}
-        <div className="row">
+        <div className="row margin-top-2">
           <div className="tablet-col-6">
             <Select label="Front End Developers" defaultSelected="Mick" name="FrontEndDevelopers">
               <option value="Shane">Shane</option>
@@ -101,9 +101,9 @@ export default class FormInner extends React.Component<{}, {}> {
           </div>
         </div>
 
-        {/* CHECKBOXES */}
-        <div className="row">
-          <div className="tablet-col-12">
+        <div className="row margin-top-2">
+          {/* CHECKBOXES */}
+          <div className="tablet-col-4">
             <div className="switch-container">
               <CheckBox defaultChecked id="red" label="Red" name="color[]" />
               <CheckBox defaultChecked={false} id="blue" label="Blue" name="color[]" />
@@ -113,11 +113,9 @@ export default class FormInner extends React.Component<{}, {}> {
               </Validate>
             </div>
           </div>
-        </div>
 
-        {/* Radios */}
-        <div className="row">
-          <div className="tablet-col-12">
+          {/* RADIOS */}
+          <div className="tablet-col-4">
             <div className="switch-container">
               <Radio name="size" label="Extra Small" id="x-small" />
               <Radio name="size" label="Small" id="small" />
@@ -128,11 +126,9 @@ export default class FormInner extends React.Component<{}, {}> {
               </Validate>
             </div>
           </div>
-        </div>
 
-        {/* RadioTabs */}
-        <div className="row">
-          <div className="tablet-col-12">
+          {/* RADIOTABS */}
+          <div className="tablet-col-4">
             <RadioTabs name="radio-tabs">
               <RadioTab id="tab-1" label="Tab 1" />
               <RadioTab defaultSelected id="tab-2" label="Tab 2" />
@@ -141,7 +137,7 @@ export default class FormInner extends React.Component<{}, {}> {
         </div>
 
         {/* DROPZONE */}
-        <div className="row">
+        <div className="row margin-top-2">
           <div className="tablet-col-6">
             <DropZone name="dropzone-single" placeholder="Drop a single file here">
               {(file) => <p>{file}</p>}
@@ -153,7 +149,7 @@ export default class FormInner extends React.Component<{}, {}> {
           </div>
         </div>
 
-        <button className="button button-primary">Submit</button>
+        <button className="button button-primary margin-top-2">Submit</button>
         
       </div>
     );
