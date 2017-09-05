@@ -1,19 +1,20 @@
-@import "config/buttons.scss";
-@import "config/type.scss";
+@import 'config/sizes.scss';
+@import 'config/buttons.scss';
+@import 'config/type.scss';
 
 input[type="button"],
 input[type="submit"],
 input[type="cancel"],
 button,
 .button {
+  @include typeset(button);
+
   display: inline-block;
   outline: none;
-  border-radius: $button-border-radius;
-  padding: $button-padding;
-  border: $button-border-width solid;
+  border-radius: $grid-base / 2;
+  padding: $grid-base $grid-base*2;
+  border: $grid-base/4 solid;
   text-decoration: none;
-  border: $button-border-width solid;
-  @include typeset(button);
 
   @each $button-class, $bgcolor, $fgcolor, $border-color in $button-color-variations {
     &.button-#{$button-class} {
@@ -24,10 +25,12 @@ button,
 
       &:hover {
         background: darken($bgcolor, $button-hover-darken);
+        border-color: darken($border-color, $button-hover-darken);
       }
 
       &:active {
         background: darken($bgcolor, $button-active-darken);
+        border-color: darken($border-color, $button-hover-darken);
       }
     }
   }
@@ -37,6 +40,6 @@ button,
   & + input[type="cancel"],
   & + button,
   & + .button {
-    margin-left: 5px;
+    margin-left: $grid-base;
   }
 }

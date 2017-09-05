@@ -41,6 +41,11 @@ $primaryColor: #00AFEE;
       padding-left: 12px;
       padding-right: 12px;
       outline: none;
+      
+      &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+        appearance: none;
+        margin: 0;
+      }
 
       &:focus {
         border-color: $primaryColor;
@@ -64,7 +69,7 @@ $primaryColor: #00AFEE;
       }
 
       input {
-        padding-left: $inputAddonWidth;
+        padding-left: $inputAddonWidth + 12px;
       }
     }
 
@@ -74,7 +79,7 @@ $primaryColor: #00AFEE;
       }
 
       input {
-        padding-right: $inputAddonWidth;
+        padding-right: $inputAddonWidth + 12px;
       }
     }
   }
