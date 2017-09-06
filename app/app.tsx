@@ -14,7 +14,7 @@ class App extends React.Component<undefined, undefined> {
 
   render() {
     return (
-      <Form name="test" onSubmit={this.showFormData}>
+      <Form name="demo-form" onSubmit={this.showFormData}>
         <FormInner />
       </Form>
     );

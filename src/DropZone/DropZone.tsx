@@ -11,6 +11,9 @@ import performanceWrapper from '../Form/Helpers/performanceWrapper';
 import {getHTMLAttributes} from '../Form/Helpers/inputHelpers';
 import {DropZoneProps, PerformanceWrapperProps} from '../../typings/types.d';
 
+/** Icons & Images */
+import filesIcon from './Assets/doc.svg';
+
 /** Styles */
 import './DropZone.scss';
 
@@ -36,7 +39,9 @@ const PassDownProps = (props, children) => {
 /** Class DropZone */
 class DropZone extends React.Component<DropZoneProps & PerformanceWrapperProps, undefined> {
   static defaultProps = {
-    children: <noscript />
+    placeholder: 'Drag and drop files here',
+    width: '100%',
+    height: '256px'
   }
 
   componentDidMount() {
@@ -82,25 +87,46 @@ class DropZone extends React.Component<DropZoneProps & PerformanceWrapperProps, 
     
     inputChanged(stateFiles.delete(index));
   }
+
+  getInnerContent = () => {
+    const {children, placeholder} = this.props;
+    
+    if(children && this.getFiles().size > 0) {
+      if(isFunction(children)) {
+        return children(this.getFiles(), this.deleteFile);
+      }
+      return (
+        <div>
+          {PassDownProps({files: this.getFiles()}, children)}
+        </div>
+      );
+    }
+
+    return (
+      <div className="placeholder-container">
+        <img src={filesIcon} />
+        <p>{placeholder}</p>
+        <button type="button" className="button button-primary">Upload</button>
+      </div>
+    );
+  }
   
   render() {
-    const {children, className, placeholder = "Drop here", multiple = false, showList = true, fileListComponent} = this.props;
+    const {children, className, placeholder, multiple = false, 
+           showList = true, fileListComponent, width, height} = this.props;
     const attributes = getHTMLAttributes(this.props);
 
     const files = this.getFiles();
     const classes = classnames("drop-zone-box", className);
+    const style = {
+      width, height
+    };
 
     return (
       <div>
         <div className="drop-zone">
-          <ReactDropZone className={classes} onDrop={this.onDrop} multiple={multiple} {...attributes}>
-            {isFunction(children) ? (
-              children(this.getFiles(), this.deleteFile)
-            ) : (
-              <div>
-                {children && PassDownProps({files}, children)}
-              </div>
-            )}
+          <ReactDropZone className={classes} onDrop={this.onDrop} multiple={multiple} {...attributes} style={style}>
+            {this.getInnerContent()}
           </ReactDropZone>
         </div>
 
@@ -112,5 +138,5 @@ class DropZone extends React.Component<DropZoneProps & PerformanceWrapperProps, 
   }
 }
 
-export default performanceWrapper(DropZone);
+export default performanceWrapper<DropZoneProps>(DropZone);
 export {DropZone};

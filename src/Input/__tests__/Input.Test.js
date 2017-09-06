@@ -111,9 +111,8 @@ describe('shallow(<Input />)', () => {
 
 
 describe("mount(Input)", () => {
-
     const mountOptions = {
-        context:{
+        context: {
             nameSpace: "Input",
             FormState: Map(),
             dispatch: () => {}
@@ -141,15 +140,15 @@ describe("mount(Input)", () => {
     });
 
     it('should set the label', () => {
-        expect(label.prop('children') === "InputLabel").toBe(true);
+        expect(label.text() === "InputLabel").toBe(true);
     });
 
     it('should set the labelPrefix', () => {
-        expect(wrapper.find(".input-label-prefix").prop('children') === "LabelPrefix").toBe(true);
+        expect(wrapper.find(".input-label-prefix").text() === "LabelPrefix").toBe(true);
     });
 
     it('should set the labelPostfix', () => {
-        expect(wrapper.find(".input-label-postfix").prop('children') === "LabelPostfix").toBe(true);
+        expect(wrapper.find(".input-label-postfix").text() === "LabelPostfix").toBe(true);
     });
 
     it('should set labelFor and name to be the same', () => {

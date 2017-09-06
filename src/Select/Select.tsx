@@ -41,3 +41,4 @@ class Select extends React.Component<SelectInputProps & PerformanceWrapperProps,
 };
 
 export default performanceWrapper<SelectInputProps>(Select);
+export {Select};

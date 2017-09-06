@@ -1,12 +1,11 @@
 .validation {
   display: none;
-  padding-left: 12px; }
-
-.validation.invalid {
-  display: block; }
-
-.validation.invalid ~ .validation.invalid {
-  display: none !important; }
+  font-size: 12px;
+  height: 16px;
+  margin-top: 0; }
+  .validation.invalid {
+    display: block;
+    color: red; }
 .switch {
   display: block;
   -webkit-user-select: none;
@@ -111,10 +110,8 @@
           justify-content: center; }
 
 .drop-zone-box {
-  width: 100%;
-  min-height: 50px;
-  border: 2px dashed #D8D8D8;
-  border-radius: 8px;
+  background-color: #FFFFFF;
+  border: 1px dashed #DFDEE3;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -124,11 +121,26 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center; }
+  .drop-zone-box .placeholder-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column; }
+    .drop-zone-box .placeholder-container p {
+      color: #DFDEE3; }
   .drop-zone-box:hover {
-    cursor: pointer; }
-  .drop-zone-box p {
-    text-transform: uppercase;
-    color: #D8D8D8; }
+    cursor: pointer;
+    border-color: #00AFEF;
+    border-width: 2px; }
 .input .input-label-wrapper {
   height: 20px; }
   .input .input-label-wrapper .input-label {
@@ -157,6 +169,10 @@
     padding-left: 12px;
     padding-right: 12px;
     outline: none; }
+    .input .input-group input::-webkit-outer-spin-button, .input .input-group input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+              appearance: none;
+      margin: 0; }
     .input .input-group input:focus {
       border-color: #00AFEE; }
   .input .input-group .input-addon {
@@ -177,11 +193,11 @@
   .input .input-group.input-prepend .input-addon {
     left: 0; }
   .input .input-group.input-prepend input {
-    padding-left: 44px; }
+    padding-left: 56px; }
   .input .input-group.input-append .input-addon {
     right: 0; }
   .input .input-group.input-append input {
-    padding-right: 44px; }
+    padding-right: 56px; }
 
 .input-group + input:focus {
   border-color: #00AFEE; }
@@ -214,21 +230,26 @@
   display: table;
   clear: both; }
 
+/** Color - General Information **/
+/** Color - Warning **/
+/** Color - Error/Failure **/
+/** Color - Success **/
+/** Secondary Colors **/
+/** Text Colors **/
 input[type="button"],
 input[type="submit"],
 input[type="cancel"],
 button,
 .button,
 .radio-tabs .radio-tab label {
+  font-size: scut-em(14px);
+  line-height: scut-em(16px, 14px);
   display: inline-block;
   outline: none;
-  border-radius: 6px;
-  padding: 8px 15px;
+  border-radius: 4px;
+  padding: 8px 16px;
   border: 2px solid;
-  text-decoration: none;
-  border: 2px solid;
-  font-size: scut-em(14px);
-  line-height: scut-em(16px, 14px); }
+  text-decoration: none; }
   input[type="button"].button-primary,
   input[type="submit"].button-primary,
   input[type="cancel"].button-primary,
@@ -236,9 +257,9 @@ button,
   .button.button-primary,
   .radio-tabs .radio-tab label.button-primary,
   .radio-tabs .radio-tab input:checked + label {
-    background: #00AFEF;
+    background: #009DE0;
     color: #FFFFFF;
-    border-color: transparent;
+    border-color: #009DE0;
     transition: background-color 150ms linear; }
     input[type="button"].button-primary:hover,
     input[type="submit"].button-primary:hover,
@@ -247,7 +268,8 @@ button,
     .button.button-primary:hover,
     .radio-tabs .radio-tab label.button-primary:hover,
     .radio-tabs .radio-tab input:checked + label:hover {
-      background: #008abc; }
+      background: #0079ad;
+      border-color: #0079ad; }
     input[type="button"].button-primary:active,
     input[type="submit"].button-primary:active,
     input[type="cancel"].button-primary:active,
@@ -255,16 +277,17 @@ button,
     .button.button-primary:active,
     .radio-tabs .radio-tab label.button-primary:active,
     .radio-tabs .radio-tab input:checked + label:active {
-      background: #006489; }
+      background: #00567a;
+      border-color: #0079ad; }
   input[type="button"].button-secondary,
   input[type="submit"].button-secondary,
   input[type="cancel"].button-secondary,
   button.button-secondary,
   .button.button-secondary,
   .radio-tabs .radio-tab label.button-secondary {
-    background: #FFFFFF;
-    color: #797979;
-    border-color: #797979;
+    background: #EFEEF3;
+    color: #626163;
+    border-color: #EFEEF3;
     transition: background-color 150ms linear; }
     input[type="button"].button-secondary:hover,
     input[type="submit"].button-secondary:hover,
@@ -272,23 +295,25 @@ button,
     button.button-secondary:hover,
     .button.button-secondary:hover,
     .radio-tabs .radio-tab label.button-secondary:hover {
-      background: #e6e6e6; }
+      background: #d3d0de;
+      border-color: #d3d0de; }
     input[type="button"].button-secondary:active,
     input[type="submit"].button-secondary:active,
     input[type="cancel"].button-secondary:active,
     button.button-secondary:active,
     .button.button-secondary:active,
     .radio-tabs .radio-tab label.button-secondary:active {
-      background: #cccccc; }
+      background: #b7b2c9;
+      border-color: #d3d0de; }
   input[type="button"].button-disabled,
   input[type="submit"].button-disabled,
   input[type="cancel"].button-disabled,
   button.button-disabled,
   .button.button-disabled,
   .radio-tabs .radio-tab label.button-disabled {
-    background: #CFCFCF;
-    color: #FFFFFF;
-    border-color: transparent;
+    background: #EFEEF3;
+    color: #C0C0C1;
+    border-color: #EFEEF3;
     transition: background-color 150ms linear; }
     input[type="button"].button-disabled:hover,
     input[type="submit"].button-disabled:hover,
@@ -296,38 +321,42 @@ button,
     button.button-disabled:hover,
     .button.button-disabled:hover,
     .radio-tabs .radio-tab label.button-disabled:hover {
-      background: #b6b6b6; }
+      background: #d3d0de;
+      border-color: #d3d0de; }
     input[type="button"].button-disabled:active,
     input[type="submit"].button-disabled:active,
     input[type="cancel"].button-disabled:active,
     button.button-disabled:active,
     .button.button-disabled:active,
     .radio-tabs .radio-tab label.button-disabled:active {
-      background: #9c9c9c; }
-  input[type="button"].button-error,
-  input[type="submit"].button-error,
-  input[type="cancel"].button-error,
-  button.button-error,
-  .button.button-error,
-  .radio-tabs .radio-tab label.button-error {
-    background: #FF0000;
-    color: #FFFFFF;
-    border-color: transparent;
+      background: #b7b2c9;
+      border-color: #d3d0de; }
+  input[type="button"].button-tertiary,
+  input[type="submit"].button-tertiary,
+  input[type="cancel"].button-tertiary,
+  button.button-tertiary,
+  .button.button-tertiary,
+  .radio-tabs .radio-tab label.button-tertiary {
+    background: transparent;
+    color: #009DE0;
+    border-color: #009DE0;
     transition: background-color 150ms linear; }
-    input[type="button"].button-error:hover,
-    input[type="submit"].button-error:hover,
-    input[type="cancel"].button-error:hover,
-    button.button-error:hover,
-    .button.button-error:hover,
-    .radio-tabs .radio-tab label.button-error:hover {
-      background: #cc0000; }
-    input[type="button"].button-error:active,
-    input[type="submit"].button-error:active,
-    input[type="cancel"].button-error:active,
-    button.button-error:active,
-    .button.button-error:active,
-    .radio-tabs .radio-tab label.button-error:active {
-      background: #990000; }
+    input[type="button"].button-tertiary:hover,
+    input[type="submit"].button-tertiary:hover,
+    input[type="cancel"].button-tertiary:hover,
+    button.button-tertiary:hover,
+    .button.button-tertiary:hover,
+    .radio-tabs .radio-tab label.button-tertiary:hover {
+      background: transparent;
+      border-color: #0079ad; }
+    input[type="button"].button-tertiary:active,
+    input[type="submit"].button-tertiary:active,
+    input[type="cancel"].button-tertiary:active,
+    button.button-tertiary:active,
+    .button.button-tertiary:active,
+    .radio-tabs .radio-tab label.button-tertiary:active {
+      background: transparent;
+      border-color: #0079ad; }
   input[type="button"] + input[type="button"],
   input[type="button"] + input[type="submit"],
   input[type="button"] + input[type="cancel"],
@@ -358,7 +387,7 @@ button,
   .button + button, .radio-tabs .radio-tab label + button,
   .button + .button, .radio-tabs .radio-tab label + .button, .radio-tabs .radio-tab
   .button + label, .radio-tabs .radio-tab label + label {
-    margin-left: 5px; }
+    margin-left: 8px; }
 
 .radio-tabs .radio-tab {
   display: inline-block; }
@@ -379,24 +408,32 @@ button,
   width: 100%;
   height: 100%;
   background: white;
-  border: 1px solid #D8D8D8;
   overflow: hidden;
-  display: inline-block; }
+  display: inline-block;
+  cursor: pointer; }
   .styled-select.round {
     border-radius: 4px; }
   .styled-select select {
+    outline: none;
     -webkit-appearance: none;
        -moz-appearance: none;
             appearance: none;
     background: transparent;
-    border: none;
+    border: 1px solid #D8D8D8;
+    border-radius: 0;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     padding-left: 12px;
-    padding-right: 52px; }
+    padding-right: 52px;
+    cursor: pointer; }
+    .styled-select select:focus {
+      border-color: #00AFEF; }
+  .styled-select:hover select {
+    background: rgba(0, 175, 239, 0.05);
+    border-color: #00AFEF; }
   .styled-select .arrow {
     position: absolute;
     top: 0;

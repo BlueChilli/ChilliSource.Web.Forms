@@ -88,6 +88,19 @@ describe('<TextArea /> shallow', () => {
 });
 
 describe('<TextArea /> mount', () => {
+    const mountOptions = {
+        context: {
+            nameSpace: "Input",
+            FormState: Map(),
+            dispatch: () => {}
+        },
+        childContextTypes: {
+            nameSpace: PropTypes.string,
+            FormState: PropTypes.object,
+            dispatch: PropTypes.func,
+        }
+    }
+
     const mountProps = {
         autoFocus,
         labelPrefix,
@@ -100,11 +113,7 @@ describe('<TextArea /> mount', () => {
         onChange: sinon.spy()
     }
 
-    const wrapper = mount(
-        <Form name="textAreaTest">
-            <TextArea {...mountProps} />
-        </Form>
-    );
+    const wrapper = mount(<TextArea {...mountProps} />, mountOptions);
 
     const mountLabel = wrapper.find('label');
     const mountInput = wrapper.find('textarea');

@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from "prop-types";
+import sinon from 'sinon';
 import {List} from 'immutable';
 import {shallow, mount} from 'enzyme';
+import {Map} from 'immutable';
 import {isEqual} from 'lodash';
-import sinon from 'sinon';
 import {MultiSelect} from '../MultiSelect';
 
 const options = [
@@ -49,7 +51,7 @@ const removeChildren = props => {
     return remainingProps;
 }
 
-describe('<MultiSelect />', () => {
+describe('<MultiSelect /> shallow', () => {
     const wrapper = shallow(<MultiSelect {...allMultiSelectProps} />);
     const InputWrapperProps = removeChildren(wrapper.props());
     const {options: Options, value: Value, multi: Multi} = wrapper.find('Select').props();
@@ -73,6 +75,49 @@ describe('<MultiSelect />', () => {
      * an external package and assuming it to be tested
      * by its developer
      */
+});
+
+describe('<MultiSelect /> mount', () => {
+    const mountOptions = {
+        context:{
+            nameSpace: "Input",
+            FormState: Map(),
+            dispatch: () => {}
+        },
+        childContextTypes: {
+            nameSpace: PropTypes.string,
+            FormState: PropTypes.object,
+            dispatch: PropTypes.func,
+        }
+    }
+
+    const wrapper = mount(<MultiSelect {...allMultiSelectProps} />, mountOptions);
+    const label = wrapper.find('label');
+    const input = wrapper.find('input');
+
+    it('should set the className', () => {
+        expect(wrapper.find('.' + allMultiSelectProps.className).exists()).toBe(true);
+    });
+
+    it('should set the label', () => {
+        expect(label.text() === allMultiSelectProps.label).toBe(true);
+    });
+
+    it('should set the labelPrefix', () => {
+        expect(wrapper.find(".input-label-prefix").text() === allMultiSelectProps.labelPrefix).toBe(true);
+    });
+
+    it('should set the labelPostfix', () => {
+        expect(wrapper.find(".input-label-postfix").text() === allMultiSelectProps.labelPostfix).toBe(true);
+    });
+
+    it('should set labelFor and name to be the same', () => {
+        expect(label.prop("htmlFor") === wrapper.prop("name")).toBe(true);
+    });
+
+    it('should set the correct defaultValue', () => {
+        expect(wrapper.prop('value') === allMultiSelectProps.value).toBe(true);
+    });
 });
 
 describe('Bad <MultiSelect />', () => {
