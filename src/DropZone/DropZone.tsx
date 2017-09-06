@@ -138,5 +138,5 @@ class DropZone extends React.Component<DropZoneProps & PerformanceWrapperProps, 
   }
 }
 
-export default performanceWrapper(DropZone);
+export default performanceWrapper<DropZoneProps>(DropZone);
 export {DropZone};

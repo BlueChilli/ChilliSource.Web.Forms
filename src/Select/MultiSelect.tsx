@@ -52,4 +52,4 @@ export class MultiSelect extends React.Component<MultiSelectProps & PerformanceW
   }
 }
 
-export default performanceWrapper(MultiSelect);
+export default performanceWrapper<MultiSelectProps>(MultiSelect);

@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from "prop-types";
+import sinon from 'sinon';
 import {List} from 'immutable';
 import {shallow, mount} from 'enzyme';
+import {Map} from 'immutable';
 import {isEqual} from 'lodash';
-import sinon from 'sinon';
 import {MultiSelect} from '../MultiSelect';
 
 const options = [
@@ -76,16 +78,29 @@ describe('<MultiSelect /> shallow', () => {
 });
 
 describe('<MultiSelect /> mount', () => {
-    const wrapper = mount(<MultiSelect {...allMultiSelectProps} />);
-    const label = wrapper.find('label');
-    const select = wrapper.find('.Select-control');
+    const mountOptions = {
+        context:{
+            nameSpace: "Input",
+            FormState: Map(),
+            dispatch: () => {}
+        },
+        childContextTypes: {
+            nameSpace: PropTypes.string,
+            FormState: PropTypes.object,
+            dispatch: PropTypes.func,
+        }
+    }
 
-    it('renders a label', () => {
-        expect(label.exists()).toBe(true);
+    const wrapper = mount(<MultiSelect {...allMultiSelectProps} />, mountOptions);
+    const label = wrapper.find('label');
+    const input = wrapper.find('input');
+
+    it('should set the className', () => {
+        expect(wrapper.find('.' + allMultiSelectProps.className).exists()).toBe(true);
     });
 
-    it('renders a select', () => {
-        expect(select.exists()).toBe(true);
+    it('should set the label', () => {
+        expect(label.text() === allMultiSelectProps.label).toBe(true);
     });
 
     it('should set the labelPrefix', () => {
@@ -95,22 +110,17 @@ describe('<MultiSelect /> mount', () => {
     it('should set the labelPostfix', () => {
         expect(wrapper.find(".input-label-postfix").text() === allMultiSelectProps.labelPostfix).toBe(true);
     });
-});
 
-describe('<MultiSelect /> mount no default value', () => {
-    const noDefaultValue = {
-        ...allMultiSelectProps,
-        value: null
-    }
+    it('should set labelFor and name to be the same', () => {
+        expect(label.prop("htmlFor") === wrapper.prop("name")).toBe(true);
+    });
 
-    const wrapper = mount(<MultiSelect {...noDefaultValue} />);
-
-    it('should set the placeholder', () => {
-        expect(wrapper.find(".Select-placeholder").text() === allMultiSelectProps.placeholder).toBe(true);
+    it('should set the correct defaultValue', () => {
+        expect(wrapper.prop('value') === allMultiSelectProps.value).toBe(true);
     });
 });
 
-describe('<MultiSelect /> failure', () => {
+describe('Bad <MultiSelect />', () => {
     it("should throw if options are not an Immutable List", () => {
       expect(() => {
         mount(<MultiSelect {...inputWrapperPropsNotList} />)
