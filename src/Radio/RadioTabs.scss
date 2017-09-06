@@ -2,28 +2,28 @@
 @import '../../app/Styles/buttons';
 
 .radio-tabs {
-  @extend .clearfix;
+	@extend .clearfix;
 
-  .radio-tab {
-    display: inline-block;
+	.radio-tab {
+		display: inline-block;
 
-    .box {
-      display: none !important;
-    }
+		.box {
+			display: none !important;
+		}
 
-    label {
-      @extend .button;
-      min-height: 40px;
-      display: flex;
-      align-items: center;
-    }
+		label {
+			@extend .button;
+			min-height: 40px;
+			display: flex;
+			align-items: center;
+		}
 
-    input:checked + label {
-      @extend .button-primary;
-    }
+		input:checked + label {
+			@extend .button-primary;
+		}
 
-    &:nth-child(n+2) {
-      margin-left: 5px;
-    }
-  }
+		&:nth-child(n + 2) {
+			margin-left: 5px;
+		}
+	}
 }

@@ -1,5 +1,5 @@
 {
-  "executionEnvironment": "production",
-  "buildEnvironment": "production",
-  "ga_tracking_code": ""
+	"executionEnvironment": "production",
+	"buildEnvironment": "production",
+	"ga_tracking_code": ""
 }
