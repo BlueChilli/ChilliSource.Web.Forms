@@ -49,7 +49,7 @@ const removeChildren = props => {
     return remainingProps;
 }
 
-describe('<MultiSelect />', () => {
+describe('<MultiSelect /> shallow', () => {
     const wrapper = shallow(<MultiSelect {...allMultiSelectProps} />);
     const InputWrapperProps = removeChildren(wrapper.props());
     const {options: Options, value: Value, multi: Multi} = wrapper.find('Select').props();
@@ -75,7 +75,42 @@ describe('<MultiSelect />', () => {
      */
 });
 
-describe('Bad <MultiSelect />', () => {
+describe('<MultiSelect /> mount', () => {
+    const wrapper = mount(<MultiSelect {...allMultiSelectProps} />);
+    const label = wrapper.find('label');
+    const select = wrapper.find('.Select-control');
+
+    it('renders a label', () => {
+        expect(label.exists()).toBe(true);
+    });
+
+    it('renders a select', () => {
+        expect(select.exists()).toBe(true);
+    });
+
+    it('should set the labelPrefix', () => {
+        expect(wrapper.find(".input-label-prefix").text() === allMultiSelectProps.labelPrefix).toBe(true);
+    });
+
+    it('should set the labelPostfix', () => {
+        expect(wrapper.find(".input-label-postfix").text() === allMultiSelectProps.labelPostfix).toBe(true);
+    });
+});
+
+describe('<MultiSelect /> mount no default value', () => {
+    const noDefaultValue = {
+        ...allMultiSelectProps,
+        value: null
+    }
+
+    const wrapper = mount(<MultiSelect {...noDefaultValue} />);
+
+    it('should set the placeholder', () => {
+        expect(wrapper.find(".Select-placeholder").text() === allMultiSelectProps.placeholder).toBe(true);
+    });
+});
+
+describe('<MultiSelect /> failure', () => {
     it("should throw if options are not an Immutable List", () => {
       expect(() => {
         mount(<MultiSelect {...inputWrapperPropsNotList} />)
