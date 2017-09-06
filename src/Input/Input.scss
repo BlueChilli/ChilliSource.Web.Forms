@@ -1,90 +1,91 @@
 $inputAddonWidth: 44px;
 $inputHeight: 44px;
-$primaryColor: #00AFEE;
+$primaryColor: #00afee;
 
 .input {
-  // Label
-  .input-label-wrapper {
-    height: 20px;
+	// Label
+	.input-label-wrapper {
+		height: 20px;
 
-    .input-label {
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 1.25;
-      color: #626163;
-    }
-  }
+		.input-label {
+			font-size: 16px;
+			font-weight: 500;
+			line-height: 1.25;
+			color: #626163;
+		}
+	}
 
-  // Description
-  .input-description {
-    height: 16px;
+	// Description
+	.input-description {
+		height: 16px;
 
-    p {
-      margin: 0;
-      color: #ADADB0;
-      font-size: 12px;
-    }
-  }
+		p {
+			margin: 0;
+			color: #adadb0;
+			font-size: 12px;
+		}
+	}
 
-  // Input Group & Input
-  .input-group {
-    margin-top: 4px;
-    position: relative;
-    height: $inputHeight;
-    overflow: hidden;
+	// Input Group & Input
+	.input-group {
+		margin-top: 4px;
+		position: relative;
+		height: $inputHeight;
+		overflow: hidden;
 
-    input {
-      width: 100%;
-      height: 100%;
-      background: white;
-      border: 1px solid #DFDEE3;
-      padding-left: 12px;
-      padding-right: 12px;
-      outline: none;
-      
-      &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
-        appearance: none;
-        margin: 0;
-      }
+		input {
+			width: 100%;
+			height: 100%;
+			background: white;
+			border: 1px solid #dfdee3;
+			padding-left: 12px;
+			padding-right: 12px;
+			outline: none;
 
-      &:focus {
-        border-color: $primaryColor;
-      }
-    }
+			&::-webkit-outer-spin-button,
+			&::-webkit-inner-spin-button {
+				appearance: none;
+				margin: 0;
+			}
 
-    .input-addon {
-      position: absolute;
-      top: 0;
-      width: $inputAddonWidth;
-      height: 100%;
-      padding: 1px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+			&:focus {
+				border-color: $primaryColor;
+			}
+		}
 
-    &.input-prepend {
-      .input-addon {
-        left: 0;
-      }
+		.input-addon {
+			position: absolute;
+			top: 0;
+			width: $inputAddonWidth;
+			height: 100%;
+			padding: 1px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
 
-      input {
-        padding-left: $inputAddonWidth + 12px;
-      }
-    }
+		&.input-prepend {
+			.input-addon {
+				left: 0;
+			}
 
-    &.input-append {
-      .input-addon {
-        right: 0;
-      }
+			input {
+				padding-left: $inputAddonWidth + 12px;
+			}
+		}
 
-      input {
-        padding-right: $inputAddonWidth + 12px;
-      }
-    }
-  }
+		&.input-append {
+			.input-addon {
+				right: 0;
+			}
+
+			input {
+				padding-right: $inputAddonWidth + 12px;
+			}
+		}
+	}
 }
 
 .input-group + input:focus {
-  border-color: $primaryColor;
+	border-color: $primaryColor;
 }

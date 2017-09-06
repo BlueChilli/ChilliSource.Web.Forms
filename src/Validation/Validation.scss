@@ -1,11 +1,11 @@
 .validation {
-  display: none;
-  font-size: 12px;
-  height: 16px;
-  margin-top: 0;
+	display: none;
+	font-size: 12px;
+	height: 16px;
+	margin-top: 0;
 
-  &.invalid {
-    display: block;
-    color: red;
-  }
+	&.invalid {
+		display: block;
+		color: red;
+	}
 }

@@ -5,26 +5,26 @@
 }
 
 .drop-zone-box {
-  background-color: #FFFFFF;
-	border: 1px dashed #DFDEE3;
+	background-color: #ffffff;
+	border: 1px dashed #dfdee3;
 	display: flex;
 	align-items: center;
-  justify-content: center;
+	justify-content: center;
 
-  .placeholder-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+	.placeholder-container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
 
-    p {
-      color: #DFDEE3;
-    }
-  }
+		p {
+			color: #dfdee3;
+		}
+	}
 
-  &:hover{
-    cursor: pointer;
-    border-color: #00AFEF;
-    border-width: 2px;
+	&:hover {
+		cursor: pointer;
+		border-color: #00afef;
+		border-width: 2px;
 	}
 }

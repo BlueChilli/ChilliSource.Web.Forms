@@ -1,81 +1,81 @@
 .switch {
-  display: block;
-  user-select: none;
+	display: block;
+	user-select: none;
 
-  input[type=checkbox],
-  input[type=radio] {
-    display: none;
-  }
+	input[type='checkbox'],
+	input[type='radio'] {
+		display: none;
+	}
 
-  label {
-    height: 20px;
-    line-height: 1.25;
-    font-size: 16px;
-    color: #626163;
+	label {
+		height: 20px;
+		line-height: 1.25;
+		font-size: 16px;
+		color: #626163;
 
-    .box {
-      display: inline-block;
-      vertical-align: middle;
-      position: relative;
-      top: -1px;
-      height: 16px;
-      width: 16px;
-      background: white;
-      border: 1px solid #D8D8D8;
-      border-radius: 2px;
-      margin-right: 8px;
+		.box {
+			display: inline-block;
+			vertical-align: middle;
+			position: relative;
+			top: -1px;
+			height: 16px;
+			width: 16px;
+			background: white;
+			border: 1px solid #d8d8d8;
+			border-radius: 2px;
+			margin-right: 8px;
 
-      &:after {
-        content: '';
-        display: block;
-        height: 10px;
-        width: 10px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-      }
-    }
+			&:after {
+				content: '';
+				display: block;
+				height: 10px;
+				width: 10px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+			}
+		}
 
-    &:hover {
-      cursor: pointer;
-    }
-  }
+		&:hover {
+			cursor: pointer;
+		}
+	}
 
-  &.radio {
-    label {
-      .box {
-        top: -2px;
-        border-radius: 50%;
+	&.radio {
+		label {
+			.box {
+				top: -2px;
+				border-radius: 50%;
 
-        &:after {
-          background-color: transparent;
-          transition: background-color 150ms linear;
-          margin-top: -5px;
-          margin-left: -5px;
-          border-radius: 50%;
-        }
-      }
-    }
+				&:after {
+					background-color: transparent;
+					transition: background-color 150ms linear;
+					margin-top: -5px;
+					margin-left: -5px;
+					border-radius: 50%;
+				}
+			}
+		}
 
-    input[type=radio]:checked + label .box:after {
-      background-color: #00AFEF;
-    }
-  }
+		input[type='radio']:checked + label .box:after {
+			background-color: #00afef;
+		}
+	}
 
-  &.checkbox {
-    label {
-      .box:after {
-        display: none;
-        width: 5px;
-        border: solid #00AFEF;
-        border-width: 0 3px 3px 0;
-        transform: rotate(45deg);
-        margin: -8px 0 0 -4px;
-      }
-    }
+	&.checkbox {
+		label {
+			.box:after {
+				display: none;
+				width: 5px;
+				border: solid #00afef;
+				border-width: 0 3px 3px 0;
+				transform: rotate(45deg);
+				margin: -8px 0 0 -4px;
+			}
+		}
 
-    input[type='checkbox']:checked + label .box:after {
-      display: block;
-    }
-  }
+		input[type='checkbox']:checked + label .box:after {
+			display: block;
+		}
+	}
 }
