@@ -12,8 +12,8 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none; }
-  .switch input[type=checkbox],
-  .switch input[type=radio] {
+  .switch input[type='checkbox'],
+  .switch input[type='radio'] {
     display: none; }
   .switch label {
     height: 20px;
@@ -28,7 +28,7 @@
       height: 16px;
       width: 16px;
       background: white;
-      border: 1px solid #D8D8D8;
+      border: 1px solid #d8d8d8;
       border-radius: 2px;
       margin-right: 8px; }
       .switch label .box:after {
@@ -50,12 +50,12 @@
       margin-top: -5px;
       margin-left: -5px;
       border-radius: 50%; }
-  .switch.radio input[type=radio]:checked + label .box:after {
-    background-color: #00AFEF; }
+  .switch.radio input[type='radio']:checked + label .box:after {
+    background-color: #00afef; }
   .switch.checkbox label .box:after {
     display: none;
     width: 5px;
-    border: solid #00AFEF;
+    border: solid #00afef;
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
             transform: rotate(45deg);
@@ -76,11 +76,11 @@
     background: white;
     height: 44px;
     border-radius: 4px;
-    border: 1px solid #DFDEE3;
+    border: 1px solid #dfdee3;
     padding-right: 12px;
     overflow: hidden; }
     .date-range-wrapper .date-input-container.active {
-      border-color: #00AFEF; }
+      border-color: #00afef; }
     .date-range-wrapper .date-input-container input {
       background: transparent;
       border: none !important; }
@@ -88,13 +88,14 @@
 .date-range-container {
   position: absolute;
   z-index: 3000;
-  border: 1px solid #D8D8D8;
+  border: 1px solid #d8d8d8;
   border-radius: 4px;
   overflow: hidden; }
 
 .rdr-Calendar {
   padding: 0 !important; }
-  .rdr-Calendar .rdr-WeekDays, .rdr-Calendar .rdr-Days {
+  .rdr-Calendar .rdr-WeekDays,
+  .rdr-Calendar .rdr-Days {
     padding: 10px; }
   .rdr-Calendar .rdr-WeekDays {
     padding-bottom: 0; }
@@ -110,8 +111,8 @@
           justify-content: center; }
 
 .drop-zone-box {
-  background-color: #FFFFFF;
-  border: 1px dashed #DFDEE3;
+  background-color: #ffffff;
+  border: 1px dashed #dfdee3;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -136,10 +137,10 @@
         -ms-flex-direction: column;
             flex-direction: column; }
     .drop-zone-box .placeholder-container p {
-      color: #DFDEE3; }
+      color: #dfdee3; }
   .drop-zone-box:hover {
     cursor: pointer;
-    border-color: #00AFEF;
+    border-color: #00afef;
     border-width: 2px; }
 .input .input-label-wrapper {
   height: 20px; }
@@ -153,7 +154,7 @@
   height: 16px; }
   .input .input-description p {
     margin: 0;
-    color: #ADADB0;
+    color: #adadb0;
     font-size: 12px; }
 
 .input .input-group {
@@ -165,7 +166,7 @@
     width: 100%;
     height: 100%;
     background: white;
-    border: 1px solid #DFDEE3;
+    border: 1px solid #dfdee3;
     padding-left: 12px;
     padding-right: 12px;
     outline: none; }
@@ -174,7 +175,7 @@
               appearance: none;
       margin: 0; }
     .input .input-group input:focus {
-      border-color: #00AFEE; }
+      border-color: #00afee; }
   .input .input-group .input-addon {
     position: absolute;
     top: 0;
@@ -200,7 +201,7 @@
     padding-right: 56px; }
 
 .input-group + input:focus {
-  border-color: #00AFEE; }
+  border-color: #00afee; }
 .visibile {
   display: block; }
 
@@ -401,7 +402,7 @@ button,
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center; }
-  .radio-tabs .radio-tab:nth-child(n+2) {
+  .radio-tabs .radio-tab:nth-child(n + 2) {
     margin-left: 5px; }
 .styled-select {
   position: relative;
@@ -419,7 +420,7 @@ button,
        -moz-appearance: none;
             appearance: none;
     background: transparent;
-    border: 1px solid #D8D8D8;
+    border: 1px solid #d8d8d8;
     border-radius: 0;
     position: absolute;
     top: 0;
@@ -430,10 +431,10 @@ button,
     padding-right: 52px;
     cursor: pointer; }
     .styled-select select:focus {
-      border-color: #00AFEF; }
+      border-color: #00afef; }
   .styled-select:hover select {
     background: rgba(0, 175, 239, 0.05);
-    border-color: #00AFEF; }
+    border-color: #00afef; }
   .styled-select .arrow {
     position: absolute;
     top: 0;
@@ -463,8 +464,8 @@ button,
       padding: 0;
       margin-right: 8px;
       border: none;
-      background-color: #00AFEF;
-      color: #FFFFFF;
+      background-color: #00afef;
+      color: #ffffff;
       border-radius: 2px; }
       .Select div .Select-value span {
         margin-top: 4px; }

@@ -143,9 +143,9 @@ var __rest = (this && this.__rest) || function (s, e) {
 
 
 /** Helpers */
-var specificShallowEqual = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_cs_core__["createSpecificShallowEqual"])("inputInfo", "name", "nameSpace", "type", "id", "disabled", "noValidate", "required", "className", "defaultValue", "defaultChecked", "defaultSelected", "options", "fieldSetNameSpace", "value", "label");
-var specificShallowEqualDefault = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_cs_core__["createSpecificShallowEqual"])("defaultValue");
-var specificShallowEqualValue = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_cs_core__["createSpecificShallowEqual"])("value");
+var specificShallowEqual = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_cs_core__["createSpecificShallowEqual"])('inputInfo', 'name', 'nameSpace', 'type', 'id', 'disabled', 'noValidate', 'required', 'className', 'defaultValue', 'defaultChecked', 'defaultSelected', 'options', 'fieldSetNameSpace', 'value', 'label');
+var specificShallowEqualDefault = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_cs_core__["createSpecificShallowEqual"])('defaultValue');
+var specificShallowEqualValue = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_cs_core__["createSpecificShallowEqual"])('value');
 var getUnsetValue = function (_a) {
     var type = _a.type;
     if (type === 'radio' || type === 'checkbox') {
@@ -183,10 +183,16 @@ var getInputPath = function (type, _a) {
     }
     return [name];
 };
-var getPrioritisedDefaultValue = function (defaultValue, defaultChecked, defaultSelected) { return (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__inputHelpers__["b" /* returnCheckedValue */])(function (arg) { return !__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_lodash__["isUndefined"])(arg) && arg !== false; }, defaultValue, defaultChecked, defaultSelected)); };
-var getPrioritisedValue = function (value, inputInfoValue, prioritisedDefaultValue, unsetValue) { return (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__inputHelpers__["b" /* returnCheckedValue */])(function (arg) { return !__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_lodash__["isUndefined"])(arg); }, value, inputInfoValue, prioritisedDefaultValue, unsetValue)); };
+var getPrioritisedDefaultValue = function (defaultValue, defaultChecked, defaultSelected) {
+    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__inputHelpers__["b" /* returnCheckedValue */])(function (arg) { return !__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_lodash__["isUndefined"])(arg) && arg !== false; }, defaultValue, defaultChecked, defaultSelected);
+};
+var getPrioritisedValue = function (value, inputInfoValue, prioritisedDefaultValue, unsetValue) {
+    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__inputHelpers__["b" /* returnCheckedValue */])(function (arg) { return !__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_lodash__["isUndefined"])(arg); }, value, inputInfoValue, prioritisedDefaultValue, unsetValue);
+};
 var setIdToDefault = function (type, id, defaultSwitch) {
-    if ((type === 'radio' || type === 'checkbox') && typeof defaultSwitch === 'boolean' && defaultSwitch !== false) {
+    if ((type === 'radio' || type === 'checkbox') &&
+        typeof defaultSwitch === 'boolean' &&
+        defaultSwitch !== false) {
         return id;
     }
     return defaultSwitch;
@@ -196,7 +202,7 @@ var withNeededProps = function () {
         if (props.nameSpace === undefined) {
             throw new Error("nameSpace is undefined ensure that a Form component is a parent of the component with name: \"" + props.name + "\"");
         }
-        var inputPath = getInputPath("input", props);
+        var inputPath = getInputPath('input', props);
         var inputInfo = props.FormState.getIn([props.nameSpace].concat(inputPath), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3_immutable__["Map"])({}));
         var defaultValue = props.defaultValue, defaultChecked = props.defaultChecked, defaultSelected = props.defaultSelected;
         var prioritisedDefaultValue = getPrioritisedDefaultValue(defaultValue, setIdToDefault(props.type, props.id, defaultChecked), setIdToDefault(props.type, props.id, defaultSelected));
@@ -213,7 +219,7 @@ var setValidationWithHandlersObject = {
     setValidation: function (_a) {
         var dispatch = _a.dispatch, nameSpace = _a.nameSpace, props = __rest(_a, ["dispatch", "nameSpace"]);
         return function (type, test) {
-            dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__Actions_fields__["b" /* setValidation */])(nameSpace, getInputPath("validation", props), type, test));
+            dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__Actions_fields__["b" /* setValidation */])(nameSpace, getInputPath('validation', props), type, test));
         };
     },
     compareAdditionalProps: function (_a) {
@@ -224,49 +230,54 @@ var setValidationWithHandlersObject = {
         else {
             return function () { return false; };
         }
-    },
-};
-var updateLifcycle = function () { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_recompose__["lifecycle"])({
-    componentWillMount: function () {
-        this.props.inputChanged(this.props.value, false);
-    },
-    componentWillReceiveProps: function (nextProps) {
-        if (!specificShallowEqualDefault(nextProps, this.props)) {
-            nextProps.inputChanged(nextProps.defaultValue, false);
-        }
-        if (!specificShallowEqualValue(nextProps, this.props)) {
-            nextProps.inputChanged(nextProps.value, true);
-        }
-        if (!nextProps.FormState.hasIn([nextProps.nameSpace].concat(nextProps.inputPath))) {
-            nextProps.inputChanged(nextProps.value, false);
-        }
     }
-}); };
+};
+var updateLifcycle = function () {
+    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_recompose__["lifecycle"])({
+        componentWillMount: function () {
+            this.props.inputChanged(this.props.value, false);
+        },
+        componentWillReceiveProps: function (nextProps) {
+            if (!specificShallowEqualDefault(nextProps, this.props)) {
+                nextProps.inputChanged(nextProps.defaultValue, false);
+            }
+            if (!specificShallowEqualValue(nextProps, this.props)) {
+                nextProps.inputChanged(nextProps.value, true);
+            }
+            if (!nextProps.FormState.hasIn([nextProps.nameSpace].concat(nextProps.inputPath))) {
+                nextProps.inputChanged(nextProps.value, false);
+            }
+        }
+    });
+};
 var createUniversalCompose = function (withHandlersArgs, type) {
-    if (type === void 0) { type = "input"; }
+    if (type === void 0) { type = 'input'; }
     return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_recompose__["compose"])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_recompose__["getContext"])({
         nameSpace: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.string,
         FormState: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.object,
         fieldSetNameSpace: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.string,
         dispatch: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.func
     }), withNeededProps(), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_recompose__["withHandlers"])(withHandlersArgs), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_recompose__["shouldUpdate"])(function (props, nextProps) {
-        return !specificShallowEqual(props, nextProps) || !nextProps.compareAdditionalProps(props, nextProps);
+        return (!specificShallowEqual(props, nextProps) ||
+            !nextProps.compareAdditionalProps(props, nextProps));
     }));
 };
-var validationPerformanceWrapper = function (ReactClass) { return (createUniversalCompose(setValidationWithHandlersObject)(ReactClass)); };
+var validationPerformanceWrapper = function (ReactClass) {
+    return createUniversalCompose(setValidationWithHandlersObject)(ReactClass);
+};
 /* harmony default export */ __webpack_exports__["a"] = (function (ReactClass) {
     var inputWrapperCompose = createUniversalCompose(__assign({ inputChanged: function (_a) {
             var dispatch = _a.dispatch, nameSpace = _a.nameSpace, name = _a.name, id = _a.id, fieldSetNameSpace = _a.fieldSetNameSpace;
             return function (value, changed) {
                 if (changed === void 0) { changed = true; }
-                var inputPath = getInputPath("input", { name: name, id: id, fieldSetNameSpace: fieldSetNameSpace });
+                var inputPath = getInputPath('input', { name: name, id: id, fieldSetNameSpace: fieldSetNameSpace });
                 dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__Actions_fields__["c" /* setInput */])(nameSpace, inputPath, value));
                 dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__Actions_fields__["d" /* setInputInteraction */])(nameSpace, inputPath, 'changed', changed));
             };
         }, setInputBlurred: function (_a) {
             var dispatch = _a.dispatch, nameSpace = _a.nameSpace, props = __rest(_a, ["dispatch", "nameSpace"]);
             return function () {
-                dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__Actions_fields__["d" /* setInputInteraction */])(nameSpace, getInputPath("input", props), 'blurred', true));
+                dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__Actions_fields__["d" /* setInputInteraction */])(nameSpace, getInputPath('input', props), 'blurred', true));
             };
         } }, setValidationWithHandlersObject));
     return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_recompose__["compose"])(inputWrapperCompose, updateLifcycle())(ReactClass);
@@ -315,13 +326,12 @@ function returnCheckedValue(check) {
     };
     return innerReturnCheckedValue();
 }
-;
 /**
  * getHTMLAttributes
  * @param props All the props on which the 'picking' is performed
  */
 var getHTMLAttributes = function (props) {
-    var safeProps = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_lodash__["pick"])(props, "id", "autoFocus", "required", "name", "type", "value", "min", "max", "minLength", "maxLength", "pattern", "accept", "multiple", "placeholder", "disabled", "rows", "style");
+    var safeProps = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_lodash__["pick"])(props, 'id', 'autoFocus', 'required', 'name', 'type', 'value', 'min', 'max', 'minLength', 'maxLength', 'pattern', 'accept', 'multiple', 'placeholder', 'disabled', 'rows', 'style');
     return safeProps;
 };
 
@@ -645,7 +655,7 @@ var childrenValidations = function (children) {
     }
     return [];
 };
-var isSwitch = function (type) { return type === "checkbox" || type === 'radio'; };
+var isSwitch = function (type) { return type === 'checkbox' || type === 'radio'; };
 var validationsUnused = function (validationsUsed, validationsAvailable, isSwitch) {
     return validationsAvailable.filter(function (validation) {
         if (validation === 'type' && isSwitch)
@@ -678,16 +688,18 @@ var DisplayValidation = /** @class */ (function (_super) {
                     setValidation: props.setValidation
                 });
             }),
-            unusedValidations.map(function (validation, index) { return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Validation_Validation__["a" /* default */], {
-                key: index,
-                isFor: validation,
-                test: props[validation],
-                inputInfo: inputInfo,
-                type: type,
-                children: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__libs_validate__["b" /* validationsMessages */])(validation, props[validation]),
-                name: props.name,
-                setValidation: props.setValidation
-            }); })));
+            unusedValidations.map(function (validation, index) {
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Validation_Validation__["a" /* default */], {
+                    key: index,
+                    isFor: validation,
+                    test: props[validation],
+                    inputInfo: inputInfo,
+                    type: type,
+                    children: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__libs_validate__["b" /* validationsMessages */])(validation, props[validation]),
+                    name: props.name,
+                    setValidation: props.setValidation
+                });
+            })));
     };
     return DisplayValidation;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
@@ -17840,9 +17852,9 @@ var InputGroup = function (_a) {
     var prepend = _a.prepend, append = _a.append, style = _a.style, children = _a.children;
     var inputGroupClass = __WEBPACK_IMPORTED_MODULE_1_classnames___default()('input-group', { 'input-prepend': !!prepend }, { 'input-append': !!append });
     return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: inputGroupClass, style: style },
-        !!append && (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "input-addon" }, append)),
+        !!append && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "input-addon" }, append),
         children,
-        !!prepend && (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "input-addon" }, prepend))));
+        !!prepend && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "input-addon" }, prepend)));
 };
 /* harmony default export */ __webpack_exports__["a"] = (InputGroup);
 
@@ -19179,13 +19191,13 @@ var validations = {
                 return value.size > 0;
             }
         }
-        else if (type === "checkbox") {
+        else if (type === 'checkbox') {
             return value === true;
         }
         return value.toString().length > 0 && value !== false;
     },
     pattern: function (value, test) {
-        if (value !== undefined && value !== null && (value + "").length > 0) {
+        if (value !== undefined && value !== null && (value + '').length > 0) {
             var patternRegExp = new RegExp(test);
             return patternRegExp.test(value);
         }
@@ -19210,23 +19222,23 @@ var validations = {
     max: function (value, test) {
         return parseInt(value) <= parseInt(test);
     },
-    'default': function () {
+    default: function () {
         return false;
     }
 };
 var validationsMessages = function (type, test) {
     switch (type) {
-        case "required":
+        case 'required':
             return "This is a required field.";
-        case "minLength":
+        case 'minLength':
             return "This is too short, it must have at least " + test + " characters.";
-        case "maxLength":
+        case 'maxLength':
             return "This is too long, it cannot have more then " + test + " characters.";
-        case "min":
+        case 'min':
             return "This must be at least " + test + ".";
-        case "max":
+        case 'max':
             return "This must not be greater than " + test + ".";
-        case "type":
+        case 'type':
             return "That's not a valid " + test + ".";
         default:
             return "It looks like something went wrong. Try again?";
@@ -19257,13 +19269,13 @@ var testElement = function (_a) {
     if (test === false || test === 'false') {
         return setValid(true);
     }
-    else if (isFor !== 'customValidation' && typeof test !== "function") {
+    else if (isFor !== 'customValidation' && typeof test !== 'function') {
         return setValid(testValidation(value, isFor, type, test));
     }
     else {
-        if (typeof test === "function") {
+        if (typeof test === 'function') {
             var customValidation = test(value);
-            if (typeof customValidation === "boolean" || customValidation === "undefined") {
+            if (typeof customValidation === 'boolean' || customValidation === 'undefined') {
                 return setValid(!!customValidation);
             }
             else if (customValidation instanceof Promise) {
@@ -19271,7 +19283,7 @@ var testElement = function (_a) {
                 return setValid(true);
             }
             else {
-                return console.error("Custom validation functions must return a bool, undefined or a promise");
+                return console.error('Custom validation functions must return a bool, undefined or a promise');
             }
         }
         return setValid(false);
@@ -19329,7 +19341,7 @@ function setInputInteraction(nameSpace, inputName, interaction, value) {
             nameSpace: nameSpace,
             inputName: inputName,
             interaction: interaction,
-            value: value,
+            value: value
         }
     };
 }
@@ -19578,7 +19590,7 @@ var convertToFormData = function (formMap) {
         });
         return formData;
     }
-    throw new Error("convertToFormData requires a Immutable Iterable object");
+    throw new Error('convertToFormData requires a Immutable Iterable object');
 };
 var normalizeFields = function (fields) {
     return fields.map(function (input, inputName) {
@@ -19635,7 +19647,7 @@ var basicReducer = {
         var updatedFields = inputs.map(function (input, key) {
             if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__Helpers_inputHelpers__["a" /* isMultipleValueInput */])(key)) {
                 return input.map(function (innerInput) {
-                    return innerInput.setIn(["input", payload.interaction], payload.value);
+                    return innerInput.setIn(['input', payload.interaction], payload.value);
                 });
             }
             return input.set(payload.interaction, payload.value);
@@ -19743,7 +19755,14 @@ var Input = /** @class */ (function (_super) {
             };
             var getInputAddon = function (icon, shaded) {
                 if (shaded === void 0) { shaded = false; }
-                return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { style: { display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%', backgroundColor: shaded ? '#EDEDED' : 'transparent' } },
+                return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { style: {
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: '100%',
+                        height: '100%',
+                        backgroundColor: shaded ? '#EDEDED' : 'transparent'
+                    } },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: icon })));
             };
             if (format) {
@@ -19768,7 +19787,8 @@ var Input = /** @class */ (function (_super) {
                         inputGroupProps['append'] = getInputAddon(__WEBPACK_IMPORTED_MODULE_11__Assets_search_svg___default.a);
                         break;
                     }
-                    default: break;
+                    default:
+                        break;
                 }
             }
             return inputGroupProps;
@@ -19799,7 +19819,6 @@ var Input = /** @class */ (function (_super) {
     return Input;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
 
-;
 /* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__Form_Helpers_performanceWrapper__["a" /* default */])(Input));
 
 
@@ -19858,7 +19877,7 @@ var Radio = /** @class */ (function (_super) {
     Radio.prototype.render = function () {
         var _a = this.props, className = _a.className, other = __rest(_a, ["className"]);
         var classes = __WEBPACK_IMPORTED_MODULE_1_classnames___default()(className, 'radio');
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Switch_Switch__["a" /* default */], __assign({ className: classes }, other, { type: "radio" })));
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Switch_Switch__["a" /* default */], __assign({ className: classes }, other, { type: "radio" }));
     };
     return Radio;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
@@ -19895,18 +19914,19 @@ var Radio = /** @class */ (function (_super) {
 
 var specificShallowEqual = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_cs_core__["createSpecificShallowEqual"])('value', 'changed', 'type');
 var specificShallowEqualDisplayed = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_cs_core__["createSpecificShallowEqual"])('displayed', 'className');
-var specificShallowEqualTestElement = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_cs_core__["createSpecificShallowEqual"])("value", "typeOfValidation", "type");
-var availableValidationsShallowEqual = __WEBPACK_IMPORTED_MODULE_4_cs_core__["createSpecificShallowEqual"].apply(void 0, ["isFor", "test"].concat(Object.keys(__WEBPACK_IMPORTED_MODULE_5__libs_validate__["c" /* validations */])));
+var specificShallowEqualTestElement = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_cs_core__["createSpecificShallowEqual"])('value', 'typeOfValidation', 'type');
+var availableValidationsShallowEqual = __WEBPACK_IMPORTED_MODULE_4_cs_core__["createSpecificShallowEqual"].apply(void 0, ['isFor',
+    'test'].concat(Object.keys(__WEBPACK_IMPORTED_MODULE_5__libs_validate__["c" /* validations */])));
 var Validation = function (_a) {
     var displayed = _a.displayed, className = _a.className, children = _a.children;
     var classes = __WEBPACK_IMPORTED_MODULE_3_classnames___default()('validation', className, {
-        'invalid': displayed
+        invalid: displayed
     });
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: classes }, children);
 };
 var getValue = function (name, inputInfo) {
     if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__Form_Helpers_inputHelpers__["a" /* isMultipleValueInput */])(name) && __WEBPACK_IMPORTED_MODULE_1_immutable__["Map"].isMap(inputInfo)) {
-        return __WEBPACK_IMPORTED_MODULE_6__Form_Helpers_inputHelpers__["b" /* returnCheckedValue */].apply(void 0, [function (arg) { return typeof arg !== "undefined" && arg !== false; }].concat(inputInfo.map(function (item) { return item.get('value', false); }).toArray()));
+        return __WEBPACK_IMPORTED_MODULE_6__Form_Helpers_inputHelpers__["b" /* returnCheckedValue */].apply(void 0, [function (arg) { return typeof arg !== 'undefined' && arg !== false; }].concat(inputInfo.map(function (item) { return item.get('value', false); }).toArray()));
     }
     else {
         return inputInfo.get('value') || false;
@@ -19917,14 +19937,17 @@ var getValue = function (name, inputInfo) {
 /** Class Validation */
 /* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_recompose__["compose"])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_recompose__["withProps"])(function (ownerProps) {
     var name = ownerProps.name, inputInfo = ownerProps.inputInfo, type = ownerProps.type;
-    var changed = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__Form_Helpers_inputHelpers__["a" /* isMultipleValueInput */])(name) ? inputInfo.some(function (item) { return item.get('changed', false); }) : inputInfo.get('changed', false);
+    var changed = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__Form_Helpers_inputHelpers__["a" /* isMultipleValueInput */])(name)
+        ? inputInfo.some(function (item) { return item.get('changed', false); })
+        : inputInfo.get('changed', false);
     var value = getValue(name, inputInfo);
     return {
         changed: changed,
         value: value
     };
 }), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_recompose__["shouldUpdate"])(function (currentProps, nextProps) {
-    return !specificShallowEqual(currentProps, nextProps) || !availableValidationsShallowEqual(currentProps, nextProps);
+    return (!specificShallowEqual(currentProps, nextProps) ||
+        !availableValidationsShallowEqual(currentProps, nextProps));
 }), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_recompose__["withState"])('valid', 'setValid', false), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_recompose__["withHandlers"])({
     testElement: function () { return __WEBPACK_IMPORTED_MODULE_5__libs_validate__["d" /* testElement */]; }
 }), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_recompose__["lifecycle"])({
@@ -20015,11 +20038,11 @@ var DateWrapper = /** @class */ (function (_super) {
     }
     DateWrapper.prototype.render = function () {
         var hidden = this.state.hidden;
-        var dateRangeClasses = __WEBPACK_IMPORTED_MODULE_1_classnames___default()({ 'hidden': hidden }, 'date-range-container');
+        var dateRangeClasses = __WEBPACK_IMPORTED_MODULE_1_classnames___default()({ hidden: hidden }, 'date-range-container');
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "date-range-wrapper" },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Input_InputWrapper__["a" /* default */], { className: "input date-picker", name: this.props.name, labelPostfix: this.props.labelPostfix, label: this.props.label },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Input_InputGroup__["a" /* default */], { prepend: this.props.prepend, append: this.props.append },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: __WEBPACK_IMPORTED_MODULE_1_classnames___default()('date-input-container', { 'active': !hidden }) },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: __WEBPACK_IMPORTED_MODULE_1_classnames___default()('date-input-container', { active: !hidden }) },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { onFocus: this.handleFocus, placeholder: this.props.placeholder, value: this.props.valueString, ref: this.props.name, readOnly: true }),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: hidden ? __WEBPACK_IMPORTED_MODULE_5__Assets_date_icon_inactive_svg___default.a : __WEBPACK_IMPORTED_MODULE_6__Assets_date_icon_active_svg___default.a })))),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: dateRangeClasses }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.cloneElement(this.props.children, {
@@ -20028,7 +20051,6 @@ var DateWrapper = /** @class */ (function (_super) {
     };
     return DateWrapper;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
-;
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_2_react_onclickoutside___default()(DateWrapper));
 
 
@@ -20042,7 +20064,13 @@ var DateWrapper = /** @class */ (function (_super) {
 var theme = {
     DateRange: { background: '#ffffff' },
     Calendar: { background: '#FFFFFF', color: '#626163' },
-    MonthAndYear: { background: '#00AFEF', color: '#FFFFFF', textTransform: 'uppercase', fontWeight: 'bold', letterSpacing: '1.6px' },
+    MonthAndYear: {
+        background: '#00AFEF',
+        color: '#FFFFFF',
+        textTransform: 'uppercase',
+        fontWeight: 'bold',
+        letterSpacing: '1.6px'
+    },
     MonthButton: { background: 'transparent' },
     MonthArrowPrev: { borderRightColor: '#FFFFFF' },
     MonthArrowNext: { borderLeftColor: '#FFFFFF' },
@@ -20117,7 +20145,7 @@ var Switch = /** @class */ (function (_super) {
     Switch.prototype.render = function () {
         var _a = this.props, className = _a.className, label = _a.label, style = _a.style, props = __rest(_a, ["className", "label", "style"]);
         var autoFocus = props.autoFocus, onChange = props.onChange, onBlur = props.onBlur, id = props.id, defaultChecked = props.defaultChecked, defaultSelected = props.defaultSelected, defaultValue = props.defaultValue, value = props.value, validationProps = __rest(props, ["autoFocus", "onChange", "onBlur", "id", "defaultChecked", "defaultSelected", "defaultValue", "value"]);
-        var classes = __WEBPACK_IMPORTED_MODULE_1_classnames___default()("switch", className);
+        var classes = __WEBPACK_IMPORTED_MODULE_1_classnames___default()('switch', className);
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Form_ErrorWrapper__["a" /* default */], { className: classes, type: props.type, style: style },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Base__["a" /* default */], __assign({}, props, { id: id || this.props.name })),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("label", { htmlFor: id || this.props.name },
@@ -20128,7 +20156,6 @@ var Switch = /** @class */ (function (_super) {
     return Switch;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
 
-;
 /* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__Form_Helpers_performanceWrapper__["a" /* default */])(Switch));
 
 
@@ -20361,7 +20388,7 @@ var CheckBox = /** @class */ (function (_super) {
     CheckBox.prototype.render = function () {
         var _a = this.props, className = _a.className, other = __rest(_a, ["className"]);
         var classes = __WEBPACK_IMPORTED_MODULE_1_classnames___default()(className, 'checkbox');
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Switch_Switch__["a" /* default */], __assign({ className: classes }, other, { type: "checkbox" })));
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Switch_Switch__["a" /* default */], __assign({ className: classes }, other, { type: "checkbox" }));
     };
     return CheckBox;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
@@ -20460,7 +20487,7 @@ var DatePicker = /** @class */ (function (_super) {
                 return parsedValue.format(dateFormat);
             }
             else {
-                return value || defaultValue || "";
+                return value || defaultValue || '';
             }
         };
         return _this;
@@ -20540,9 +20567,11 @@ var __rest = (this && this.__rest) || function (s, e) {
 var getValue = function (dateRange, dateFormat) {
     if (dateFormat === void 0) { dateFormat = 'DD-MM-YYYY'; }
     if (__WEBPACK_IMPORTED_MODULE_2_immutable__["Map"].isMap(dateRange) && dateRange) {
-        return __WEBPACK_IMPORTED_MODULE_1_moment___default()(dateRange.get('startDate'), 'DD-MM-YYYY').format(dateFormat) + " to " + __WEBPACK_IMPORTED_MODULE_1_moment___default()(dateRange.get('endDate'), 'DD-MM-YYYY').format(dateFormat);
+        return (__WEBPACK_IMPORTED_MODULE_1_moment___default()(dateRange.get('startDate'), 'DD-MM-YYYY').format(dateFormat) +
+            ' to ' +
+            __WEBPACK_IMPORTED_MODULE_1_moment___default()(dateRange.get('endDate'), 'DD-MM-YYYY').format(dateFormat));
     }
-    return __WEBPACK_IMPORTED_MODULE_1_moment___default()().format(dateFormat) + " to " + __WEBPACK_IMPORTED_MODULE_1_moment___default()().format(dateFormat);
+    return __WEBPACK_IMPORTED_MODULE_1_moment___default()().format(dateFormat) + ' to ' + __WEBPACK_IMPORTED_MODULE_1_moment___default()().format(dateFormat);
 };
 /** Styles */
 
@@ -20567,7 +20596,6 @@ var DateRangeBase = /** @class */ (function (_super) {
     };
     return DateRangeBase;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
-;
 /** Class DateRangePicker */
 var DateRangePicker = /** @class */ (function (_super) {
     __extends(DateRangePicker, _super);
@@ -20695,7 +20723,7 @@ var DropZone = /** @class */ (function (_super) {
                 if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_lodash__["isFunction"])(children)) {
                     return children(_this.getFiles(), _this.deleteFile);
                 }
-                return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, PassDownProps({ files: _this.getFiles() }, children)));
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, PassDownProps({ files: _this.getFiles() }, children));
             }
             return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "placeholder-container" },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: __WEBPACK_IMPORTED_MODULE_7__Assets_doc_svg___default.a }),
@@ -20714,14 +20742,15 @@ var DropZone = /** @class */ (function (_super) {
         var _a = this.props, children = _a.children, className = _a.className, placeholder = _a.placeholder, _b = _a.multiple, multiple = _b === void 0 ? false : _b, _c = _a.showList, showList = _c === void 0 ? true : _c, fileListComponent = _a.fileListComponent, width = _a.width, height = _a.height;
         var attributes = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__Form_Helpers_inputHelpers__["c" /* getHTMLAttributes */])(this.props);
         var files = this.getFiles();
-        var classes = __WEBPACK_IMPORTED_MODULE_3_classnames___default()("drop-zone-box", className);
+        var classes = __WEBPACK_IMPORTED_MODULE_3_classnames___default()('drop-zone-box', className);
         var style = {
-            width: width, height: height
+            width: width,
+            height: height
         };
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null,
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "drop-zone" },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_dropzone___default.a, __assign({ className: classes, onDrop: this.onDrop, multiple: multiple }, attributes, { style: style }), this.getInnerContent())),
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_lodash__["isFunction"])(fileListComponent) && (fileListComponent(this.getFiles(), this.deleteFile))));
+            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_lodash__["isFunction"])(fileListComponent) && fileListComponent(this.getFiles(), this.deleteFile)));
     };
     DropZone.defaultProps = {
         placeholder: 'Drag and drop files here',
@@ -20784,7 +20813,7 @@ var Fieldset = /** @class */ (function (_super) {
     }
     Fieldset.prototype.render = function () {
         var _a = this.props, children = _a.children, props = __rest(_a, ["children"]);
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("fieldset", __assign({}, props), children));
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("fieldset", __assign({}, props), children);
     };
     return Fieldset;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
@@ -20853,7 +20882,7 @@ var mapOutput = function (data, mapOutputFunc) {
     if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_lodash__["isFunction"])(mapOutputFunc)) {
         var mappedData = mapOutputFunc(data);
         if (!__WEBPACK_IMPORTED_MODULE_2_immutable__["Iterable"].isIterable(mappedData)) {
-            throw new Error("mapOutput must return an Immutable Iterable");
+            throw new Error('mapOutput must return an Immutable Iterable');
         }
         return mappedData;
     }
@@ -20861,7 +20890,11 @@ var mapOutput = function (data, mapOutputFunc) {
         return data;
     }
 };
-var randomString = function (length) { return Math.random().toString(36).substring(length); };
+var randomString = function (length) {
+    return Math.random()
+        .toString(36)
+        .substring(length);
+};
 /** Displays a form component, inserts all user input into redux state and ensures that all inputs are validated
  * before allowing the user to submit the form. */
 var Form = /** @class */ (function (_super) {
@@ -20874,7 +20907,7 @@ var Form = /** @class */ (function (_super) {
             if (_this.state.canSubmitString !== _this.lastSumbittedString) {
                 var _a = _this.props, dispatch = _a.dispatch, onSubmit_1 = _a.onSubmit, FormState_1 = _a.FormState, name_1 = _a.name, encType_1 = _a.encType;
                 // INSERT COMMENT HERE
-                dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__Actions_fields__["e" /* setAllInputInteractions */])(name_1, "changed", true));
+                dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__Actions_fields__["e" /* setAllInputInteractions */])(name_1, 'changed', true));
                 // INSERT COMMENT HERE
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_lodash__["defer"])(function () {
                     var form = _this.refs[name_1];
@@ -20883,7 +20916,7 @@ var Form = /** @class */ (function (_super) {
                         if (onSubmit_1) {
                             var fields = FormState_1.get(name_1);
                             var normalizedFields = mapOutput(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_8__Helpers_formHelpers__["b" /* normalizeFields */])(fields), _this.props.mapOutput);
-                            if (encType_1 === "multipart/form-data") {
+                            if (encType_1 === 'multipart/form-data') {
                                 onSubmit_1(event, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_8__Helpers_formHelpers__["a" /* convertToFormData */])(normalizedFields));
                             }
                             else {
@@ -20948,11 +20981,11 @@ var Form = /** @class */ (function (_super) {
     };
     return Form;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
-;
 /* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_recompose__["branch"])(function (props) {
     return !(props.FormState && props.dispatch);
-}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_recompose__["withReducer"])("FormState", "dispatch", __WEBPACK_IMPORTED_MODULE_7__Reducers__["b" /* withReducerState */], __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["Map"])())) //"any" is a short term fix till recompose types are updated
-(Form));
+}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_recompose__["withReducer"])('FormState', 'dispatch', __WEBPACK_IMPORTED_MODULE_7__Reducers__["b" /* withReducerState */], __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["Map"])()))(
+//"any" is a short term fix till recompose types are updated
+Form));
 
 
 
@@ -20996,7 +21029,7 @@ var Number = /** @class */ (function (_super) {
     };
     Number.defaultProps = {
         pattern: '[0-9]+.?[0-9]*',
-        type: 'number',
+        type: 'number'
     };
     return Number;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
@@ -21131,7 +21164,7 @@ var RadioTabs = /** @class */ (function (_super) {
             });
         };
         _this.state = {
-            chosenId: ""
+            chosenId: ''
         };
         return _this;
     }
@@ -21142,10 +21175,15 @@ var RadioTabs = /** @class */ (function (_super) {
         var classes = __WEBPACK_IMPORTED_MODULE_1_classnames___default()(className, 'input', 'radio-tabs');
         // Deprecation warning, v1.0.x
         if (radioClasses != undefined) {
-            throw new Error("radioClasses prop has been replaced with className");
+            throw new Error('radioClasses prop has been replaced with className');
         }
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Input_InputWrapper__["a" /* default */], { className: classes, name: name, label: label }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.Children.map(children, function (child) {
             {
+                /*
+  ATTN SHANE: Your hack doesn't work. Fix it!
+  if(typeof child.type === 'string' || child.type.name !== 'RadioTab') {
+    console.warn("RadioTabs can only accept RadioTab components as childen", "Element is " + child);
+  }  */
             }
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.cloneElement(child, {
                 name: name,
@@ -21213,7 +21251,9 @@ var MultiSelect = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.handleChange = function (values) {
             var _a = _this.props, inputChanged = _a.inputChanged, onChange = _a.onChange;
-            var newValues = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["List"])([]).concat(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["fromJS"])(values)).toList();
+            var newValues = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["List"])([])
+                .concat(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["fromJS"])(values))
+                .toList();
             inputChanged(newValues);
             if (typeof onChange === 'function') {
                 onChange(newValues);
@@ -21230,7 +21270,7 @@ var MultiSelect = /** @class */ (function (_super) {
         var safeValue = value !== '' ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["List"])(value) : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["List"])();
         var classes = __WEBPACK_IMPORTED_MODULE_3_classnames___default()(className, 'input');
         if (!__WEBPACK_IMPORTED_MODULE_2_immutable__["Iterable"].isIterable(options)) {
-            throw new Error("options must be an Immutable List()");
+            throw new Error('options must be an Immutable List()');
         }
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Input_InputWrapper__["a" /* default */], { name: props.name, label: label, labelPrefix: labelPrefix, labelPostfix: labelPostfix, className: classes },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_select___default.a, { value: safeValue.toJS(), options: options.toJS(), multi: true, onChange: this.handleChange, noResultsText: noResultsText, placeholder: placeholder })));
@@ -21310,17 +21350,16 @@ var Select = /** @class */ (function (_super) {
     Select.prototype.render = function () {
         var _a = this.props, className = _a.className, label = _a.label, labelPostfix = _a.labelPostfix, labelPrefix = _a.labelPrefix, arrow = _a.arrow, props = __rest(_a, ["className", "label", "labelPostfix", "labelPrefix", "arrow"]);
         var autoFocus = props.autoFocus, onChange = props.onChange, onBlur = props.onBlur, id = props.id, defaultChecked = props.defaultChecked, defaultSelected = props.defaultSelected, value = props.value, children = props.children, validationProps = __rest(props, ["autoFocus", "onChange", "onBlur", "id", "defaultChecked", "defaultSelected", "value", "children"]);
-        var classes = __WEBPACK_IMPORTED_MODULE_1_classnames___default()(className, "select", "input");
+        var classes = __WEBPACK_IMPORTED_MODULE_1_classnames___default()(className, 'select', 'input');
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Input_InputWrapper__["a" /* default */], { className: classes, name: props.name, labelPrefix: labelPrefix, labelPostfix: labelPostfix, label: label },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "input-group" },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "styled-select" },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Base__["a" /* default */], __assign({}, props)),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "arrow" }, arrow ? arrow : (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: __WEBPACK_IMPORTED_MODULE_6__Assets_arrow_svg___default.a }))))),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "arrow" }, arrow ? arrow : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: __WEBPACK_IMPORTED_MODULE_6__Assets_arrow_svg___default.a })))),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Validation_DisplayValidation__["a" /* default */], __assign({}, validationProps))));
     };
     return Select;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
-;
 /* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__Form_Helpers_performanceWrapper__["a" /* default */])(Select));
 
 
@@ -21394,7 +21433,6 @@ var TextArea = /** @class */ (function (_super) {
     return TextArea;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
 
-;
 /* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__Form_Helpers_performanceWrapper__["a" /* default */])(TextArea));
 
 
@@ -21538,8 +21576,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 var validations = {
-    'email': '([\\w-\\.]+)@((?:[\\w]+\\.)+)([a-zA-Z]{2,24})$',
-    'number': '^[0-9]+.?[0-9]*$'
+    email: '([\\w-\\.]+)@((?:[\\w]+\\.)+)([a-zA-Z]{2,24})$',
+    number: '^[0-9]+.?[0-9]*$'
 };
 /* harmony default export */ __webpack_exports__["a"] = (validations);
 
@@ -21743,7 +21781,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 
 var isChecked = function (props) {
     if (props.type === 'radio') {
-        return props.id + "" === props.value + "";
+        return props.id + '' === props.value + '';
     }
     else {
         return !!props.value;
@@ -21780,11 +21818,10 @@ var SwitchBase = /** @class */ (function (_super) {
     }
     SwitchBase.prototype.render = function () {
         var attributes = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__Form_Helpers_inputHelpers__["c" /* getHTMLAttributes */])(this.props);
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", __assign({ onBlur: this.handleBlur, onChange: this.handleChange, checked: isChecked(this.props), ref: this.props.name, value: attributes.id }, attributes, { id: this.props.id }));
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", __assign({ onBlur: this.handleBlur, onChange: this.handleChange, checked: isChecked(this.props), ref: this.props.name, value: attributes.id }, attributes, { id: this.props.id })));
     };
     return SwitchBase;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
-;
 /* harmony default export */ __webpack_exports__["a"] = (SwitchBase);
 
 
