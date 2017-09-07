@@ -13,17 +13,19 @@ class InputBase extends React.Component<TextInputProps & PerformanceWrapperProps
   displayName: 'InputBase'
 
   handleChange = (event:ChangeEvent<{files?: FileList, value?: any}>) => {
-    const value:string = this.props.type === 'file' ? event.target.files : event.target.value;
-    this.props.inputChanged(value);
-    if (isFunction(this.props.onChange)) {
+    const { type, inputChanged = () => false, onChange } = this.props;
+    const value:string = type === 'file' ? event.target.files : event.target.value;
+    inputChanged(value);
+    if (isFunction(onChange)) {
       this.props.onChange(event);
     }
   }
 
   handleBlured = (event:FocusEvent<{}>) => {
-    this.props.setInputBlurred()
-    if(isFunction(this.props.onBlur)){
-      this.props.onBlur(event);
+    const { setInputBlurred = () => false, onBlur } = this.props;
+    setInputBlurred()
+    if(isFunction(onBlur)){
+      onBlur(event);
     }
   }
 

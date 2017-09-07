@@ -88,7 +88,8 @@ class Form extends React.Component<FormInnerProps<undefined>, FormState>{
   }
 
   componentWillUnmount(){
-    this.props.dispatch(clearAllInputs(this.props.name));
+    const {dispatch = () => false} = this.props
+    dispatch(clearAllInputs(this.props.name));
   }
 
   handleFormSubmit = (event:FormEvent<{}>) => {
@@ -146,4 +147,4 @@ export default branch<FormProps<undefined>>(props => {
 (Form);
 
 
-export {clearAllInputs}
+export {clearAllInputs, Form}

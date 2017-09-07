@@ -34,8 +34,7 @@ class SwitchBase extends React.Component<SwitchProps & PerformanceWrapperProps, 
   }
   
   handleChange = (event: ChangeEvent<{checked?: boolean}>) => {
-    const {inputChanged, onChange} = this.props;
-
+    const {inputChanged = () => false, onChange} = this.props;
     inputChanged(this.getChecked(event));
     if(typeof onChange === 'function') {
       onChange(event);
@@ -43,8 +42,7 @@ class SwitchBase extends React.Component<SwitchProps & PerformanceWrapperProps, 
   }
 
   handleBlur = (event: FocusEvent<{}>) => {
-    const {onBlur, setInputBlurred} = this.props;
-    
+    const { onBlur, setInputBlurred = () => false } = this.props;
     setInputBlurred();
     if(typeof onBlur === 'function') {
       onBlur(event);

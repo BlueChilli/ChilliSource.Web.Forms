@@ -28,7 +28,7 @@ class SelectBase extends React.Component<SelectInputProps & PerformanceWrapperPr
   /*displayName: 'SelectBase'*/
   
   handleChange = (event: ChangeEvent<{value:any}>) => {
-    const {inputChanged, onChange} = this.props;
+    const {inputChanged = () => false, onChange} = this.props;
     inputChanged(event.target.value);
     if (typeof onChange === 'function') {
       onChange(event);
