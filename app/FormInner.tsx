@@ -1,174 +1,204 @@
+/** Libraries */
 import React from 'react';
 import moment from 'moment';
 import { List } from 'immutable';
-import CheckBox from '../src/CheckBox/CheckBox';
-import Form from '../src/Form/Form';
-import Fieldset from '../src/Form/Fieldset';
-import Input from '../src/Input/Input';
-import Radio from '../src/Radio/Radio';
-import RadioTab from '../src/Radio/RadioTab';
-import RadioTabs from '../src/Radio/RadioTabs';
-import Select from '../src/Select/Select';
-import MultiSelect from '../src/Select/MultiSelect';
-import DropZone from '../src/DropZone/DropZone';
-import DateRange from '../src/DatePicker/DateRange';
-import DatePicker from '../src/DatePicker/DatePicker';
-import TextArea from '../src/TextArea/TextArea';
-import Validation from '../src/Validation/Validation';
-import Validate from '../src/Validation/Validate';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import jsxToString from 'jsx-to-string';
+import { docco } from 'react-syntax-highlighter/dist/styles';
+
+/** Components */
+import {
+	CheckBox,
+	Form,
+	Fieldset,
+	Input,
+	Radio,
+	RadioTab,
+	RadioTabs,
+	Select,
+	MultiSelect,
+	DropZone,
+	DatePicker,
+	DateRange,
+	TextArea,
+	Validation,
+	Validate
+} from './';
+import GitSnippet from './GitSnippet/GitSnippet';
 
 import './FormInner.scss';
 import './Styles/main.scss';
 
 export default class FormInner extends React.Component<{}, {}> {
-  lastNameValidation = () => (value: string) => {
-    return value === 'Shane';
-  }
-  render() {
-    const options = List([
-      { value: 'Pash', label: 'Pash' },
-      { value: 'Wolf', label: 'Wolf' },
-      { value: 'Hunter', label: 'Hunter' },
-      { value: 'Mouse', label: 'Mouse' },
-      { value: 'Millenial', label: 'Millenial' },
-    ]);
+	render() {
+		const options = List([
+			{ value: 'Pash', label: 'Pash' },
+			{ value: 'Wolf', label: 'Wolf' },
+			{ value: 'Hunter', label: 'Hunter' },
+			{ value: 'Mouse', label: 'Mouse' },
+			{ value: 'Millenial', label: 'Millenial' }
+		]);
 
-    return (
-      <div style={{ padding: '20px 40px' }}>
-      {/*   <Input autoFocus label="First Name" required defaultValue="First Name" pattern="[A-Za-z]+$" name="firstName"  customValidation={this.lastNameValidation()}>
-          <Validation isFor="required">This field is required</Validation>
-          <Validation isFor="customValidation">This field must be Shane</Validation>
-        </Input>
-        <Fieldset name="users" id="test">
-          <Input label="Last Name" name="LastName" required minLength="2">
-            <Validation isFor="required">This field is required</Validation>
-          </Input>
-          <Input label="First Name" name="FirstName" required minLength="2">
-            <Validation isFor="required">This field is required</Validation>
-          </Input>
-        </Fieldset>
-        <Fieldset name="users" id="test2">
-          <Input label="Last Name" name="LastName" required minLength="2">
-            <Validation isFor="required">This field is required</Validation>
-          </Input>
-          <Input label="First Name" name="FirstName" required minLength="2">
-            <Validation isFor="required">This field is required</Validation>
-          </Input>
-        </Fieldset>
-        <Input label="Currency" prepend="$" type="text" required min="10" max="100000"
-          pattern="[0-9]" name="Currency" placeholder="Test"/>
-        <Input label="Percentage" append="%" type="number" required name="Percentage">
-          <Validation isFor="pattern">Percentage must be a number</Validation>
-        </Input>
-        <Input label="Credit Card" type="text" required name="CreditCard">
-          <Validation isFor="required">Currency is required</Validation>
-        </Input>
-        <Input label="Expiry Date" type="text" required name="ExpiryDate">
-          <Validation isFor="required">Expiry Date is required</Validation>
-        </Input> */}
-        {/* <Input label="Text" type="text" required name="Text">
-          <Validation isFor="required">Currency is required</Validation>
-        </Input> */}
-        <Input label="Email" type="email" required name="Email">
-          <Validation isFor="required">Email is required</Validation>
-          <Validation isFor="type">Must be a valid email</Validation>
-        </Input>
-        {/* <Input label="Password" labelPostfix="Your password must be at least 6 characters long." minLength="5"
-          type="password" required name="password">
-          <Validation isFor="required">Password is required</Validation>
-          <Validation isFor="minLength">Password must be 5 characters long</Validation>
-        </Input>
-        <TextArea label="Write something" name="something"  additionalCompareProps={['name']} />
-        <TextArea label="With validation" required name="withValidation">
-          <Validation isFor="required">With validation is required</Validation>
-        </TextArea>
-        <div className="switch-container">
-          <CheckBox id="tanscs" required label="Terms and Conditions" name="tandcs">
-            <Validation isFor="required">Please accept the T&Cs</Validation>
-          </CheckBox>
-        </div>
-        <div className="switch-container">
-          <CheckBox defaultChecked id="red" label="Red" name="color[]" />
-          <CheckBox defaultChecked={false} id="blue" label="Blue" name="color[]" />
-          <CheckBox defaultChecked id="green" label="Green" name="color[]"/>
-          <Validate name="color[]" required>
-            <Validation isFor="required">Please choose a color</Validation>
-          </Validate>
-        </div>
+		return (
+			<div>
+				<div className="header">
+					<div className="container">
+						<p>
+							ChilliSource.Web.Forms (<a href="https://goo.gl/XsNK7X" target="_blank">
+								cs.forms
+							</a>)
+						</p>
+					</div>
+				</div>
 
-        <div className="switch-container">
-          <Radio name="size" label="Extra Small" id="x-small" />
-          <Radio name="size" label="Small" id="small" />
-          <Radio defaultChecked name="size" label="Medium" id="medium" />
-          <Radio name="size" label="Large" id="large" />
-          <Validate name="size" required>
-            <Validation isFor="required">Please choose a size</Validation>
-          </Validate>
-        </div>
-        <br/>
-        
+				<div className="container display">
+					{/* INPUTS */}
+					<div className="row">
+						<div className="tablet-col-4 margin-top-2">
+							<Input
+								label="First Name"
+								required
+								placeholder="John"
+								name="firstName"
+								explanation="Enter it exactly as it appears on your passport"
+								radius={4}
+							/>
+						</div>
 
-        <div>
-          <RadioTabs name="radio-tabs">
-            <RadioTab id="tab-1">Tab 1</RadioTab>
-            <RadioTab defaultSelected id="tab-2">Tab 2</RadioTab>
-          </RadioTabs>
-        </div>
+						<div className="tablet-col-4 margin-top-2">
+							<Input
+								label="Last Name"
+								required
+								placeholder="Doe"
+								name="lastName"
+								explanation="Enter it exactly as it appears on your passport"
+								radius={4}
+							/>
+						</div>
 
-        <br/>
-        <br/>
+						<div className="tablet-col-4 margin-top-2">
+							<Input
+								name="search"
+								label="Search"
+								format="search"
+								explanation="Enter the text you would like to search for"
+								placeholder="Search"
+								radius={100}
+							/>
+						</div>
+					</div>
+					<div className="row">
+						<div className="tablet-col-3 margin-top-2">
+							<Input name="dollars" label="Dollars" format="dollar" type="number" />
+						</div>
 
-        
+						<div className="tablet-col-3 margin-top-2">
+							<Input name="yen" label="Yen" format="yen" type="number" />
+						</div>
 
-        <Select label="Front End Developers" defaultSelected="Mick" name="FrontEndDevelopers">
-          <option value="Shane">Shane</option>
-          <option value="Mick">Mick</option>
-          <option value="Mitch">Mitch</option>
-        </Select>
+						<div className="tablet-col-3 margin-top-2">
+							<Input name="euro" label="Euro" format="euro" type="number" />
+						</div>
 
-        <Select label="Numbers" name="Numbers">
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-        </Select>
+						<div className="tablet-col-3 margin-top-2">
+							<Input name="discount" label="Discount" format="percentage" type="number" />
+						</div>
+					</div>
 
-        <MultiSelect name="FDs" options={options} defaultValue={List(['Pash', 'Hunter'])} label="Frontend Devs" />
+					{/* DATE & RANGE PICKERS */}
+					<div className="row">
+						<div className="tablet-col-6 margin-top-2">
+							<DatePicker label="Date Picker" name="DatePickerNoDefault" />
+						</div>
 
-        <MultiSelect name="FDsPlaceholder" placeholder="This is a placeholder" options={options} label="Frontend Devs with placeholder" />
+						<div className="tablet-col-6 margin-top-2">
+							<DateRange label="Date Range" name="DateRange" />
+						</div>
+					</div>
 
-        <MultiSelect name="FDsEmpty" placeholder="This MultiInput has no options" noResultsText="This is empty" options={List()} label="Empty MultiInput" />
+					{/* SELECTS */}
+					<div className="row">
+						<div className="tablet-col-6 margin-top-2">
+							<Select label="Front End Developers" defaultSelected="Mick" name="FrontEndDevelopers">
+								<option value="Shane">Shane</option>
+								<option value="Mick">Mick</option>
+								<option value="Mitch">Mitch</option>
+							</Select>
+						</div>
 
-        <a target="_blank" href="https://github.com/okonet/react-dropzone">Props avaliable here</a>
-        <br />
-        <br />
-        <div className="dropzone-container">
-          <div className="dropzone-item">
-            <DropZone name="dropzone-single" placeholder="Drop a single file here" fileListComponent={files => files.map(file => <p>{file.name}</p>)} />
-          </div>
+						<div className="tablet-col-6 margin-top-2">
+							<Select label="Numbers" name="Numbers">
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+							</Select>
+						</div>
 
-          <div className="dropzone-item">
-            <DropZone name="dropzone-multiple" placeholder="Drop multiple files here" multiple fileListComponent={files => files.map(file => <p>{file.name}</p>)} />
-          </div>
-        </div>
-        <br /><br />
-        <div className="clearfix" style={{ overflow: "hidden" }}>
-          <div style={{ width: "300px", height: "300px", float: "left" }}>
-            <DateRange label="Date Range" name="DateRange" />
-          </div>
-          <div style={{ width: "300px", height: "300px", float: "left" }}>
-            <DatePicker label="Date Picker No Default" name="DatePickerNoDefault" />
-          </div>
-          <div style={{ width: "300px", height: "300px", float: "left" }}>
-            <DatePicker label="Date Picker Moment Object" name="DatePickerMomentObject" defaultValue={moment().format()} />
-          </div>
-          <div style={{ width: "300px", height: "300px", float: "left" }}>
-            <DatePicker label="Date Picker Blank Default" name="DatePickerBlankDefault" defaultValue="" />
-          </div>
-        </div>
-        <br /><br />
-        
-        <button>Submit</button> */}
-      </div>
-    );
-  }
+						<div className="tablet-col-12 margin-top-2">
+							<MultiSelect
+								name="FDs"
+								options={options}
+								defaultValue={List(['Pash', 'Hunter'])}
+								label="Frontend Devs"
+							/>
+						</div>
+					</div>
+
+					<div className="row">
+						{/* CHECKBOXES */}
+						<div className="tablet-col-4 margin-top-2">
+							<div className="switch-container">
+								<CheckBox defaultChecked id="red" label="Red" name="color[]" />
+								<CheckBox defaultChecked={false} id="blue" label="Blue" name="color[]" />
+								<CheckBox defaultChecked id="green" label="Green" name="color[]" />
+								<Validate name="color[]" required>
+									<Validation isFor="required">Please choose a color</Validation>
+								</Validate>
+							</div>
+						</div>
+
+						{/* RADIOS */}
+						<div className="tablet-col-4 margin-top-2">
+							<div className="switch-container">
+								<Radio name="size" label="Extra Small" id="x-small" />
+								<Radio name="size" label="Small" id="small" />
+								<Radio defaultChecked name="size" label="Medium" id="medium" />
+								<Radio name="size" label="Large" id="large" />
+								<Validate name="size" required>
+									<Validation isFor="required">Please choose a size</Validation>
+								</Validate>
+							</div>
+						</div>
+
+						{/* RADIOTABS */}
+						<div className="tablet-col-4 margin-top-2">
+							<RadioTabs name="radio-tabs">
+								<RadioTab id="tab-1" label="Tab 1" />
+								<RadioTab defaultSelected id="tab-2" label="Tab 2" />
+							</RadioTabs>
+						</div>
+					</div>
+
+					{/* DROPZONE */}
+					<div className="row">
+						<div className="tablet-col-6 margin-top-2">
+							<DropZone name="dropzone-single" placeholder="Drop a single file here">
+								{file => <p>{file}</p>}
+							</DropZone>
+						</div>
+
+						<div className="tablet-col-6 margin-top-2">
+							<DropZone
+								name="dropzone-multiple"
+								multiple
+								fileListComponent={files => files.map(file => <p>{file.name}</p>)}
+							/>
+						</div>
+					</div>
+
+					<button className="button button-primary margin-top-2">Submit</button>
+				</div>
+			</div>
+		);
+	}
 }
