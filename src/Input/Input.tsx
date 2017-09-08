@@ -99,6 +99,8 @@ export class Input extends React.Component<TextInputProps & PerformanceWrapperPr
 		const { autoFocus, onChange, onBlur, id, value, ...validationProps } = props;
 		const classes: string = classnames(className, 'input');
 
+		console.log('validationProps: ', validationProps);
+
 		if (props.type !== 'hidden') {
 			const inputWrapperProps = {
 				labelPrefix,

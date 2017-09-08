@@ -52,11 +52,11 @@ class DisplayValidation extends React.Component<
 	undefined
 > {
 	render() {
-		const { children, disabled, inputInfo, noValidate, type, ...props } = this.props;
-
+		const { children, disabled, inputInfo, noValidate, ...props } = this.props;
+		
 		const validationsAvail = validationsAvailable(props);
 		const validationUsed = childrenValidations(children);
-		const unusedValidations = validationsUnused(validationUsed, validationsAvail, isSwitch(type));
+		const unusedValidations = validationsUnused(validationUsed, validationsAvail, isSwitch(props.type));
 
 		if (disabled || noValidate) {
 			return <noscript />;
@@ -69,22 +69,23 @@ class DisplayValidation extends React.Component<
 					return React.cloneElement<ValidationAdditionProps, ValidationCloneElementProps>(child, {
 						test: props[typeOfValidation],
 						inputInfo,
-						type: type,
+						type: props.type,
 						name: props.name,
 						setValidation: props.setValidation
 					});
 				})}
-				{unusedValidations.map<ValidationAdditionChild>((validation, index) =>
-					React.createElement(Validation as React.ComponentClass<ValidationAdditionProps>, {
+				{unusedValidations.map<ValidationAdditionChild>((validation, index) => {
+					return React.createElement(Validation as React.ComponentClass<ValidationAdditionProps>, {
 						key: index,
 						isFor: validation,
 						test: props[validation],
 						inputInfo,
-						type: type,
+						type: props.type,
 						children: validationsMessages(validation, props[validation]),
 						name: props.name,
 						setValidation: props.setValidation
 					})
+					}
 				)}
 			</div>
 		);

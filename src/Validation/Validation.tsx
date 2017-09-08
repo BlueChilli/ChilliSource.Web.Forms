@@ -128,7 +128,7 @@ export default compose<ValidationInnerElementProps, ValidationComponentProps>(
 		componentWillMount() {
 			const { testElement, setValidation, value, type, isFor, test } = this.props;
 			setValidation(isFor, test);
-			// value, test, isFor, type, setValid
+			// value, test, isFor, type, setValid  
 			testElement(this.props);
 		},
 		componentWillReceiveProps(nextProps) {

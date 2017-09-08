@@ -106,7 +106,7 @@ interface TestElementProps extends TypeProp {
 
 export type TestElement = ({ value, test, isFor, type, setValid }: TestElementProps) => void;
 
-export const testElement: TestElement = ({ value, test, isFor, type, setValid }) => {
+export const testElement: TestElement = ({ value, test = 'email', isFor, type, setValid }) => {
 	if (test === false || test === 'false') {
 		return setValid(true);
 	} else if (isFor !== 'customValidation' && typeof test !== 'function') {
