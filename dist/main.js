@@ -390,7 +390,7 @@ var __extends = (this && this.__extends) || (function () {
 /** Styles */
 
 /** Class InputWrapper */
-var InputWrapper = (function (_super) {
+var InputWrapper = /** @class */ (function (_super) {
     __extends(InputWrapper, _super);
     function InputWrapper() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -656,7 +656,7 @@ var validationsUnused = function (validationsUsed, validationsAvailable, isSwitc
     });
 };
 /** Class DisplayValidation */
-var DisplayValidation = (function (_super) {
+var DisplayValidation = /** @class */ (function (_super) {
     __extends(DisplayValidation, _super);
     function DisplayValidation() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -19390,7 +19390,7 @@ var __extends = (this && this.__extends) || (function () {
 
 
 /** Class ErrorWrapper */
-var ErrorWrapper = (function (_super) {
+var ErrorWrapper = /** @class */ (function (_super) {
     __extends(ErrorWrapper, _super);
     function ErrorWrapper() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -19717,7 +19717,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 
 
 /** Class Input */
-var Input = (function (_super) {
+var Input = /** @class */ (function (_super) {
     __extends(Input, _super);
     function Input() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -19788,7 +19788,7 @@ var __rest = (this && this.__rest) || function (s, e) {
  * Creates a radio button connected to forms
  * state management. All HTML5 attributes apply.
  */
-var Radio = (function (_super) {
+var Radio = /** @class */ (function (_super) {
     __extends(Radio, _super);
     function Radio() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -19924,7 +19924,7 @@ var __extends = (this && this.__extends) || (function () {
 
 
 /** Class DateWrapper */
-var DateWrapper = (function (_super) {
+var DateWrapper = /** @class */ (function (_super) {
     __extends(DateWrapper, _super);
     function DateWrapper(props) {
         var _this = _super.call(this, props) || this;
@@ -20015,7 +20015,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 /** Styles */
 
 /** Class Switch */
-var Switch = (function (_super) {
+var Switch = /** @class */ (function (_super) {
     __extends(Switch, _super);
     function Switch() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -20259,7 +20259,7 @@ var __rest = (this && this.__rest) || function (s, e) {
  * Creates a Checkbox connected to forms state management.
  * All HTML5 attributes apply.
  */
-var CheckBox = (function (_super) {
+var CheckBox = /** @class */ (function (_super) {
     __extends(CheckBox, _super);
     function CheckBox() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -20331,7 +20331,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 /** Styles */
 
 /** Class CalendarBase */
-var CalendarBase = (function (_super) {
+var CalendarBase = /** @class */ (function (_super) {
     __extends(CalendarBase, _super);
     function CalendarBase() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -20353,7 +20353,7 @@ var CalendarBase = (function (_super) {
     return CalendarBase;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
 /** Class DatePicker */
-var DatePicker = (function (_super) {
+var DatePicker = /** @class */ (function (_super) {
     __extends(DatePicker, _super);
     function DatePicker() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -20449,7 +20449,7 @@ var getValue = function (dateRange, dateFormat) {
 /** Styles */
 
 /** Class DateRangeBase */
-var DateRangeBase = (function (_super) {
+var DateRangeBase = /** @class */ (function (_super) {
     __extends(DateRangeBase, _super);
     function DateRangeBase() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -20471,7 +20471,7 @@ var DateRangeBase = (function (_super) {
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
 ;
 /** Class DateRangePicker */
-var DateRangePicker = (function (_super) {
+var DateRangePicker = /** @class */ (function (_super) {
     __extends(DateRangePicker, _super);
     function DateRangePicker() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -20552,7 +20552,7 @@ var PassDownProps = function (props, children) {
     }
 };
 /** Class DropZone */
-var DropZone = (function (_super) {
+var DropZone = /** @class */ (function (_super) {
     __extends(DropZone, _super);
     function DropZone() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -20657,7 +20657,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 
 
 /** Class Fieldset */
-var Fieldset = (function (_super) {
+var Fieldset = /** @class */ (function (_super) {
     __extends(Fieldset, _super);
     function Fieldset() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -20744,7 +20744,7 @@ var mapOutput = function (data, mapOutputFunc) {
 var randomString = function (length) { return Math.random().toString(36).substring(length); };
 /** Displays a form component, inserts all user input into redux state and ensures that all inputs are validated
  * before allowing the user to submit the form. */
-var Form = (function (_super) {
+var Form = /** @class */ (function (_super) {
     __extends(Form, _super);
     function Form(props) {
         var _this = _super.call(this, props) || this;
@@ -20866,7 +20866,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 
 /** Components */
 
-var Number = (function (_super) {
+var Number = /** @class */ (function (_super) {
     __extends(Number, _super);
     function Number() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -20931,7 +20931,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 
 /** Components */
 
-var RadioTab = (function (_super) {
+var RadioTab = /** @class */ (function (_super) {
     __extends(RadioTab, _super);
     function RadioTab() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -21001,7 +21001,7 @@ var __extends = (this && this.__extends) || (function () {
 /** Styles */
 
 /** Class RadioTabs */
-var RadioTabs = (function (_super) {
+var RadioTabs = /** @class */ (function (_super) {
     __extends(RadioTabs, _super);
     function RadioTabs() {
         var _this = _super.call(this) || this;
@@ -21086,7 +21086,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 
 
 /** Class MultiSelect */
-var MultiSelect = (function (_super) {
+var MultiSelect = /** @class */ (function (_super) {
     __extends(MultiSelect, _super);
     function MultiSelect() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -21176,7 +21176,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 /** Styles */
 
 /** Class Select */
-var Select = (function (_super) {
+var Select = /** @class */ (function (_super) {
     __extends(Select, _super);
     function Select() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -21250,7 +21250,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 
 
 /** Class TextArea */
-var TextArea = (function (_super) {
+var TextArea = /** @class */ (function (_super) {
     __extends(TextArea, _super);
     function TextArea() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -21309,7 +21309,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
  * A component to allow validation anywhere inside of a form component
  * for input elements in that same component
  */
-var Validate = (function (_super) {
+var Validate = /** @class */ (function (_super) {
     __extends(Validate, _super);
     function Validate() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -21473,7 +21473,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 /** Helpers */
 
 /** Class InputBase */
-var InputBase = (function (_super) {
+var InputBase = /** @class */ (function (_super) {
     __extends(InputBase, _super);
     function InputBase() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -21549,7 +21549,7 @@ var getDefaultSelected = function (_a) {
     }
 };
 /** Class SelectBase */
-var SelectBase = (function (_super) {
+var SelectBase = /** @class */ (function (_super) {
     __extends(SelectBase, _super);
     function SelectBase() {
         /*displayName: 'SelectBase'*/
@@ -21623,7 +21623,7 @@ var isChecked = function (props) {
     }
 };
 /** {Internal} Method used internally to display a switch component(radio or checkbox)  */
-var SwitchBase = (function (_super) {
+var SwitchBase = /** @class */ (function (_super) {
     __extends(SwitchBase, _super);
     function SwitchBase() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -21692,7 +21692,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 /** Helpers */
 
 /** Class TextAreaBase */
-var TextAreaBase = (function (_super) {
+var TextAreaBase = /** @class */ (function (_super) {
     __extends(TextAreaBase, _super);
     function TextAreaBase() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
