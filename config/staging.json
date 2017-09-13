@@ -1,4 +1,4 @@
 {
-	"executionEnvironment": "staging",
-	"buildEnvironment": "production"
+  "executionEnvironment": "staging",
+  "buildEnvironment": "production"
 }

@@ -1,3 +1,3 @@
-var webpack = require('./Webpack.static/webpack');
+var webpack = require("./Webpack.static/webpack");
 
 module.exports = webpack;

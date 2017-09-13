@@ -5,26 +5,19 @@
 }
 
 .drop-zone-box {
-	background-color: #ffffff;
-	border: 1px dashed #dfdee3;
+	width: 100%;
+	min-height: 50px;
+	border: 2px dashed #D8D8D8;
+	border-radius: 8px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
-	.placeholder-container {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-direction: column;
-
-		p {
-			color: #dfdee3;
-		}
+	&:hover{
+		cursor: pointer;
 	}
 
-	&:hover {
-		cursor: pointer;
-		border-color: #00afef;
-		border-width: 2px;
+	p {
+		text-transform: uppercase;
+		color: #D8D8D8;
 	}
 }

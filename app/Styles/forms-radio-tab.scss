@@ -1,0 +1,25 @@
+.radio-tabs {
+  @extend .clearfix;
+
+  .radio-tab {
+    display: inline-block;
+
+    .box {
+      display: none !important;
+    }
+
+    label {
+      display: block;
+      @extend .button;
+      line-height: 1;
+    }
+
+    input:checked + label {
+      @extend .button-primary;
+    }
+
+    &:nth-child(n+2) {
+      margin-left: 5px;
+    }
+  }
+}

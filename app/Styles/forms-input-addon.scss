@@ -1,0 +1,31 @@
+.input-addon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: $input-addon-width;
+  text-align: center;
+  line-height: $input-height;
+  color: $input-text-color;
+}
+
+.input-group.input-prepend {
+  input { padding-left: $input-height + $input-padding }
+
+  .input-addon {
+    left: 0;
+    border-right: $input-border-width solid $input-border-color;
+  }
+}
+
+.input-group.input-append {
+  input { padding-right: $input-height + $input-padding }
+
+  .input-addon {
+    right: 0;
+    border-left: $input-border-width solid $input-border-color;
+  }
+}
+
+.input-group input:focus + .input-addon {
+  border-color: $input-border-color-focus;
+}

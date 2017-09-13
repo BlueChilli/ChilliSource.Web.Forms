@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import Switch from '../Switch/Switch';
 
 /** Interfaces */
-import { SwitchProps } from '../../typings/types.d';
+import {SwitchProps} from '../../typings/types.d';
 
 /** 
  * Class Radio
@@ -14,12 +14,14 @@ import { SwitchProps } from '../../typings/types.d';
  * state management. All HTML5 attributes apply.
  */
 class Radio extends React.Component<SwitchProps, {}> {
-	render() {
-		const { className, ...other } = this.props;
-		var classes: string = classnames(className, 'radio');
-
-		return <Switch className={classes} {...other} type="radio" />;
-	}
+  render() {
+    const {className, ...other} = this.props;
+    var classes: string = classnames(className, 'radio');
+    
+    return (
+      <Switch className={classes} {...other} type="radio"/>
+    );
+  }
 }
 
 export default Radio;

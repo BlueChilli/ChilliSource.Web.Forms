@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="32px" viewBox="0 0 18 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon MP3 Label</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="File-Types-Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Assets" transform="translate(-763.000000, -153.000000)">
+            <g id="Icon-MP3-Label" transform="translate(747.000000, 146.000000)">
+                <text id="PNG" font-family="Roboto-Medium, Roboto" font-size="8" font-weight="400" fill="#7E7E7E">
+                    <tspan x="17" y="38">MP3</tspan>
+                </text>
+                <path d="M16,9.1 L16,25.9 C16,27.055 16.95625,28 18.125,28 L30.875,28 C32.04375,28 33,27.055 33,25.9 L33,13.3 L26.625,7 L18.125,7 C16.95625,7 16,7.945 16,9.1 Z" id="Shape" fill="#FF7E7E"></path>
+                <path d="M20.8181818,23 C21.6090909,23 22.2818182,22.58 22.5272727,22 C22.6,21.84 22.6363636,21.68 22.6363636,21.5 L22.6363636,16 L28.0909091,16 L28.0909091,20.2 C27.8272727,20.07 27.5090909,20 27.1818182,20 C26.1818182,20 25.3636364,20.67 25.3636364,21.5 C25.3636364,22.33 26.1818182,23 27.1818182,23 C28.1818182,23 29,22.33 29,21.5 C29,21.32 28.9636364,21.16 28.8909091,21 L29,21 L29,15 C29,14 28.0909091,13 27.1818182,13 L23.5454545,13 C22.6363636,13 21.7272727,14 21.7272727,15 L21.7272727,16 L21.7272727,20.2 C21.4636364,20.07 21.1454545,20 20.8181818,20 C19.8181818,20 19,20.67 19,21.5 C19,22.33 19.8181818,23 20.8181818,23 L20.8181818,23 Z M22.5272727,22 L22.6363636,22 L22.6363636,21.5 C22.6363636,21.68 22.6,21.84 22.5272727,22 L22.5272727,22 Z" id="Shape" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

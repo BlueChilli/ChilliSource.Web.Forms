@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import Switch from '../Switch/Switch';
 
 /** Types */
-import { SwitchProps } from '../../typings/types.d';
+import {SwitchProps} from '../../typings/types.d';
 
 /** 
  * Class CheckBox
@@ -14,12 +14,14 @@ import { SwitchProps } from '../../typings/types.d';
  * All HTML5 attributes apply.
  */
 class CheckBox extends React.Component<SwitchProps, {}> {
-	render() {
-		const { className, ...other } = this.props;
-		var classes: string = classnames(className, 'checkbox');
+  render() {
+    const {className, ...other} = this.props;
+    var classes:string = classnames(className, 'checkbox');
 
-		return <Switch className={classes} {...other} type="checkbox" />;
-	}
+    return (
+      <Switch className={classes} {...other} type="checkbox"/>
+    );
+  }
 }
 
 export default CheckBox;

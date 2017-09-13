@@ -1,24 +1,30 @@
 {
-	"compilerOptions": {
-		"allowSyntheticDefaultImports": true,
-		"target": "es5",
-		"module": "es6",
-		"moduleResolution": "node",
-		"allowJs": true,
-		"jsx": "react",
-		"sourceMap": true,
-		"alwaysStrict": true,
-		"pretty": true,
-		"lib": ["es6", "dom"],
-		"typeRoots": ["./Frecl/Types/**", "./typings/declare.d.ts"]
-	},
-	"exclude": [
-		"node_modules",
-		"custom_modules",
-		"**/*.test*.*",
-		"doc",
-		"static",
-		"bundle.js",
-		"dist"
-	]
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "target": "es5",
+        "module": "es6",
+        "moduleResolution": "node",
+        "allowJs": true,
+        "jsx": "react",
+        "sourceMap": true,
+        "alwaysStrict": true,
+        "pretty": true,
+        "lib": [
+            "es6",
+            "dom"
+        ],
+        "typeRoots": [
+            "./Frecl/Types/**",
+            "./typings/declare.d.ts"
+        ]
+    },
+    "exclude": [
+        "node_modules",
+        "custom_modules",
+        "**/*.test*.*",
+        "doc",
+        "static",
+        "bundle.js",
+        "dist"
+    ]
 }

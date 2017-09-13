@@ -1,29 +1,24 @@
-@import '../../app/Styles/frecl/extends';
-@import '../../app/Styles/buttons';
-
 .radio-tabs {
-	@extend .clearfix;
+  // @extend .clearfix;
+}
 
-	.radio-tab {
-		display: inline-block;
-
-		.box {
-			display: none !important;
-		}
-
-		label {
-			@extend .button;
-			min-height: 40px;
-			display: flex;
-			align-items: center;
-		}
-
-		input:checked + label {
-			@extend .button-primary;
-		}
-
-		&:nth-child(n + 2) {
-			margin-left: 5px;
-		}
-	}
+.radio-tab {
+  float: left;
+  margin-bottom: 0;
+  position: relative;
+  
+  input, .box {
+    display: none !important;
+  }
+  label {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    &:hover{
+      cursor: pointer;
+    }
+  }
 }
