@@ -1,8 +1,9 @@
 {
   "name": "cs.forms",
-  "version": "1.0.69",
+  "version": "1.0.93",
   "author": "Blue Chilli Technology Pty Ltd",
-  "description": "A collection of forms components, helpers and abstractions built in React. These can be used with or without Redux.",
+  "description":
+    "A collection of forms components, helpers and abstractions built in React. These can be used with or without Redux.",
   "main": "dist/main.js",
   "types": "index.d.ts",
   "style": "dist/main.css",
@@ -10,12 +11,7 @@
     "type": "git",
     "url": "https://github.com/BlueChilli/ChilliSource.Web.Forms.git"
   },
-  "keywords": [
-    "react",
-    "redux",
-    "form",
-    "forms"
-  ],
+  "keywords": ["react", "redux", "form", "forms"],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/BlueChilli/ChilliSource.Web.Forms/issues"
@@ -45,17 +41,11 @@
     "recompose": "0.24"
   },
   "jest": {
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx"
-    ],
-    "moduleDirectories": [
-      "node_modules"
-    ],
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx"],
+    "moduleDirectories": ["node_modules"],
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+        "<rootDir>/__mocks__/fileMock.js",
       "\\.s?css$": "<rootDir>/__mocks__/fileMock.js"
     },
     "transform": {
