@@ -26,7 +26,7 @@ const mapOutput = (data: Map<string, any>, mapOutputFunc: ((data?: Map<string, a
 const randomString = (length) => Math.random().toString(36).substring(length);
 
 /** Interfaces */
-import {BaseReactProps, PossibleInputValue, OnSubmit, formState, 
+import {BaseReactProps, PossibleInputValue, OnSubmit, formState,
         FormOptionalProps, FormOwnProps, FormStateProps,
         FormDispatchProps, FormState, FormProps} from '../../typings/types.d';
 
@@ -34,6 +34,7 @@ interface FormInnerProps<T> extends FormOwnProps<T>, FormStateProps, FormDispatc
   FormState: formState,
   dispatch: any,
   mapOutput: (data?: Map<string, any>) => Map<string, any>
+  onInvalid?: () => void
 }
 
 /** Displays a form component, inserts all user input into redux state and ensures that all inputs are validated
@@ -95,7 +96,7 @@ class Form extends React.Component<FormInnerProps<undefined>, FormState>{
     event.preventDefault();
 
     if(this.state.canSubmitString !== this.lastSumbittedString) {
-      const {dispatch, onSubmit, FormState, name, encType} = this.props;
+      const {dispatch, onSubmit, FormState, name, encType, onInvalid} = this.props;
 
       // INSERT COMMENT HERE
       dispatch(setAllInputInteractions(name, "changed", true));
@@ -104,7 +105,7 @@ class Form extends React.Component<FormInnerProps<undefined>, FormState>{
       defer(() => {
         const form = this.refs[name];
         const firstError = form.querySelector('.invalid');
-        
+
         if(firstError === null) {
           if(onSubmit) {
             const fields = FormState.get(name);
@@ -123,6 +124,9 @@ class Form extends React.Component<FormInnerProps<undefined>, FormState>{
           const scrollTo = firstError.getBoundingClientRect().top - 50;
           if(typeof window === 'object' && scrollTo < 0) {
             window.scrollTo(0, document.body.scrollTop + scrollTo - 5);
+          }
+          if (onInvalid) {
+            onInvalid();
           }
         }
       });
