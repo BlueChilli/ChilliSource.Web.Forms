@@ -152,7 +152,7 @@ export interface FieldSetNameSpaceProp {
 }
 
 export interface LabelProp {
-  /** Add a label to the input*/			
+  /** Add a label to the input*/
   label?: string
 }
 
@@ -181,37 +181,37 @@ export interface OptionsProp {
 }
 
 export interface DefaultValueProp<TDefault> {
-  /** Default value for the input to display */	
+  /** Default value for the input to display */
   defaultValue?: TDefault,
 }
 
 export interface AdditionalCompareProps {
-  /** Additional props to check in should component update */	
+  /** Additional props to check in should component update */
   additionalCompareProps?: string[],
 }
 
 export interface DefaultSwitchProps {
   defaultChecked?: boolean | string | number | undefined,
-  defaultSelected?: boolean | string | number | undefined 
+  defaultSelected?: boolean | string | number | undefined
 }
 
 export interface InputWrapperProps extends BaseReactProps, LabelProp, NameProp, TypeProp {
-  /** Pass in something to be prepended to the label */ 	
+  /** Pass in something to be prepended to the label */
   labelPrefix?: any,
-  /** Pass in something to be appended to the label */ 	
+  /** Pass in something to be appended to the label */
   labelPostfix?: any,
 }
 
 export interface BaseInputProps<TDefault, TValue, TChangeEvent = React.ChangeEvent<{}>> extends BaseReactProps, OnChangeEventProps<TChangeEvent>, OnBlurEventProps<React.FocusEvent<{}>>, ValidationProps, NameProp, TypeProp, IdProp, DefaultValueProp<TDefault>, ValueProp<TValue> {
-  /** Automatically select this field on navigation*/			
+  /** Automatically select this field on navigation*/
   autoFocus?: boolean,
 }
 
 export interface OptionalValidationProps {
-  /** Disable the input*/	
+  /** Disable the input*/
   disabled?: boolean,
-  /** Don't validate the input*/			
-  noValidate? :boolean, 
+  /** Don't validate the input*/
+  noValidate? :boolean,
 }
 
 export interface OptionTypes {
@@ -221,10 +221,10 @@ export interface OptionTypes {
 
 export interface TextAreaProps extends BaseInputProps<string, string>, CustomValidationProps, InputWrapperProps, PlaceholderProp, AdditionalCompareProps {}
 
-export interface TextInputProps extends BaseInputProps<string, string | number>, CustomValidationProps, InputWrapperProps, InputGroupProps, PlaceholderProp, AdditionalCompareProps{} 
+export interface TextInputProps extends BaseInputProps<string, string | number>, CustomValidationProps, InputWrapperProps, InputGroupProps, PlaceholderProp, AdditionalCompareProps{}
 
 export interface SelectInputProps extends BaseInputProps<string | number, string | number>, CustomValidationProps, InputWrapperProps, DefaultSwitchProps, AdditionalCompareProps{
-  /** Pass in an arrow to display at the edge of the select box */ 
+  /** Pass in an arrow to display at the edge of the select box */
   arrow?: React.ReactNode
 }
 
@@ -256,9 +256,9 @@ export interface ValidationElementProps extends BaseReactProps, NameProp, Additi
 export interface DisplayValidationProps extends BaseReactProps, OptionalValidationProps, CustomValidationProps, TypeProp, NameProp {}
 
 export interface DropZoneProps extends BaseReactProps, NameProp, ValueProp<List<File>>, AdditionalCompareProps {
-  /** Can you upload multiple files*/	
+  /** Can you upload multiple files*/
   multiple?: boolean,
-  /** Display a list of uploaded files*/		
+  /** Display a list of uploaded files*/
   showList?: boolean,
   /** Custom onDrop handler */
   onDrop?: Function,
@@ -345,10 +345,11 @@ export interface FormOptionalProps<T> extends BaseReactProps {
   * currently supports: application/json and multipart/form-data */
   encType?: 'application/json' | 'multipart/form-data',
   /** Called before the form is submitted, ths is a chance to modify the contents of the payload
-   * primarily used by the form generator */    
+   * primarily used by the form generator */
   mapOutput?: (data?: Map<string, any>) => Map<string, any>,
   /** Called once Form has ensured that all child Input components are valid */
-  onSubmit?: OnSubmit<T>,    
+  onSubmit?: OnSubmit<T>,
+  onInvalid?: () => void
 }
 
 export interface FormOwnProps<T> extends FormOptionalProps<T> {
@@ -414,16 +415,16 @@ export interface PerformanceWrapperUncalledValidationHelpers {
 }
 
 export interface PerformanceWrapperUncalledInputHelpers extends PerformanceWrapperUncalledValidationHelpers {
-  /** Update state with a new value for this input */ 
+  /** Update state with a new value for this input */
   inputChanged?: (props:InputChanged) => inputChanged,
-  /** Set the inputs state */ 
+  /** Set the inputs state */
   setInputBlurred?: (props:InputBlurred) => () => void
 }
 
 export interface PerformanceWrapperInputHelpers {
-  /** Update state with a new value for this input */ 
+  /** Update state with a new value for this input */
   inputChanged: inputChanged,
-  /** Set the inputs state */ 
+  /** Set the inputs state */
   setInputBlurred: inputBlurred,
   setValidation: setValidation,
   compareAdditionalProps: compareAdditionalProps

@@ -3,13 +3,14 @@ var path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
+  devtool: 'cheap-module-source-map',
   entry: path.join(__dirname, '/app/index'),
   output: {
     path: path.join(__dirname, "/dist/"),
     libraryTarget: "umd",
     filename: "main.js"
   },
-  
+
   module: {
     rules: [{
       test: /\.(t|j)sx?$/,
@@ -93,7 +94,7 @@ module.exports = {
 
   plugins: [
     new ExtractTextPlugin("main.css")
-   
+
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.tsx', '.ts'],
