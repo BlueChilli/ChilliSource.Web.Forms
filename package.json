@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@types/react": "^15.0.27",
+    "breakpoint-sass": "^2.7.1",
     "classnames": "^2.2.5",
     "cs.core": "BlueChilli/ChilliSource.Web.Core#1.0.6",
     "immutable": "^3.8.1",
@@ -42,7 +43,9 @@
     "react-onclickoutside": "^5.11.1",
     "react-select": "^1.0.0-rc.3",
     "react-syntax-highlighter": "^5.7.0",
-    "recompose": "0.24"
+    "recompose": "0.24",
+    "scut": "^1.4.0",
+    "susy": "^2.2.12"
   },
   "jest": {
     "moduleFileExtensions": [
