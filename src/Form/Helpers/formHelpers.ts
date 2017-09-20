@@ -1,4 +1,3 @@
-import {isMultipleValueInput} from "./inputHelpers";
 import {Map, List, Iterable} from "immutable";
 
 export const convertToFormData = (formMap:Map<string, any>) => {
@@ -30,13 +29,16 @@ export const convertToFormData = (formMap:Map<string, any>) => {
   throw new Error("convertToFormData requires a Immutable Iterable object")
 };
 
-export const normalizeFields = (fields:Map<string, any>) => {
+export const normalizeFields = (fields:Map<string, any>, depth:number = 0) => {
+  if(depth > 20) {
+    throw new Error("Your form nesting has exceeded the maximum limit");
+  }
+
   return fields.map<Map<string, any>>((input, inputName:string) => {
-    if (isMultipleValueInput(inputName)) {
-      return input.map((innerInput:Map<string, any>)=> {
-        return innerInput.get('value');
-      });
+    if(input.has('value')) {
+      return input.get("value");
+    } else {
+      return normalizeFields(input, depth + 1);
     }
-    return input.get('value');
   });
 };
