@@ -1,5 +1,5 @@
 import {isMultipleValueInput} from "./inputHelpers";
-import {Map, List, Iterable} from "immutable";
+import {Map, List, Set, Iterable} from "immutable";
 
 export const convertToFormData = (formMap:Map<string, any>) => {
   const formData = new FormData();
@@ -13,7 +13,7 @@ export const convertToFormData = (formMap:Map<string, any>) => {
           formData.append(key + `.${index}`, innerVal);
         }
       })
-    } else if (List.isList(value)) {
+    } else if (List.isList(value) || Set.isSet(value)) {
       value.map((innerVal:string | Blob, index:number) => {
         if(innerVal !== null){
           formData.append(key + `[${index}]`, innerVal);
