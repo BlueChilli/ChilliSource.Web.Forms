@@ -1,20 +1,13 @@
-$button-border-radius: 6px;
-$button-font-size: 14px;
-$button-padding: 8px 15px;
-$button-border-width: 2px;
+@import 'sizes.scss';
+@import 'colors.scss';
+
 $button-transition-time: 150ms;
 $button-hover-darken: 10%;
 $button-active-darken: 20%;
 
 $button-color-variations: (
-  ('primary',              #4A90E2, #FFFFFF, transparent),
-  ('secondary',            #FFFFFF, #797979, #797979),
-  ('disabled',             #CFCFCF, #FFFFFF, transparent),
-  ('error',                #FF0000, #FFFFFF, transparent),
-);
-
-$button-size-variations: (
-  ('sm', 12px),
-  ('lg', 18px),
-  ('xl', 26px)
+  ('primary',     $colorInfo,       $colorWhite,        $colorInfo),
+  ('secondary',   $colorLightGrey,  $regularTextColor,  $colorLightGrey),
+  ('disabled',    $colorLightGrey,  $lightTextColor,    $colorLightGrey),
+  ('tertiary',    transparent,    $colorInfo,         $colorInfo),
 );

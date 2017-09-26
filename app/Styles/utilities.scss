@@ -1,0 +1,50 @@
+@import './config/sizes';
+
+@for $i from 0 through 10 {
+  .margin-#{$i} {
+    margin-top: $i * $grid-base !important;
+    margin-bottom: $i * $grid-base !important;
+  }
+
+  .margin-top-#{$i} {
+    margin-top: $i * $grid-base !important;
+  }
+
+  .margin-bottom-#{$i} {
+    margin-bottom: $i * $grid-base !important;
+  }
+
+  .padding-#{$i} {
+    padding-top: $i * $grid-base !important;
+    padding-bottom: $i * $grid-base !important;
+  }
+
+  .padding-top-#{$i} {
+    padding-top: $i * $grid-base !important;
+  }
+
+  .padding-bottom-#{$i} {
+    padding-bottom: $i * $grid-base !important;
+  }
+
+}
+
+.pull-left { 
+  float: left; 
+}
+
+.pull-right { 
+  float: right; 
+}
+
+.text-center { 
+  text-align: center; 
+}
+
+.text-right { 
+  text-align: right; 
+}
+
+.text-left { 
+  text-align: left; 
+}

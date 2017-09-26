@@ -1,7 +1,11 @@
 $type-variants: (
-  'body-copy': (font-size: 16px, line-height: 24px),
-  'primary-heading': (font-size: 48px, font-weight: 800),
-  'secondary-heading': (font-size: 16px, font-weight: 700, line-height: 22px),
+  'body': (font-size: 16px, line-height: 26px),
+  'h1': (font-size: 56px, font-weight: 'bold', line-height: 67px),
+  'h2': (font-size: 32px, font-weight: 'bold'),
+  'h3': (font-size: 28px, font-weight: 'bold'),
+  'h4': (font-size: 24px, font-weight: 'bold'),
+  'h5': (font-size: 20px, font-weight: 'bold'),
+  'h6': (font-size: 16px, font-weight: 'bold', line-height: 1.25),
   'button': (font-size: 14px, line-height: 16px)
 );
 

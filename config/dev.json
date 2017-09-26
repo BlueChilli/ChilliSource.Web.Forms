@@ -1,4 +1,4 @@
 {
-  "executionEnvironment": "dev",
-  "buildEnvironment": "development"
+	"executionEnvironment": "dev",
+	"buildEnvironment": "development"
 }

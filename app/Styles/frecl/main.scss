@@ -24,7 +24,7 @@ html {
 }
 
 .container {
-  /* @include container(80em); */
+  @include container(80em);
   width: 100%;
 }
 

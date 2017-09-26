@@ -1,3 +1,3 @@
 global.window.URL = {
-  createObjectURL: () => {}
+	createObjectURL: () => {}
 };
