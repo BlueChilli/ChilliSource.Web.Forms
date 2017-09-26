@@ -283,7 +283,7 @@ export interface TextAreaProps
 }
 
 export interface TextInputProps
-	extends BaseInputProps<string, string | number>,
+	extends BaseInputProps<any, any>,
 		CustomValidationProps,
 		InputWrapperProps,
 		InputGroupProps,
