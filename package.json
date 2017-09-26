@@ -1,6 +1,6 @@
 {
   "name": "cs.forms",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "author": "Blue Chilli Technology Pty Ltd",
   "description": "A collection of forms components, helpers and abstractions built in React. These can be used with or without Redux.",
   "main": "dist/main.js",

@@ -19534,7 +19534,7 @@ var convertToFormData = function (formMap) {
                     }
                 });
             }
-            else if (__WEBPACK_IMPORTED_MODULE_1_immutable__["List"].isList(value)) {
+            else if (__WEBPACK_IMPORTED_MODULE_1_immutable__["List"].isList(value) || __WEBPACK_IMPORTED_MODULE_1_immutable__["Set"].isSet(value)) {
                 value.map(function (innerVal, index) {
                     if (innerVal !== null) {
                         formData.append(key + ("[" + index + "]"), innerVal);
