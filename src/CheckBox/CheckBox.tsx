@@ -1,10 +1,15 @@
-import React from "react";
-import classnames from "classnames";
-import Switch from "../Switch/Switch";
-import {SwitchProps} from "../Form/Types/types";
+/** Libraries */
+import React from 'react';
+import classnames from 'classnames';
 
+/** Components */
+import Switch from '../Switch/Switch';
+
+/** Types */
+import {SwitchProps} from '../../typings/types.d';
 
 /** 
+ * Class CheckBox
  * Creates a Checkbox connected to forms state management.
  * All HTML5 attributes apply.
  */

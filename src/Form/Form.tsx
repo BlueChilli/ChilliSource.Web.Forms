@@ -1,60 +1,17 @@
-import React, {FormEvent} from "react";
-import PropTypes from "prop-types";
-import {is, List, Map, Iterable} from "immutable";
-import classnames from "classnames";
-import {defer, isFunction} from "lodash";
-import {setAllInputInteractions, clearAllInputs} from "./Actions/fields";
-import {withReducerState} from "./Reducers";
-import {PossibleValues} from "./Types/types";
-import {BaseReactProps} from "cs.core";
-import {convertToFormData, normalizeFields} from "./Helpers/formHelpers";
-import {withReducer, compose, branch, ComponentEnhancer} from "recompose";
+/** Libraries */
+import React, {FormEvent} from 'react';
+import PropTypes from 'prop-types';
+import {is, List, Map, Iterable} from 'immutable';
+import classnames from 'classnames';
+import {defer, isFunction} from 'lodash';
+import {withReducer, compose, branch, ComponentEnhancer} from 'recompose';
 
+/** Helpers */
+import {setAllInputInteractions, clearAllInputs} from './Actions/fields';
+import {withReducerState} from './Reducers';
+import {convertToFormData, normalizeFields} from './Helpers/formHelpers';
 
-type formState = Map<string, Map<string, PossibleValues>>
-
-export type OnSubmit<T> = (e:any, formData:formState | FormData, submitGeneratedForm?:T) => void
-
-export interface FormOptionalProps<T> extends BaseReactProps {
-    /** Accepts different mime types and ensures the user specified onSubmit is called with data in the correct format
-     * currently supports: application/json and multipart/form-data */
-    encType?: 'application/json' | 'multipart/form-data',
-    /** Called before the form is submitted, ths is a chance to modify the contents of the payload
-     * primarily used by the form generator */    
-    mapOutput?: (data?: Map<string, any>) => Map<string, any>,
-     /** Called once Form has ensured that all child Input components are valid */
-    onSubmit?: OnSubmit<T>,    
-}
-
-interface FormStateProps {
-  /** Can optionally be passed down by the user to intergrate with redux global state */
-  FormState?: formState,
-}
-
-interface FormDispatchProps {
-  /** Can optionally be passed down by the user to intergrate with redux global state */
-  dispatch?: any
-}
-
-interface FormState {
-  canSubmitString: string
-}
-
-export interface FormOwnProps<T> extends FormOptionalProps<T> {
-   /** Used to namespace all child input components in the redux store or local state */
-    name: string,
-}
-
-export interface FormProps<T> extends FormOwnProps<T>, FormStateProps, FormDispatchProps {
-
-}
-interface FormInnerProps<T> extends FormOwnProps<T>, FormStateProps, FormDispatchProps {
-  FormState: formState,
-  dispatch: any,
-  mapOutput: (data?: Map<string, any>) => Map<string, any>
-}
-
-const mapOutput = (data:Map<string, any>, mapOutputFunc: ((data?: Map<string, any>) => Map<string, any>)) => {
+const mapOutput = (data: Map<string, any>, mapOutputFunc: ((data?: Map<string, any>) => Map<string, any>)) => {
   if (isFunction(mapOutputFunc)){
     const mappedData = mapOutputFunc(data)
     if(!Iterable.isIterable(mappedData)){
@@ -67,6 +24,18 @@ const mapOutput = (data:Map<string, any>, mapOutputFunc: ((data?: Map<string, an
 }
 
 const randomString = (length) => Math.random().toString(36).substring(length);
+
+/** Interfaces */
+import {BaseReactProps, PossibleInputValue, OnSubmit, formState,
+        FormOptionalProps, FormOwnProps, FormStateProps,
+        FormDispatchProps, FormState, FormProps} from '../../typings/types.d';
+
+interface FormInnerProps<T> extends FormOwnProps<T>, FormStateProps, FormDispatchProps {
+  FormState: formState,
+  dispatch: any,
+  mapOutput: (data?: Map<string, any>) => Map<string, any>
+  onInvalid?: () => void
+}
 
 /** Displays a form component, inserts all user input into redux state and ensures that all inputs are validated
  * before allowing the user to submit the form. */
@@ -127,7 +96,7 @@ class Form extends React.Component<FormInnerProps<undefined>, FormState>{
     event.preventDefault();
 
     if(this.state.canSubmitString !== this.lastSumbittedString) {
-      const {dispatch, onSubmit, FormState, name, encType} = this.props;
+      const {dispatch, onSubmit, FormState, name, encType, onInvalid} = this.props;
 
       // INSERT COMMENT HERE
       dispatch(setAllInputInteractions(name, "changed", true));
@@ -136,7 +105,7 @@ class Form extends React.Component<FormInnerProps<undefined>, FormState>{
       defer(() => {
         const form = this.refs[name];
         const firstError = form.querySelector('.invalid');
-        
+
         if(firstError === null) {
           if(onSubmit) {
             const fields = FormState.get(name);
@@ -155,6 +124,9 @@ class Form extends React.Component<FormInnerProps<undefined>, FormState>{
           const scrollTo = firstError.getBoundingClientRect().top - 50;
           if(typeof window === 'object' && scrollTo < 0) {
             window.scrollTo(0, document.body.scrollTop + scrollTo - 5);
+          }
+          if (onInvalid) {
+            onInvalid();
           }
         }
       });

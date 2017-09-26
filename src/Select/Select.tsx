@@ -4,10 +4,10 @@ import classnames from 'classnames';
 
 /** Components */
 import InputWrapper from '../Form/InputWrapper';
-import performanceWrapper, {PerformanceWrapperProps} from '../Form/Helpers/performanceWrapper';
+import performanceWrapper from '../Form/Helpers/performanceWrapper';
 import DisplayValidation from '../Validation/DisplayValidation';
 import SelectBase from './Base';
-import {SelectInputProps} from '../Form/Types/types';
+import {SelectInputProps, PerformanceWrapperProps} from '../../typings/types.d';
 
 /** Styles */
 import './Select.scss';

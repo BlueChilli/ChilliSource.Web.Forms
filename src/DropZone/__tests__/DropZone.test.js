@@ -10,17 +10,20 @@ const droppableFiles = [
   {
     name: 'ImageFile.png',
     size: 1234,
-    type: 'image/png'
+    type: 'image/png',
+    lastModifiedDate: '17051900'
   },
   {
     name: 'PDFFile.pdf',
     size: 2345,
-    type: 'application/pdf'
+    type: 'application/pdf',
+    lastModifiedDate: '17051900'
   },
   {
     name: 'GifFile.gif',
     size: 3456,
-    type: 'image/gif'
+    type: 'image/gif',
+    lastModifiedDate: '17051900'
   }
 ];
 
@@ -94,21 +97,21 @@ describe('DropZone', () => {
     const filePreviewItems = wrapper => wrapper.find('p.preview-item');
     let state = Map();
     const context = {
-        nameSpace: "DropZone",
-        FormState: state,
-        dispatch: action => {
-          const reducer = basicReducer[action.type];
-          state = reducer(state, action);
-        }
+      nameSpace: "DropZone",
+      FormState: state,
+      dispatch: action => {
+        const reducer = basicReducer[action.type];
+        state = reducer(state, action);
+      }
     };
 
     const mountOptions = {
-        context,
-        childContextTypes: {
-            nameSpace: PropTypes.string,
-            FormState: PropTypes.object,
-            dispatch: PropTypes.func,
-        }
+      context,
+      childContextTypes: {
+        nameSpace: PropTypes.string,
+        FormState: PropTypes.object,
+        dispatch: PropTypes.func,
+      }
     }
 
     const singleFileWrapper = mount(<DropZone {...singleFileAllowedProps} fileListComponent={filePreviewComponent} />, mountOptions);
@@ -119,7 +122,10 @@ describe('DropZone', () => {
     multipleFileWrapper.find(ReactDropZone).simulate('drop', { target: {files: droppableFiles}});
     multipleFileWrapper.setContext(Object.assign({}, context, {FormState: state}))
 
+
+    console.log(filePreviewItems(singleFileWrapper))
     expect(filePreviewItems(singleFileWrapper)).toHaveLength(1);
+    console.log(filePreviewItems(multipleFileWrapper))
     expect(filePreviewItems(multipleFileWrapper)).toHaveLength(3);
   });
 });

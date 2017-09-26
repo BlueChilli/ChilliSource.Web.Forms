@@ -1,12 +1,21 @@
-import React from "react";
-import moment, {Moment} from "moment";
-import DateWrapper, {DateWrapperPassedDownProps} from "./DateWrapper";
-import {compose, defaultProps} from "recompose";
-import performanceWrapper, {PerformanceWrapperProps} from "../Form/Helpers/performanceWrapper";
-import {DatePickerProps} from "../Form/Types/types";
-import {Calendar} from "react-date-range";
-import "./DateRange.scss";
+/** Libraries */
+import React from 'react';
+import moment, {Moment} from 'moment';
+import {compose, defaultProps} from 'recompose';
+import {Calendar} from 'react-date-range';
 
+/** Components */
+import DateWrapper from './DateWrapper';
+import performanceWrapper from '../Form/Helpers/performanceWrapper';
+
+/** Interfaces */
+import {DateWrapperPassedDownProps} from './DateWrapper';
+import {DatePickerProps, PerformanceWrapperProps} from '../../typings/types.d';
+
+/** Styles */
+import './DateRange.scss';
+
+/** Class CalendarBase */
 class CalendarBase extends React.Component<DatePickerProps & PerformanceWrapperProps & DateWrapperPassedDownProps, {}>{
   handleChange = (dateRange:Moment) => {
     const {inputChanged, close} = this.props;
@@ -21,8 +30,9 @@ class CalendarBase extends React.Component<DatePickerProps & PerformanceWrapperP
   render() {
     return <Calendar {...this.props} onChange={this.handleChange}/>
   }
-};
+}
 
+/** Class DatePicker */
 class DatePicker extends React.Component<DatePickerProps & PerformanceWrapperProps, {}>{
   getValue = () => {
     const {value, defaultValue, dateFormat} = this.props;
