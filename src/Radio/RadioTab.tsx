@@ -1,11 +1,15 @@
-import React from "react";
-import classnames from "classnames";
-import {RadioTabProps} from "../Form/Types/types";
-import Radio from "../Radio/Radio";
-import {RadioTabsPassedDownProps} from "./RadioTabs"
-import {compose} from "recompose"
-import { isFunction } from 'lodash';
+/** Libraries */
+import React from 'react';
+import classnames from 'classnames';
+import {compose} from 'recompose';
+import {isFunction} from 'lodash';
 
+/** Components */
+import Radio from '../Radio/Radio';
+import {RadioTabsPassedDownProps} from './RadioTabs';
+
+/** Interfaces */
+import {RadioTabProps} from '../../typings/types.d';
 
 class RadioTab extends React.Component<RadioTabsPassedDownProps & RadioTabProps, {}> {
   componentWillMount(){
@@ -13,6 +17,7 @@ class RadioTab extends React.Component<RadioTabsPassedDownProps & RadioTabProps,
       this.setId(this.props.id);
     }
   }
+
   componentWillReceiveProps(nextProps: RadioTabsPassedDownProps & RadioTabProps){
     if(this.props.defaultSelected !== nextProps.defaultSelected){
       this.setId(nextProps.id);
@@ -42,7 +47,6 @@ class RadioTab extends React.Component<RadioTabsPassedDownProps & RadioTabProps,
     );
   }
 }
-
 
 // This is a hack to ensure that proper types are passed down. Need a better way to type React.cloneElement
 export default compose<RadioTabsPassedDownProps & RadioTabProps, RadioTabProps>((radioTab) => radioTab)(RadioTab);

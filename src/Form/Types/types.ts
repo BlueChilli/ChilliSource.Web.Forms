@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { ChangeEvent, FocusEvent, ReactText } from "react";
 import { TypeOfTest } from "./types";
 import { Dispatch } from "redux";
@@ -28,6 +29,20 @@ export type TypeOfTest =
   | "maxLength"
   | "min"
   | "max";
+=======
+import {ChangeEvent, FocusEvent, ReactText} from 'react';
+import {TypeOfTest} from './types';
+import {Dispatch} from 'redux';
+import {Map, List, Set} from 'immutable';
+import moment, {Moment} from 'moment';
+
+import {BaseReactProps} from "cs.core";
+import {SetInputPayload, SetInputInteractionPayload, SetValidationPayload} from '../../../typings/types.d';
+
+
+export type Type = 'text' | 'radio' | 'checkbox' | 'number' | 'email' | 'password' | 'hidden' | 'file'
+export type TypeOfTest = "required" | "pattern" | "type" | "minLength" | "maxLength" | "min" | "max";
+>>>>>>> master
 export type Tests = string | number | boolean | Function | undefined;
 
 export type DateRangeMoment = {

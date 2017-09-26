@@ -4,7 +4,7 @@ var {values} = require('lodash');
 var rulesObj = {
   javascript: {
     test: /\.(t|j)sx?$/,
-    exclude:  /(node_modules|custom_modules)/,
+    exclude:  /(node_modules)/,
     use: "awesome-typescript-loader"
   }, 
   styles: {

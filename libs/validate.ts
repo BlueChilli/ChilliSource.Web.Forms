@@ -1,20 +1,6 @@
 import {Iterable} from "immutable";
 import regExpList from "./validationRegExps";
-import {Type, TypeProp, TypeOfTest, Tests, PossibleValues} from "../src/Form/Types/types"
-
-
-
-export interface ValidationTypes {
-  required: (value:PossibleValues, test:boolean, type:Type) => boolean,
-  pattern: (value:PossibleValues, test:string) => boolean,
-  type: (value:PossibleValues, test: string) => boolean,
-  minLength: (value:PossibleValues, test:string) => boolean,
-  maxLength: (value:PossibleValues, test:string) => boolean,
-  min: (value:PossibleValues, test:string) => boolean,
-  max: (value:PossibleValues, test:string) => boolean,
-  default: () => false,
-}
-
+import {ValidationTypes, PossibleInputValue, TestType, InputTest, InputType, TypeProp} from '../typings/types.d';
 
 export const validations:ValidationTypes = {
   required: (value, test, type) => {
@@ -77,7 +63,7 @@ export const validationsMessages = (type:string, test?:boolean | string | number
   }
 };
 
-export function testValidation(value:PossibleValues, typeOfTest:TypeOfTest, typeOfInput:Type, test:Tests) {
+export function testValidation(value: PossibleInputValue, typeOfTest:InputTest, typeOfInput:InputType, test:TestType) {
   if (value !== undefined && value !== null) {
     if (validations[typeOfTest] !== undefined) {
       if(typeOfTest === 'required'){
@@ -94,14 +80,14 @@ export function testValidation(value:PossibleValues, typeOfTest:TypeOfTest, type
 
 export function validationsAvailable<T>(inputAttributes:T) {
   const validationsAvail = Object.keys(validations) as (keyof ValidationTypes)[];
-  return validationsAvail.filter(validation => inputAttributes.hasOwnProperty(validation) && validation !== 'default') as TypeOfTest[];
+  return validationsAvail.filter(validation => inputAttributes.hasOwnProperty(validation) && validation !== 'default') as InputTest[];
 }
 
 interface TestElementProps extends TypeProp{
   value:any,
   setValid: (value:boolean) => undefined
-  test?: Tests,
-  isFor: TypeOfTest | "customValidation",
+  test?: TestType,
+  isFor: InputTest | "customValidation",
 }
 
 export type TestElement = ({value, test, isFor, type, setValid}: TestElementProps) => void
