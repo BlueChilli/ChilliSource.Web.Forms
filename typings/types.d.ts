@@ -2,7 +2,7 @@
 /// <reference types="react" />
 
 /** Libraries */
-import { Component } from 'react';
+import { Component, FormEvent } from 'react';
 import { Moment } from 'moment';
 import { List, Map, Set } from 'immutable';
 import { Dispatch, Action } from 'redux';
@@ -60,9 +60,13 @@ export type SetAllInputInteractionAction = FSA<
 
 export type ClearAllInputsAction = FSA<ClearAllInputsPayload, 'CLEAR_ALL_INPUTS'>;
 
-export type formState = Map<string, Map<string, PossibleInputValue>>;
+export type formState = Map<string, any>;
 
-export type OnSubmit<T> = (e: any, formData: formState | FormData, submitGeneratedForm?: T) => void;
+export type OnSubmit<T> = (
+	e: FormEvent<any>,
+	formData: formState | FormData,
+	submitGeneratedForm?: T
+) => void;
 
 export type InputUnionProps =
 	| TextInputProps
