@@ -236,7 +236,7 @@ const createUniversalCompose = <TOutter extends WithHandlersGuard, TWithHandlers
 	type: string = 'input'
 ) =>
 	compose<PerformanceWrapperProps & TOutter, TOutter>(
-		getContext<FormContext, undefined>({
+		getContext<FormContext>({
 			nameSpace: PropTypes.string,
 			FormState: PropTypes.object,
 			fieldSetNameSpace: PropTypes.string,
