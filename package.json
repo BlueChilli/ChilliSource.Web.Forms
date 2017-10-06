@@ -1,6 +1,6 @@
 {
   "name": "cs.forms",
-  "version": "2.0.4",
+  "version": "1.0.93",
   "author": "Blue Chilli Technology Pty Ltd",
   "description": "A collection of forms components, helpers and abstractions built in React. These can be used with or without Redux.",
   "main": "dist/main.js",
@@ -28,6 +28,13 @@
     "build": "webpack --config webpack.build.config.js",
     "build-static": "webpack --config webpack.static.config.js"
   },
+  "peerDependencies": {
+    "react": ">=15.5.4",
+    "react-dom": ">=15.5.4",
+    "recompose": ">=0.24",
+    "react-dropzone": ">=3.13.4",
+    "react-onclickoutside": ">=5.11.1"
+  },
   "dependencies": {
     "@types/react": "^15.0.27",
     "classnames": "^2.2.5",
@@ -35,15 +42,10 @@
     "immutable": "^3.8.1",
     "jsx-to-string": "^1.1.0",
     "moment": "^2.18.1",
-    "react": "^15.5.4",
     "react-async-script-loader": "^0.3.0",
     "react-date-range": "^0.9.3",
-    "react-dom": "^15.5.4",
-    "react-dropzone": "^3.13.4",
-    "react-onclickoutside": "^5.11.1",
     "react-select": "^1.0.0-rc.3",
-    "react-syntax-highlighter": "^5.7.0",
-    "recompose": "0.24"
+    "react-syntax-highlighter": "^5.7.0"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -83,7 +85,7 @@
     "@types/react-onclickoutside": "^5.7.3",
     "@types/react-redux": "^4.4.39",
     "@types/react-select": "^1.0.48",
-    "@types/recompose": "^0.24.2",
+    "@types/recompose": "0.23.3",
     "autoprefixer": "^6.7.7",
     "awesome-typescript-loader": "^3.1.2",
     "breakpoint-sass": "^2.7.1",
@@ -114,6 +116,11 @@
     "url-loader": "^0.5.8",
     "webpack": "^2.3.3",
     "webpack-dev-middleware": "^1.10.1",
-    "webpack-hot-middleware": "^2.18.0"
+    "webpack-hot-middleware": "^2.18.0",
+    "react-dom": "^15.5.4",
+    "react": "^15.5.4",
+    "recompose": "0.24",
+    "react-dropzone": "^3.13.4",
+    "react-onclickoutside": "^5.11.1"
   }
 }
