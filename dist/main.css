@@ -846,3 +846,9 @@ button,
 @-webkit-keyframes Select-animation-spin {
   to {
     -webkit-transform: rotate(1turn); } }
+.textarea .input-group {
+  height: auto; }
+
+textarea {
+  width: 100%;
+  border: 1px solid #dfdee3; }
