@@ -19,7 +19,9 @@ const allTextAreaProps = {
 	label: 'TextArea Label',
 	name: 'SampleTextArea',
 	className: 'SampleTextAreaClass',
-	id: 'TextAreaId'
+	id: 'TextAreaId',
+	explanation: 'This is additional explanation for this field',
+	resize: 'none'
 };
 
 const {
@@ -36,7 +38,9 @@ const {
 	append,
 	name,
 	className,
-	id
+	id,
+	explanation,
+	resize
 } = allTextAreaProps;
 
 const inputWrapperProps = {
@@ -44,7 +48,8 @@ const inputWrapperProps = {
 	name,
 	labelPostfix,
 	labelPrefix,
-	label
+	label,
+	explanation
 };
 
 const inputGroupProps = {};
@@ -57,7 +62,8 @@ const textAreaBaseProps = {
 	min,
 	max,
 	name,
-	pattern
+	pattern,
+	resize
 };
 
 const displayValidationProps = {

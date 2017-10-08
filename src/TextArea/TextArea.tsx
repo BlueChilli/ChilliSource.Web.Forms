@@ -19,7 +19,7 @@ import { TextAreaProps, PerformanceWrapperProps } from '../../typings/types.d';
 export class TextArea extends React.Component<TextAreaProps & PerformanceWrapperProps, {}> {
 	render() {
 		const { className, label, labelPrefix, labelPostfix, explanation, ...props } = this.props;
-		const { autoFocus, onChange, onBlur, id, value, ...validationProps } = props;
+		const { autoFocus, onChange, onBlur, id, value, resize, ...validationProps } = props;
 		const classes = classnames(className, 'textarea', 'input');
 
 		return (
