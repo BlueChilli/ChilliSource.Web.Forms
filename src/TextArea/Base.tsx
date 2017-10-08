@@ -11,6 +11,10 @@ import { TextAreaProps, PerformanceWrapperProps } from '../../typings/types.d';
 class TextAreaBase extends Component<TextAreaProps & PerformanceWrapperProps, {}> {
 	displayName: 'TextAreaBase';
 
+	static defaultProps = {
+		resize: 'none'
+	};
+
 	handleChange = (event: ChangeEvent<{ value: string }>) => {
 		const { inputChanged, onChange } = this.props;
 
@@ -30,8 +34,16 @@ class TextAreaBase extends Component<TextAreaProps & PerformanceWrapperProps, {}
 	};
 
 	render() {
+		const { resize } = this.props;
 		var attributes = getHTMLAttributes<TextAreaProps & PerformanceWrapperProps>(this.props);
-		return <textarea onBlur={this.handleBlur} onChange={this.handleChange} {...attributes} />;
+		return (
+			<textarea
+				onBlur={this.handleBlur}
+				onChange={this.handleChange}
+				{...attributes}
+				style={{ resize }}
+			/>
+		);
 	}
 }
 

@@ -9,14 +9,17 @@ import TextAreaBase from './Base';
 import DisplayValidation from '../Validation/DisplayValidation';
 import performanceWrapper from '../Form/Helpers/performanceWrapper';
 
+/** Styles */
+import './TextArea.scss';
+
 /** Interfaces */
 import { TextAreaProps, PerformanceWrapperProps } from '../../typings/types.d';
 
 /** Class TextArea */
 export class TextArea extends React.Component<TextAreaProps & PerformanceWrapperProps, {}> {
 	render() {
-		const { className, label, labelPrefix, labelPostfix, ...props } = this.props;
-		const { autoFocus, onChange, onBlur, id, value, ...validationProps } = props;
+		const { className, label, labelPrefix, labelPostfix, explanation, ...props } = this.props;
+		const { autoFocus, onChange, onBlur, id, value, resize, ...validationProps } = props;
 		const classes = classnames(className, 'textarea', 'input');
 
 		return (
@@ -25,7 +28,8 @@ export class TextArea extends React.Component<TextAreaProps & PerformanceWrapper
 				name={props.name}
 				labelPrefix={labelPrefix}
 				labelPostfix={labelPostfix}
-				label={label}>
+				label={label}
+				explanation={explanation}>
 				<InputGroup>
 					<TextAreaBase {...props} />
 				</InputGroup>

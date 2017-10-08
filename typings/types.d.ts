@@ -244,7 +244,7 @@ export interface InputWrapperProps extends BaseReactProps, LabelProp, NameProp, 
 
 	labelPostfix?: any;
 	/** Hint text */
-	explanation?: string;
+	explanation?: string | React.ReactElement<HTMLParagraphElement>;
 }
 
 export interface BaseInputProps<TDefault, TValue, TChangeEvent = React.ChangeEvent<{}>>
@@ -284,6 +284,8 @@ export interface TextAreaProps
 		AdditionalCompareProps {
 	/** The number of rows initially shown in the text area */
 	rows?: number;
+	/** The resizing behaviour of the textarea */
+	resize?: 'none' | 'vertical' | 'horizontal';
 }
 
 export interface TextInputProps

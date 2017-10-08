@@ -34,7 +34,7 @@ class InputWrapper extends React.Component<InputWrapperProps, undefined> {
 				)}
 				{explanation && (
 					<div className="input-description">
-						<p>{explanation}</p>
+						{typeof explanation === 'string' ? <p>{explanation}</p> : explanation}
 					</div>
 				)}
 				{children}

@@ -105,6 +105,23 @@ export default class FormInner extends React.Component<{}, {}> {
 						</div>
 					</div>
 
+					<div className="row">
+						<div className="tablet-col-12 margin-top-2">
+							<TextArea
+								name="message"
+								label="Message"
+								explanation={
+									<p>
+										Enter your message{' '}
+										<a href="https://google.com" target="_blank">
+											here
+										</a>
+									</p>
+								}
+							/>
+						</div>
+					</div>
+
 					{/* DATE & RANGE PICKERS */}
 					<div className="row">
 						<div className="tablet-col-6 margin-top-2">
