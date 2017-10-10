@@ -1,6 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ErrorWrapper from '../ErrorWrapper.tsx';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
 
 const input = <input key="input" value="This is in an input tag" />;
 const div = <div key="div">This is in a div tag</div>;

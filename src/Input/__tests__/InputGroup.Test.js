@@ -1,5 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
+
 import InputGroup from '../InputGroup.tsx';
 
 const input = <input key="input" value="This is in an input tag" />;

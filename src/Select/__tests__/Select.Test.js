@@ -7,6 +7,9 @@ import Select, { Select as ShallowSelect } from '../Select';
 import Form from '../../Form/Form';
 import SelectBase from '../Base';
 import { Map } from 'immutable';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
 
 const options = ['Pash', 'Shane', 'Jeremy', 'Mitch', 'Mick'].map((person, key) => (
 	<option key={key} value={person}>

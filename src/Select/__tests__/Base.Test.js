@@ -3,6 +3,10 @@ import { List } from 'immutable';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
 import { SelectBase } from '../Base';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
+
 
 const children = ['Pash', 'Shane', 'Jeremy', 'Mitch', 'Mick'].map((person, key) => (
 	<option key={key} value={person}>

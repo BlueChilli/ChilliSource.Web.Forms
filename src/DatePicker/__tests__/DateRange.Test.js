@@ -11,6 +11,9 @@ import { Map } from 'immutable';
 import { shallow } from 'enzyme';
 import { isEqual } from 'lodash';
 import { DateRangeBase, DateRangePicker } from '../DateRange';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
 
 const Value = {
 	startDate: moment(),

@@ -6,6 +6,9 @@ import { isEqual } from 'lodash';
 import { TextArea } from '../TextArea';
 import Form from '../../Form/Form';
 import { Map } from 'immutable';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
 
 const allTextAreaProps = {
 	autoFocus: false,

@@ -10,6 +10,9 @@ import {
 	withNeededProps
 } from '../performanceWrapper';
 import { isEqual, isArray } from 'lodash';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
 
 class TestComponent extends Component<any, {}> {
 	render() {

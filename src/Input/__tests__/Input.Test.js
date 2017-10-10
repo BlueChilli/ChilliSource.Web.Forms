@@ -5,6 +5,9 @@ import { shallow, mount } from 'enzyme';
 import { isEqual } from 'lodash';
 import Input, { Input as ShallowInput } from '../Input';
 import { Map } from 'immutable';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
 
 // Defining all the properties
 const allInputProps = {

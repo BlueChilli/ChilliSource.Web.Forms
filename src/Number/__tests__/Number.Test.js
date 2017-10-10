@@ -6,6 +6,9 @@ import { shallow, mount } from 'enzyme';
 import Form from '../../Form/Form';
 import Number from '../Number';
 import { isEqual } from 'lodash';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
 
 const defaultNumberProps = {
 	pattern: '[0-9]+.?[0-9]*',

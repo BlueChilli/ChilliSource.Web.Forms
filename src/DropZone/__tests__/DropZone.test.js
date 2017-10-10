@@ -5,6 +5,9 @@ import { shallow, mount } from 'enzyme';
 import DropZone, { DropZone as DropZoneUI } from '../DropZone';
 import { basicReducer } from '../../Form/Reducers/';
 import { Set, Map } from 'immutable';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
 
 const droppableFiles = [
 	{
@@ -91,13 +94,13 @@ describe('DropZone', () => {
 		const singleFileWrapper = shallow(
 			<DropZoneUI
 				{...singleFileAllowedProps}
-				fileListComponent={fileListComponent}
+				fileListComponent={fileListComponent} inputChanged={() => ({})}
 				value={Set([droppableFiles[0]])}
 			/>
 		);
 		const multipleFileWrapper = shallow(
 			<DropZoneUI
-				{...multipleFilesAllowedProps}
+				{...multipleFilesAllowedProps} inputChanged={() => ({})}
 				fileListComponent={fileListComponent}
 				value={Set(droppableFiles)}
 			/>
