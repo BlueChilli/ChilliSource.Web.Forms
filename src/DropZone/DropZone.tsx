@@ -115,7 +115,6 @@ class DropZone extends React.Component<DropZoneProps & PerformanceWrapperProps, 
 			className,
 			placeholder,
 			multiple = false,
-			showList = true,
 			fileListComponent,
 			width,
 			height
@@ -128,6 +127,8 @@ class DropZone extends React.Component<DropZoneProps & PerformanceWrapperProps, 
 			width,
 			height
 		};
+
+		console.log('fileListComponent', isFunction(fileListComponent));
 
 		return (
 			<div>
@@ -143,7 +144,11 @@ class DropZone extends React.Component<DropZoneProps & PerformanceWrapperProps, 
 					</ReactDropZone>
 				</div>
 
-				{isFunction(fileListComponent) && fileListComponent(this.getFiles(), this.deleteFile)}
+				{isFunction(fileListComponent) ? (
+					fileListComponent(this.getFiles(), this.deleteFile)
+				) : (
+					<noscript />
+				)}
 			</div>
 		);
 	}
