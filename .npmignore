@@ -13,3 +13,4 @@ server.js
 preprocessor.js
 setupTestFramework.js
 webpack.static.config.js
+shim.js
