@@ -362,11 +362,7 @@ export interface DropZoneProps
 	/** Height of the droppable area */
 	height?: string;
 	/** Can you upload multiple files*/
-
 	multiple?: boolean;
-	/** Display a list of uploaded files*/
-
-	showList?: boolean;
 	/** Custom onDrop handler */
 	onDrop?: Function;
 	/** Placeholder text inside the dropzone */
