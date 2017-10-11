@@ -136,6 +136,7 @@ class DropZone extends React.Component<DropZoneProps & PerformanceWrapperProps, 
 						className={classes}
 						onDrop={this.onDrop}
 						multiple={multiple}
+						disablePreview={true}
 						{...attributes}
 						style={style}>
 						{this.getInnerContent()}
