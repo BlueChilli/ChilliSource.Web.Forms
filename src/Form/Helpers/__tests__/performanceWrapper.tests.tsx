@@ -9,7 +9,7 @@ import {
 	updateLifcycle,
 	withNeededProps
 } from '../performanceWrapper';
-import { isEqual, isArray } from 'lodash';
+import { isEqual, isArray } from 'lodash-es';
 
 class TestComponent extends Component<any, {}> {
 	render() {

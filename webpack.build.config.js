@@ -3,6 +3,7 @@ var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var nodeExternals = require('webpack-node-externals');
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
 	entry: path.join(__dirname, '/app/index'),
@@ -14,11 +15,16 @@ module.exports = {
 
 	module: {
 		rules: [
-			{
-				test: /\.(t|j)sx?$/,
-				exclude: /(node_modules|custom_modules)/,
-				use: 'awesome-typescript-loader'
-			},
+            {
+                test: /\.(t|j)sx?$/,
+                exclude: /(node_modules|custom_modules)/,
+                use: [{
+                    loader: "awesome-typescript-loader",
+                    options: {
+                      useBabel: true
+                    }
+                  }]
+                },
 			{
 				test: /\.(s?css)/,
 				use: ExtractTextPlugin.extract({
@@ -42,11 +48,12 @@ module.exports = {
 
 	externals: [nodeExternals(
         {
-        whitelist: [ 'cs.core']
+        whitelist: [ 'cs.core', 'lodash-es']
         }
     )],
 
     plugins: [new ExtractTextPlugin('main.css'),
+     new UglifyJSPlugin(),
     new BundleAnalyzerPlugin({
         // Can be `server`, `static` or `disabled`. 
         // In `server` mode analyzer will start HTTP server to show bundle report. 

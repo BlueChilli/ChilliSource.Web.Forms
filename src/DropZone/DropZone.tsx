@@ -4,7 +4,7 @@ import { Set } from 'immutable';
 import ReactDropZone from 'react-dropzone';
 import classnames from 'classnames';
 import { compose } from 'recompose';
-import { isFunction } from 'lodash';
+import { isFunction } from 'lodash-es';
 
 /** * Components */
 import performanceWrapper from '../Form/Helpers/performanceWrapper';
