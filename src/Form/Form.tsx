@@ -49,6 +49,7 @@ interface FormInnerProps<T> extends FormOwnProps<T>, FormStateProps, FormDispatc
 	FormState: formState;
 	dispatch: any;
 	mapOutput: (data?: Map<string, any>) => Map<string, any>;
+	onInvalid?: () => void;
 }
 
 /** Displays a form component, inserts all user input into redux state and ensures that all inputs are validated
@@ -109,7 +110,7 @@ class Form extends React.Component<FormInnerProps<undefined>, FormState> {
 		event.preventDefault();
 
 		if (this.state.canSubmitString !== this.lastSumbittedString) {
-			const { dispatch, onSubmit, FormState, name, encType } = this.props;
+			const { dispatch, onSubmit, FormState, name, encType, onInvalid } = this.props;
 
 			// INSERT COMMENT HERE
 			dispatch(setAllInputInteractions(name, 'changed', true));
@@ -140,6 +141,9 @@ class Form extends React.Component<FormInnerProps<undefined>, FormState> {
 					const scrollTo = firstError.getBoundingClientRect().top - 50;
 					if (typeof window === 'object' && scrollTo < 0) {
 						window.scrollTo(0, document.body.scrollTop + scrollTo - 5);
+					}
+					if (typeof onInvalid === 'function') {
+						onInvalid();
 					}
 				}
 			});
