@@ -56,7 +56,7 @@ export type SetInputInteractionAction = FSA<SetInputInteractionPayload, 'SET_INP
 export type SetAllInputInteractionAction = FSA<
 	SetAllInputInteractionPayload,
 	'SET_ALL_INPUT_INTERACTIONS'
->;
+	>;
 
 export type ClearAllInputsAction = FSA<ClearAllInputsPayload, 'CLEAR_ALL_INPUTS'>;
 
@@ -80,12 +80,12 @@ export type InputUnionProps =
 export type ReducerFunc<
 	TState = Map<string, {}>,
 	TAction =
-		| ClearAllInputsAction
-		| SetInputAction
-		| SetAllInputInteractionAction
-		| SetInputInteractionAction
-		| SetValidationAction
-> = (state: TState, action: TAction) => TState;
+	| ClearAllInputsAction
+	| SetInputAction
+	| SetAllInputInteractionAction
+	| SetInputInteractionAction
+	| SetValidationAction
+	> = (state: TState, action: TAction) => TState;
 
 export type BasicReducer = {
 	SET_INPUT: ReducerFunc<Map<string, any>, SetInputAction>;
@@ -96,7 +96,7 @@ export type BasicReducer = {
 };
 
 /** export interfaces */
-export interface DateRangeMap extends Map<string, Moment> {}
+export interface DateRangeMap extends Map<string, Moment> { }
 
 export interface BaseReactProps {
 	children?: React.ReactNode;
@@ -249,14 +249,14 @@ export interface InputWrapperProps extends BaseReactProps, LabelProp, NameProp, 
 
 export interface BaseInputProps<TDefault, TValue, TChangeEvent = React.ChangeEvent<{}>>
 	extends BaseReactProps,
-		OnChangeEventProps<TChangeEvent>,
-		OnBlurEventProps<React.FocusEvent<{}>>,
-		ValidationProps,
-		NameProp,
-		TypeProp,
-		IdProp,
-		DefaultValueProp<TDefault>,
-		ValueProp<TValue> {
+	OnChangeEventProps<TChangeEvent>,
+	OnBlurEventProps<React.FocusEvent<{}>>,
+	ValidationProps,
+	NameProp,
+	TypeProp,
+	IdProp,
+	DefaultValueProp<TDefault>,
+	ValueProp<TValue> {
 	/** Automatically select this field on navigation*/
 
 	autoFocus?: boolean;
@@ -278,10 +278,10 @@ export interface OptionTypes {
 
 export interface TextAreaProps
 	extends BaseInputProps<string, string>,
-		CustomValidationProps,
-		InputWrapperProps,
-		PlaceholderProp,
-		AdditionalCompareProps {
+	CustomValidationProps,
+	InputWrapperProps,
+	PlaceholderProp,
+	AdditionalCompareProps {
 	/** The number of rows initially shown in the text area */
 	rows?: number;
 	/** The resizing behaviour of the textarea */
@@ -290,11 +290,11 @@ export interface TextAreaProps
 
 export interface TextInputProps
 	extends BaseInputProps<any, any>,
-		CustomValidationProps,
-		InputWrapperProps,
-		InputGroupProps,
-		PlaceholderProp,
-		AdditionalCompareProps {
+	CustomValidationProps,
+	InputWrapperProps,
+	InputGroupProps,
+	PlaceholderProp,
+	AdditionalCompareProps {
 	/** The corner radius for the input area */
 	radius?: number;
 	/** Type of preconfigured input */
@@ -303,10 +303,10 @@ export interface TextInputProps
 
 export interface SelectInputProps
 	extends BaseInputProps<string | number, string | number>,
-		CustomValidationProps,
-		InputWrapperProps,
-		DefaultSwitchProps,
-		AdditionalCompareProps {
+	CustomValidationProps,
+	InputWrapperProps,
+	DefaultSwitchProps,
+	AdditionalCompareProps {
 	/** Pass in an arrow to display at the edge of the select box */
 
 	arrow?: React.ReactNode;
@@ -314,18 +314,18 @@ export interface SelectInputProps
 
 export interface MultiSelectProps
 	extends InputWrapperProps,
-		BaseInputProps<any, any, List<any>>,
-		AdditionalCompareProps,
-		OptionsProp {
+	BaseInputProps<any, any, List<any>>,
+	AdditionalCompareProps,
+	OptionsProp {
 	noResultsText?: string;
 	placeholder?: string;
 }
 
 export interface SwitchProps
 	extends BaseInputProps<boolean | string | number, string | boolean | undefined>,
-		DefaultSwitchProps,
-		LabelProp,
-		AdditionalCompareProps {
+	DefaultSwitchProps,
+	LabelProp,
+	AdditionalCompareProps {
 	/** Put into state as the value of the selected switch */
 	id: string;
 }
@@ -347,16 +347,16 @@ export interface ValidationElementProps extends BaseReactProps, NameProp, Additi
 
 export interface DisplayValidationProps
 	extends BaseReactProps,
-		OptionalValidationProps,
-		CustomValidationProps,
-		TypeProp,
-		NameProp {}
+	OptionalValidationProps,
+	CustomValidationProps,
+	TypeProp,
+	NameProp { }
 
 export interface DropZoneProps
 	extends BaseReactProps,
-		NameProp,
-		ValueProp<List<File>>,
-		AdditionalCompareProps {
+	NameProp,
+	ValueProp<List<File>>,
+	AdditionalCompareProps {
 	/** Width of the droppable area */
 	width?: string;
 	/** Height of the droppable area */
@@ -365,6 +365,8 @@ export interface DropZoneProps
 
 	multiple?: boolean;
 	/** Display a list of uploaded files*/
+
+	children?: any;
 
 	showList?: boolean;
 	/** Custom onDrop handler */
@@ -377,9 +379,9 @@ export interface DropZoneProps
 
 export interface DateWrapperProps
 	extends InputWrapperProps,
-		InputGroupProps,
-		BaseReactProps,
-		PlaceholderProp {}
+	InputGroupProps,
+	BaseReactProps,
+	PlaceholderProp { }
 
 export interface InternalDateWrapperProps extends DateWrapperProps {
 	valueString: string;
@@ -388,10 +390,10 @@ export interface InternalDateWrapperProps extends DateWrapperProps {
 
 export interface CommonDateProps
 	extends BaseReactProps,
-		NameProp,
-		DateWrapperProps,
-		OnChangeEventProps<DateRangeMoment | Moment>,
-		AdditionalCompareProps {
+	NameProp,
+	DateWrapperProps,
+	OnChangeEventProps<DateRangeMoment | Moment>,
+	AdditionalCompareProps {
 	date?: Moment;
 	dateFormat?: string;
 	firstDayOfTheWeek?: number;
@@ -404,19 +406,19 @@ export interface CommonDateProps
 
 export interface DatePickerProps
 	extends CommonDateProps,
-		DefaultValueProp<string>,
-		ValueProp<Moment> {}
+	DefaultValueProp<string>,
+	ValueProp<Moment> { }
 
 export interface DateRangeProps
 	extends CommonDateProps,
-		DefaultValueProp<DateRangeMap>,
-		ValueProp<DateRangeMap> {
+	DefaultValueProp<DateRangeMap>,
+	ValueProp<DateRangeMap> {
 	startDate?: string | Moment | Function;
 	endDate?: string | Moment | Function;
 	value?: DateRangeMap;
 }
 
-export interface ErrorWrapperProps extends BaseReactProps, TypeProp {}
+export interface ErrorWrapperProps extends BaseReactProps, TypeProp { }
 
 export interface BaseAction<TType> extends Action {
 	type: TType;
@@ -479,7 +481,7 @@ export interface FormOwnProps<T> extends FormOptionalProps<T> {
 	name: string;
 }
 
-export interface FormProps<T> extends FormOwnProps<T>, FormStateProps, FormDispatchProps {}
+export interface FormProps<T> extends FormOwnProps<T>, FormStateProps, FormDispatchProps { }
 
 export interface ClearAllInputsPayload {
 	nameSpace: string;
@@ -525,7 +527,7 @@ export interface ValidationCloneElementProps extends InputInfoProps, TypeProp {
 
 export interface ValidationAdditionProps
 	extends ValidationElementProps,
-		ValidationCloneElementProps {}
+	ValidationCloneElementProps { }
 
 export interface ValidationInnerElementProps {
 	displayed: boolean;
@@ -559,27 +561,27 @@ export interface PerformanceWrapperInputHelpers {
 	compareAdditionalProps: compareAdditionalProps;
 }
 
-export interface PerformanceWrapperWithHandlers extends PerformanceWrapperInputHelpers {}
+export interface PerformanceWrapperWithHandlers extends PerformanceWrapperInputHelpers { }
 
 export interface PerformanceWrapperWithProps
 	extends InputInfoProps,
-		DefaultValueProp<PossibleInputValue> {
+	DefaultValueProp<PossibleInputValue> {
 	inputPath: string[];
 }
 
 export interface PerformanceWrapperProps
 	extends PerformanceWrapperWithProps,
-		PerformanceWrapperWithHandlers,
-		FormContext {}
+	PerformanceWrapperWithHandlers,
+	FormContext { }
 
 export interface WithHandlersGuard
 	extends NameProp,
-		IdProp,
-		TypeProp,
-		DefaultSwitchProps,
-		DefaultValueProp<PossibleInputValue>,
-		NameProp,
-		BaseReactProps,
-		ValueProp<PossibleInputValue>,
-		IdProp,
-		TypeProp {}
+	IdProp,
+	TypeProp,
+	DefaultSwitchProps,
+	DefaultValueProp<PossibleInputValue>,
+	NameProp,
+	BaseReactProps,
+	ValueProp<PossibleInputValue>,
+	IdProp,
+	TypeProp { }
