@@ -30779,8 +30779,9 @@ var Form = (function (_super) {
         _this.lastSumbittedString = null;
         _this.handleFormSubmit = function (event) {
             event.preventDefault();
-            //if (_this.state.canSubmitString !== _this.lastSumbittedString) {
-                var _a = _this.props, dispatch = _a.dispatch, onSubmit_1 = _a.onSubmit, FormState_1 = _a.FormState, name_1 = _a.name, encType_1 = _a.encType;
+            var _a = _this.props, dispatch = _a.dispatch, onSubmit_1 = _a.onSubmit, FormState_1 = _a.FormState, name_1 = _a.name, encType_1 = _a.encType, disablePreSubmitCheck_1 = _a.disablePreSubmitCheck || false;
+
+            if (_this.state.canSubmitString !== _this.lastSumbittedString || disablePreSubmitCheck_1) {
                 // INSERT COMMENT HERE
                 dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__Actions_fields__["e" /* setAllInputInteractions */])(name_1, "changed", true));
                 // INSERT COMMENT HERE
@@ -30808,7 +30809,7 @@ var Form = (function (_super) {
                         }
                     }
                 });
-            //}
+            }
         };
         _this.state = {
             canSubmitString: randomString(10)
